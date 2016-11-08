@@ -12,5 +12,10 @@
         "limingxinleo/limx-func": "^2.1",
         "limingxinleo/limx-package": "^1.0",
         "limingxinleo/phalcon-utils": "^1.0"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "php artisan init"
+        ]
     }
 }

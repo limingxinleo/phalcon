@@ -16,6 +16,14 @@ switch ($action) {
     case 'make:limx-package':
         package();
         break;
+    case 'init':
+        init();
+        break;
+}
+
+function init()
+{
+    echo 1;
 }
 
 function package()
