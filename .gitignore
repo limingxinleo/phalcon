@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+### default template
+# @author limx
+.idea
+.svn
+cache/
+vendor/
+composer.lock
