@@ -3,6 +3,5 @@
 # @author limx
 .idea
 .svn
-cache/
 vendor/
 composer.lock
