@@ -1,0 +1,16 @@
+{
+    "name": "limingxinleo/phalcon-project-ss",
+    "description": "a phalcon porject for simple-subcontrollers",
+    "type": "project",
+    "authors": [
+        {
+            "name": "李铭昕",
+            "email": "715557344@qq.com"
+        }
+    ],
+    "require": {
+        "limingxinleo/limx-func": "^2.1",
+        "limingxinleo/limx-package": "^1.0",
+        "limingxinleo/phalcon-utils": "^1.0"
+    }
+}

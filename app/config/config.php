@@ -18,7 +18,7 @@ return new Config(
             'pluginsDir'     => __DIR__ . '/../../app/plugins/',
             'libraryDir'     => __DIR__ . '/../../app/library/',
             'cacheDir'       => __DIR__ . '/../../app/cache/',
-            'baseUri'        => '/mvc/simple-subcontrollers/',
+            'baseUri'        => '/',
         ]
     ]
 );
