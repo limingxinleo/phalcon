@@ -23,7 +23,23 @@ switch ($action) {
 
 function init()
 {
-    echo 1;
+    echo "The default namespace is MyApp\n";
+    echo "Do you want rewrite your namespace?(yes or no)\n";
+    $arg = trim(fgets(STDIN));
+    if ($arg == 'yes') {
+        echo "Please input the namespace!\n";
+        $arg = trim(fgets(STDIN));
+        if(!empty($arg)){
+            $res = [];
+            traverse(__DIR__.'/app/',$res);
+            foreach ($res as $v) {
+                $file = file_get_contents($v);
+                $file=str_replace('MyApp', $arg, $file);
+                file_put_contents($v, $file);
+            }
+        }
+    }
+    echo "welcome!\n";
 }
 
 function package()
