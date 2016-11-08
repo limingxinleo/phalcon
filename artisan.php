@@ -56,8 +56,6 @@ function package()
             'app/models',
             'app/views',
             'public',
-            'artisan.php',
-            'worker.php',
             'composer.json',
         ],
         // 复制后的文件地址
