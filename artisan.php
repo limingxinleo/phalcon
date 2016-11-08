@@ -19,6 +19,9 @@ switch ($action) {
     case 'init':
         init();
         break;
+    case '--help':
+        echo "You can use php artisan.php init to change the namespace!\n";
+        break;
 }
 
 function init()
@@ -29,12 +32,12 @@ function init()
     if ($arg == 'yes') {
         echo "Please input the namespace!\n";
         $arg = trim(fgets(STDIN));
-        if(!empty($arg)){
+        if (!empty($arg)) {
             $res = [];
-            traverse(__DIR__.'/app/',$res);
+            traverse(__DIR__ . '/app/', $res);
             foreach ($res as $v) {
                 $file = file_get_contents($v);
-                $file=str_replace('MyApp', $arg, $file);
+                $file = str_replace('MyApp', $arg, $file);
                 file_put_contents($v, $file);
             }
         }
