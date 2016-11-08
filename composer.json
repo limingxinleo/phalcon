@@ -15,7 +15,7 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "php artisan init"
+            "php artisan.php init"
         ]
     }
 }
