@@ -1,1 +1,5 @@
-Users (admin)
+{% extends "master.volt" %}
+{% block content %}
+    Users (admin)
+{% endblock %}
+
