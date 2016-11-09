@@ -32,6 +32,13 @@ try {
     }
 
     /**
+     * Read helper functions
+     */
+//    if (file_exists(APP_PATH . '/library/helper.php')) {
+//        include APP_PATH . '/library/helper.php';
+//    }
+
+    /**
      * Handle the request
      */
     $application = new Application($di);

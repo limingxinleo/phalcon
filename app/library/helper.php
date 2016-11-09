@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/9 Time: 9:55
 // +----------------------------------------------------------------------
+use Phalcon\Di\FactoryDefault as DI;
 use limx\func\Debug;
 use limx\phalcon\Ajax;
 
@@ -53,3 +54,28 @@ if (!function_exists('error')) {
         return Ajax::error($data);
     }
 }
+
+if (!function_exists('di')) {
+    function di($name)
+    {
+        $di = DI::getDefault();
+        return $di[$name];
+    }
+}
+
+if (!function_exists('session')) {
+
+    function session($key = null, $value = null)
+    {
+        $session = di('session');
+        if (is_null($key)) {
+            return null;
+        }
+        if (is_null($value)) {
+            return $session->get($key);
+        }
+        return $session->set($key, $value);
+    }
+}
+
+
