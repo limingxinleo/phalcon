@@ -18,6 +18,8 @@ class UsersController extends ControllerBase
         $name = $this->session->get("user-name");
         dump($name);
         dump(session('user-name'));
-        
+
+        dump(di('app'));
+
     }
 }

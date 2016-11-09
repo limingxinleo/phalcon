@@ -12,6 +12,45 @@ use Phalcon\Di\FactoryDefault as DI;
 use limx\func\Debug;
 use limx\phalcon\Ajax;
 
+if (!function_exists('di')) {
+    /**
+     * [di desc]
+     * @desc 获取容器对象
+     * @author limx
+     * @param $name 容器服务名
+     * @return mixed
+     */
+    function di($name)
+    {
+        $di = DI::getDefault();
+        return $di[$name];
+    }
+}
+
+if (!function_exists('session')) {
+
+    /**
+     * [session desc]
+     * @desc 获取注册后的session服务
+     * @author limx
+     * @param null $key
+     * @param null $value
+     * @return null
+     */
+    function session($key = null, $value = null)
+    {
+        $session = di('session');
+
+        if (is_null($key)) {
+            return null;
+        }
+        if (is_null($value)) {
+            return $session->get($key);
+        }
+        return $session->set($key, $value);
+    }
+}
+
 if (!function_exists('dump')) {
     /**
      * [dump desc]
@@ -52,29 +91,6 @@ if (!function_exists('error')) {
     function error($data)
     {
         return Ajax::error($data);
-    }
-}
-
-if (!function_exists('di')) {
-    function di($name)
-    {
-        $di = DI::getDefault();
-        return $di[$name];
-    }
-}
-
-if (!function_exists('session')) {
-
-    function session($key = null, $value = null)
-    {
-        $session = di('session');
-        if (is_null($key)) {
-            return null;
-        }
-        if (is_null($value)) {
-            return $session->get($key);
-        }
-        return $session->set($key, $value);
     }
 }
 

@@ -98,6 +98,7 @@ $di->set('dispatcher', function () {
 });
 
 $di->set('app', function () {
+    // 加载app.php 配置文件
     $app = APP_PATH . '/config/app.php';
     if (file_exists($app)) {
         return require $app;
