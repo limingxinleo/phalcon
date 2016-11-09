@@ -9,6 +9,7 @@
 // | Date: 2016/11/9 Time: 9:55
 // +----------------------------------------------------------------------
 use limx\func\Debug;
+use limx\phalcon\Ajax;
 
 if (!function_exists('dump')) {
     /**
@@ -20,5 +21,35 @@ if (!function_exists('dump')) {
     function dump($data)
     {
         Debug::dump($data);
+    }
+}
+
+if (!function_exists('success')) {
+
+    /**
+     * [success desc]
+     * @desc
+     * @author limx
+     * @param $data
+     * @return \limx\phalcon\JsonResponse
+     */
+    function success($data)
+    {
+        return Ajax::success($data);
+    }
+}
+
+if (!function_exists('error')) {
+
+    /**
+     * [error desc]
+     * @desc
+     * @author limx
+     * @param $data
+     * @return \limx\phalcon\JsonResponse
+     */
+    function error($data)
+    {
+        return Ajax::error($data);
     }
 }
