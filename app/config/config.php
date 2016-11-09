@@ -1,4 +1,10 @@
 <?php
+/*
+ * Modified: preppend directory path of current file, because of this file own different ENV under between Apache and command line.
+ * NOTE: please remove this comment.
+ */
+defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirname(__FILE__) . '/../..'));
+defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 use Phalcon\Config;
 
@@ -12,13 +18,13 @@ return new Config(
             'dbname' => 'laravel',
         ],
         'application' => [
-            'configDir' => __DIR__,
-            'controllersDir' => __DIR__ . '/../controllers/',
-            'modelsDir' => __DIR__ . '/../models/',
-            'viewsDir' => __DIR__ . '/../views/',
-            'pluginsDir' => __DIR__ . '/../plugins/',
-            'libraryDir' => __DIR__ . '/../library/',
-            'cacheDir' => __DIR__ . '/../cache/',
+            'configDir' => APP_PATH . '/config/',
+            'controllersDir' => APP_PATH . '/controllers/',
+            'modelsDir' => APP_PATH . '/models/',
+            'viewsDir' => APP_PATH . '/views/',
+            'pluginsDir' => APP_PATH . '/plugins/',
+            'libraryDir' => APP_PATH . '/library/',
+            'cacheDir' => APP_PATH . '/cache/',
             'baseUri' => '/',
         ]
     ]
