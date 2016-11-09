@@ -12,6 +12,6 @@ class UsersController extends ControllerBase
 
     public function testAction()
     {
-        dump([1, 2, 3, 4]);
+        dump($this->app['project-name']);
     }
 }

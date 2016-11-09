@@ -39,12 +39,12 @@ $di->setShared('view', function () use ($config) {
 
     $view->registerEngines(
         [
-            '.volt'  => function ($view, $di) use ($config) {
+            '.volt' => function ($view, $di) use ($config) {
                 $volt = new VoltEngine($view, $di);
 
                 $volt->setOptions(
                     [
-                        'compiledPath'      => $config->application->cacheDir,
+                        'compiledPath' => $config->application->cacheDir,
                         'compiledSeparator' => '_'
                     ]
                 );
@@ -65,10 +65,10 @@ $di->setShared('view', function () use ($config) {
 $di->set('db', function () use ($config) {
     return new DbAdapter(
         [
-            'host'     => $config->database->host,
+            'host' => $config->database->host,
             'username' => $config->database->username,
             'password' => $config->database->password,
-            'dbname'   => $config->database->dbname
+            'dbname' => $config->database->dbname
         ]
     );
 });
@@ -95,4 +95,12 @@ $di->set('dispatcher', function () {
     $dispatcher->setDefaultNamespace('MyApp\Controllers');
 
     return $dispatcher;
+});
+
+$di->set('app', function () {
+    $app = APP_PATH . '/config/app.php';
+    if (file_exists($app)) {
+        return require $app;
+    }
+    return [];
 });
