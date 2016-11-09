@@ -12,12 +12,12 @@ return new Config(
             'dbname'      => 'test',
         ],
         'application' => [
-            'controllersDir' => __DIR__ . '/../../app/controllers/',
-            'modelsDir'      => __DIR__ . '/../../app/models/',
-            'viewsDir'       => __DIR__ . '/../../app/views/',
-            'pluginsDir'     => __DIR__ . '/../../app/plugins/',
-            'libraryDir'     => __DIR__ . '/../../app/library/',
-            'cacheDir'       => __DIR__ . '/../../app/cache/',
+            'controllersDir' => APP_PATH . '/controllers/',
+            'modelsDir'      => APP_PATH . '/models/',
+            'viewsDir'       => APP_PATH . '/views/',
+            'pluginsDir'     => APP_PATH . '/plugins/',
+            'libraryDir'     => APP_PATH . '/library/',
+            'cacheDir'       => APP_PATH . '/cache/',
             'baseUri'        => '/',
         ]
     ]

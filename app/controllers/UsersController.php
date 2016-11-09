@@ -9,4 +9,9 @@ class UsersController extends ControllerBase
     {
         echo '[' . __METHOD__ . ']';
     }
+
+    public function testAction()
+    {
+        dump([1, 2, 3, 4]);
+    }
 }

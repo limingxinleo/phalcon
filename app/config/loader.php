@@ -8,9 +8,13 @@ $loader = new \Phalcon\Loader();
 $loader
     ->registerNamespaces(
         [
-            'MyApp\Controllers' => __DIR__ . '/../controllers/',
-            'MyApp\Controllers\Admin' => __DIR__ . '/../controllers/admin',
-
-            'MyApp\Models' => __DIR__ . '/../models/',
+            'MyApp\Controllers' => $config->application->controllersDir,
+            'MyApp\Controllers\Admin' => $config->application->controllersDir . 'admin',
+            'MyApp\Models' => $config->application->modelsDir,
         ]
-    )->register();
+    )->registerFiles(
+        [
+            'function' => $config->application->libraryDir . 'helper.php',
+        ]
+    )
+    ->register();
