@@ -68,7 +68,14 @@ $di->set('db', function () use ($config) {
             'host' => $config->database->host,
             'username' => $config->database->username,
             'password' => $config->database->password,
-            'dbname' => $config->database->dbname
+            'dbname' => $config->database->dbname,
+            'options' => [
+                PDO::ATTR_CASE => PDO::CASE_NATURAL,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_ORACLE_NULLS => PDO::NULL_NATURAL,
+                PDO::ATTR_STRINGIFY_FETCHES => false,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ],
         ]
     );
 });
