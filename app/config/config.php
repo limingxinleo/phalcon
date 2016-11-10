@@ -26,7 +26,7 @@ return new Config(
             'tasksDir' => APP_PATH . '/tasks/',
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
-            'cacheDir' => APP_PATH . '/cache/',
+            'cacheDir' => BASE_PATH . '/storage/cache/',
             'baseUri' => '/',
         ],
 

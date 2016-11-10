@@ -16,9 +16,7 @@ class TestTask extends Task
 {
     public function mainAction()
     {
-        while (true) {
-            echo time() . "\n";
-        }
+        echo "Hello Phalcon!";
     }
 
 }
