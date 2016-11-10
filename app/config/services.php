@@ -112,3 +112,7 @@ $di->set('app', function () {
     }
     return [];
 });
+
+$di->set('config', function () use ($config) {
+    return $config;
+});
