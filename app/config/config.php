@@ -10,7 +10,7 @@ use Phalcon\Config;
 
 return new Config(
     [
-        'version' => '1.0.7',
+        'version' => '1.0.8',
         'database' => [
             'adapter' => 'Mysql',
             'host' => 'localhost',
