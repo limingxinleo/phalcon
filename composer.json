@@ -15,7 +15,6 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "php artisan.php --help",
             "mkdir .phalcon"
         ]
     }
