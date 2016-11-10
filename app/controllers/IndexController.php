@@ -19,6 +19,7 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $this->view->version = di('config')->version;
+        return $this->view->render('index','index');
     }
 
     public function testAction()

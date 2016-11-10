@@ -9,6 +9,6 @@ class ControllerBase extends Controller
 
     public function afterExecuteRoute()
     {
-        $this->view->setViewsDir($this->view->getViewsDir() . 'admin/');
+        //$this->view->setViewsDir($this->view->getViewsDir() . 'admin/');
     }
 }

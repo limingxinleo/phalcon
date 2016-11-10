@@ -23,6 +23,7 @@ try {
      * Read services
      */
     include APP_PATH . "/config/services.php";
+    include APP_PATH . "/config/services_web.php";
 
     /**
      * Read vendor autoload
@@ -35,6 +36,7 @@ try {
      * Handle the request
      */
     $application = new Application($di);
+    $application->useImplicitView(false);
 
     echo $application->handle()->getContent();
 } catch (\Exception $e) {

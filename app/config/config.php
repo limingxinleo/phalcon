@@ -23,10 +23,13 @@ return new Config(
             'controllersDir' => APP_PATH . '/controllers/',
             'modelsDir' => APP_PATH . '/models/',
             'viewsDir' => APP_PATH . '/views/',
+            'tasksDir' => APP_PATH . '/tasks/',
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
             'cacheDir' => APP_PATH . '/cache/',
             'baseUri' => '/',
-        ]
+        ],
+
+        'printNewLine' => true,
     ]
 );
