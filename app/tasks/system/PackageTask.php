@@ -23,6 +23,7 @@ class PackageTask extends Task
             return;
         }
         $config = $app['package-config'];
+        $config['vi'] = di('config')->version;
         $pack = new Pack($config);
         $pack->run();
     }
