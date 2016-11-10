@@ -9,7 +9,10 @@
 // | Date: 2016/11/10 Time: 9:45
 // +----------------------------------------------------------------------
 namespace MyApp\Tasks;
-class TestTask extends \Phalcon\Cli\Task
+
+use Phalcon\Cli\Task;
+
+class TestTask extends Task
 {
     public function mainAction()
     {

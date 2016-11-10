@@ -5,9 +5,15 @@ error_reporting(E_ALL);
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
+use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Application;
 
 try {
+
+    /**
+     * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
+     */
+    $di = new FactoryDefault();
 
     /**
      * Read the configuration

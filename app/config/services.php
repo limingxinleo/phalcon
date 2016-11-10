@@ -1,13 +1,14 @@
 <?php
 
-use Phalcon\DI\FactoryDefault;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 
 /**
- * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
+ * Shared configuration service
  */
-$di = new FactoryDefault();
+$di->setShared('config', function () use ($config) {
+    return $config;
+});
 
 /**
  * Database connection is created based in the parameters defined in the configuration file
@@ -44,9 +45,4 @@ $di->set('app', function () {
         return require $app;
     }
     return [];
-});
-
-$di->set('config', function () use ($config) {
-    // 加载app.php 配置文件
-    return $config;
 });
