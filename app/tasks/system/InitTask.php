@@ -13,7 +13,7 @@ namespace MyApp\Tasks\System;
 use Phalcon\Cli\Task;
 use limx\tools\Package as Pack;
 
-class PackageTask extends Task
+class InitTask extends Task
 {
     public function mainAction()
     {
