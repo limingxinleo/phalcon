@@ -13,6 +13,7 @@ $loader
             'MyApp\Models' => $config->application->modelsDir,
 
             'MyApp\Tasks' => $config->application->tasksDir,
+            'MyApp\Tasks\System' => $config->application->tasksDir . 'system',
         ]
     )->registerFiles(
         [
