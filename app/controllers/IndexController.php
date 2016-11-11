@@ -24,17 +24,32 @@ class IndexController extends ControllerBase
 
     public function testAction()
     {
-        dump(env('TEST'));
+    }
+
+    public function configAction()
+    {
         dump(di('config')->env);
-        $user = User::findFirst(1);
-        dump($user->username);
         dump($this->app['project-name']);
+        dump(di('app'));
+    }
+
+    public function envAction()
+    {
+        dump(env('TEST'));
+    }
+
+    public function sessionAction()
+    {
         $this->session->set("user-name", "Michael");
         $name = $this->session->get("user-name");
         dump($name);
         dump(session('user-name'));
+    }
 
-        dump(di('app'));
+    public function sqlAction()
+    {
+        $user = User::findFirst(1);
+        dump($user->username);
 
         $sql = "SELECT * FROM user WHERE id = ?;";
         $res = DB::query($sql, [1]);
@@ -53,6 +68,5 @@ class IndexController extends ControllerBase
         $sql = "SELECT * FROM user WHERE id = ?;";
         $res = DB::fetch($sql, [1]);
         dump($res);
-
     }
 }
