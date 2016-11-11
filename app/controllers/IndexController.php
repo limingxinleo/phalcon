@@ -19,11 +19,13 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $this->view->version = di('config')->version;
-        return $this->view->render('index','index');
+        return $this->view->render('index', 'index');
     }
 
     public function testAction()
     {
+        dump(env('TEST'));
+        dump(di('config')->env);
         $user = User::findFirst(1);
         dump($user->username);
         dump($this->app['project-name']);

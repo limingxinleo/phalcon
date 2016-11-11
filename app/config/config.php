@@ -8,6 +8,11 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 use Phalcon\Config;
 
+/**
+ * The System EVN.
+ * This ENV is upper than .env
+ * So this file won't get the .env's value.
+ */
 return new Config(
     [
         /*
@@ -92,6 +97,21 @@ return new Config(
         */
         'log' => [
             'sql' => false,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Env Environment
+        |--------------------------------------------------------------------------
+        |
+        | The default setting is false.
+        | If you want to use .env, you must set type=true,
+        | THEN composer require vlucas/phpdotenv
+        |
+        */
+        'env' => [
+            'type' => false,
+            'path' => BASE_PATH,
         ],
 
     ]
