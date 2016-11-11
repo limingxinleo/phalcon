@@ -39,6 +39,13 @@ try {
     }
 
     /**
+     * Read other services
+     */
+    foreach (glob(APP_PATH . '/services/*_service.php') as $v) {
+        include $v;
+    }
+
+    /**
      * Handle the request
      */
     $application = new Application($di);

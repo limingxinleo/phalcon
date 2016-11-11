@@ -10,7 +10,23 @@ use Phalcon\Config;
 
 return new Config(
     [
+        /*
+        |--------------------------------------------------------------------------
+        | Version Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value is version for this project.
+        |
+        */
         'version' => '1.0.10',
+        /*
+        |--------------------------------------------------------------------------
+        | Database Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value determines the "environment" your database.
+        |
+        */
         'database' => [
             'adapter' => 'Mysql',
             'host' => 'localhost',
@@ -18,6 +34,17 @@ return new Config(
             'password' => '910123',
             'dbname' => 'laravel',
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value determines the "environment" your application is currently
+        | running in. This may determine how you prefer to configure various
+        | services your application utilizes.
+        |
+        */
         'application' => [
             'configDir' => APP_PATH . '/config/',
             'controllersDir' => APP_PATH . '/controllers/',
@@ -27,10 +54,32 @@ return new Config(
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
             'cacheDir' => BASE_PATH . '/storage/cache/',
-            'migrationsDir' => BASE_PATH . '/storage/migration/',
+            'migrationsDir' => BASE_PATH . '/storage/migrations/',
+            'logDir' => BASE_PATH . '/storage/log/',
             'baseUri' => '/',
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | printNewLine Environment
+        |--------------------------------------------------------------------------
+        |
+        | If configs is set to true, then we print a new line at the end of each execution
+        |
+        */
         'printNewLine' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Log Environment
+        |--------------------------------------------------------------------------
+        |
+        | If sql is set to true, then we write a log at the end of each sql.
+        |
+        */
+        'log' => [
+            'sql' => false,
+        ],
+
     ]
 );
