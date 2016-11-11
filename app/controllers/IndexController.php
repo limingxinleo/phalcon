@@ -37,8 +37,6 @@ class IndexController extends ControllerBase
         dump(di('app'));
 
         $sql = "SELECT * FROM user WHERE id = ?;";
-        //$res = di('db')->query($sql, [1]);
-        //dump($res->fetchAll());
         $res = DB::query($sql, [1]);
         dump($res);
         $sql = "UPDATE user SET username=? WHERE id=?;";
