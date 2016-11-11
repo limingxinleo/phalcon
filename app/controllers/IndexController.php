@@ -13,6 +13,8 @@ namespace MyApp\Controllers;
 use limx\phalcon\DB;
 use MyApp\Models\User;
 
+use limx\tools\wx\OAuth;
+
 class IndexController extends ControllerBase
 {
 
@@ -24,6 +26,25 @@ class IndexController extends ControllerBase
 
     public function testAction()
     {
+    }
+
+    /**
+     * [wxAction desc]
+     * @desc 微信获取授权OPENID的测试
+     * @composer require limingxinleo/wx-api
+     * @author limx
+     */
+    public function wxAction()
+    {
+        $code = $this->request->get('code');
+        $appid = env('APPID');
+        $appsec = env('APPSECRET');
+        $api = new OAuth($appid, $appsec);
+        $api->code = $code;// 微信官方回调回来后 会携带code
+        $url = env('APP_URL') . '/index/wx';//当前的URL
+        $api->setRedirectUrl($url);
+        $res = $api->getUserInfo();
+        dump($res);
     }
 
     public function configAction()
