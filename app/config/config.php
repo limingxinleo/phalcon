@@ -19,7 +19,19 @@ return new Config(
         |
         */
         'version' => '1.0.11',
-        
+
+        /*
+        |--------------------------------------------------------------------------
+        | Domain Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value is the base url for app. When you need a wx redirecturl, but
+        | you have many applications, you can set this value is "http://wx.xxx.com/phal/"
+        | then set nginx proxy to this application.
+        |
+        */
+        'domain' => 'localhost',
+
         /*
         |--------------------------------------------------------------------------
         | Database Environment
