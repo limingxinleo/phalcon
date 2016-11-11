@@ -15,6 +15,13 @@ define('IS_CLI', true);
 $di = new CliDi();
 
 /**
+ * Read vendor autoload
+ */
+if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
+    include BASE_PATH . "/vendor/autoload.php";
+}
+
+/**
  * Get config service for use in inline setup below
  */
 $config = include APP_PATH . "/config/config.php";
@@ -29,13 +36,6 @@ include APP_PATH . '/config/loader.php';
  */
 include APP_PATH . '/config/services.php';
 include APP_PATH . '/config/services_cli.php';
-
-/**
- * Read vendor autoload
- */
-if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
-    include BASE_PATH . "/vendor/autoload.php";
-}
 
 /**
  * Create a console application

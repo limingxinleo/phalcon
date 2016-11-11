@@ -16,6 +16,13 @@ try {
     $di = new FactoryDefault();
 
     /**
+     * Read vendor autoload
+     */
+    if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
+        include BASE_PATH . "/vendor/autoload.php";
+    }
+
+    /**
      * Read the configuration
      */
     $config = include APP_PATH . "/config/config.php";
@@ -30,13 +37,6 @@ try {
      */
     include APP_PATH . "/config/services.php";
     include APP_PATH . "/config/services_web.php";
-
-    /**
-     * Read vendor autoload
-     */
-    if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
-        include BASE_PATH . "/vendor/autoload.php";
-    }
 
     /**
      * Read other services
