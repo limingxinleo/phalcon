@@ -27,6 +27,7 @@ return new Config(
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
             'cacheDir' => BASE_PATH . '/storage/cache/',
+            'migrationsDir' => BASE_PATH . '/storage/migration/',
             'baseUri' => '/',
         ],
 
