@@ -12,7 +12,7 @@ namespace MyApp\Tasks;
 
 use Phalcon\Cli\Task;
 
-class TestTask extends Task
+class MainTask extends Task
 {
     public function mainAction()
     {
