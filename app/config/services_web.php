@@ -15,7 +15,6 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 
 
-
 $di->setShared('router', function () {
     return require __DIR__ . '/routes.php';
 });
@@ -46,7 +45,7 @@ $di->setShared('view', function () use ($config) {
 
                 $volt->setOptions(
                     [
-                        'compiledPath' => $config->application->cacheDir,
+                        'compiledPath' => $config->application->cacheDir . 'view/',
                         'compiledSeparator' => '_'
                     ]
                 );
