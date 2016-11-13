@@ -41,9 +41,7 @@ try {
     /**
      * Read other services
      */
-    foreach (glob(APP_PATH . '/services/*_service.php') as $v) {
-        include $v;
-    }
+    include APP_PATH . "/services/autoload.php";
 
     /**
      * Handle the request

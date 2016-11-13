@@ -8,8 +8,11 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/13 Time: 15:12
 // +----------------------------------------------------------------------
-use Phalcon\Cache\Backend\File as BackFile;
 use Phalcon\Cache\Frontend\Data as FrontData;
+
+use Phalcon\Cache\Backend\File as BackFile;
+use Phalcon\Cache\Backend\Libmemcached as BackMemCached;
+use Phalcon\Cache\Backend\Redis as BackRedis;
 
 if ($config->cache->type !== false) {
     $frontCache = new FrontData(
@@ -24,6 +27,37 @@ if ($config->cache->type !== false) {
                 $frontCache,
                 [
                     "cacheDir" => $config->application->cacheDir . 'data/',
+                ]
+            );
+            break;
+        case 'memcached':
+            $cache = new BackMemCached(
+                $frontCache,
+                [
+                    "servers" => [
+                        [
+                            "host" => env('MEMCACHED_HOST'),
+                            "port" => env('MEMCACHED_PORT'),
+                            "weight" => env('MEMCACHED_WEIGHT'),
+                        ]
+                    ]
+                ]
+            );
+            break;
+        case 'redis':
+            $cache = new BackRedis(
+                $frontCache,
+                [
+                    "servers" => [
+                        [
+                            "host" => env('REDIS_HOST'),
+                            "port" => env('REDIS_PORT'),
+                            "auth" => env('REDIS_AUTH'),
+                            'persistent' => env('REDIS_PERSISTENT'),
+                            'index' => env('REDIS_INDEX'),
+                            'prefix' => env('REDIS_PREFIX'),
+                        ]
+                    ]
                 ]
             );
             break;
