@@ -110,7 +110,7 @@ return new Config(
         |
         */
         'env' => [
-            'type' => true,
+            'type' => false,
             'path' => BASE_PATH,
         ],
 
@@ -126,7 +126,7 @@ return new Config(
         |
         */
         'cache' => [
-            'type' => 'redis',
+            'type' => 'file',
             'lifetime' => 172800,
         ],
 
