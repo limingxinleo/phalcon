@@ -119,7 +119,10 @@ return new Config(
         | Cache Environment
         |--------------------------------------------------------------------------
         |
-        |
+        | The default setting is file.
+        | If you want to use redis ,you must set type=redis,
+        | Because the redis config using env,so the env.type must set to true,
+        | And composer require vlucas/phpdotenv
         |
         */
         'cache' => [

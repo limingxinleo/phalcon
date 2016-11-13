@@ -34,13 +34,9 @@ if ($config->cache->type !== false) {
             $cache = new BackMemCached(
                 $frontCache,
                 [
-                    "servers" => [
-                        [
-                            "host" => env('MEMCACHED_HOST'),
-                            "port" => env('MEMCACHED_PORT'),
-                            "weight" => env('MEMCACHED_WEIGHT'),
-                        ]
-                    ]
+                    "host" => env('MEMCACHED_HOST'),
+                    "port" => env('MEMCACHED_PORT'),
+                    "weight" => env('MEMCACHED_WEIGHT'),
                 ]
             );
             break;
@@ -48,18 +44,15 @@ if ($config->cache->type !== false) {
             $cache = new BackRedis(
                 $frontCache,
                 [
-                    "servers" => [
-                        [
-                            "host" => env('REDIS_HOST'),
-                            "port" => env('REDIS_PORT'),
-                            "auth" => env('REDIS_AUTH'),
-                            'persistent' => env('REDIS_PERSISTENT'),
-                            'index' => env('REDIS_INDEX'),
-                            'prefix' => env('REDIS_PREFIX'),
-                        ]
-                    ]
+                    "host" => env('REDIS_HOST'),
+                    "port" => env('REDIS_PORT'),
+                    "auth" => env('REDIS_AUTH'),
+                    'persistent' => env('REDIS_PERSISTENT'),
+                    'index' => env('REDIS_INDEX'),
+                    'prefix' => env('REDIS_PREFIX'),
                 ]
             );
+            dump($cache);
             break;
         default:
             exit('Sorry! The cache engine is not support!');
