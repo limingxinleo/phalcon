@@ -36,6 +36,8 @@ class IndexController extends ControllerBase
 
         dump(di('cache')->get('test_1'));
         di('cache')->save('test_1', ['text' => 'Cache Test', 'time' => time()]);
+
+        dump(di('cache')->queryKeys());
     }
 
     public function urlAction()
