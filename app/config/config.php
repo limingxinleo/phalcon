@@ -23,7 +23,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '1.0.13',
+        'version' => '1.0.14',
 
         /*
         |--------------------------------------------------------------------------
