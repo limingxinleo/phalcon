@@ -29,6 +29,21 @@ class IndexController extends ControllerBase
         echo 1;
     }
 
+    public function urlAction()
+    {
+        $url = $this->url->get('index/getParams', ['key1' => 1111, 'key2' => 222]);
+        dump($url);
+
+        $url = url('index/getParams', ['key1' => 1111, 'key2' => 222]);
+        dump($url);
+    }
+
+    public function getParamsAction()
+    {
+        $params = $this->request->get();
+        dump($params);
+    }
+
     /**
      * [wxAction desc]
      * @desc 微信获取授权OPENID的测试
