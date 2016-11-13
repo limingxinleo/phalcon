@@ -123,7 +123,7 @@ return new Config(
         |
         */
         'cache' => [
-            'type' => false,
+            'type' => 'file',
             'lifetime' => 172800,
         ],
 

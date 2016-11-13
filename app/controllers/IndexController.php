@@ -26,8 +26,16 @@ class IndexController extends ControllerBase
 
     public function testAction()
     {
+        echo 1;
+    }
+
+    public function cacheAction()
+    {
         $config = di('config')->cache;
         dump($config);
+
+        dump(di('cache')->get('test_1'));
+        di('cache')->save('test_1', ['text' => 'Cache Test', 'time' => time()]);
     }
 
     public function urlAction()
