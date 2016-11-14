@@ -50,7 +50,7 @@ if ($config->cache->type !== false) {
                     "auth" => env('REDIS_AUTH', null),
                     'persistent' => env('REDIS_PERSISTENT', false),
                     'index' => env('REDIS_INDEX', 0),
-                    'prefix' => env('REDIS_PREFIX', 'phalcon:'),
+                    'prefix' => env('REDIS_PREFIX', 'cache:'),
                     'statsKey' => '_PHCM',
                 ]
             );
