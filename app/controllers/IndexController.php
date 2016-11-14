@@ -29,6 +29,12 @@ class IndexController extends ControllerBase
         echo 1;
     }
 
+    public function mrAction()
+    {
+        return $this->response->redirect('index/model');
+
+    }
+
     public function modelAction()
     {
         $user = User::findFirst([
