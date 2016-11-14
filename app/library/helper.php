@@ -33,7 +33,7 @@ if (!function_exists('success')) {
      * @param $data
      * @return \limx\phalcon\JsonResponse
      */
-    function success($data)
+    function success($data = [])
     {
         return Ajax::success($data);
     }
@@ -48,9 +48,9 @@ if (!function_exists('error')) {
      * @param $data
      * @return \limx\phalcon\JsonResponse
      */
-    function error($data)
+    function error($msg, $data = [])
     {
-        return Ajax::error($data);
+        return Ajax::error($msg, $data);
     }
 }
 
