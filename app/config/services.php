@@ -20,6 +20,7 @@ $di->set('db', function () use ($config) {
             'username' => $config->database->username,
             'password' => $config->database->password,
             'dbname' => $config->database->dbname,
+            'charset' => $config->database->charset,
             'options' => [
                 PDO::ATTR_CASE => PDO::CASE_NATURAL,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

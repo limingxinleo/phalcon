@@ -51,6 +51,7 @@ return new Config(
             'username' => 'root',
             'password' => '910123',
             'dbname' => 'laravel',
+            'charset' => 'utf8',
         ],
 
         /*

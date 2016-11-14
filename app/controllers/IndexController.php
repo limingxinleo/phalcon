@@ -34,10 +34,14 @@ class IndexController extends ControllerBase
         $user = User::findFirst([
             'conditions' => 'id=?0',
             'bind' => [
-                11
+                1
             ],
         ]);
         dump($user->username);
+        $user->username = '李铭昕';
+        if ($user->save() === false) {
+            dump($user->getMessages());
+        }
     }
 
     public function cacheAction()
