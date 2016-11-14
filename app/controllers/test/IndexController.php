@@ -75,7 +75,7 @@ class IndexController extends ControllerBase
         $appsec = env('APPSECRET');
         $api = new OAuth($appid, $appsec);
         $api->code = $code;// 微信官方回调回来后 会携带code
-        $url = env('APP_URL') . '/index/wx';//当前的URL
+        $url = env('APP_URL') . '/test/index/wx';//当前的URL
         $api->setRedirectUrl($url);
         $res = $api->getUserInfo();
         dump($res);
