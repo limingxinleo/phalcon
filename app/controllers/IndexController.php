@@ -29,6 +29,17 @@ class IndexController extends ControllerBase
         echo 1;
     }
 
+    public function modelAction()
+    {
+        $user = User::findFirst([
+            'conditions' => 'id=?0',
+            'bind' => [
+                11
+            ],
+        ]);
+        dump($user->username);
+    }
+
     public function cacheAction()
     {
         $config = di('config')->cache;
