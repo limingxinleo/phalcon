@@ -9,10 +9,15 @@ use limx\tools\wx\OAuth;
 
 class IndexController extends ControllerBase
 {
+    public function initAction()
+    {
+        dump($this->settings);
+    }
 
     public function indexAction()
     {
-
+        $this->view->version = di('config')->version;
+        return $this->view->render('index', 'index');
     }
 
     public function mrAction()
