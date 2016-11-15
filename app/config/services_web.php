@@ -13,6 +13,8 @@ use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\View;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
+use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Events\Event;
 
 
 $di->setShared('router', function () {
@@ -71,8 +73,34 @@ $di->set('session', function () {
 });
 
 $di->set('dispatcher', function () {
+    // 创建一个事件管理器
+    $eventsManager = new EventsManager();
+
+    // 处理异常和使用 NotFoundPlugin 未找到异常
+    $eventsManager->attach(
+        "dispatch:beforeException",
+        function (Event $event, $dispatcher, Exception $exception) {
+            // 代替控制器或者动作不存在时的路径
+            switch ($exception->getCode()) {
+                case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                    $dispatcher->forward(
+                        [
+                            'namespace'  => 'MyApp\Controllers',
+                            "controller" => "error",
+                            "action" => "show404",
+                        ]
+                    );
+
+                    return false;
+            }
+        }
+    );
+
     $dispatcher = new Dispatcher();
     $dispatcher->setDefaultNamespace('MyApp\Controllers');
+    // 分配事件管理器到分发器
+    $dispatcher->setEventsManager($eventsManager);
 
     return $dispatcher;
 });
