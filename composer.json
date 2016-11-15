@@ -2,6 +2,7 @@
     "name": "limingxinleo/phalcon-project-ss",
     "description": "a phalcon porject for simple-subcontrollers",
     "type": "project",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "李铭昕",
