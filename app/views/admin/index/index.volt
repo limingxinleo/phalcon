@@ -1,5 +1,5 @@
 {% extends "master.volt" %}
 {% block content %}
-    Users (admin)
+    admin 模块
 {% endblock %}
 
