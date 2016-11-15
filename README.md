@@ -1,9 +1,8 @@
-# simple-subcontrollers.phalcon
+# phalcon-ss
 [![Total Downloads](https://poser.pugx.org/limingxinleo/phalcon-project-ss/downloads)](https://packagist.org/packages/limingxinleo/phalcon-project-ss)
 [![Latest Stable Version](https://poser.pugx.org/limingxinleo/phalcon-project-ss/v/stable)](https://packagist.org/packages/limingxinleo/phalcon-project-ss)
 [![Latest Unstable Version](https://poser.pugx.org/limingxinleo/phalcon-project-ss/v/unstable)](https://packagist.org/packages/limingxinleo/phalcon-project-ss)
 [![License](https://poser.pugx.org/limingxinleo/phalcon-project-ss/license)](https://packagist.org/packages/limingxinleo/phalcon-project-ss)
-simple-subcontrollers 多级控制器的phalcon项目结构
 
 [Phalcon 官网](https://docs.phalconphp.com/zh/latest/index.html)
 
