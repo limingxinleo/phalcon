@@ -23,6 +23,9 @@ class IndexController extends ControllerBase
     public function voltAction()
     {
         $this->view->app = 'limx';
+        $this->view->setVars([
+            'app2' => 'limx2'
+        ]);
 
         return $this->view->render('test/index', 'index');
     }
