@@ -20,6 +20,13 @@ class IndexController extends ControllerBase
         return $this->view->render('index', 'index');
     }
 
+    public function voltAction()
+    {
+        $this->view->app = 'limx';
+
+        return $this->view->render('test/index', 'index');
+    }
+
     public function mrAction()
     {
         return $this->response->redirect('index/model');
