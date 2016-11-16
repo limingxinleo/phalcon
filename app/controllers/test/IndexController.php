@@ -3,7 +3,6 @@
 namespace MyApp\Controllers\Test;
 
 use limx\tools\LRedis;
-use MyApp\Controllers\Test\ControllerBase;
 use limx\phalcon\DB;
 use MyApp\Models\User;
 use limx\tools\wx\OAuth;
