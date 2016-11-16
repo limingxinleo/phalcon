@@ -135,6 +135,38 @@ class IndexController extends ControllerBase
         dump(session('user-name'));
     }
 
+    public function addModelAction()
+    {
+        $user = new User();
+        $user->name = time();
+        $user->username = time();
+        $user->password = time();
+        $user->email = time();
+        $user->role_id = 1;
+        if ($user->save() === false) {
+            foreach ($user->getMessages() as $v) {
+                echo $v . "\n";
+            }
+        }
+        dump($user->id);
+    }
+
+    public function editModelAction()
+    {
+        $user = User::findFirst(111);
+        $user->name = time();
+        $user->username = time();
+//        $user->password = time();
+        $user->email = time();
+        $user->role_id = 1;
+        if ($user->save() === false) {
+            foreach ($user->getMessages() as $v) {
+                echo $v . "\n";
+            }
+        }
+        dump($user->id);
+    }
+
     public function sqlAction()
     {
         $user = User::findFirst(1);

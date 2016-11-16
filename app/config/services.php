@@ -2,6 +2,7 @@
 
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
+use Phalcon\Mvc\Model\Metadata\Files as MetadataFiles;
 
 /**
  * Shared configuration service
@@ -36,7 +37,11 @@ $di->set('db', function () use ($config) {
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
 $di->set('modelsMetadata', function () use ($config) {
-    return new MetaDataAdapter();
+    return new MetadataFiles(
+        [
+            'metaDataDir' => $config->application->metaDataDir,
+        ]
+    );
 });
 
 $di->set('app', function () {

@@ -75,6 +75,7 @@ return new Config(
             'cacheDir' => BASE_PATH . '/storage/cache/',
             'migrationsDir' => BASE_PATH . '/storage/migrations/',
             'logDir' => BASE_PATH . '/storage/log/',
+            'metaDataDir' => BASE_PATH . '/storage/meta/',
             'baseUri' => '/',
         ],
 
@@ -97,7 +98,7 @@ return new Config(
         |
         */
         'log' => [
-            'sql' => false,
+            'sql' => true,
         ],
 
         /*
