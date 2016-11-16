@@ -2,10 +2,12 @@
 
 namespace MyApp\Controllers\Test;
 
+use limx\tools\LRedis;
 use MyApp\Controllers\Test\ControllerBase;
 use limx\phalcon\DB;
 use MyApp\Models\User;
 use limx\tools\wx\OAuth;
+use limx\tools\MyRedis;
 
 class IndexController extends ControllerBase
 {
@@ -18,6 +20,72 @@ class IndexController extends ControllerBase
     {
         $this->view->version = di('config')->version;
         return $this->view->render('index', 'index');
+    }
+
+    public function redisTestAction()
+    {
+        /** composer require limingxinleo/limx-redis */
+        $config = [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'auth' => env('REDIS_AUTH'),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_INDEX', 0),
+        ];
+        $redis = MyRedis::getInstance($config);
+        dump($redis->keys('test:*'));
+        $redis->set('test:1', 1);
+        $redis->iNcr('test:2', 1);
+        $redis->set('test:3', 1);
+
+        $redis = LRedis::getInstance($config);
+        $arr = $redis->keys('*');
+        dump($arr);
+        $redis->select(1);
+        $arr = $redis->keys('*');
+        dump($arr);
+    }
+
+    public function lredisAction()
+    {
+        /** composer require limingxinleo/limx-redis */
+        $config = [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'auth' => env('REDIS_AUTH'),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_INDEX', 0),
+        ];
+        $redis1 = LRedis::getInstance($config);
+        $redis2 = LRedis::getInstance($config);
+        dump($redis1);
+        dump($redis2);
+        $config['database'] = 1;
+        $redis3 = LRedis::getInstance($config);
+        dump($redis2);
+
+        dump($redis1->keys('*'));
+        dump($redis2->keys('*'));
+        dump($redis3->keys('*'));
+    }
+
+    public function myredisAction()
+    {
+        $config = [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'auth' => env('REDIS_AUTH'),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_INDEX', 0),
+        ];
+        $redis1 = MyRedis::getInstance($config);
+        $redis2 = MyRedis::getInstance($config);
+        dump($redis1);
+        dump($redis2);
+        $config['database'] = 1;
+        $redis3 = MyRedis::getInstance($config);
+        dump($redis2);
+
+        dump($redis1->keys('*'));
+        dump($redis2->keys('*'));
+        dump($redis3->keys('*'));
     }
 
     public function saveAction()
