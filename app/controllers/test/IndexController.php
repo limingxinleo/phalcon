@@ -5,6 +5,7 @@ namespace MyApp\Controllers\Test;
 use limx\tools\LRedis;
 use limx\phalcon\DB;
 use MyApp\Models\User;
+use MyApp\Models\Book;
 use limx\tools\wx\OAuth;
 use limx\tools\MyRedis;
 
@@ -257,6 +258,18 @@ class IndexController extends ControllerBase
         $res = DB::fetch($sql, [1]);
         dump($res);
     }
+
+    public function hasManyAction()
+    {
+//        $book = Book::findFirst(1);
+        $user = User::findFirst(1);
+        dump($user->book);
+        exit;
+        foreach ($user->getBook() as $v) {
+            dump($v);
+        }
+    }
+
 
 }
 
