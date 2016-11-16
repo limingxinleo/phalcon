@@ -5,6 +5,7 @@ namespace MyApp\Controllers\Test;
 use MyApp\Models\User;
 use limx\phalcon\DB;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+use Phalcon\Paginator\Adapter\QueryBuilder;
 
 class ModelController extends ControllerBase
 {
@@ -122,6 +123,37 @@ class ModelController extends ControllerBase
             ]
         );
 
+        // Get the paginated results
+        $page = $paginator->getPaginate();
+        $this->view->setVar('page', $page);
+        $this->view->render('test/index', 'page');
+    }
+
+    public function page2Action()
+    {
+        $page = $this->request->get('page');
+        $sql = "SELECT * FROM `user` LIMIT 10 OFFSET ?;";
+        $res = DB::query($sql, [$page]);
+        $count = DB::fetch("SELECT COUNT(0) as num FROM `user`;");
+        dump($res);
+        dump($count['num']);
+    }
+
+    public function page3Action()
+    {
+        $page = $this->request->get('page');
+        $builder = $this->modelsManager->createBuilder()
+            ->columns('id, name')
+            ->from('MyApp\Models\User')
+            ->orderBy('name');
+
+        $paginator = new QueryBuilder(
+            [
+                'builder' => $builder,
+                'limit' => 20,
+                'page' => $page,
+            ]
+        );
         // Get the paginated results
         $page = $paginator->getPaginate();
         $this->view->setVar('page', $page);
