@@ -20,6 +20,25 @@ class IndexController extends ControllerBase
         return $this->view->render('index', 'index');
     }
 
+    public function saveAction()
+    {
+        $user = User::findFirst(1);
+        $this->view->setVars([
+            'name' => $user->name
+        ]);
+        return $this->view->render('test/index', 'save');
+    }
+
+    public function postSaveAction()
+    {
+        $user = User::findFirst(1);
+        $user->name = $this->request->get('name');
+        if ($user->save() === true) {
+            return success();
+        }
+        return error();
+    }
+
     public function voltAction()
     {
         $this->view->app = 'limx';
