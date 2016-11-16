@@ -4,6 +4,7 @@ namespace MyApp\Controllers\Test;
 
 use MyApp\Models\User;
 use limx\phalcon\DB;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 class ModelController extends ControllerBase
 {
@@ -94,6 +95,37 @@ class ModelController extends ControllerBase
         $sql = "SELECT * FROM user WHERE id = ?;";
         $res = DB::fetch($sql, [1]);
         dump($res);
+    }
+
+    /**
+     * [pageAction desc]
+     * @desc 默认的分页为全表查询，效率 低！！！
+     * @author limx
+     */
+    public function pageAction()
+    {
+        // Current page to show
+        // In a controller/component this can be:
+        // $this->request->getQuery("page", "int"); // GET
+        // $this->request->getPost("page", "int"); // POST
+        $currentPage = $this->request->get('page');
+
+        // The data set to paginate
+        $users = User::find();
+
+        // Create a Model paginator, show 10 rows by page starting from $currentPage
+        $paginator = new PaginatorModel(
+            [
+                "data" => $users,
+                "limit" => 5,
+                "page" => $currentPage,
+            ]
+        );
+
+        // Get the paginated results
+        $page = $paginator->getPaginate();
+        $this->view->setVar('page', $page);
+        $this->view->render('test/index', 'page');
     }
 
 }

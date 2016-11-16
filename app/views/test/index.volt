@@ -11,6 +11,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/edit') }}">编辑</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/hasMany') }}">HasMany</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/sql') }}">DB类</a>
+                <a type="button" class="btn btn-default" href="{{ url('/test/model/page?page=1') }}">分页</a>
             </div>
         </div>
     </div>
