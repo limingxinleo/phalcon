@@ -261,12 +261,9 @@ class IndexController extends ControllerBase
 
     public function hasManyAction()
     {
-//        $book = Book::findFirst(1);
         $user = User::findFirst(1);
-        dump($user->book);
-        exit;
-        foreach ($user->getBook() as $v) {
-            dump($v);
+        foreach ($user->book as $v) {
+            dump($v->name);
         }
     }
 
