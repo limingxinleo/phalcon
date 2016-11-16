@@ -4,8 +4,6 @@ namespace MyApp\Controllers\Test;
 
 use limx\tools\LRedis;
 use limx\phalcon\DB;
-use MyApp\Models\User;
-use MyApp\Models\Book;
 use limx\tools\wx\OAuth;
 use limx\tools\MyRedis;
 
@@ -122,20 +120,6 @@ class IndexController extends ControllerBase
 
     }
 
-    public function modelAction()
-    {
-        $user = User::findFirst([
-            'conditions' => 'id=?0',
-            'bind' => [
-                1
-            ],
-        ]);
-        dump($user->username);
-        $user->username = '李铭昕';
-        if ($user->save() === false) {
-            dump($user->getMessages());
-        }
-    }
 
     public function cacheAction()
     {
@@ -202,38 +186,6 @@ class IndexController extends ControllerBase
         dump(session('user-name'));
     }
 
-    public function addModelAction()
-    {
-        $user = new User();
-        $user->name = time();
-        $user->username = time();
-        $user->password = time();
-        $user->email = time();
-        $user->role_id = 1;
-        if ($user->save() === false) {
-            foreach ($user->getMessages() as $v) {
-                echo $v . "\n";
-            }
-        }
-        dump($user->id);
-    }
-
-    public function editModelAction()
-    {
-        $user = User::findFirst(111);
-        $user->name = time();
-        $user->username = time();
-//        $user->password = time();
-        $user->email = time();
-        $user->role_id = 1;
-        if ($user->save() === false) {
-            foreach ($user->getMessages() as $v) {
-                echo $v . "\n";
-            }
-        }
-        dump($user->id);
-    }
-
     public function sqlAction()
     {
         $user = User::findFirst(1);
@@ -256,14 +208,6 @@ class IndexController extends ControllerBase
         $sql = "SELECT * FROM user WHERE id = ?;";
         $res = DB::fetch($sql, [1]);
         dump($res);
-    }
-
-    public function hasManyAction()
-    {
-        $user = User::findFirst(1);
-        foreach ($user->book as $v) {
-            dump($v->name);
-        }
     }
 
 
