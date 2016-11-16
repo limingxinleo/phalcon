@@ -3,7 +3,6 @@
 namespace MyApp\Controllers\Test;
 
 use limx\tools\LRedis;
-use limx\phalcon\DB;
 use limx\tools\wx\OAuth;
 use limx\tools\MyRedis;
 
@@ -185,31 +184,5 @@ class IndexController extends ControllerBase
         dump($name);
         dump(session('user-name'));
     }
-
-    public function sqlAction()
-    {
-        $user = User::findFirst(1);
-        dump($user->username);
-
-        $sql = "SELECT * FROM user WHERE id = ?;";
-        $res = DB::query($sql, [1]);
-        dump($res);
-        $sql = "UPDATE user SET username=? WHERE id=?;";
-        $status = DB::execute($sql, [time(), 1]);
-        dump($status);
-        $sql = "SELECT * FROM user WHERE id = ?;";
-        $res = DB::fetch($sql, [1]);
-        dump($res);
-
-        DB::begin();
-        $sql = "UPDATE user SET username=? WHERE id=?;";
-        $status = DB::execute($sql, [time() + 11, 1]);
-        DB::rollback();
-        $sql = "SELECT * FROM user WHERE id = ?;";
-        $res = DB::fetch($sql, [1]);
-        dump($res);
-    }
-
-
 }
 
