@@ -18,8 +18,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        $this->view->version = di('config')->version;
-        return $this->view->render('index', 'index');
+        return $this->view->render('test', 'index');
     }
 
     public function redisTestAction()
@@ -114,7 +113,7 @@ class IndexController extends ControllerBase
             'app2' => 'limx2'
         ]);
 
-        return $this->view->render('test/index', 'index');
+        return $this->view->render('test/index', 'volt');
     }
 
     public function mrAction()
