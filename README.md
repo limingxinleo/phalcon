@@ -58,5 +58,6 @@ www  WEB部署目录（或者子目录）
 * 利用phalcon脚本新建controller时，使用phalcon controller name --namespace=MyApp\Controllers\SubNamespace
 
 * 使用模型进行信息存储时，因为模型元数据的问题，非空字段会匹配非空、非空字符串两个条件，致使一些空字符串字段不赋默认非空字符串值的情况下，保存失败！
+* 框架默认以文件的方式缓存元数据，一旦表结构被修改，请执行php run system\clear meta yes 清理元数据
 
 
