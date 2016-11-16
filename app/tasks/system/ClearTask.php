@@ -58,4 +58,26 @@ class ClearTask extends Task
         echo 'delete cache success' . PHP_EOL;
     }
 
+    /**
+     * [metaAction desc]
+     * @desc 清理元数据缓存
+     * @author limx
+     * @param array $params
+     */
+    public function metaAction($params = [])
+    {
+        $dir = di('config')->application->metaDataDir;
+        if (strtolower($params[0]) !== 'yes') {
+            echo 'Do you want to delete meta?(yes or no)' . PHP_EOL;
+            echo $dir . PHP_EOL;
+            $arg = trim(fgets(STDIN));
+            if (strtolower($arg) !== 'yes') {
+                return;
+            }
+        }
+        // 删除缓存
+        File::rm($dir, false);
+        echo 'delete cache success' . PHP_EOL;
+    }
+
 }
