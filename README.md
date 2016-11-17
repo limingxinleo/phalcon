@@ -62,5 +62,6 @@ www  WEB部署目录（或者子目录）
 * 在使用Model的Relation时，因为命名空间的问题，需要使用别名，例如 $this->hasMany("id", "MyApp\\Models\\Book", "uid", ['alias' => 'book']);
 * 控制器中 $this->request->url函数 (url助手函数) 生成的地址 会拼接config中的baseUri。
 * 控制器中 $this->response->redirect() 会根据当前模块跳转。
+* 默认的调度params是按照数组顺序进行对应的。
 
 

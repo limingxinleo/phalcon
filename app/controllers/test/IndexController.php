@@ -13,15 +13,17 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
-    public function show500Action($msg = '')
+    public function show500Action()
     {
+        $code = '500';
+        $msg = '出错了';
         $dispatcher = di('dispatcher');
         $dispatcher->forward(
             [
                 'namespace' => 'MyApp\Controllers',
                 'controller' => 'error',
-                'action' => 'show500',
-                'params' => ['msg' => $msg],
+                'action' => 'index',
+                'params' => [$code, $msg],
             ]
         );
     }

@@ -20,9 +20,10 @@ class ErrorController extends Controller
         return $this->view->render('public', '404');
     }
 
-    public function show500Action($msg = '500')
+    public function indexAction($code = '500', $msg = '出错了')
     {
+        $this->view->code = $code;
         $this->view->msg = $msg;
-        return $this->view->render('public', '500');
+        return $this->view->render('public', 'error');
     }
 }
