@@ -63,5 +63,6 @@ www  WEB部署目录（或者子目录）
 * 控制器中 $this->request->url函数 (url助手函数) 生成的地址 会拼接config中的baseUri。
 * 控制器中 $this->response->redirect() 会根据当前模块跳转。
 * 默认的调度params是按照数组顺序进行对应的。
+* 使用Cli时，因为Windows对大小写不敏感 可以用php run system\clear 但在Linux下 需要使用php run System\\\\Clear
 
 
