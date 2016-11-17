@@ -142,7 +142,7 @@ class IndexController extends ControllerBase
         $url = $this->request->getURI();
         dump($url);
         dump($this->request->getScheme() . ':' . $this->request->getHttpHost() . $url);
-        
+
     }
 
     public function requestAction()
