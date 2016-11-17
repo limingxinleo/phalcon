@@ -6,5 +6,5 @@
 
     <p>You're using limingxinleo\phalcon-project-ss {{ version }}</p>
 
-    <p><img src="{{ url('app/images/limx.jpg') }}" alt=""></p>
+    <p><img src="{{ static_url('app/images/limx.jpg') }}" alt=""></p>
 {% endblock %}

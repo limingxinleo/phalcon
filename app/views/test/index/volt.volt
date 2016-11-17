@@ -6,6 +6,9 @@
     <div>
         {{ url('/test/index/getParams',['a':1,'b':'aaa']) }}
     </div>
+    <div>
+        {{ static_url('/app/images/limx.jpg') }}
+    </div>
     <div>{{ app }}</div>
     <div>{{ app2 }}</div>
     <div>{{ dump([1,2,3]) }}</div>
