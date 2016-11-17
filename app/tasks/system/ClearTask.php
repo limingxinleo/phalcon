@@ -23,7 +23,7 @@ class ClearTask extends Task
     public function dataAction($params = [])
     {
         $dir = di('config')->application->cacheDir . 'data/';
-        if (strtolower($params[0]) !== 'yes') {
+        if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo 'Do you want to delete cache of view?(yes or no)' . PHP_EOL;
             echo $dir . PHP_EOL;
             $arg = trim(fgets(STDIN));
@@ -45,7 +45,7 @@ class ClearTask extends Task
     public function viewAction($params = [])
     {
         $dir = di('config')->application->cacheDir . 'view/';
-        if (strtolower($params[0]) !== 'yes') {
+        if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo 'Do you want to delete cache of view?(yes or no)' . PHP_EOL;
             echo $dir . PHP_EOL;
             $arg = trim(fgets(STDIN));
@@ -67,7 +67,7 @@ class ClearTask extends Task
     public function metaAction($params = [])
     {
         $dir = di('config')->application->metaDataDir;
-        if (strtolower($params[0]) !== 'yes') {
+        if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo 'Do you want to delete meta?(yes or no)' . PHP_EOL;
             echo $dir . PHP_EOL;
             $arg = trim(fgets(STDIN));
