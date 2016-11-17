@@ -10,6 +10,8 @@
 // +----------------------------------------------------------------------
 use limx\func\Debug;
 use limx\phalcon\Ajax;
+use limx\func\Arr;
+
 
 if (!function_exists('dump')) {
     /**
@@ -54,4 +56,19 @@ if (!function_exists('error')) {
     }
 }
 
+
+if (!function_exists('app')) {
+    /**
+     * [app desc]
+     * @desc 获取app配置文件的值
+     * @author limx
+     * @param $id
+     * @return null
+     */
+    function app($id)
+    {
+        $app = di('app');
+        return Arr::get($id, $app);
+    }
+}
 

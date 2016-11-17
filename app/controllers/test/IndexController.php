@@ -138,6 +138,8 @@ class IndexController extends ControllerBase
 
         $url = url('index/getParams', ['key1' => 1111, 'key2' => 222]);
         dump($url);
+
+        
     }
 
     public function getParamsAction()
