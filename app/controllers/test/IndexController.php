@@ -115,8 +115,8 @@ class IndexController extends ControllerBase
 
     public function mrAction()
     {
-        return $this->response->redirect('index/model');
 
+        return $this->response->redirect('test/index/model');
     }
 
 
