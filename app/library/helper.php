@@ -72,3 +72,23 @@ if (!function_exists('app')) {
     }
 }
 
+if (!function_exists('dispatch_error')) {
+    /**
+     * [dispatch_error]
+     * @desc 内部跳转错误页面
+     * @author limx
+     * @param int $code
+     * @param string $msg
+     */
+    function dispatch_error($code = 500, $msg = '')
+    {
+        $dispatcher = di('dispatcher');
+        $dispatcher->forward([
+            'namespace' => 'MyApp\Controllers',
+            "controller" => "error",
+            "action" => "index",
+            'params' => [$code, $msg],
+        ]);
+    }
+}
+

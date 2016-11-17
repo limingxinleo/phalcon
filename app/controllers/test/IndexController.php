@@ -17,15 +17,16 @@ class IndexController extends ControllerBase
     {
         $code = '500';
         $msg = '出错了';
-        $dispatcher = di('dispatcher');
-        $dispatcher->forward(
-            [
-                'namespace' => 'MyApp\Controllers',
-                'controller' => 'error',
-                'action' => 'index',
-                'params' => [$code, $msg],
-            ]
-        );
+        return dispatch_error($code, $msg);
+//        $dispatcher = di('dispatcher');
+//        $dispatcher->forward(
+//            [
+//                'namespace' => 'MyApp\Controllers',
+//                'controller' => 'error',
+//                'action' => 'index',
+//                'params' => [$code, $msg],
+//            ]
+//        );
     }
 
     public function indexAction()
