@@ -13,6 +13,19 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
+    public function show500Action($msg = '')
+    {
+        $dispatcher = di('dispatcher');
+        $dispatcher->forward(
+            [
+                'namespace' => 'MyApp\Controllers',
+                'controller' => 'error',
+                'action' => 'show500',
+                'params' => ['msg' => $msg],
+            ]
+        );
+    }
+
     public function indexAction()
     {
         return $this->view->render('test', 'index');

@@ -86,9 +86,9 @@ $di->set('dispatcher', function () {
                 case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
                     $dispatcher->forward(
                         [
-                            'namespace'  => 'MyApp\Controllers',
-                            "controller" => "error",
-                            "action" => "show404",
+                            'namespace' => 'MyApp\Controllers',
+                            'controller' => 'error',
+                            'action' => 'show404',
                         ]
                     );
 
