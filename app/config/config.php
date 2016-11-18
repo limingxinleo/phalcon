@@ -50,12 +50,12 @@ return new Config(
         |
         */
         'database' => [
-            'adapter' => 'Mysql',
-            'host' => 'localhost',
-            'username' => 'root',
-            'password' => '910123',
-            'dbname' => 'laravel',
-            'charset' => 'utf8',
+            'adapter' => env('DB_ADAPTER', 'Mysql'),
+            'host' => env('DB_HOST', 'localhost'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', null),
+            'dbname' => env('DB_DBNAME', 'phalcon'),
+            'charset' => env('DB_CHARSET', 'utf8'),
         ],
 
         /*
@@ -117,7 +117,7 @@ return new Config(
         |
         */
         'cache' => [
-            'type' => 'file',
+            'type' => env('CACHE_DRIVER', 'file'),
             'lifetime' => 172800,
         ],
 
