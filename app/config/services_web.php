@@ -11,7 +11,6 @@
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\View;
-use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Events\Event;
@@ -62,16 +61,6 @@ $di->setShared('view', function () use ($config) {
     return $view;
 });
 
-/**
- * Start the session the first time some component request the session service
- */
-$di->set('session', function () {
-    $session = new SessionAdapter();
-    $session->start();
-
-    return $session;
-});
-
 $di->set('dispatcher', function () {
     // 创建一个事件管理器
     $eventsManager = new EventsManager();
@@ -104,4 +93,9 @@ $di->set('dispatcher', function () {
 
     return $dispatcher;
 });
+
+/**
+ * Read other services
+ */
+include APP_PATH . "/services/autoload.php";
 

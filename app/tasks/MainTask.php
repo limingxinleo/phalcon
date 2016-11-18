@@ -16,7 +16,7 @@ class MainTask extends Task
 {
     public function mainAction()
     {
-        echo "Hello Phalcon!";
+        echo env('TEST');
     }
 
 }

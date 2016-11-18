@@ -39,11 +39,6 @@ try {
     include APP_PATH . "/config/services_web.php";
 
     /**
-     * Read other services
-     */
-    include APP_PATH . "/services/autoload.php";
-
-    /**
      * Handle the request
      */
     $application = new Application($di);
