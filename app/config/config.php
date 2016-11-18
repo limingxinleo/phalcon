@@ -31,6 +31,16 @@ return new Config(
 
         /*
         |--------------------------------------------------------------------------
+        | Unique_id Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value is your-private-app for this project.
+        |
+        */
+        'unique_id' => env('UNIQUE_ID', 'phalcon'),
+
+        /*
+        |--------------------------------------------------------------------------
         | Domain Environment
         |--------------------------------------------------------------------------
         |
@@ -39,7 +49,7 @@ return new Config(
         | then set nginx proxy to this application.
         |
         */
-        'domain' => 'localhost',
+        'domain' => env('APP_URL', 'localhost'),
 
         /*
         |--------------------------------------------------------------------------
@@ -56,6 +66,23 @@ return new Config(
             'password' => env('DB_PASSWORD', null),
             'dbname' => env('DB_DBNAME', 'phalcon'),
             'charset' => env('DB_CHARSET', 'utf8'),
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Redis Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value determines the "environment" your redis.
+        |
+        */
+        'redis' => [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'port' => env('REDIS_PORT', '6379'),
+            'auth' => env('REDIS_AUTH', null),
+            'persistent' => env('REDIS_PERSISTENT', false),
+            'index' => env('REDIS_INDEX', 0),
+            'prefix' => env('REDIS_PREFIX', ''),
         ],
 
         /*
