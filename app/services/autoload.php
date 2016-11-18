@@ -8,9 +8,6 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/13 Time: 15:48
 // +----------------------------------------------------------------------
-if (file_exists(__DIR__ . '/system/env.php')) {
-    include __DIR__ . '/system/env.php';
-}
 if (file_exists(__DIR__ . '/system/cache.php')) {
     include __DIR__ . '/system/cache.php';
 }

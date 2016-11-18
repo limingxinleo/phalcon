@@ -7,11 +7,15 @@ defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirn
 defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 use Phalcon\Config;
+use Dotenv\Dotenv;
+use Dotenv\Exception\InvalidPathException;
+
+if (file_exists(BASE_PATH . '/.env')) {
+    (new Dotenv(BASE_PATH))->load();
+}
 
 /**
  * The System EVN.
- * This ENV is upper than .env
- * So this file won't get the .env's value.
  */
 return new Config(
     [
@@ -23,7 +27,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '1.0.23',
+        'version' => '1.1.0',
 
         /*
         |--------------------------------------------------------------------------
@@ -99,21 +103,6 @@ return new Config(
         */
         'log' => [
             'sql' => true,
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Env Environment
-        |--------------------------------------------------------------------------
-        |
-        | The default setting is false.
-        | If you want to use .env, you must set type=true,
-        | THEN composer require vlucas/phpdotenv
-        |
-        */
-        'env' => [
-            'type' => false,
-            'path' => BASE_PATH,
         ],
 
         /*
