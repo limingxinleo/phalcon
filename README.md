@@ -66,4 +66,12 @@ www  WEB部署目录（或者子目录）
 * 使用Cli时，因为Windows对大小写不敏感 可以用php run system\clear 但在Linux下 需要使用php run System\\\\Clear
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
 
-
+## Composer 国内镜像
+~~~
+"repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+~~~
