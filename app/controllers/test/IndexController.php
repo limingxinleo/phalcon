@@ -13,6 +13,12 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
+    public function pAction($key = 'p1', $p = 'p2')
+    {
+        dump($key);
+        dump($p);
+    }
+
     public function show500Action()
     {
         $code = '500';
