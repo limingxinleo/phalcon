@@ -44,6 +44,7 @@ www  WEB部署目录（或者子目录）
 │ │ ├─data              数据缓存目录
 │ │ └─view              视图缓存目录
 │ ├─log                 日志目录
+│ ├─meta                模型元数据目录
 │ └─migrations          数据库迁移目录
 ├─vendor                第三方类库目录（Composer依赖库）
 ├─.env                  env支持配置文件
