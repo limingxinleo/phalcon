@@ -20,6 +20,7 @@ class ApiController extends ControllerBase
 
     public function captchaAction()
     {
+        /** composer require gregwar/captcha */
         $builder = new CaptchaBuilder;
         $builder->build();
         session('captcha', $builder->getPhrase());
