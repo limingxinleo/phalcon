@@ -3,6 +3,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <h3>小工具</h3>
+                <a type="button" class="btn btn-default" href="{{ url('test/tools/code2') }}">二维码生成器</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/tools/img') }}">图片裁剪</a>
+            </div>
+            <div class="col-md-12">
                 <h3>
                     模型
                 </h3>
