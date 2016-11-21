@@ -13,7 +13,14 @@
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/sql') }}">DB类</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/page?page=1') }}">分页</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/page2?page=1') }}">SQL 分页</a>
-                <a type="button" class="btn btn-default" href="{{ url('/test/model/page3?page=1') }}">QueryBuilder 分页</a>
+                <a type="button" class="btn btn-default" href="{{ url('/test/model/page3?page=1') }}">QueryBuilder
+                    分页</a>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    第三方服务
+                </h3>
+                <a type="button" class="btn btn-default" href="{{ url('/test/api/yunpian') }}">云片短信</a>
             </div>
         </div>
     </div>

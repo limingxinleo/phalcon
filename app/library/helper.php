@@ -50,7 +50,7 @@ if (!function_exists('error')) {
      * @param $data
      * @return \limx\phalcon\JsonResponse
      */
-    function error($msg, $data = [])
+    function error($msg = '', $data = [])
     {
         return Ajax::error($msg, $data);
     }
