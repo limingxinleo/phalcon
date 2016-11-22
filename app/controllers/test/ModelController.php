@@ -6,6 +6,7 @@ use MyApp\Models\User;
 use limx\phalcon\DB;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Paginator\Adapter\QueryBuilder;
+use limx\tools\MyPDO;
 
 class ModelController extends ControllerBase
 {
@@ -158,6 +159,43 @@ class ModelController extends ControllerBase
         $page = $paginator->getPaginate();
         $this->view->setVar('page', $page);
         $this->view->render('test/index', 'page');
+    }
+
+    /**
+     * [transAction desc]
+     * @desc 事务操作，当我们在一个事务内修改了数据的时候，
+     * 其他客户端查询到的数据是没有被修改的。知道事务被提交。
+     * @author limx
+     */
+    public function transAction()
+    {
+        /** @var composer require limingxinleo/limx-pdo */
+        $config = [
+            'type' => 'mysql',
+            'host' => '127.0.0.1',
+            'dbname' => env('DB_DBNAME'),
+            'user' => env('DB_USERNAME'),
+            'pwd' => env('DB_PASSWORD'),
+            'charset' => 'utf8',
+        ];
+        $mysql = MyPDO::getInstance($config);
+
+        DB::begin();
+        $sql = "SELECT * FROM user WHERE id=?";
+        $sql2 = "UPDATE user SET name=? WHERE id=?";
+        $res = DB::fetch($sql, [1]);
+        dump("原始数据：" . $res['name']);
+        DB::execute($sql2, [time(), 1]);
+        $res = DB::fetch($sql, [1]);
+        dump("本事务内修改：" . $res['name']);
+        $res = $mysql->query($sql, [1]);
+        dump("事务内其他链接 修改：" . $res[0]['name']);
+        DB::rollback();
+//        DB::commit();
+        $res = DB::fetch($sql, [1]);
+        dump("事务结束后数据：" . $res['name']);
+
+
     }
 
 }

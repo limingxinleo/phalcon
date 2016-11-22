@@ -20,6 +20,8 @@
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/page2?page=1') }}">SQL 分页</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/page3?page=1') }}">QueryBuilder
                     分页</a>
+                <a type="button" class="btn btn-default" href="{{ url('/test/model/trans') }}">事务测试</a>
+
             </div>
             <div class="col-md-12">
                 <h3>
