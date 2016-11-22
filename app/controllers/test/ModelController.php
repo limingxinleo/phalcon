@@ -132,6 +132,18 @@ class ModelController extends ControllerBase
         }
     }
 
+    public function belongsToAction()
+    {
+        $id = rand(1, 100);
+        dump($id);
+        $book = Book::findFirst($id);
+        if (empty($book)) {
+            dump("书本不存在");
+            return;
+        }
+        dump($book->user->name);
+    }
+
     public function sqlAction()
     {
         $user = User::findFirst(1);
