@@ -71,6 +71,7 @@ class UserTitleMigration_100 extends Migration
                 ],
                 'indexes' => [
                     new Index('PRIMARY', ['id'], 'PRIMARY'),
+                    new Index('titleid_uid_unique', ['uid', 'title_id'], 'UNIQUE'),
                     new Index('user_title_uid_index', ['uid'], null),
                     new Index('user_title_title_id_index', ['title_id'], null)
                 ],
