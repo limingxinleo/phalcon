@@ -11,6 +11,7 @@
                 <h3>
                     模型
                 </h3>
+                <a type="button" class="btn btn-default" href="{{ url('/test/model/init') }}">数据初始化</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/index') }}">基本用法</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/add') }}">新增</a>
                 <a type="button" class="btn btn-default" href="{{ url('/test/model/edit') }}">编辑</a>

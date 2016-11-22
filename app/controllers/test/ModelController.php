@@ -2,7 +2,10 @@
 
 namespace MyApp\Controllers\Test;
 
+use MyApp\Models\Role;
 use MyApp\Models\User;
+use MyApp\Models\Book;
+
 use limx\phalcon\DB;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Paginator\Adapter\QueryBuilder;
@@ -10,6 +13,60 @@ use limx\tools\MyPDO;
 
 class ModelController extends ControllerBase
 {
+
+    public function initAction()
+    {
+        /** 增加一个角色 */
+        $role = new Role();
+        $role->name = "角色" . rand(0, 10);
+        $res[] = $role->save();
+
+        /** 增加5个用户 */
+        $roles = $role->find([
+            'columns' => 'id'
+        ]);
+        $count = count($roles);
+        for ($i = 0; $i < 5; $i++) {
+            $id = rand(0, $count - 1);
+            $user = new User();
+            $user->username = 'user' . time() . rand(0, 10000);
+            $user->password = md5('910123');
+            $user->name = '用户' . rand(0, 10000);
+            $user->role_id = $roles[$id]['id'];
+            if ($user->save() === true) {
+                $res[] = $user->save();
+            } else {
+                $error = '';
+                foreach ($user->getMessages() as $v) {
+                    $error .= $v . '';
+                }
+                $res[] = $error;
+            }
+        }
+
+        /** 增加50本书 */
+        $users = $user->find([
+            'columns' => 'id'
+        ]);
+        $count = count($users);
+        for ($i = 0; $i < 50; $i++) {
+            $id = rand(0, $count - 1);
+            $user = new Book();
+            $user->uid = $users[$id]['id'];
+            $user->name = '书' . rand(0, 10000);
+            if ($user->save() === true) {
+                $res[] = $user->save();
+            } else {
+                $error = '';
+                foreach ($user->getMessages() as $v) {
+                    $error .= $v . '';
+                }
+                $res[] = $error;
+            }
+        }
+
+        dump($res);
+    }
 
     public function indexAction()
     {
