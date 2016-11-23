@@ -9,7 +9,17 @@ class WxController extends \Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-        /** composer require limingxinleo/wx-api */
+        $name = "";
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) {
+            // 微信内打开
+            $name .= "微信";
+        }
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
+            $name .= "IOS";
+        } else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
+            $name .= "Android";
+        }
+        $this->view->name = $name;
         return $this->view->render('test/wx', 'index');
     }
 
