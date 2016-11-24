@@ -10,7 +10,6 @@ class AliController extends ControllerBase
         /** 接入alipay后台SDK */
         library('alipay/AopSdk.php');
         $c = new \AopClient();
-
         $c->gatewayUrl = "https://openapi.alipay.com/gateway.do";
         $c->appId = env("ALIPAY_APPID");
         $c->rsaPrivateKey = env('ALIPAY_PRIKEY');
