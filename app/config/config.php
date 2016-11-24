@@ -129,7 +129,7 @@ return new Config(
         |
         */
         'log' => [
-            'sql' => true,
+            'sql' => env('LOG_SQL', true),
         ],
 
         /*
