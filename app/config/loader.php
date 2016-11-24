@@ -21,5 +21,4 @@ $loader
         [
             'function' => $config->application->libraryDir . 'helper.php',
         ]
-    )
-    ->register();
+    )->register();

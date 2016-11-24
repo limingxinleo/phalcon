@@ -92,3 +92,19 @@ if (!function_exists('dispatch_error')) {
     }
 }
 
+if (!function_exists('library')) {
+    /**
+     * [library desc]
+     * @desc 载入library内的第三方包
+     * @author limx
+     * @param string $file
+     */
+    function library($file = '')
+    {
+        $root = di('config')->application->libraryDir;
+        if (file_exists($root . $file)) {
+            require_once $root . $file;
+        }
+    }
+}
+

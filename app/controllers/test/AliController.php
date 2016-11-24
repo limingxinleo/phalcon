@@ -8,10 +8,9 @@ class AliController extends ControllerBase
     public function indexAction()
     {
         /** 接入alipay后台SDK */
-        
-        $alipay = di('config')->application->libraryDir . 'alipay/AopSdk.php';
-        require_once $alipay;
+        library('alipay/AopSdk.php');
         $c = new \AopClient();
+
         $c->gatewayUrl = "https://openapi.alipay.com/gateway.do";
         $c->appId = env("ALIPAY_APPID");
         $c->rsaPrivateKey = env('ALIPAY_PRIKEY');
