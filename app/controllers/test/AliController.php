@@ -7,6 +7,8 @@ class AliController extends ControllerBase
 
     public function indexAction()
     {
+        /** 接入alipay后台SDK */
+        
         $alipay = di('config')->application->libraryDir . 'alipay/AopSdk.php';
         require_once $alipay;
         $c = new \AopClient();
