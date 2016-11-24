@@ -40,6 +40,12 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/wx/index') }}">WAP跳转到微信</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/wx/pay') }}">微信JsAPiPay</a>
             </div>
+            <div class="col-md-12">
+                <h3>
+                    支付宝相关
+                </h3>
+                <a type="button" class="btn btn-default" href="{{ url('test/ali/index') }}">WAP支付</a>
+            </div>
         </div>
     </div>
 {% endblock %}
