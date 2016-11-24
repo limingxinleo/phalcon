@@ -51,8 +51,8 @@ class UserTitleMigration_100 extends Migration
                     new Column(
                         'created_at',
                         [
-                            'type' => Column::TYPE_TIMESTAMP,
-                            'default' => "CURRENT_TIMESTAMP",
+                            'type' => Column::TYPE_DATETIME,
+                            'default' => "1900-01-01 00:00:00",
                             'notNull' => true,
                             'size' => 1,
                             'after' => 'title_id'
@@ -61,8 +61,8 @@ class UserTitleMigration_100 extends Migration
                     new Column(
                         'updated_at',
                         [
-                            'type' => Column::TYPE_TIMESTAMP,
-                            'default' => "0000-00-00 00:00:00",
+                            'type' => Column::TYPE_DATETIME,
+                            'default' => "1900-01-01 00:00:00",
                             'notNull' => true,
                             'size' => 1,
                             'after' => 'created_at'
