@@ -7,8 +7,8 @@ use limx\tools\wx\OAuth;
 use limx\tools\wx\pay\JsApiPay;
 use limx\tools\wx\pay\data\WxPayUnifiedOrder;
 use limx\tools\wx\pay\lib\WxPayApi;
-/** 微信支付 E */
 
+/** 微信支付 E */
 class WxController extends \Phalcon\Mvc\Controller
 {
 
@@ -47,6 +47,13 @@ class WxController extends \Phalcon\Mvc\Controller
         dump($res);
     }
 
+    /**
+     * [payAction desc]
+     * @desc 微信JsApiPay支付
+     * @composer require limingxinleo/wx-api
+     * @author limx
+     * @return mixed
+     */
     public function payAction()
     {
         //①、获取用户openid
