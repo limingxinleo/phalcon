@@ -22,7 +22,6 @@ class AliController extends ControllerBase
         $data['seller_id'] = env('ALIPAY_SELLERID');
         $data['product_code'] = 'QUICK_WAP_PAY';
         $bizContent = json_encode($data);
-        //$bizContent = '{"out_trade_no":"' . time() . '","total_amount":0.01,"subject":"test","seller_id":"qianrong2016@163.com","product_code":"QUICK_WAP_PAY"}';
         $req->setBizContent($bizContent);
 
         $form = $c->pageExecute($req);
