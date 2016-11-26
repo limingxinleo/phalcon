@@ -130,6 +130,7 @@ return new Config(
         */
         'log' => [
             'sql' => env('LOG_SQL', true),
+            'error' => env('LOG_ERROR', true),
         ],
 
         /*

@@ -8,9 +8,11 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/26 Time: 16:19
 // +----------------------------------------------------------------------
-register_shutdown_function(function () {
-    if ($e = error_get_last()) {
-        $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
-        logger($log, 'error');
-    }
-});
+if ($config->log->error) {
+    register_shutdown_function(function () {
+        if ($e = error_get_last()) {
+            $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
+            logger($log, 'error');
+        }
+    });
+}
