@@ -16,11 +16,7 @@ class IndexController extends ControllerBase
     {
         logger("This is a Test Log Info");
         logger("This is a Test Log ERROR", 'error');
-        try {
-            DD::ss();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
+        func();
     }
 
     public function pAction($key = 'p1', $p = 'p2')
