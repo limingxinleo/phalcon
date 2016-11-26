@@ -11,6 +11,7 @@
 use limx\func\Debug;
 use limx\phalcon\Ajax;
 use limx\func\Arr;
+use Phalcon\Logger\Adapter\File as FileLogger;
 
 
 if (!function_exists('dump')) {
@@ -105,6 +106,16 @@ if (!function_exists('library')) {
         if (file_exists($root . $file)) {
             require_once $root . $file;
         }
+    }
+}
+
+if (!function_exists('logger')) {
+
+    function logger($info, $type = 'info')
+    {
+        $dir = di('config')->application->logDir . date('Ymd');
+        $logger = new FileLogger($dir . "/logger.log");
+        call_user_func_array([$logger, $type], [$info]);
     }
 }
 

@@ -46,5 +46,7 @@ try {
 
     echo $application->handle()->getContent();
 } catch (\Exception $e) {
-    echo $e->getMessage();
+    $error = $e->getMessage();
+    echo $error;
+    logger($error, 'error');
 }

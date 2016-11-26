@@ -12,6 +12,12 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
+    public function logAction()
+    {
+        logger("This is a Test Log Info");
+        logger("This is a Test Log ERROR",'error');
+    }
+
     public function pAction($key = 'p1', $p = 'p2')
     {
         dump($key);

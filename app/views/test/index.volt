@@ -8,6 +8,10 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/tools/img') }}">图片裁剪</a>
             </div>
             <div class="col-md-12">
+                <h3>基本测试</h3>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/log') }}">写入日志</a>
+            </div>
+            <div class="col-md-12">
                 <h3>
                     模型
                 </h3>
