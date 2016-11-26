@@ -10,6 +10,9 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
+use limx\tools\LRedis;
+use limx\tools\MyRedis;
+
 /**
  * Class UnitTest
  */
@@ -22,11 +25,23 @@ class UnitTest extends \UnitTestCase
             "works",
             "This is OK"
         );
+    }
 
+    public function testRedisCase()
+    {
+        $config = [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'auth' => env('REDIS_AUTH'),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_INDEX', 0),
+        ];
+        print_r($config);exit;
+        $redis = LRedis::getInstance($config);
+        $time = time();
+        $redis->set('phalcon:test', $time);
         $this->assertEquals(
-            "works",
-            "works1",
-            "This will fail"
+            $time,
+            $redis->get('phalcon:test')
         );
     }
 }
