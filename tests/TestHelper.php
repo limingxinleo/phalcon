@@ -41,5 +41,6 @@ $di = new FactoryDefault();
 Di::reset();
 
 // Add any needed services to the DI here
+include __DIR__.'/../app/bootstrap.php';
 
 Di::setDefault($di);

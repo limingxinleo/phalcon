@@ -8,6 +8,10 @@ define('APP_PATH', BASE_PATH . '/app');
 use Phalcon\Mvc\Application;
 
 try {
+    /** Read vendor autoload */
+    if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
+        include BASE_PATH . "/vendor/autoload.php";
+    }
 
     include APP_PATH . '/bootstrap.php';
     /**

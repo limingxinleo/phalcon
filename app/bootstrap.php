@@ -8,15 +8,11 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/26 Time: 20:07
 // +----------------------------------------------------------------------
+defined('APP_PATH') || define('APP_PATH', __DIR__);
 use Phalcon\DI\FactoryDefault;
 
 /** @var phalcon 容器  $di */
 $di = new FactoryDefault();
-
-/** Read vendor autoload */
-if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
-    include BASE_PATH . "/vendor/autoload.php";
-}
 
 /** Read the configuration */
 $config = include APP_PATH . "/config/config.php";

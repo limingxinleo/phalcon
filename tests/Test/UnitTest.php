@@ -35,7 +35,6 @@ class UnitTest extends \UnitTestCase
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_INDEX', 0),
         ];
-        print_r($config);exit;
         $redis = LRedis::getInstance($config);
         $time = time();
         $redis->set('phalcon:test', $time);

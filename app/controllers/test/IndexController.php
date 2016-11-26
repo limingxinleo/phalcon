@@ -219,5 +219,13 @@ class IndexController extends ControllerBase
         dump($name);
         dump(session('user-name'));
     }
+
+    public function extAction()
+    {
+        dump(extension_loaded('pdo'));
+        dump(extension_loaded('redis'));
+        dump(extension_loaded('phalcon'));
+        dump(extension_loaded('phalcon1'));
+    }
 }
 
