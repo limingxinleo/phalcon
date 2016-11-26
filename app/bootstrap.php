@@ -6,24 +6,24 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-// | Date: 2016/11/13 Time: 15:48
+// | Date: 2016/11/26 Time: 20:07
 // +----------------------------------------------------------------------
+use Phalcon\DI\FactoryDefault;
 
-if (file_exists(__DIR__ . '/system/session.php')) {
-    /**
-     * 注入SESSION 服务
-     */
-    include __DIR__ . '/system/session.php';
+/** @var phalcon 容器  $di */
+$di = new FactoryDefault();
+
+/** Read vendor autoload */
+if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
+    include BASE_PATH . "/vendor/autoload.php";
 }
 
-if (file_exists(__DIR__ . '/system/cache.php')) {
-    include __DIR__ . '/system/cache.php';
-}
+/** Read the configuration */
+$config = include APP_PATH . "/config/config.php";
 
-if (file_exists(__DIR__ . '/system/log.php')) {
-    include __DIR__ . '/system/log.php';
-}
+/** Read auto-loader */
+include APP_PATH . "/config/loader.php";
 
-if (file_exists(__DIR__ . '/system/error.php')) {
-    include __DIR__ . '/system/error.php';
-}
+/** Read services */
+include APP_PATH . "/config/services.php";
+include APP_PATH . "/config/services_web.php";

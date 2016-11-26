@@ -107,6 +107,7 @@ return new Config(
             'migrationsDir' => BASE_PATH . '/storage/migrations/',
             'logDir' => BASE_PATH . '/storage/log/',
             'metaDataDir' => BASE_PATH . '/storage/meta/',
+            'servicesDir' => APP_PATH . '/services/',
             'baseUri' => '/',
         ],
 
@@ -158,6 +159,22 @@ return new Config(
         */
         'session' => [
             'type' => env('SESSION_DRIVER', 'file')
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Services
+        |--------------------------------------------------------------------------
+        |
+        | The default setting is file.
+        | If you want to use redis ,you must set type=redis,
+        |
+        */
+        'services' => [
+            'system/session.php',
+            'system/cache.php',
+            'system/log.php',
+            'system/error.php',
         ],
 
     ]

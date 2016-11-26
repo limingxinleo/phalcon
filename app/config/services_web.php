@@ -97,5 +97,9 @@ $di->set('dispatcher', function () {
 /**
  * Read other services
  */
-include APP_PATH . "/services/autoload.php";
+foreach ($config->services as $service) {
+    if (file_exists($config->application->servicesDir . $service)) {
+        include $config->application->servicesDir . $service;
+    }
+}
 
