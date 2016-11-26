@@ -23,3 +23,7 @@ if (file_exists(__DIR__ . '/system/cache.php')) {
 if (file_exists(__DIR__ . '/system/log.php')) {
     include __DIR__ . '/system/log.php';
 }
+
+if (file_exists(__DIR__ . '/system/error.php')) {
+    include __DIR__ . '/system/error.php';
+}
