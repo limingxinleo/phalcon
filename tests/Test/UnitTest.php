@@ -10,14 +10,20 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
+use Phalcon\Test\UnitTestCase;
 use limx\tools\LRedis;
-use limx\tools\MyRedis;
+use limx\func\Random;
 
 /**
  * Class UnitTest
  */
-class UnitTest extends \UnitTestCase
+class UnitTest extends UnitTestCase
 {
+    public function __construct()
+    {
+        include __DIR__ . "/../../app/bootstrap.php";
+    }
+
     public function testTestCase()
     {
         $this->assertEquals(
@@ -43,4 +49,23 @@ class UnitTest extends \UnitTestCase
             $redis->get('phalcon:test')
         );
     }
+
+    public function testSessionCase()
+    {
+        $di = di();
+        $this->assertTrue(
+            $di->has('session'),
+            'No Session Service'
+        );
+    }
+
+    public function testCacheCase()
+    {
+        $di = di();
+        $this->assertTrue(
+            $di->has('cache'),
+            'No Cache Service'
+        );
+    }
+
 }

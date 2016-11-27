@@ -10,10 +10,12 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
+use Phalcon\Test\UnitTestCase;
+
 /**
  * Class UnitTest
  */
-class BaseTest extends \UnitTestCase
+class BaseTest extends UnitTestCase
 {
     public function testBaseCase()
     {
