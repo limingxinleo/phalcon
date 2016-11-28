@@ -19,19 +19,6 @@ use limx\func\Random;
  */
 class UnitTest extends UnitTestCase
 {
-    public function __construct()
-    {
-        include __DIR__ . "/../../app/bootstrap.php";
-    }
-
-    public function testTestCase()
-    {
-        $this->assertEquals(
-            "works",
-            "works",
-            "This is OK"
-        );
-    }
 
     public function testRedisCase()
     {
@@ -52,20 +39,24 @@ class UnitTest extends UnitTestCase
 
     public function testSessionCase()
     {
-        $di = di();
-        $this->assertTrue(
-            $di->has('session'),
-            'No Session Service'
+        $time = Random::str(12);
+        session('test:case:session', $time);
+        $this->assertEquals(
+            $time,
+            session('test:case:session')
         );
     }
 
     public function testCacheCase()
     {
-        $di = di();
-        $this->assertTrue(
-            $di->has('cache'),
-            'No Cache Service'
+        $data = [
+            'time' => time(),
+            'str' => Random::str(12)
+        ];
+        cache('test-case-cache', $data);
+        $this->assertEquals(
+            $data,
+            cache('test-case-cache')
         );
     }
-
 }

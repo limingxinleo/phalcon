@@ -111,6 +111,13 @@ if (!function_exists('library')) {
 
 if (!function_exists('logger')) {
 
+    /**
+     * [logger desc]
+     * @desc 写入日志助手函数
+     * @author limx
+     * @param $info
+     * @param string $type
+     */
     function logger($info, $type = 'info')
     {
         $dir = di('config')->application->logDir . date('Ymd');
