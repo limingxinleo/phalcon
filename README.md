@@ -49,6 +49,7 @@ www  WEB部署目录（或者子目录）
 │ ├─meta                模型元数据目录
 │ └─migrations          数据库迁移目录
 │   └─1.0.0             测试数据库迁移目录
+├─tests                 单元测试目录
 ├─vendor                第三方类库目录（Composer依赖库）
 ├─.env                  env支持配置文件
 ├─composer.json         composer定义文件
