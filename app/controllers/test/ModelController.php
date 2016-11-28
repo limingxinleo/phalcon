@@ -2,13 +2,13 @@
 
 namespace MyApp\Controllers\Test;
 
-use MyApp\Models\Role;
-use MyApp\Models\Title;
-use MyApp\Models\User;
-use MyApp\Models\Book;
+use MyApp\Models\Test\Role;
+use MyApp\Models\Test\Title;
+use MyApp\Models\Test\User;
+use MyApp\Models\Test\Book;
+use MyApp\Models\Test\UserTitle;
 
 use limx\phalcon\DB;
-use MyApp\Models\UserTitle;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Paginator\Adapter\QueryBuilder;
 use limx\tools\MyPDO;
@@ -132,7 +132,7 @@ class ModelController extends ControllerBase
 
     public function editAction()
     {
-        $user = User::findFirst(111);
+        $user = User::findFirst(1);
         $user->name = time();
         $user->username = time();
 //        $user->password = time();
