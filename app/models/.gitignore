@@ -3,4 +3,5 @@
 # @author limx
 *
 !test
+!test/*
 !.gitignore
