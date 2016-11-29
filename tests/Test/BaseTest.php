@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
-use Phalcon\Test\UnitTestCase;
+use \UnitTestCase;
 
 /**
  * Class UnitTest

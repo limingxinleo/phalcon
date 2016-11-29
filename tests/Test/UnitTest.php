@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
-use Phalcon\Test\UnitTestCase;
+use \UnitTestCase;
 use limx\tools\LRedis;
 use limx\func\Random;
 
