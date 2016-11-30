@@ -33,7 +33,7 @@ class ToolsController extends \Phalcon\Mvc\Controller
 
     public function imgAction()
     {
-        return $this->view->render('test / tools', 'img');
+        return $this->view->render('test/tools', 'img');
     }
 
 }
