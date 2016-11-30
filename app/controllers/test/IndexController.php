@@ -12,6 +12,11 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
+    public function uniqidAction()
+    {
+        dump(uniqid());
+    }
+
     public function logAction()
     {
         logger("This is a Test Log Info");

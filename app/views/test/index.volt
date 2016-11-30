@@ -12,6 +12,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/log') }}">写入日志</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/session') }}">SESSION测试</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/ext') }}">扩展是否存在</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/uniqid') }}">uniqid</a>
             </div>
             <div class="col-md-12">
                 <h3>
