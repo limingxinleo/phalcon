@@ -36,5 +36,17 @@ class ToolsController extends \Phalcon\Mvc\Controller
         return $this->view->render('test/tools', 'img');
     }
 
+    public function timeAction()
+    {
+        $this->view->time = time();
+        $this->view->datetime = date('Y-m-d H:i:s');
+        if ($this->request->isPost()) {
+            $this->view->res1 = date("Y-m-d H:i:s", $this->request->get('timestamp'));
+            $this->view->res2 = strtotime($this->request->get('datetime'));
+        }
+
+        return $this->view->render('test/tools', 'time');
+    }
+
 }
 
