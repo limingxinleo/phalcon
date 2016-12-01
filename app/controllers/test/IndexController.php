@@ -4,12 +4,101 @@ namespace MyApp\Controllers\Test;
 
 use limx\tools\LRedis;
 use limx\tools\MyRedis;
+use limx\func\Match;
+use limx\func\Str;
 
 class IndexController extends ControllerBase
 {
     public function initAction()
     {
         dump($this->settings);
+    }
+
+    public function pingbiAction()
+    {
+        $pb = [
+            '卧槽', '尼玛', '我日'
+        ];
+        $str = '卧槽妈的尼玛de 啊啊啊啊我日';
+        $res = Str::replace($pb, "*", $str);
+        dump($res);
+    }
+
+    public function strAction()
+    {
+        dump(Str::ascii("我是天才"));
+        dump(Str::ascii("Hello World"));
+
+        dump(Str::camel("我是天才"));
+        dump(Str::camel("Hello World"));
+
+        dump(Str::contains("Hello World", ["SD"]));
+        dump(Str::contains("我是天才", ["我"]));
+
+        dump(Str::endsWith("Hello World", ["d"]));
+        dump(Str::contains("我是天才", ["才"]));
+
+        dump(Str::finish("Hello World", "d"));
+        dump(Str::finish("我是天才", "才"));
+
+        dump(Str::is("Hello*", "Hello World"));
+        dump(Str::is("我*", "我是天才"));
+
+        dump(Str::length("Hello World"));
+        dump(Str::length("我是天才"));
+
+        dump(Str::limit("Hello World", 8));
+        dump(Str::limit("我是天才", 6));
+
+        dump(Str::lower("Hello World"));
+        dump(Str::lower("我是天才"));
+
+        dump(Str::words("Hello World", 1));
+        dump(Str::words("我是 天才", 2));
+
+        dump(Str::quickRandom(2));
+        dump(Str::quickRandom(12));
+
+        dump(Str::equals('天才', '天才'));
+        dump(Str::equals("asdf", 'asdff'));
+
+        dump(Str::replaceFirst('天才', '我是', '我是天才我是天才'));
+        dump(Str::replaceFirst("asdf", 'asdff', 'asdfxxxasdfxxx'));
+
+        dump(Str::replaceLast('天才', '我是', '我是天才我是天才'));
+        dump(Str::replaceLast("asdf", 'asdff', 'asdfxxxasdfxxx'));
+
+        dump(Str::title('天才'));
+        dump(Str::title("Hello World"));
+
+        dump(Str::slug('天才'));
+        dump(Str::slug("Hello World"));
+
+        dump(Str::snake('天才'));
+        dump(Str::snake("Hello World"));
+
+        dump(Str::ucfirst('天才'));
+        dump(Str::ucfirst("asdf"));
+
+        dump(str_replace('天才', '我是', '我是天才我是天才'));
+        dump(str_replace("asdf", 'asdff', 'asdfxxxasdfxxx'));
+
+    }
+
+    public function is_numericAction()
+    {
+        dump(is_numeric(1));
+        dump(is_numeric('1'));
+        dump(is_numeric("1"));
+        dump(is_numeric(1.1));
+
+        dump(Match::isInt(1));
+        dump(Match::isInt('1'));
+        dump(Match::isInt("1"));
+
+        dump(Match::isInt("1.1"));
+        dump(is_int(1.1));
+        dump(is_int('1'));
     }
 
     public function uniqidAction()
