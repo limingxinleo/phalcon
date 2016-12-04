@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
@@ -29,5 +30,7 @@
             }
         }
     });
+    Vue.$toast("ffff");
+    //Vue.$indicator.open('加载中...');
 </script>
 </html>
