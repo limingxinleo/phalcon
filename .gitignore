@@ -7,3 +7,4 @@ vendor/
 composer.lock
 .phalcon
 .env
+node_modules/
