@@ -17,6 +17,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/is_numeric') }}">is_numeric</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/pingbi') }}">屏蔽字列表</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/str') }}">Str方法</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/vue') }}">Vue.js</a>
             </div>
             <div class="col-md-12">
                 <h3>

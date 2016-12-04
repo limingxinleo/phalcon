@@ -14,6 +14,11 @@ class IndexController extends ControllerBase
         dump($this->settings);
     }
 
+    public function vueAction()
+    {
+        return $this->view->render('test/index', 'vue');
+    }
+
     public function pingbiAction()
     {
         $pb = [
