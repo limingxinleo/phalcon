@@ -23,7 +23,8 @@
     "url": "https://github.com/limingxinleo/simple-subcontrollers.phalcon/issues"
   },
   "homepage": "https://github.com/limingxinleo/simple-subcontrollers.phalcon#readme",
+  "dependencies": {
+  },
   "devDependencies": {
-    "webpack": "^1.13.3"
   }
 }
