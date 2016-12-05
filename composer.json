@@ -25,11 +25,5 @@
             "mkdir .phalcon",
             "php -r \"copy('.env.example', '.env');\""
         ]
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
-        }
     }
 }
