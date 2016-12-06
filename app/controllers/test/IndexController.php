@@ -6,6 +6,8 @@ use limx\tools\LRedis;
 use limx\tools\MyRedis;
 use limx\func\Match;
 use limx\func\Str;
+use limx\phalcon\DB;
+use MyApp\Models\Test\User;
 
 class IndexController extends ControllerBase
 {
@@ -17,6 +19,23 @@ class IndexController extends ControllerBase
     public function infoAction()
     {
         echo phpinfo();
+    }
+
+    public function zhuruAction()
+    {
+        /** pdo prepare 默认防止注入 */
+        $id = $this->request->get('id');
+        $sql = 'select * from user where id=?';
+        $res = DB::query($sql, [$id]);
+        dump($res);
+
+        /** 也可防止注入 */
+//        $res = User::findFirst($id);
+
+        /** 字符串拼接不能有效防止注入 */
+//        $sql = 'select * from user where id=' . $id;
+//        $res = DB::query($sql);
+//        dump($res);
     }
 
     public function wordAction()

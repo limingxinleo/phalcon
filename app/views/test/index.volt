@@ -19,6 +19,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/str') }}">Str方法</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/vue') }}">Vue.js</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/word') }}">字符++</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/zhuru') }}">sql注入测试</a>
             </div>
             <div class="col-md-12">
                 <h3>
