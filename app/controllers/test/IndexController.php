@@ -19,6 +19,14 @@ class IndexController extends ControllerBase
         echo phpinfo();
     }
 
+    public function wordAction()
+    {
+        $field = 'A';
+        for ($i = 0; $i < 100; $i++) {
+            dump($field++);
+        }
+    }
+
     public function vueAction()
     {
         return $this->view->render('test/index', 'vue');
