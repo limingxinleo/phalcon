@@ -120,6 +120,7 @@ class IndexController extends ControllerBase
     {
         logger("This is a Test Log Info");
         logger("This is a Test Log ERROR", 'error');
+        logger("This is a Test Log Info In test", 'info', 'test.log');
         func();
     }
 
