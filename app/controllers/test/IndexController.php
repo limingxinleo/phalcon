@@ -8,6 +8,7 @@ use limx\func\Match;
 use limx\func\Str;
 use limx\phalcon\DB;
 use MyApp\Models\Test\User;
+use limx\func\Curl;
 
 class IndexController extends ControllerBase
 {
@@ -19,6 +20,18 @@ class IndexController extends ControllerBase
     public function infoAction()
     {
         echo phpinfo();
+    }
+
+    public function ipAction()
+    {
+        $url = 'http://api.eurekapi.com/iplocation/v1.8/locateip';
+        $data = [
+            'key' => env('IP_KEY'),
+            'ip' => '220.181.57.217',
+            'format' => 'JSON'
+        ];
+        $res = Curl::getArr($url, $data);
+        dump($res);
     }
 
     public function zhuruAction()
