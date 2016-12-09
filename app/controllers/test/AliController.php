@@ -47,6 +47,19 @@ class AliController extends ControllerBase
 
     public function infoAction()
     {
+        $code = $this->request->get('app_auth_code');
+        $appid = env('ALIPAY_APPID');
+        $redirect_uri = env('APP_URL') . '/test/ali/info';
+        if (empty($code)) {
+            // 获取code
+            $url = 'https://openauth.alipay.com/oauth2/appToAppAuth.htm?';
+            $params = [
+                'app_id' => $appid,
+                'scope' => 'auth_user',
+                'redirect_uri' => $redirect_uri
+            ];
+            return $this->response->redirect($url . http_build_query($params));
+        }
         library('alipay/AopSdk.php');
         $aop = new \AopClient();
         $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
@@ -56,22 +69,20 @@ class AliController extends ControllerBase
         $aop->apiVersion = '1.0';
         $aop->format = 'json';
 
-        $request = new \MonitorHeartbeatSynRequest();
-        $request->setBizContent("{任意值}");
+        $request = new \AlipaySystemOauthTokenRequest();
+        $request->setGrantType("authorization_code");
+        $request->setCode($code);
+//        $request->setRefreshToken("201208134b203fe6c11548bcabd8da5bb087a83b");
         $result = $aop->execute($request);
+        dump($code);
         dump($result);
-        exit;
-        $code = $this->request->get('code');
-        if (empty($code)) {
-            $aop->return_url = 'http://phalcon.phal.lmx0536.cn/test/ali/info';
-            $request = new \AlipayUserInfoAuthRequest();
-            $data = ['scopes' => ['auth_base'], 'state' => 'init'];
-            $request->setBizContent(json_encode($data));
-            $result = $aop->execute($request);
-            dump($result);
-        } else {
-            dump($code);
-        }
+
+    }
+
+    public function echoAction()
+    {
+        $res = $this->request->get();
+        dump($res);
     }
 
 }
