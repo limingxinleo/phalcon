@@ -47,12 +47,12 @@ class AliController extends ControllerBase
 
     public function infoAction()
     {
-        $code = $this->request->get('app_auth_code');
+        $code = $this->request->get('auth_code');
         $appid = env('ALIPAY_APPID');
         $redirect_uri = env('APP_URL') . '/test/ali/info';
         if (empty($code)) {
             // 获取code
-            $url = 'https://openauth.alipay.com/oauth2/appToAppAuth.htm?';
+            $url = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?';
             $params = [
                 'app_id' => $appid,
                 'scope' => 'auth_user',
@@ -74,7 +74,14 @@ class AliController extends ControllerBase
         $request->setCode($code);
 //        $request->setRefreshToken("201208134b203fe6c11548bcabd8da5bb087a83b");
         $result = $aop->execute($request);
-        dump($code);
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $user_id = $result->$responseNode->user_id;
+        $access_token = $result->$responseNode->access_token;
+
+        dump($responseNode);
+        $request = new \AlipayUserInfoShareRequest();
+        $result = $aop->execute($request, $access_token);
+
         dump($result);
 
     }
