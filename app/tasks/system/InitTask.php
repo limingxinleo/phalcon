@@ -36,4 +36,21 @@ class InitTask extends Task
         echo "welcome!\n";
     }
 
+    public function storageAction()
+    {
+        $config = di('config')->application;
+        $creatRoot = [
+            'cache.data' => $config->cacheDir . 'data/',
+            'cache.view' => $config->cacheDir . 'view/',
+            'log' => $config->logDir,
+            'meta' => $config->metaDataDir,
+            'migrations' => $config->migrationsDir,
+        ];
+        foreach ($creatRoot as $i => $v) {
+            if (!is_dir($v)) {
+                mkdir($v, 0777, true);
+            }
+        }
+    }
+
 }
