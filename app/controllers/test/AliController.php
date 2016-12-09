@@ -28,6 +28,23 @@ class AliController extends ControllerBase
         echo $form;
     }
 
+    public function checkSignAction()
+    {
+        library('alipay/AopSdk.php');
+        $aop = new \AopClient();
+        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
+        $aop->appId = env('ALIPAY_APPID');
+        $aop->rsaPrivateKey = env('ALIPAY_PRIKEY');
+        $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
+        $aop->apiVersion = '1.0';
+        $aop->format = 'json';
+
+        $request = new \MonitorHeartbeatSynRequest();
+        $request->setBizContent("{任意值}");
+        $result = $aop->execute($request);
+        dump($result);
+    }
+
     public function infoAction()
     {
         library('alipay/AopSdk.php');
@@ -38,20 +55,22 @@ class AliController extends ControllerBase
         $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
         $aop->apiVersion = '1.0';
         $aop->format = 'json';
-        $request = new \AlipayUserInfoAuthRequest();
-        $data = ['scopes' => ['auth_base'], 'state' => 'init'];
-        $request->setBizContent(json_encode($data));
+
+        $request = new \MonitorHeartbeatSynRequest();
+        $request->setBizContent("{任意值}");
         $result = $aop->execute($request);
-        dump(json_encode($data));
         dump($result);
         exit;
-
-        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
-        $resultCode = $result->$responseNode->code;
-        if (!empty($resultCode) && $resultCode == 10000) {
-            echo "成功";
+        $code = $this->request->get('code');
+        if (empty($code)) {
+            $aop->return_url = 'http://phalcon.phal.lmx0536.cn/test/ali/info';
+            $request = new \AlipayUserInfoAuthRequest();
+            $data = ['scopes' => ['auth_base'], 'state' => 'init'];
+            $request->setBizContent(json_encode($data));
+            $result = $aop->execute($request);
+            dump($result);
         } else {
-            echo "失败";
+            dump($code);
         }
     }
 
