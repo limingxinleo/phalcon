@@ -28,5 +28,32 @@ class AliController extends ControllerBase
         echo $form;
     }
 
+    public function infoAction()
+    {
+        library('alipay/AopSdk.php');
+        $aop = new \AopClient();
+        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
+        $aop->appId = env('ALIPAY_APPID');
+        $aop->rsaPrivateKey = env('ALIPAY_PRIKEY');
+        $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
+        $aop->apiVersion = '1.0';
+        $aop->format = 'json';
+        $request = new \AlipayUserInfoAuthRequest();
+        $data = ['scopes' => ['auth_base'], 'state' => 'init'];
+        $request->setBizContent(json_encode($data));
+        $result = $aop->execute($request);
+        dump(json_encode($data));
+        dump($result);
+        exit;
+
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            echo "成功";
+        } else {
+            echo "失败";
+        }
+    }
+
 }
 
