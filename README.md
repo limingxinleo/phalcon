@@ -71,6 +71,7 @@ www  WEB部署目录（或者子目录）
 * 默认的调度params是按照数组顺序进行对应的。
 * 使用Cli时，因为Windows对大小写不敏感 可以用php run system\clear 但在Linux下 需要使用php run System\\\\Clear
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
+* 初始化脚本因为Windows和Linux使用Cli的区别，没办法同时兼容，暂时兼容Windows，Linux需要手动执行命令。
 
 ## Composer 国内镜像
 ~~~
