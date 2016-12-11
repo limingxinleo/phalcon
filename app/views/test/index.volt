@@ -57,11 +57,12 @@
             </div>
             <div class="col-md-12">
                 <h3>
-                    支付宝相关
+                    阿里相关
                 </h3>
                 <a type="button" class="btn btn-default" href="{{ url('test/ali/index') }}">WAP支付</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/ali/info') }}">用户信息</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/ali/checkSign') }}">验签接口</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/ali/sms') }}">短信接口</a>
             </div>
         </div>
     </div>
