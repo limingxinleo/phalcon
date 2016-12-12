@@ -40,6 +40,7 @@ class QiniuController extends \Phalcon\Mvc\Controller
 
     public function roomAction()
     {
+        /** 下载七牛带连麦的sdk php包 */
         library('pili-sdk-php-master/lib/Pili.php');
         $mac = new \Qiniu\Credentials(env('QINIU_ACCESS_KEY'), env('QINIU_SECRET_KEY')); #=> Credentials Object
         $client = new \Pili\RoomClient($mac);
@@ -60,12 +61,6 @@ class QiniuController extends \Phalcon\Mvc\Controller
 //        print_r($resp);
 
     }
-
-    public function QiniuToken()
-    {
-
-    }
-
 
 }
 
