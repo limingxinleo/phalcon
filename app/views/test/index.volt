@@ -46,6 +46,7 @@
                     第三方服务
                 </h3>
                 <a type="button" class="btn btn-default" href="{{ url('test/api/yunpian') }}">云片短信</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/qiniu/index') }}">七牛连麦</a>
             </div>
             <div class="col-md-12">
                 <h3>
