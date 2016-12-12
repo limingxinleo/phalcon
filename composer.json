@@ -20,7 +20,6 @@
         "phalcon/incubator": "^3.0",
         "limingxinleo/limx-redis": "^1.0",
         "endroid/qrcode": "^1.7",
-        "pili-engineering/pili-sdk-php": "^1.5"
     },
     "scripts": {
         "post-create-project-cmd": [
