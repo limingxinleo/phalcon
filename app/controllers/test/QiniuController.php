@@ -44,14 +44,18 @@ class QiniuController extends \Phalcon\Mvc\Controller
         library('pili-sdk-php-master/lib/Pili.php');
         $mac = new \Qiniu\Credentials(env('QINIU_ACCESS_KEY'), env('QINIU_SECRET_KEY')); #=> Credentials Object
         $client = new \Pili\RoomClient($mac);
-        //$resp = $client->createRoom('1', "testroom");
+        $id = rand(1, 100);
+        $fid = $id + 1;
+        $resp = $client->createRoom(strval($id), "testroom");
         //dump($resp);
 
         //鉴权的有效时间: 1个小时.
-        $resp = $client->roomToken("testroom", '1', 'admin', (time() + 3600 * 24));
+        $resp = $client->roomToken("testroom", strval($id), 'admin', (time() + 3600 * 24));
+        dump('ID:' . $id);
         dump($resp);
 
-        $resp = $client->roomToken("testroom", '2', 'user', (time() + 3600 * 24));
+        $resp = $client->roomToken("testroom", strval($fid), 'user', (time() + 3600 * 24));
+        dump('ID:' . $fid);
         dump($resp);
 
         $resp = $client->getRoom("testroom");
@@ -60,6 +64,33 @@ class QiniuController extends \Phalcon\Mvc\Controller
 //        $resp = $client->deleteRoom("testroom");
 //        print_r($resp);
 
+    }
+
+    public function createRoomAction($id)
+    {
+        library('pili-sdk-php-master/lib/Pili.php');
+        $mac = new \Qiniu\Credentials(env('QINIU_ACCESS_KEY'), env('QINIU_SECRET_KEY')); #=> Credentials Object
+        $client = new \Pili\RoomClient($mac);
+
+        $client->createRoom(strval($id), "room_" . $id);
+        $resp = $client->roomToken("room_" . $id, strval($id), 'admin', (time() + 3600 * 24));
+        $data['uid'] = $id;
+        $data['room_name'] = "room_" . $id;
+        $data['token'] = $resp;
+        return success($data);
+    }
+
+    public function joinRoomAction($roomid, $id)
+    {
+        library('pili-sdk-php-master/lib/Pili.php');
+        $mac = new \Qiniu\Credentials(env('QINIU_ACCESS_KEY'), env('QINIU_SECRET_KEY')); #=> Credentials Object
+        $client = new \Pili\RoomClient($mac);
+
+        $resp = $client->roomToken("room_" . $roomid, strval($id), 'user', (time() + 3600 * 24));
+        $data['uid'] = $id;
+        $data['room_name'] = "room_" . $roomid;
+        $data['token'] = $resp;
+        return success($data);
     }
 
 }
