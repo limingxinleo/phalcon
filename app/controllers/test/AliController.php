@@ -144,9 +144,9 @@ class AliController extends ControllerBase
         $data['product_id'] = 'APP_FAST_LOGIN';
         $data['scope'] = 'kuaijie';
         $data['target_id'] = uniqid();
-        $data['auth_type'] = 'LOGIN';
+        $data['auth_type'] = 'AUTHACCOUNT';
         $data['sign_type'] = 'RSA';
-        $data['sign'] = $aop->rsaSign($data);
+        $data['sign'] = urlencode($aop->rsaSign($data));
 
         return success($data);
 
