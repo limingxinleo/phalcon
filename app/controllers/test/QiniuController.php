@@ -44,14 +44,14 @@ class QiniuController extends \Phalcon\Mvc\Controller
         library('pili-sdk-php-master/lib/Pili.php');
         $mac = new \Qiniu\Credentials(env('QINIU_ACCESS_KEY'), env('QINIU_SECRET_KEY')); #=> Credentials Object
         $client = new \Pili\RoomClient($mac);
-        $resp = $client->createRoom(1, "testroom");
+        //$resp = $client->createRoom('1', "testroom");
         //dump($resp);
 
         //鉴权的有效时间: 1个小时.
-        $resp = $client->roomToken("testroom", 1, 'admin', (time() + 3600));
+        $resp = $client->roomToken("testroom", '1', 'admin', (time() + 3600 * 24));
         dump($resp);
 
-        $resp = $client->roomToken("testroom", 2, 'user', (time() + 3600));
+        $resp = $client->roomToken("testroom", '2', 'user', (time() + 3600 * 24));
         dump($resp);
 
         $resp = $client->getRoom("testroom");

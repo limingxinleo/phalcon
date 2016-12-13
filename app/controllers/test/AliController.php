@@ -122,5 +122,24 @@ class AliController extends ControllerBase
         }
     }
 
+    /**
+     * [loginAction desc]
+     * @desc 支付宝登录 签名
+     * @author limx
+     */
+    public function loginAction()
+    {
+        library('alipay/AopSdk.php');
+        $aop = new \AopClient();
+
+        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
+        $aop->appId = env('ALIPAY_APPID');
+        $aop->rsaPrivateKey = env('ALIPAY_PRIKEY');
+        $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
+        $aop->apiVersion = '1.0';
+        $aop->format = 'json';
+
+    }
+
 }
 
