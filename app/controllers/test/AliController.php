@@ -47,6 +47,13 @@ class AliController extends ControllerBase
         dump($result);
     }
 
+    /**
+     * [infoAction desc]
+     * @desc 支付宝内WAP获取用户信息
+     * @author limx
+     * @return mixed
+     * @throws \Exception
+     */
     public function infoAction()
     {
         $code = $this->request->get('auth_code');
@@ -80,8 +87,43 @@ class AliController extends ControllerBase
         $user_id = $result->$responseNode->user_id;
         $access_token = $result->$responseNode->access_token;
 
-        dump($responseNode);
+        dump($result->$responseNode);
         $request = new \AlipayUserInfoShareRequest();
+        $result = $aop->execute($request, $access_token);
+
+        dump($result);
+
+    }
+
+    /**
+     * [userinfoAction desc]
+     * @desc APP 获取用户信息
+     * @author limx
+     * @throws \Exception
+     */
+    public function userinfoAction()
+    {
+        $code = $this->request->get('auth_code');
+        library('alipay/AopSdk.php');
+        $aop = new \AopClient();
+        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
+        $aop->appId = env('ALIPAY_APPID');
+        $aop->rsaPrivateKey = env('ALIPAY_PRIKEY');
+        $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
+        $aop->apiVersion = '1.0';
+        $aop->format = 'json';
+
+        $request = new \AlipaySystemOauthTokenRequest();
+        $request->setGrantType("authorization_code");
+        $request->setCode($code);
+//        $request->setRefreshToken("201208134b203fe6c11548bcabd8da5bb087a83b");
+        $result = $aop->execute($request);
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $user_id = $result->$responseNode->user_id;
+        $access_token = $result->$responseNode->access_token;
+
+        dump($result->$responseNode);
+        $request = new \AlipayUserUserinfoShareRequest();
         $result = $aop->execute($request, $access_token);
 
         dump($result);
