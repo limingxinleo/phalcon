@@ -131,13 +131,24 @@ class AliController extends ControllerBase
     {
         library('alipay/AopSdk.php');
         $aop = new \AopClient();
-
-        $aop->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
-        $aop->appId = env('ALIPAY_APPID');
         $aop->rsaPrivateKey = env('ALIPAY_PRIKEY');
         $aop->alipayrsaPublicKey = env('ALIPAY_PUBKEY');
-        $aop->apiVersion = '1.0';
-        $aop->format = 'json';
+
+        /** 待签名数组 */
+        $data['apiname'] = 'com.alipay.account.auth';
+        $data['method'] = 'alipay.open.auth.sdk.code.get';
+        $data['app_id'] = env('ALIPAY_APPID');
+        $data['app_name'] = 'mc';
+        $data['biz_type'] = 'openservice';
+        $data['pid'] = env('ALIPAY_PID');
+        $data['product_id'] = 'APP_FAST_LOGIN';
+        $data['scope'] = 'kuaijie';
+        $data['target_id'] = uniqid();
+        $data['auth_type'] = 'LOGIN';
+        $data['sign_type'] = 'RSA';
+        $data['sign'] = $aop->rsaSign($data);
+
+        return success($data);
 
     }
 
