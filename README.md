@@ -72,6 +72,7 @@ www  WEB部署目录（或者子目录）
 * 使用Cli时，因为Windows对大小写不敏感 可以用php run system\clear 但在Linux下 需要使用php run System\\\\Clear
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
 * 初始化脚本因为Windows和Linux使用Cli的区别，没办法同时兼容，暂时兼容Windows，Linux需要手动执行命令。
+* 项目没有设置时区，所以对于8小时的误差，要么在项目中增加date_default_timezone_set(Asia/Shanghai)，要么在php.ini中修改date.timezone = Asia/Shanghai
 
 ## Composer 国内镜像
 ~~~
