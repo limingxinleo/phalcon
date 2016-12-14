@@ -22,6 +22,13 @@ class IndexController extends ControllerBase
         echo phpinfo();
     }
 
+    public function dateAction()
+    {
+        dump(date('Y-m-d'));
+        dump(strtotime(date('Y-m-d')));
+        dump(time());
+    }
+
     public function ipAction()
     {
         $url = 'http://api.eurekapi.com/iplocation/v1.8/locateip';

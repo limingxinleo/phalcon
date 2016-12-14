@@ -21,6 +21,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/word') }}">字符++</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/zhuru') }}">sql注入测试</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/ip') }}">ip所在地</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/date') }}">date测试</a>
             </div>
             <div class="col-md-12">
                 <h3>
