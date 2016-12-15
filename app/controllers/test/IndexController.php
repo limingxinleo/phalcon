@@ -9,6 +9,7 @@ use limx\func\Str;
 use limx\phalcon\DB;
 use MyApp\Models\Test\User;
 use limx\func\Curl;
+use limx\tools\MyPDO;
 
 class IndexController extends ControllerBase
 {
@@ -20,6 +21,25 @@ class IndexController extends ControllerBase
     public function infoAction()
     {
         echo phpinfo();
+    }
+
+    public function fetchAction()
+    {
+        $db = di('config');
+        $config = [
+            'type' => $db->database->adapter,
+            'host' => $db->database->host,
+            'dbname' => $db->database->dbname,
+            'user' => $db->database->username,
+            'pwd' => $db->database->password,
+            'charset' => $db->database->charset,
+        ];
+        $pdo = MyPDO::getInstance($config);
+        $sql = "SELECT * FROM user WHERE id > ? LIMIT 2";
+        $res = $pdo->fetch($sql, [1]);
+        dump($res);
+        $res = $pdo->query($sql, [1]);
+        dump($res);
     }
 
     public function dateAction()

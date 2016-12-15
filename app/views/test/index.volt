@@ -23,6 +23,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/ip') }}">ip所在地</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/date') }}">date测试</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/file/index') }}">文件上传测试</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/fetch') }}">PDO::Fetch</a>
             </div>
             <div class="col-md-12">
                 <h3>
