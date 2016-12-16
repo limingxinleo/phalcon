@@ -23,6 +23,25 @@ class IndexController extends ControllerBase
         echo phpinfo();
     }
 
+    public function prepareAction()
+    {
+        for ($i = 0; $i < 100; $i++) {
+            $start = rand(1, 5);
+            $end = rand(5, 10);
+
+            $sql = "SELECT * FROM book WHERE uid > ? AND uid < ?;";
+            $res = DB::query($sql, [$start, $end]);
+            $count = count($res);
+            dump($count);
+
+            $sql = "SELECT * FROM book WHERE uid > {$start} AND uid < {$end};";
+            $res = DB::query($sql);
+            $count = count($res);
+            dump($count);
+        }
+
+    }
+
     public function fetchAction()
     {
         $db = di('config');
