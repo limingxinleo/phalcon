@@ -23,6 +23,21 @@ class IndexController extends ControllerBase
         echo phpinfo();
     }
 
+    public function qxAction()
+    {
+        return $this->view->render('test/index', 'qx');
+    }
+
+    public function qx1Action()
+    {
+        return success([1]);
+    }
+
+    public function qx2Action()
+    {
+        return success([1]);
+    }
+
     public function prepareAction()
     {
         for ($i = 0; $i < 100; $i++) {
