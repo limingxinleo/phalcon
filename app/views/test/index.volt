@@ -26,6 +26,7 @@
                 <a type="button" class="btn btn-default" href="{{ url('test/index/fetch') }}">PDO::Fetch</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/prepare') }}">数据库prepare</a>
                 <a type="button" class="btn btn-default" href="{{ url('test/index/qx') }}">测试权限</a>
+                <a type="button" class="btn btn-default" href="{{ url('test/index/path') }}">相对路径->绝对路径</a>
             </div>
             <div class="col-md-12">
                 <h3>

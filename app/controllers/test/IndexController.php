@@ -23,6 +23,15 @@ class IndexController extends ControllerBase
         echo phpinfo();
     }
 
+    public function pathAction()
+    {
+        $path = APP_PATH . '/../public/';
+        dump($path);
+        $path2 = dirname(APP_PATH) . '/public/';
+        dump($path2);
+
+    }
+
     public function qxAction()
     {
         return $this->view->render('test/index', 'qx');
