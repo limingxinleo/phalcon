@@ -29,17 +29,14 @@ www  WEB部署目录（或者子目录）
 ├─app                   项目文件
 │ ├─config              配置文件
 │ ├─controllers         控制器目录
-│ │ └─test              测试控制器目录（可清理）
 │ ├─library             第三方库目录
 │ ├─models              模型目录
-│ │ └─test              测试模型目录（可清理）
 │ ├─services            自定义服务目录
 │ ├─tasks               任务目录
 │ └─views               视图目录
-│   └─test              测试视图目录（可清理）
 ├─public                资源目录
 │ ├─app                 项目资源目录
-│ ├─lib                 第三方资源目录（可清空）
+│ ├─lib                 第三方资源目录
 │ ├─.htaccess           apache重写文件
 │ └─index.php           入口文件
 ├─storage               项目写入仓库
@@ -49,7 +46,6 @@ www  WEB部署目录（或者子目录）
 │ ├─log                 日志目录
 │ ├─meta                模型元数据目录
 │ └─migrations          数据库迁移目录
-│   └─1.0.0             测试数据库迁移目录
 ├─tests                 单元测试目录
 ├─vendor                第三方类库目录（Composer依赖库）
 ├─.env                  env支持配置文件
