@@ -1,6 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### all template
 # @author limx
-*
-!helper.php
-!.gitignore
+.idea
