@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | Demo [ WE CAN DO IT JUST THINK IT ]
+// | InitTask 初始化脚本 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016 http://www.lmx0536.cn All rights reserved.
 // +----------------------------------------------------------------------
@@ -11,7 +11,6 @@
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
-use limx\tools\Package as Pack;
 
 class InitTask extends Task
 {
