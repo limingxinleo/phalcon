@@ -27,5 +27,5 @@ class CronTask extends Task
             }
         }
     }
-    
+
 }
