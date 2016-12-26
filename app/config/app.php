@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 return [
     'project-name' => 'limx-phalcon-ss-project',
+    // 项目打包 配置文件
     'package-config' => [
         // 项目根目录
         'root' => BASE_PATH,
@@ -30,5 +31,9 @@ return [
         'dst' => 'E:\phpStudy\WWW\zips\phalcon',
         // 版本号
         'vi' => '0.1',
+    ],
+    // 定时执行的脚本
+    'cron-tasks' => [
+        // ['class' => MyApp\Tasks\System\CronTask::class, 'action' => 'testAction', 'params' => []],
     ],
 ];
