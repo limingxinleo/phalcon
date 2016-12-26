@@ -11,16 +11,20 @@
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
+use limx\func\Str;
 
 class CronTask extends Task
 {
     public function mainAction()
     {
+        $time = date('H:i');
         $tasks = app('cron-tasks');
         foreach ($tasks as $task) {
-            $className = $task['class'];
-            $class = new $className();
-            call_user_func_array([$class, $task['action']], $task['params']);
+            if (Str::contains($task['time'], $time)) {
+                $className = $task['class'];
+                $class = new $className();
+                call_user_func_array([$class, $task['action']], $task['params']);
+            }
         }
     }
 }

@@ -17,6 +17,9 @@ $di = new FactoryDefault();
 /** Read the configuration */
 $config = include APP_PATH . "/config/config.php";
 
+/** 设置时区 */
+ini_set('date.timezone', $config->timezone);
+
 /** Read auto-loader */
 include APP_PATH . "/config/loader.php";
 
