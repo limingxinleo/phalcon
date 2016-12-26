@@ -59,6 +59,7 @@ www  WEB部署目录（或者子目录）
 * 编辑增加 * * * * * /path/to/php /path/to/run System\\\\Cron >> /dev/null 2>&1
 * 启动crond 服务
 * 在config/app.php 中维护cron-tasks数组
+
 ## 注意事项 ##
 * 利用phalcon脚本新建model时，使用phalcon model name --namespace=MyApp\Models
 * 利用phalcon脚本新建controller时，使用phalcon controller name --namespace=MyApp\Controllers\SubNamespace
