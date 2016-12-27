@@ -17,7 +17,7 @@ sudo ./install
 vim etc/php.ini 
 extension=phalcon.so
 
-composer create-project limingxinleo/phalcon-project-ss demo
+composer create-project limingxinleo/phalcon-project demo
 ~~~
 
 ## 目录结构
