@@ -48,6 +48,7 @@ class InitTask extends Task
         foreach ($creatRoot as $i => $v) {
             if (!is_dir($v)) {
                 mkdir($v, 0777, true);
+                echo "create {$i} success!\n";
             }
         }
     }
