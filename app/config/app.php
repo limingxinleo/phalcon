@@ -26,9 +26,9 @@ return [
             'composer.json',
         ],
         // 复制后的文件地址
-        // 样例地址 E:\phpStudy\WWW\zips\laravel
-        // 压缩地址为 E:\phpStudy\WWW\zips\laravel.zip
-        'dst' => 'E:\phpStudy\WWW\zips\phalcon',
+        // 样例地址 /Users/limx/Applications/zips/phalcon
+        // 压缩地址为 /Users/limx/Applications/zips/phalcon.zip
+        'dst' => '/Users/limx/Applications/zips/phalcon',
         // 版本号
         'vi' => '0.1',
     ],
