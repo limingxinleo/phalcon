@@ -160,7 +160,7 @@ return new Config(
 
         /*
         |--------------------------------------------------------------------------
-        | Cache Environment
+        | SESSION Environment
         |--------------------------------------------------------------------------
         |
         | The default setting is file.
@@ -169,6 +169,30 @@ return new Config(
         */
         'session' => [
             'type' => env('SESSION_DRIVER', 'file')
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | COOKIES Environment
+        |--------------------------------------------------------------------------
+        |
+        | isCrypt::是否加密 默认值false.
+        |
+        */
+        'cookies' => [
+            'isCrypt' => env('COOKIE_ISCRYPT', false)
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | CRYPT Environment
+        |--------------------------------------------------------------------------
+        |
+        | key::The secret key.
+        |
+        */
+        'crypt' => [
+            'key' => env('CRYPT_KEY', 'phalcon-project-cookie->key')
         ],
 
         /*
@@ -185,6 +209,8 @@ return new Config(
             'system/cache.php',
             'system/log.php',
             'system/error.php',
+            'system/cookies.php',
+            'system/crypt.php',
         ],
 
     ]
