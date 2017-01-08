@@ -113,11 +113,12 @@ return new Config(
             'tasksDir' => APP_PATH . '/tasks/',
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
+            'traitsDir' => APP_PATH . '/traits/',
+            'servicesDir' => APP_PATH . '/services/',
             'cacheDir' => BASE_PATH . '/storage/cache/',
             'migrationsDir' => BASE_PATH . '/storage/migrations/',
             'logDir' => BASE_PATH . '/storage/log/',
             'metaDataDir' => BASE_PATH . '/storage/meta/',
-            'servicesDir' => APP_PATH . '/services/',
             'baseUri' => '/',
         ],
 
