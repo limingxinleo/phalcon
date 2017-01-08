@@ -11,7 +11,9 @@ $loader
             'MyApp\Controllers' => $config->application->controllersDir,
             'MyApp\Models' => $config->application->modelsDir,
             'MyApp\Tasks' => $config->application->tasksDir,
+            'MyApp\Tasks\System' => $config->application->tasksDir . 'system/',
             'MyApp\Traits' => $config->application->traitsDir,
+            'MyApp\Traits\System' => $config->application->traitsDir . 'system/',
         ]
     )->registerFiles(
         [

@@ -12,7 +12,6 @@ namespace MyApp\Controllers;
 
 class IndexController extends ControllerBase
 {
-
     public function indexAction()
     {
         $this->view->version = di('config')->version;
