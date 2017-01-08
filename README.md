@@ -32,6 +32,7 @@ www  WEB部署目录（或者子目录）
 │ ├─models              模型目录
 │ ├─services            自定义服务目录
 │ ├─tasks               任务目录
+│ ├─traits              Trait目录
 │ └─views               视图目录
 ├─public                资源目录
 │ ├─app                 项目资源目录
