@@ -8,3 +8,7 @@ WHERE `date` = in_date AND `type` = in_type AND `status` = 0 ORDER BY sortid LIM
 SELECT @update_id AS cardid;
 END;
 ~~~
+## GIT 保存用户名密码到本地
+~~~
+git config --global credential.helper store
+~~~
