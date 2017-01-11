@@ -1,3 +1,12 @@
+## Composer 国内镜像
+~~~
+"repositories": {
+    "packagist": {
+        "type": "composer",
+        "url": "https://packagist.phpcomposer.com"
+    }
+}
+~~~
 ### 更新数据的同时获取数据的存储过程
 ~~~
 CREATE PROCEDURE getCardID( IN in_date INT, IN in_type INT)
