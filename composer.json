@@ -19,10 +19,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6",
-        "phalcon/incubator": "^3.0",
-        "limingxinleo/limx-redis": "^1.0",
-        "endroid/qrcode": "^1.7",
-        "limingxinleo/limx-pdo": "^1.2"
+        "phalcon/incubator": "^3.0"
     },
     "scripts": {
         "post-create-project-cmd": [
