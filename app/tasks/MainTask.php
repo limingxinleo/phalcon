@@ -15,15 +15,13 @@ use Phalcon\Cli\Task;
 class MainTask extends Task
 {
     public static $tasks = [
-        ['class' => \MyApp\Tasks\System\InitTask::class, 'action' => 'storageAction', 'params' => []]
+        ['task' => 'System\\Init', 'action' => 'storage', 'params' => []]
     ];
 
     public function mainAction()
     {
         foreach (self::$tasks as $task) {
-            $className = $task['class'];
-            $class = new $className();
-            call_user_func_array([$class, $task['action']], $task['params']);
+            $this->console->handle($task);
         }
     }
 

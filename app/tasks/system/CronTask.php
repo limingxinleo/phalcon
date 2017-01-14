@@ -21,11 +21,9 @@ class CronTask extends Task
         $tasks = app('cron-tasks');
         foreach ($tasks as $task) {
             if (Str::contains($task['time'], $time) || $task['time'] === '') {
-                $className = $task['class'];
-                $class = new $className();
-                call_user_func_array([$class, $task['action']], $task['params']);
+                $this->console->handle($task);
             }
         }
     }
-
+    
 }

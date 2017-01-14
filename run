@@ -35,15 +35,15 @@ ini_set('date.timezone', $config->timezone);
 include APP_PATH . '/config/loader.php';
 
 /**
+ * Create a console application
+ */
+$console = new ConsoleApp($di);
+
+/**
  * Include Services
  */
 include APP_PATH . '/config/services.php';
 include APP_PATH . '/config/services_cli.php';
-
-/**
- * Create a console application
- */
-$console = new ConsoleApp($di);
 
 /**
  * Process the console arguments

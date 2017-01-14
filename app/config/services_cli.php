@@ -18,3 +18,5 @@ $di->setShared('dispatcher', function () {
     $dispatcher->setDefaultNamespace('MyApp\Tasks');
     return $dispatcher;
 });
+
+$di->setShared("console", $console);

@@ -48,9 +48,11 @@ class InitTask extends Task
         foreach ($creatRoot as $i => $v) {
             if (!is_dir($v)) {
                 mkdir($v, 0777, true);
-                echo "create {$i} success!\n";
+                vprintf("Create %s Success!", $i);
+                echo PHP_EOL;
             }
         }
+        echo "Init Storage Finish!" . PHP_EOL;
     }
 
 }
