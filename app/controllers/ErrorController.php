@@ -17,6 +17,9 @@ class ErrorController extends Controller
 
     public function show404Action()
     {
+        if ($this->request->isPost()) {
+            return error('页面找不到了~');
+        }
         return $this->view->render('public', '404');
     }
 
