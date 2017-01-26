@@ -19,24 +19,6 @@ use limx\func\Random;
  */
 class UnitTest extends UnitTestCase
 {
-
-    public function testRedisCase()
-    {
-        $config = [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'auth' => env('REDIS_AUTH'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_INDEX', 0),
-        ];
-        $redis = LRedis::getInstance($config);
-        $time = time();
-        $redis->set('phalcon:test', $time);
-        $this->assertEquals(
-            $time,
-            $redis->get('phalcon:test')
-        );
-    }
-
     public function testSessionCase()
     {
         $time = Random::str(12);
