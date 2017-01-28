@@ -67,8 +67,8 @@ www  WEB部署目录（或者子目录）
 * 使用模型进行信息存储时，因为模型元数据的问题，非空字段会匹配非空、非空字符串两个条件，致使一些空字符串字段不赋默认非空字符串值的情况下，保存失败！
 * 框架默认以文件的方式缓存元数据，一旦表结构被修改，请执行php run system\clear meta yes 清理元数据
 * 在使用Model的Relation时，因为命名空间的问题，需要使用别名，例如 $this->hasMany("id", "MyApp\\Models\\Book", "uid", ['alias' => 'book']);
-* 控制器中 $this->request->url函数 (url助手函数) 生成的地址 会拼接config中的baseUri。
-* 控制器中 $this->response->redirect() 会根据当前模块跳转。
+* 控制器中 $this->request->url函数 (url助手函数) 生成的地址 会拼接config中的baseUri 故url('index') 会生成 /index。
+* 控制器中 $this->response->redirect() 会根据当前模块跳转 故redirect('/index') 才会生成 /index。
 * 默认的调度params是按照数组顺序进行对应的。
 * 使用Cli时，因为Windows对大小写不敏感 可以用php run system\clear 但在Linux下 需要使用php run System\\\\Clear
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
