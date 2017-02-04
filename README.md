@@ -75,4 +75,4 @@ www  WEB部署目录（或者子目录）
 * 初始化脚本因为Windows和Linux使用Cli的区别，没办法同时兼容，暂时兼容Windows，Linux需要手动执行命令。
 * 项目没有设置时区，所以对于8小时的误差，要么在项目中增加date_default_timezone_set(Asia/Shanghai)，要么在php.ini中修改date.timezone = Asia/Shanghai
 * 使用dispatch forward调度的时候，必须使用return截断控制器。要不然他会走后面的dispatch forward调度。如果使用exit截断，调度则不会执行。
-
+* 使用任务php run test_test 会转化为 TestTestTask 但是使用php run Test\\test_test 会转化为Test\test_testTask
