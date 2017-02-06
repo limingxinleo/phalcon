@@ -15,8 +15,9 @@ use Phalcon\Cli\Dispatcher;
  */
 $di->setShared('dispatcher', function () {
     $dispatcher = new Dispatcher();
-    $dispatcher->setDefaultNamespace('MyApp\Tasks');
+    $dispatcher->setDefaultNamespace('MyApp\\Tasks');
     return $dispatcher;
 });
 
 $di->setShared("console", $console);
+
