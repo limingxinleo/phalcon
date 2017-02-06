@@ -18,5 +18,4 @@ class IndexController extends ControllerBase
         return $this->view->render('index', 'index');
     }
 
-
 }

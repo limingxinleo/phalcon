@@ -36,4 +36,7 @@ return [
     'cron-tasks' => [
         // ['task' => 'System\\Cron', 'action' => 'test', 'params' => [], 'time' => '05:21'],
     ],
+    'error-code' => [
+        500 => '服务器错误！',
+    ],
 ];
