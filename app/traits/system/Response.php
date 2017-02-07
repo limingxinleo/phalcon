@@ -10,25 +10,17 @@
 // +----------------------------------------------------------------------
 namespace MyApp\Traits\System;
 
-use limx\phalcon\Ajax;
+use limx\phalcon\Http\Response as HttpResponse;
 
 trait Response
 {
     protected static function success($data = [], $type = 'json')
     {
-        switch (strtolower($type)) {
-            case 'json':
-            default:
-                return Ajax::success($data);
-        }
+        return HttpResponse::send(1, $data, '', $type);
     }
 
     protected static function error($msg = '', $data = [], $type = 'json')
     {
-        switch (strtolower($type)) {
-            case 'json':
-            default:
-                return Ajax::error($msg, $data);
-        }
+        return HttpResponse::send(0, $data, $msg, $type);
     }
 }
