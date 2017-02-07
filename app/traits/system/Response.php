@@ -14,7 +14,7 @@ use limx\phalcon\Ajax;
 
 trait Response
 {
-    static function success($data = [], $type = 'json')
+    protected static function success($data = [], $type = 'json')
     {
         switch (strtolower($type)) {
             case 'json':
@@ -23,7 +23,7 @@ trait Response
         }
     }
 
-    static function error($msg = '', $data = [], $type = 'json')
+    protected static function error($msg = '', $data = [], $type = 'json')
     {
         switch (strtolower($type)) {
             case 'json':
