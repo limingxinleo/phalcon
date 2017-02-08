@@ -64,5 +64,8 @@ if ($config->cache->type !== false) {
         $di->set('cache', function () use ($cache) {
             return $cache;
         });
+        $di->set('modelsCache', function () use ($cache) {
+            return $cache;
+        });
     }
 }
