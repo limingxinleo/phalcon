@@ -8,6 +8,7 @@
 [Phalcon 官网](https://docs.phalconphp.com/zh/latest/index.html)
 
 ## 安装方法 ##
+* 编译phalcon扩展
 ~~~
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
@@ -15,8 +16,23 @@ sudo ./install
 
 vim etc/php.ini 
 extension=phalcon.so
+~~~
+* 安装项目
+> 利用composer安装
 
+~~~
 composer create-project limingxinleo/phalcon-project demo
+~~~
+
+> git clone 安装
+
+~~~
+git clone https://github.com/limingxinleo/simple-subcontrollers.phalcon.git
+cd simple-subcontrollers.phalcon
+composer install
+mkdir .phalcon
+cp .env.example .env
+php run
 ~~~
 
 ## 目录结构
