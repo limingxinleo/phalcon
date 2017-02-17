@@ -19,7 +19,7 @@ class InitTask extends Task
     {
         echo Color::head('命名空间初始化') . PHP_EOL;
         echo Color::colorize('  默认的命名空间是MyApp', Color::BG_GREEN) . PHP_EOL;
-        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_RED) . PHP_EOL;
+        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_GREEN) . PHP_EOL;
         $arg = trim(fgets(STDIN));
         if ($arg == 'yes') {
             echo Color::colorize('请输入您的命名空间', Color::BG_GREEN) . PHP_EOL;
