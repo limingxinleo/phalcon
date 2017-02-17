@@ -18,6 +18,7 @@ vim etc/php.ini
 extension=phalcon.so
 ~~~
 * 安装项目
+
 > 利用composer安装
 
 ~~~
