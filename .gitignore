@@ -5,3 +5,6 @@ vendor/
 composer.lock
 .phalcon
 .env
+storage/log/*
+storage/cache/*
+storage/meta/*
