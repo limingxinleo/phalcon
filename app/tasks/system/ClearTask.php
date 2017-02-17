@@ -48,7 +48,7 @@ class ClearTask extends Task
         }
         // 删除缓存
         File::rm($dir, false);
-        echo Color::success("The Cache has been Deleted!");
+        echo Color::success("The Cache was successfully deleted.");
     }
 
     /**
@@ -70,7 +70,7 @@ class ClearTask extends Task
         }
         // 删除缓存
         File::rm($dir, false);
-        echo Color::success("The Cache has been Deleted!");
+        echo Color::success("The Cache was successfully deleted.");
     }
 
     /**
@@ -92,7 +92,7 @@ class ClearTask extends Task
         }
         // 删除缓存
         File::rm($dir, false);
-        echo Color::success("The Cache has been Deleted!");
+        echo Color::success("The Cache was successfully deleted.");
     }
 
 }

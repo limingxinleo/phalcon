@@ -1,9 +1,0 @@
-# Created by .ignore support plugin (hsz.mobi)
-### default template
-# @author limx
-cache/data/*
-cache/view/*
-log/*
-meta/*
-migrations/*
-!migrations/1.0.0

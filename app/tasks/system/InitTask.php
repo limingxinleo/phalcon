@@ -10,17 +10,19 @@
 // +----------------------------------------------------------------------
 namespace MyApp\Tasks\System;
 
+use limx\phalcon\Cli\Color;
 use Phalcon\Cli\Task;
 
 class InitTask extends Task
 {
     public function mainAction()
     {
-        echo "The default namespace is MyApp\n";
-        echo "Do you want rewrite your namespace?(yes or no)\n";
+        echo Color::head('命名空间初始化') . PHP_EOL;
+        echo Color::colorize('  默认的命名空间是MyApp', Color::BG_GREEN) . PHP_EOL;
+        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_RED) . PHP_EOL;
         $arg = trim(fgets(STDIN));
         if ($arg == 'yes') {
-            echo "Please input the namespace!\n";
+            echo Color::colorize('请输入您的命名空间', Color::BG_GREEN) . PHP_EOL;
             $arg = trim(fgets(STDIN));
             if (!empty($arg)) {
                 $res = [];
@@ -32,7 +34,7 @@ class InitTask extends Task
                 }
             }
         }
-        echo "welcome!\n";
+        echo Color::success("You're now flying with Phalcon.");
     }
 
     public function storageAction()
@@ -45,14 +47,14 @@ class InitTask extends Task
             'meta' => $config->metaDataDir,
             'migrations' => $config->migrationsDir,
         ];
+        echo Color::head('仓库初始化') . PHP_EOL;
         foreach ($creatRoot as $i => $v) {
             if (!is_dir($v)) {
                 mkdir($v, 0777, true);
-                vprintf("Create %s Success!", $i);
-                echo PHP_EOL;
+                echo Color::colorize(sprintf("  新建%s成功", $i), Color::BG_GREEN) . PHP_EOL;
             }
         }
-        echo "Init Storage Finish!" . PHP_EOL;
+        echo Color::success("The Storage was successfully created.");
     }
 
 }
