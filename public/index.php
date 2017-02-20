@@ -24,5 +24,5 @@ try {
 } catch (\Exception $e) {
     $error = $e->getMessage();
     echo $error;
-    logger($error, 'error');
+    logger($error, 'error', 'error.log');
 }
