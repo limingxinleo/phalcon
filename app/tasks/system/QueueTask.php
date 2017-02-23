@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | 消息队列 REDIS [ WE CAN DO IT JUST THINK IT ]
+// | 消息队列 REDIS 抽象类 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016 http://www.lmx0536.cn All rights reserved.
 // +----------------------------------------------------------------------
@@ -12,6 +12,7 @@ declare(ticks = 1);
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
+use limx\phalcon\Cli\Color;
 
 abstract class QueueTask extends Task
 {
@@ -20,14 +21,18 @@ abstract class QueueTask extends Task
     // 当前进程数
     protected $process = 0;
     // 消息队列Redis键值
-    protected $queueKey = 'phalcon:test:queue';
-    // 等待时间
+    protected $queueKey = '';
+    // 子进程数到达最大值时的等待时间
     protected $waittime = 1;
 
     public function mainAction()
     {
         if (!extension_loaded('swoole')) {
-            echo "没有安装swoole扩展" . PHP_EOL;
+            echo Color::error('The swoole extension is not installed');
+            return;
+        }
+        if (empty($this->queueKey)) {
+            echo Color::error('Please rewrite the queueKey');
             return;
         }
         // install signal handler for dead kids
