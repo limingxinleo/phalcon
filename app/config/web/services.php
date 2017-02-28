@@ -15,6 +15,8 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Events\Event;
 
+use MyApp\Listeners\System\DispatchListener;
+
 
 $di->setShared('router', function () {
     return require __DIR__ . '/routes.php';
@@ -62,28 +64,12 @@ $di->setShared('view', function () use ($config) {
 });
 
 $di->set('dispatcher', function () {
-    // 创建一个事件管理器
+    // 监听调度 dispatcher
     $eventsManager = new EventsManager();
-
-    // 处理异常和使用 NotFoundPlugin 未找到异常
+    $dispatchListener = new DispatchListener();
     $eventsManager->attach(
-        "dispatch:beforeException",
-        function (Event $event, $dispatcher, Exception $exception) {
-            // 代替控制器或者动作不存在时的路径
-            switch ($exception->getCode()) {
-                case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
-                case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                    $dispatcher->forward(
-                        [
-                            'namespace' => 'MyApp\Controllers',
-                            'controller' => 'error',
-                            'action' => 'show404',
-                        ]
-                    );
-
-                    return false;
-            }
-        }
+        'dispatch',
+        $dispatchListener
     );
 
     $dispatcher = new Dispatcher();
