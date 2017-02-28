@@ -31,4 +31,12 @@ if ($config->log->sql) {
 
     // 设置事件管理器
     $connection->setEventsManager($eventsManager);
+
+    // 创建一个数据库侦听
+    $dbListener = new MyApp\Listeners\System\DbListener();
+    // 侦听全部数据库事件
+    $eventsManager->attach(
+        "db",
+        $dbListener
+    );
 }

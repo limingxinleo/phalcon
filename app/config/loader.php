@@ -14,6 +14,8 @@ $loader
             'MyApp\Tasks\System' => $config->application->tasksDir . 'system/',
             'MyApp\Traits' => $config->application->traitsDir,
             'MyApp\Traits\System' => $config->application->traitsDir . 'system/',
+            'MyApp\Listeners' => $config->application->listenersDir,
+            'MyApp\Listeners\System' => $config->application->listenersDir . 'system/',
         ]
     )->registerFiles(
         [
