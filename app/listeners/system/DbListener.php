@@ -9,8 +9,10 @@
 // | Date: 2017/2/28 Time: 下午4:02
 // +----------------------------------------------------------------------
 namespace MyApp\Listeners\System;
+
 use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;
+use Phalcon\Logger;
 use Phalcon\Logger\Adapter\File as FileLogger;
 
 class DbListener
