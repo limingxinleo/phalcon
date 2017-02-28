@@ -48,12 +48,15 @@ class DbListener
      */
     public function afterQuery(Event $event, $connection)
     {
-        $this->_logger->log(
-            $connection->getSQLStatement(),
-            Logger::INFO
-        );
-
         $this->_profiler->stopProfile();
+        $profile = $this->getProfiler()->getLastProfile();
+        $str = PHP_EOL;
+        $str .= "SQL语句: " . $profile->getSQLStatement() . PHP_EOL;
+        $str .= "开始时间: " . $profile->getInitialTime() . PHP_EOL;
+        $str .= "结束时间: " . $profile->getFinalTime() . PHP_EOL;
+        $str .= "总共执行的时间: " . $profile->getTotalElapsedSeconds() . PHP_EOL;
+        $this->_logger->log($str, Logger::INFO);
+
     }
 
     public function getProfiler()
