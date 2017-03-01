@@ -37,11 +37,7 @@ $loader->registerDirs(
 
 $loader->register();
 
-$di = new FactoryDefault();
-
-Di::reset();
-
 // Add any needed services to the DI here
-include __DIR__ . '/../app/bootstrap.php';
+$di = require_once __DIR__ . '/../app/bootstrap.php';
 
 Di::setDefault($di);

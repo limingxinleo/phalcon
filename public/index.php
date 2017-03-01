@@ -13,7 +13,7 @@ try {
         include BASE_PATH . "/vendor/autoload.php";
     }
 
-    include APP_PATH . '/bootstrap.php';
+    $di = require_once APP_PATH . '/bootstrap.php';
     /**
      * Handle the request
      */

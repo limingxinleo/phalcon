@@ -26,3 +26,5 @@ include APP_PATH . "/config/loader.php";
 /** Read services */
 include APP_PATH . "/config/services.php";
 include APP_PATH . "/config/web/services.php";
+
+return $di;
