@@ -70,7 +70,7 @@ www  WEB部署目录（或者子目录）
 ├─composer.json         composer定义文件
 ├─README.md             README文件
 ├─LICENSE               授权说明文件
-├─run                   命令行入口文件
+└─run                   命令行入口文件
 ~~~
 ## 定时脚本 ##
 * crontab -e 
