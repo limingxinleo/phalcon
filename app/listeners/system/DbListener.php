@@ -59,13 +59,19 @@ class DbListener
         return $this->_profiler;
     }
 
+    /**
+     * @desc 记录sql执行日志
+     * @author limx
+     */
     public function logSql()
     {
         $profile = $this->getProfiler()->getLastProfile();
+
         $sql = $profile->getSQLStatement();
         $begintime = $profile->getInitialTime();
         $endtime = $profile->getFinalTime();
         $runtime = $profile->getTotalElapsedSeconds();
+
         $str = PHP_EOL;
         $str .= "SQL语句: " . $sql . PHP_EOL;
         $str .= "开始时间: " . $begintime . PHP_EOL;
