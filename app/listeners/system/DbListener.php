@@ -17,6 +17,7 @@ use Phalcon\Logger\Adapter\File as FileLogger;
 
 class DbListener
 {
+    const TIMEOUT = 0.1;
     protected $_profiler;
 
     protected $_logger;
@@ -49,18 +50,32 @@ class DbListener
     public function afterQuery(Event $event, $connection)
     {
         $this->_profiler->stopProfile();
-        $profile = $this->getProfiler()->getLastProfile();
-        $str = PHP_EOL;
-        $str .= "SQL语句: " . $profile->getSQLStatement() . PHP_EOL;
-        $str .= "开始时间: " . $profile->getInitialTime() . PHP_EOL;
-        $str .= "结束时间: " . $profile->getFinalTime() . PHP_EOL;
-        $str .= "总共执行的时间: " . $profile->getTotalElapsedSeconds() . PHP_EOL;
-        $this->_logger->log($str, Logger::INFO);
-
+        // 保存sql语句以及执行时间
+        $this->logSql();
     }
 
     public function getProfiler()
     {
         return $this->_profiler;
     }
+
+    public function logSql()
+    {
+        $profile = $this->getProfiler()->getLastProfile();
+        $sql = $profile->getSQLStatement();
+        $begintime = $profile->getInitialTime();
+        $endtime = $profile->getFinalTime();
+        $runtime = $profile->getTotalElapsedSeconds();
+        $str = PHP_EOL;
+        $str .= "SQL语句: " . $sql . PHP_EOL;
+        $str .= "开始时间: " . $begintime . PHP_EOL;
+        $str .= "结束时间: " . $endtime . PHP_EOL;
+        $str .= "执行时间: " . $runtime . PHP_EOL;
+        if ($runtime > self::TIMEOUT) {
+            $this->_logger->log($str, Logger::WARNING);
+        } else {
+            $this->_logger->log($str, Logger::INFO);
+        }
+    }
+
 }
