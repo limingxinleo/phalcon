@@ -46,6 +46,7 @@ www  WEB部署目录（或者子目录）
 │ ├─config              配置文件
 │ ├─controllers         控制器目录
 │ ├─library             第三方库目录
+│ ├─listeners           监听事件目录
 │ ├─models              模型目录
 │ ├─services            自定义服务目录
 │ ├─tasks               任务目录
