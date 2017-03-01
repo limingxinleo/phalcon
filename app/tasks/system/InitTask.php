@@ -15,6 +15,10 @@ use Phalcon\Cli\Task;
 
 class InitTask extends Task
 {
+    /**
+     * @desc 初始化命名空间
+     * @author limx
+     */
     public function mainAction()
     {
         echo Color::head('命名空间初始化') . PHP_EOL;
@@ -37,6 +41,10 @@ class InitTask extends Task
         echo Color::success("You're now flying with Phalcon.");
     }
 
+    /**
+     * @desc 初始化仓库
+     * @author limx
+     */
     public function storageAction()
     {
         $config = di('config')->application;
@@ -55,6 +63,24 @@ class InitTask extends Task
             }
         }
         echo Color::success("The Storage was successfully created.");
+    }
+
+    /**
+     * @desc 初始化UNIQUE_ID
+     * @author limx
+     */
+    public function uniqidAction()
+    {
+        echo Color::head('UNIQUE_ID初始化') . PHP_EOL;
+        $unique_id = di('config')->unique_id;
+        $escaped = preg_quote('=' . $unique_id, '/');
+        $pattern = "/^UNIQUE_ID{$escaped}/m";
+        file_put_contents(BASE_PATH . '/.env', preg_replace(
+            $pattern,
+            'UNIQUE_ID=' . base64_encode(uniqid()),
+            file_get_contents(BASE_PATH . '/.env')
+        ));
+        echo Color::success("UNIQUE_ID was successfully created.");
     }
 
 }

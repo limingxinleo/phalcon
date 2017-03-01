@@ -15,7 +15,8 @@ use Phalcon\Cli\Task;
 class MainTask extends Task
 {
     public static $tasks = [
-        ['task' => 'System\\Init', 'action' => 'storage', 'params' => []]
+        ['task' => 'System\\Init', 'action' => 'storage', 'params' => []],
+        ['task' => 'System\\Init', 'action' => 'uniqid', 'params' => []]
     ];
 
     public function mainAction()
