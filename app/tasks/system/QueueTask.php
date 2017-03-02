@@ -38,10 +38,10 @@ abstract class QueueTask extends Task
         // install signal handler for dead kids
         pcntl_signal(SIGCHLD, [$this, "signalHandler"]);
         set_time_limit(0);
-
+        // 实例化Redis实例
+        $redis = $this->redisClient();
         while (true) {
             if ($this->process < $this->maxProcesses) {
-                $redis = $this->redisClient();
                 $data = $redis->brpop($this->queueKey, 3);//无任务时,阻塞等待
                 if (!$data) {
                     continue;
