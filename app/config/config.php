@@ -216,7 +216,10 @@ return new Config(
                 'system/crypt.php',
             ],
             'cli' => [
+                'system/cache.php',
                 'system/log.php',
+                'system/error.php',
+                'system/crypt.php',
             ],
         ],
 
