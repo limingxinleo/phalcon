@@ -207,12 +207,17 @@ return new Config(
         |
         */
         'services' => [
-            'system/session.php',
-            'system/cache.php',
-            'system/log.php',
-            'system/error.php',
-            'system/cookies.php',
-            'system/crypt.php',
+            'mvc' => [
+                'system/session.php',
+                'system/cache.php',
+                'system/log.php',
+                'system/error.php',
+                'system/cookies.php',
+                'system/crypt.php',
+            ],
+            'cli' => [
+                'system/log.php',
+            ],
         ],
 
     ]

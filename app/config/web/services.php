@@ -83,7 +83,7 @@ $di->set('dispatcher', function () {
 /**
  * Read other services
  */
-foreach ($config->services as $service) {
+foreach ($config->services->mvc as $service) {
     if (file_exists($config->application->servicesDir . $service)) {
         include $config->application->servicesDir . $service;
     }

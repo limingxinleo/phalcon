@@ -21,3 +21,12 @@ $di->setShared('dispatcher', function () {
 
 $di->setShared("console", $console);
 
+/**
+ * Read other services
+ */
+foreach ($config->services->cli as $service) {
+    if (file_exists($config->application->servicesDir . $service)) {
+        include $config->application->servicesDir . $service;
+    }
+}
+
