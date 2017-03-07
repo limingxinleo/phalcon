@@ -16,7 +16,7 @@ class MainTask extends Task
 {
     public static $tasks = [
         ['task' => 'System\\Init', 'action' => 'storage', 'params' => []],
-        ['task' => 'System\\Init', 'action' => 'uniqid', 'params' => []]
+        ['task' => 'System\\Init', 'action' => 'key', 'params' => ['UNIQUE_ID', '--random']]
     ];
 
     public function mainAction()

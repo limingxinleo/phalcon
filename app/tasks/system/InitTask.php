@@ -29,7 +29,6 @@ class InitTask extends Task
 
         echo Color::head('Actions:') . PHP_EOL;
         echo Color::colorize('  storage                         初始化仓库', Color::FG_GREEN) . PHP_EOL;
-        echo Color::colorize('  uniqid                          初始化UNIQUE_ID', Color::FG_GREEN) . PHP_EOL;
         echo Color::colorize('  namespace                       初始化命名空间', Color::FG_GREEN) . PHP_EOL;
         echo Color::colorize('  key     [key] [--random|val]    初始化配置参数', Color::FG_GREEN) . PHP_EOL;
     }
@@ -56,24 +55,6 @@ class InitTask extends Task
             }
         }
         echo Color::success("The Storage was successfully created.");
-    }
-
-    /**
-     * @desc 初始化UNIQUE_ID
-     * @author limx
-     */
-    public function uniqidAction()
-    {
-        echo Color::head('UNIQUE_ID初始化') . PHP_EOL;
-        $unique_id = di('config')->unique_id;
-        $escaped = preg_quote('=' . $unique_id, '/');
-        $pattern = "/^UNIQUE_ID{$escaped}/m";
-        file_put_contents(BASE_PATH . '/.env', preg_replace(
-            $pattern,
-            'UNIQUE_ID=' . base64_encode(uniqid()),
-            file_get_contents(BASE_PATH . '/.env')
-        ));
-        echo Color::success("UNIQUE_ID was successfully created.");
     }
 
     /**
