@@ -21,7 +21,17 @@ class InitTask extends Task
      */
     public function mainAction()
     {
+        echo Color::head('Help:') . PHP_EOL;
+        echo Color::colorize('  系统初始化脚本') . PHP_EOL . PHP_EOL;
 
+        echo Color::head('Usage:') . PHP_EOL;
+        echo Color::colorize('  php run Test\\\\Init [action]', Color::FG_GREEN) . PHP_EOL . PHP_EOL;
+
+        echo Color::head('Actions:') . PHP_EOL;
+        echo Color::colorize('  storage                         初始化仓库', Color::FG_GREEN) . PHP_EOL;
+        echo Color::colorize('  uniqid                          初始化UNIQUE_ID', Color::FG_GREEN) . PHP_EOL;
+        echo Color::colorize('  namespace                       初始化命名空间', Color::FG_GREEN) . PHP_EOL;
+        echo Color::colorize('  key     [key] [--random|val]    初始化配置参数', Color::FG_GREEN) . PHP_EOL;
     }
 
     /**
@@ -66,6 +76,10 @@ class InitTask extends Task
         echo Color::success("UNIQUE_ID was successfully created.");
     }
 
+    /**
+     * @desc 初始化命名空间
+     * @author limx
+     */
     public function namespaceAction()
     {
         echo Color::head('命名空间初始化') . PHP_EOL;
