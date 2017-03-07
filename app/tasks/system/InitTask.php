@@ -21,24 +21,7 @@ class InitTask extends Task
      */
     public function mainAction()
     {
-        echo Color::head('命名空间初始化') . PHP_EOL;
-        echo Color::colorize('  默认的命名空间是MyApp', Color::BG_GREEN) . PHP_EOL;
-        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_GREEN) . PHP_EOL;
-        $arg = trim(fgets(STDIN));
-        if ($arg == 'yes') {
-            echo Color::colorize('请输入您的命名空间', Color::BG_GREEN) . PHP_EOL;
-            $arg = trim(fgets(STDIN));
-            if (!empty($arg)) {
-                $res = [];
-                traverse(APP_PATH, $res);
-                foreach ($res as $v) {
-                    $file = file_get_contents($v);
-                    $file = str_replace('MyApp', $arg, $file);
-                    file_put_contents($v, $file);
-                }
-            }
-        }
-        echo Color::success("You're now flying with Phalcon.");
+
     }
 
     /**
@@ -81,6 +64,54 @@ class InitTask extends Task
             file_get_contents(BASE_PATH . '/.env')
         ));
         echo Color::success("UNIQUE_ID was successfully created.");
+    }
+
+    public function namespaceAction()
+    {
+        echo Color::head('命名空间初始化') . PHP_EOL;
+        echo Color::colorize('  默认的命名空间是MyApp', Color::BG_GREEN) . PHP_EOL;
+        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_GREEN) . PHP_EOL;
+        $arg = trim(fgets(STDIN));
+        if ($arg == 'yes') {
+            echo Color::colorize('请输入您的命名空间', Color::BG_GREEN) . PHP_EOL;
+            $arg = trim(fgets(STDIN));
+            if (!empty($arg)) {
+                $res = [];
+                traverse(APP_PATH, $res);
+                foreach ($res as $v) {
+                    $file = file_get_contents($v);
+                    $file = str_replace('MyApp', $arg, $file);
+                    file_put_contents($v, $file);
+                }
+            }
+        }
+        echo Color::success("You're now flying with Phalcon.");
+    }
+
+    /**
+     * @desc 初始化配置KEY
+     * @author limx
+     */
+    public function keyAction($params = [])
+    {
+        if (count($params) < 2) {
+            echo Color::error("请输入要初始化的KEY与VAL");
+            return false;
+        }
+        $key = strtoupper($params[0]);
+        $val = $params[1];
+        if ($val == '--random') {
+            $val = base64_encode(uniqid());
+        }
+        echo Color::head($key . '初始化') . PHP_EOL;
+        $pattern = "/^{$key}=.*/m";
+        file_put_contents(BASE_PATH . '/.env', preg_replace(
+            $pattern,
+            $key . '=' . $val,
+            file_get_contents(BASE_PATH . '/.env')
+        ));
+        echo Color::success($key . " was successfully changed.");
+
     }
 
 }
