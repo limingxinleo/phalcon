@@ -3,6 +3,8 @@
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\Model\Metadata\Files as MetadataFiles;
+use Phalcon\Events\Manager as EventsManager;
+use MyApp\Listeners\System\DbListener;
 
 /**
  * Shared configuration service
@@ -15,7 +17,7 @@ $di->setShared('config', function () use ($config) {
  * Database connection is created based in the parameters defined in the configuration file
  */
 $di->set('db', function () use ($config) {
-    return new DbAdapter(
+    $db = new DbAdapter(
         [
             'host' => $config->database->host,
             'username' => $config->database->username,
@@ -31,6 +33,18 @@ $di->set('db', function () use ($config) {
             ],
         ]
     );
+    if ($config->log->db) {
+        $eventsManager = new EventsManager();
+        // 创建一个数据库侦听
+        $dbListener = new DbListener();
+        // 侦听全部数据库事件
+        $eventsManager->attach(
+            "db",
+            $dbListener
+        );
+        $db->setEventsManager($eventsManager);
+    }
+    return $db;
 });
 
 /**

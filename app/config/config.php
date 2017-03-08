@@ -210,14 +210,12 @@ return new Config(
             'mvc' => [
                 'system/session.php',
                 'system/cache.php',
-                'system/log.php',
                 'system/error.php',
                 'system/cookies.php',
                 'system/crypt.php',
             ],
             'cli' => [
                 'system/cache.php',
-                'system/log.php',
                 'system/error.php',
                 'system/crypt.php',
             ],
