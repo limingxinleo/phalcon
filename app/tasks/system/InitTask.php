@@ -16,7 +16,7 @@ use Phalcon\Cli\Task;
 class InitTask extends Task
 {
     /**
-     * @desc 初始化命名空间
+     * @desc   初始化命名空间
      * @author limx
      */
     public function mainAction()
@@ -34,7 +34,7 @@ class InitTask extends Task
     }
 
     /**
-     * @desc 初始化仓库
+     * @desc   初始化仓库
      * @author limx
      */
     public function storageAction()
@@ -58,7 +58,7 @@ class InitTask extends Task
     }
 
     /**
-     * @desc 初始化命名空间
+     * @desc   初始化命名空间
      * @author limx
      */
     public function namespaceAction()
@@ -84,7 +84,7 @@ class InitTask extends Task
     }
 
     /**
-     * @desc 初始化配置KEY
+     * @desc   初始化配置KEY
      * @author limx
      */
     public function keyAction($params = [])

@@ -69,7 +69,7 @@ abstract class QueueTask extends Task
     }
 
     /**
-     * @desc 子进程
+     * @desc   子进程
      * @author limx
      * @param \swoole_process $worker
      */
@@ -84,21 +84,21 @@ abstract class QueueTask extends Task
     }
 
     /**
-     * @desc 返回redis实例
+     * @desc   返回redis实例
      * @author limx
      * @return mixed
      */
     abstract protected function redisClient();
 
     /**
-     * @desc 消息队列执行的业务代码
+     * @desc   消息队列执行的业务代码
      * @author limx
      * @return mixed
      */
     abstract protected function run($recv);
 
     /**
-     * @desc 信号处理方法 回收已经dead的子进程
+     * @desc   信号处理方法 回收已经dead的子进程
      * @author limx
      * @param $signo
      */
