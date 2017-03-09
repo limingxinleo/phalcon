@@ -52,7 +52,7 @@ abstract class QueueTask extends Task
                 }
                 if (isset($data[1])) {
                     $process = new \swoole_process([$this, 'task']);
-                    $process->write($this->rewrite($data[1]));
+                    $process->write($data[1]);
                     $pid = $process->start();
                     if ($pid === false) {
                         $redis->lpush($this->queueKey, $data[1]);
@@ -81,17 +81,6 @@ abstract class QueueTask extends Task
             $worker->exit(0);
             swoole_event_del($pipe);
         });
-    }
-
-    /**
-     * @desc   主线程里操作消息队列中的数据
-     * @author limx
-     * @param $data 传入的数据
-     * @return mixed 输出的数据
-     */
-    protected function rewrite($data)
-    {
-        return $data;
     }
 
     /**
