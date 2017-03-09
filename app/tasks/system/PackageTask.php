@@ -15,16 +15,25 @@ use limx\tools\Package as Pack;
 
 class PackageTask extends Task
 {
+    private $config = [
+        'root' => BASE_PATH, // 项目根目录
+        // 需要打包的相对文件夹
+        'files' => [
+            'app',
+            'public',
+            'composer.json',
+        ],
+        // 复制后的文件地址
+        // 样例地址 /Users/limx/Applications/zips/phalcon
+        // 压缩地址为 /Users/limx/Applications/zips/phalcon.zip
+        'dst' => '/Users/limx/Applications/zips/phalcon',
+        // 版本号
+        'vi' => '0.1',
+    ];
+
     public function mainAction()
     {
-        $app = di('app');
-        if (empty($app['package-config'])) {
-            echo 'please rewrite your config';
-            return;
-        }
-        $config = $app['package-config'];
-        $config['vi'] = di('config')->version;
-        $pack = new Pack($config);
+        $pack = new Pack($this->config);
         $pack->run();
     }
 
