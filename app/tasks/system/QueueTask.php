@@ -85,7 +85,8 @@ abstract class QueueTask extends Task
 
     /**
      * @desc   主线程中操作数据
-     * @tip    主线程中不能实例化内置的DB类，因为会被子线程释放掉
+     * @tip    主线程中不能实例化DB类，因为Mysql连接会中断
+     *         暂时原因不明，可能是会被子线程释放掉
      * @author limx
      * @param $data 消息队列中的数据
      * @return mixed 返回给子线程的数据
