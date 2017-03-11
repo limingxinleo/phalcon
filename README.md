@@ -72,6 +72,45 @@ www  WEB部署目录（或者子目录）
 ├─LICENSE               授权说明文件
 └─run                   命令行入口文件
 ~~~
+
+## 消息队列 ##
+编辑app/tasks/TestTask.php
+~~~
+namespace MyApp\Tasks\Swoole;
+
+use MyApp\Tasks\System\QueueTask;
+use limx\tools\LRedis;
+use limx\phalcon\Cli\Color;
+
+class TestTask extends QueueTask
+{
+    // 最大进程数
+    protected $maxProcesses = 10;
+    // 当前进程数
+    protected $process = 0;
+    // 消息队列Redis键值
+    protected $queueKey = 'phalcon:test:queue';
+    // 等待时间
+    protected $waittime = 1;
+
+    protected function redisClient()
+    {
+        $config = [
+            'host' => '127.0.0.1',
+            'auth' => '',
+            'port' => '6379',
+        ];
+        return LRedis::getInstance($config);
+    }
+
+    protected function run($data)
+    {
+        echo Color::success($data);
+    }
+}
+~~~
+运行php run test即可启动消息队列
+
 ## 定时脚本 ##
 * crontab -e 
 * 编辑增加 * * * * * /path/to/php /path/to/run System\\\\Cron >> /dev/null 2>&1
