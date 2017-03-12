@@ -13,6 +13,7 @@ namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
 use limx\phalcon\Cli\Color;
+use swoole_process;
 
 abstract class QueueTask extends Task
 {
@@ -51,7 +52,7 @@ abstract class QueueTask extends Task
                     continue;
                 }
                 if (isset($data[1])) {
-                    $process = new \swoole_process([$this, 'task']);
+                    $process = new swoole_process([$this, 'task']);
                     $process->write($this->rewrite($data[1]));
                     $pid = $process->start();
                     if ($pid === false) {
@@ -71,9 +72,9 @@ abstract class QueueTask extends Task
     /**
      * @desc   子进程
      * @author limx
-     * @param \swoole_process $worker
+     * @param swoole_process $worker
      */
-    public function task(\swoole_process $worker)
+    public function task(swoole_process $worker)
     {
         swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
             $recv = $worker->read();            //send data to master
@@ -119,7 +120,7 @@ abstract class QueueTask extends Task
     {
         switch ($signo) {
             case SIGCHLD:
-                while ($ret = \swoole_process::wait(false)) {
+                while ($ret = swoole_process::wait(false)) {
                     $this->process--;
                 }
         }
