@@ -13,7 +13,6 @@ use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Events\Manager as EventsManager;
-use Phalcon\Events\Event;
 
 use MyApp\Listeners\System\DispatchListener;
 

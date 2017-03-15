@@ -94,10 +94,7 @@ class InitTask extends Task
             return false;
         }
         $key = strtoupper($params[0]);
-        $val = $params[1];
-        if ($val == '--random') {
-            $val = base64_encode(uniqid());
-        }
+        $val = self::random($params[1]);
         echo Color::head($key . '初始化') . PHP_EOL;
         $pattern = "/^{$key}=.*/m";
         file_put_contents(BASE_PATH . '/.env', preg_replace(
@@ -107,6 +104,21 @@ class InitTask extends Task
         ));
         echo Color::success($key . " was successfully changed.");
 
+    }
+
+    private static function random($val)
+    {
+        $prefix = "phalcon:";
+        switch ($val) {
+            case "--random-base64":
+                return base64_encode(uniqid($prefix));
+            case "--random-md5":
+                return md5(uniqid($prefix));
+            case "--random":
+                return uniqid($prefix);
+            default :
+                return $val;
+        }
     }
 
 }

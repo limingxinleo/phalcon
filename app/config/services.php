@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\Model\Metadata\Files as MetadataFiles;
 use Phalcon\Events\Manager as EventsManager;
 use MyApp\Listeners\System\DbListener;

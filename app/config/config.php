@@ -8,7 +8,6 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 use Phalcon\Config;
 use Dotenv\Dotenv;
-use Dotenv\Exception\InvalidPathException;
 
 if (file_exists(BASE_PATH . '/.env')) {
     (new Dotenv(BASE_PATH))->load();
@@ -27,7 +26,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '1.6.2',
+        'version' => '1.6.5',
 
         /*
         |--------------------------------------------------------------------------
