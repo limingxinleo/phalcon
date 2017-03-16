@@ -8,15 +8,15 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/11/9 Time: 9:55
 // +----------------------------------------------------------------------
-use limx\func\Debug;
+use limx\phalcon\Utils\Debug;
 use limx\phalcon\Http\Response;
-use limx\func\Arr;
+use limx\phalcon\Utils\Arr;
 
 
 if (!function_exists('dump')) {
     /**
      * [dump desc]
-     * @desc 标准化的数组输出格式
+     * @desc   标准化的数组输出格式
      * @author limx
      * @param $data
      */
@@ -48,7 +48,7 @@ if (!function_exists('error')) {
      * @desc
      * @author limx
      * @param string $msg
-     * @param array $data
+     * @param array  $data
      * @return mixed
      */
     function error($msg = '', $data = [])
@@ -61,7 +61,7 @@ if (!function_exists('error')) {
 if (!function_exists('app')) {
     /**
      * [app desc]
-     * @desc 获取app配置文件的值
+     * @desc   获取app配置文件的值
      * @author limx
      * @param $id
      * @return null
@@ -76,9 +76,9 @@ if (!function_exists('app')) {
 if (!function_exists('dispatch_error')) {
     /**
      * [dispatch_error]
-     * @desc 内部跳转错误页面
+     * @desc   内部跳转错误页面
      * @author limx
-     * @param int $code
+     * @param int    $code
      * @param string $msg
      */
     function dispatch_error($code = 500, $msg = '')
@@ -99,7 +99,7 @@ if (!function_exists('dispatch_error')) {
 if (!function_exists('library')) {
     /**
      * [library desc]
-     * @desc 载入library内的第三方包
+     * @desc   载入library内的第三方包
      * @author limx
      * @param string $file
      */
