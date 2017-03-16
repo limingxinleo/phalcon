@@ -11,7 +11,7 @@
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
-use limx\func\File;
+// use limx\func\File;
 use limx\phalcon\Cli\Color;
 
 class ClearTask extends Task
@@ -47,13 +47,14 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        File::rm($dir, false);
+        // File::rm($dir, false);
+        $this->rm($dir, false);
         echo Color::success("The Cache was successfully deleted.");
     }
 
     /**
      * [viewAction desc]
-     * @desc 清理视图缓存
+     * @desc   清理视图缓存
      * @author limx
      * @param array $params
      */
@@ -69,13 +70,14 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        File::rm($dir, false);
+        // File::rm($dir, false);
+        $this->rm($dir);
         echo Color::success("The Cache was successfully deleted.");
     }
 
     /**
      * [metaAction desc]
-     * @desc 清理元数据缓存
+     * @desc   清理元数据缓存
      * @author limx
      * @param array $params
      */
@@ -91,8 +93,19 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        File::rm($dir, false);
+        // File::rm($dir, false);
+        $this->rm($dir);
         echo Color::success("The Cache was successfully deleted.");
+    }
+
+    private function rm($dir)
+    {
+        $str = "rm -rf " . $dir;
+        if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+            $str = "rmdir /s/q " . $dir;
+        }
+
+        system($str);
     }
 
 }
