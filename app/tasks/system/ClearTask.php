@@ -100,9 +100,9 @@ class ClearTask extends Task
 
     private function rm($dir)
     {
-        $str = "rm -rf " . $dir;
+        $str = "rm -rf " . $dir . "/*";
         if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-            $str = "rmdir /s/q " . $dir;
+            $str = "rmdir /s/q " . $dir . "/*";
         }
 
         system($str);
