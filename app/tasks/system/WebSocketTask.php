@@ -18,7 +18,7 @@ use swoole_websocket_frame;
 abstract class WebSocketTask extends Task
 {
     // 端口号
-    protected $port = 9501;
+    protected $port = 11521;
 
     public function mainAction()
     {
@@ -27,7 +27,7 @@ abstract class WebSocketTask extends Task
             return;
         }
         set_time_limit(0);
-        $server = new swoole_websocket_server("0.0.0.0", 9501);
+        $server = new swoole_websocket_server("0.0.0.0", $this->port);
 
         $server->on('open', function (swoole_websocket_server $server, $request) {
             /**
