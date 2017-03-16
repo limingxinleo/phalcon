@@ -37,7 +37,7 @@ class ClearTask extends Task
 
     public function dataAction($params = [])
     {
-        $dir = di('config')->application->cacheDir . 'data/';
+        $dir = di('config')->application->cacheDir . 'data/*';
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚数据缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -60,7 +60,7 @@ class ClearTask extends Task
      */
     public function viewAction($params = [])
     {
-        $dir = di('config')->application->cacheDir . 'view/';
+        $dir = di('config')->application->cacheDir . 'view/*';
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚视图缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -83,7 +83,7 @@ class ClearTask extends Task
      */
     public function metaAction($params = [])
     {
-        $dir = di('config')->application->metaDataDir;
+        $dir = di('config')->application->metaDataDir . "*";
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -100,9 +100,9 @@ class ClearTask extends Task
 
     private function rm($dir)
     {
-        $str = "rm -rf " . $dir . "/*";
+        $str = "rm -rf " . $dir;
         if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-            $str = "rmdir /s/q " . $dir . "/*";
+            $str = "rmdir /s/q " . $dir;
         }
 
         system($str);
