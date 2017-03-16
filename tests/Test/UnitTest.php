@@ -11,8 +11,6 @@
 namespace Test;
 
 use \UnitTestCase;
-use limx\tools\LRedis;
-use limx\func\Random;
 
 /**
  * Class UnitTest
@@ -21,7 +19,7 @@ class UnitTest extends UnitTestCase
 {
     public function testSessionCase()
     {
-        $time = Random::str(12);
+        $time = uniqid();
         session('test:case:session', $time);
         $this->assertEquals(
             $time,
@@ -33,7 +31,7 @@ class UnitTest extends UnitTestCase
     {
         $data = [
             'time' => time(),
-            'str' => Random::str(12)
+            'str' => uniqid()
         ];
         cache('test-case-cache', $data);
         $this->assertEquals(

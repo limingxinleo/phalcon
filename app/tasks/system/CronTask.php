@@ -11,7 +11,7 @@
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
-use limx\func\Str;
+use limx\phalcon\Utils\Str;
 use limx\phalcon\Cli\Color;
 use limx\phalcon\Logger;
 
