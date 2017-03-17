@@ -11,7 +11,6 @@
 namespace MyApp\Tasks\System;
 
 use Phalcon\Cli\Task;
-// use limx\func\File;
 use limx\phalcon\Cli\Color;
 
 class ClearTask extends Task
@@ -37,7 +36,7 @@ class ClearTask extends Task
 
     public function dataAction($params = [])
     {
-        $dir = di('config')->application->cacheDir . 'data/*';
+        $dir = di('config')->application->cacheDir . 'data/';
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚数据缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -47,8 +46,7 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        // File::rm($dir, false);
-        $this->rm($dir, false);
+        $this->delete($dir, false);
         echo Color::success("The Cache was successfully deleted.");
     }
 
@@ -60,7 +58,7 @@ class ClearTask extends Task
      */
     public function viewAction($params = [])
     {
-        $dir = di('config')->application->cacheDir . 'view/*';
+        $dir = di('config')->application->cacheDir . 'view/';
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚视图缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -70,8 +68,7 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        // File::rm($dir, false);
-        $this->rm($dir);
+        $this->delete($dir);
         echo Color::success("The Cache was successfully deleted.");
     }
 
@@ -83,7 +80,7 @@ class ClearTask extends Task
      */
     public function metaAction($params = [])
     {
-        $dir = di('config')->application->metaDataDir . "*";
+        $dir = di('config')->application->metaDataDir;
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
             echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_GREEN) . PHP_EOL;
             echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
@@ -93,19 +90,44 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        // File::rm($dir, false);
-        $this->rm($dir);
+        $this->delete($dir);
         echo Color::success("The Cache was successfully deleted.");
     }
 
-    private function rm($dir)
+    private function delete($dir)
     {
-        $str = "rm -rf " . $dir;
         if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-            $str = "rmdir /s/q " . $dir;
+            self::rm($dir, false);
+            return;
         }
-
+        $str = "rm -rf " . $dir . "*";
         system($str);
+    }
+
+    /**
+     * @desc   递归删除某个文件夹下的文件
+     * @author limx
+     * @param $src      目录地址
+     * @param $isDelDir 是否删除当前文件夹
+     * @return bool
+     */
+    private static function rm($src, $isDelDir = true)
+    {
+        if (empty($src)) return false;
+        $ls = scandir($src);
+        for ($i = 0; $i < count($ls); $i++) {
+            if ($ls[$i] == '.' or $ls[$i] == '..') continue;
+            $_dst = $src . $ls[$i];
+            if (!is_dir($_dst)) {
+                unlink($_dst);
+            } else {
+                self::rm($_dst);
+            }
+        }
+        //删除当前文件夹：
+        if ($isDelDir) {
+            rmdir($src);
+        }
     }
 
 }
