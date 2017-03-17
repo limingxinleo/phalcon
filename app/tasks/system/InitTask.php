@@ -12,6 +12,7 @@ namespace MyApp\Tasks\System;
 
 use limx\phalcon\Cli\Color;
 use Phalcon\Cli\Task;
+use limx\phalcon\Utils\Str;
 
 class InitTask extends Task
 {
@@ -108,14 +109,14 @@ class InitTask extends Task
 
     private static function random($val)
     {
-        $prefix = "phalcon:";
+        $len = rand(12, 50);
         switch ($val) {
             case "--random-base64":
-                return base64_encode(uniqid($prefix));
+                return base64_encode(Str::random($len));
             case "--random-md5":
-                return md5(uniqid($prefix));
+                return md5(Str::random($len));
             case "--random":
-                return uniqid($prefix);
+                return Str::random($len);
             default :
                 return $val;
         }

@@ -11,6 +11,7 @@
 namespace Test;
 
 use \UnitTestCase;
+use limx\phalcon\Utils\Str;
 
 /**
  * Class UnitTest
@@ -31,7 +32,7 @@ class UnitTest extends UnitTestCase
     {
         $data = [
             'time' => time(),
-            'str' => uniqid()
+            'str' => Str::random(12),
         ];
         cache('test-case-cache', $data);
         $this->assertEquals(
