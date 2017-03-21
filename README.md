@@ -7,8 +7,9 @@
 
 [Phalcon 官网](https://docs.phalconphp.com/zh/latest/index.html)
 
-## 安装方法 ##
-* 编译phalcon扩展
+## 安装方法
+### 编译phalcon扩展
+
 ~~~
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
@@ -17,16 +18,14 @@ sudo ./install
 vim etc/php.ini 
 extension=phalcon.so
 ~~~
-* 安装项目
 
-> 利用composer安装
-
+### 安装项目
+* 利用composer安装
 ~~~
 composer create-project limingxinleo/phalcon-project demo
 ~~~
 
-> git clone 安装
-
+* git clone 安装
 ~~~
 git clone https://github.com/limingxinleo/simple-subcontrollers.phalcon.git
 cd simple-subcontrollers.phalcon
@@ -73,7 +72,7 @@ www  WEB部署目录（或者子目录）
 └─run                   命令行入口文件
 ~~~
 
-## 消息队列 ##
+## 消息队列
 编辑app/tasks/TestTask.php
 ~~~
 namespace MyApp\Tasks\Swoole;
@@ -109,13 +108,19 @@ class TestTask extends QueueTask
     }
 }
 ~~~
+
 运行php run test即可启动消息队列
+~~~
+php run test
+~~~
 
 ## 定时脚本 ##
-* crontab -e 
-* 编辑增加 * * * * * /path/to/php /path/to/run System\\\\Cron >> /dev/null 2>&1
-* 启动crond 服务
-* 在config/app.php 中维护cron-tasks数组
+~~~
+crontab -e 
+编辑增加 * * * * * /path/to/php /path/to/run System\\\\Cron >> /dev/null 2>&1
+启动crond 服务
+在config/app.php 中维护cron-tasks数组
+~~~
 
 ## 注意事项 ##
 * 利用phalcon脚本新建model时，使用phalcon model name --namespace=MyApp\Models
@@ -131,3 +136,4 @@ class TestTask extends QueueTask
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
 * 使用dispatch forward调度的时候，必须使用return截断控制器。要不然他会走后面的dispatch forward调度。如果使用exit截断，调度则不会执行。
 * 使用任务php run test_test 会转化为 TestTestTask 但是使用php run Test\\test_test 会转化为Test\test_testTask
+
