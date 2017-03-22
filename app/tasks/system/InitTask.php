@@ -11,8 +11,8 @@
 namespace MyApp\Tasks\System;
 
 use limx\phalcon\Cli\Color;
-use Phalcon\Cli\Task;
 use limx\phalcon\Utils\Str;
+use Phalcon\Cli\Task;
 
 class InitTask extends Task
 {
@@ -98,10 +98,10 @@ class InitTask extends Task
         $val = static::random($params[1]);
         echo Color::head($key . '初始化') . PHP_EOL;
         $pattern = "/^{$key}=.*/m";
-        file_put_contents(BASE_PATH . '/.env', preg_replace(
+        file_put_contents(ROOT_PATH . '/.env', preg_replace(
             $pattern,
             $key . '=' . $val,
-            file_get_contents(BASE_PATH . '/.env')
+            file_get_contents(ROOT_PATH . '/.env')
         ));
         echo Color::success($key . " was successfully changed.");
 
@@ -124,7 +124,7 @@ class InitTask extends Task
                 $res = Str::random($len);
                 break;
 
-            default :
+            default:
                 break;
         }
         return $res;

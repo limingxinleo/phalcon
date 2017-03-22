@@ -1,11 +1,11 @@
 #!/usr/bin/env php
 <?php
 
-use Phalcon\Di\FactoryDefault\Cli as CliDi;
 use Phalcon\Cli\Console as ConsoleApp;
+use Phalcon\Di\FactoryDefault\Cli as CliDi;
 
-define('BASE_PATH', __DIR__);
-define('APP_PATH', BASE_PATH . '/app');
+define('ROOT_PATH', __DIR__);
+define('APP_PATH', ROOT_PATH . '/app');
 define('IS_CLI', true);
 
 /**
@@ -17,8 +17,8 @@ $di = new CliDi();
 /**
  * Read vendor autoload
  */
-if (file_exists(BASE_PATH . "/vendor/autoload.php")) {
-    include BASE_PATH . "/vendor/autoload.php";
+if (file_exists(ROOT_PATH . "/vendor/autoload.php")) {
+    include ROOT_PATH . "/vendor/autoload.php";
 }
 
 /**

@@ -10,13 +10,13 @@
 // +----------------------------------------------------------------------
 namespace MyApp\Tasks\System;
 
-use Phalcon\Cli\Task;
 use limx\tools\Package as Pack;
+use Phalcon\Cli\Task;
 
 class PackageTask extends Task
 {
     private $config = [
-        'root' => BASE_PATH, // 项目根目录
+        'root' => ROOT_PATH, // 项目根目录
         // 需要打包的相对文件夹
         'files' => [
             'app',

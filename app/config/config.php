@@ -3,14 +3,14 @@
  * Modified: preppend directory path of current file, because of this file own different ENV under between Apache and command line.
  * NOTE: please remove this comment.
  */
-defined('BASE_PATH') || define('BASE_PATH', realpath(__DIR__ . '/../..'));
-defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
+defined('ROOT_PATH') || define('ROOT_PATH', realpath(__DIR__ . '/../..'));
+defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/app');
 
-use Phalcon\Config;
 use Dotenv\Dotenv;
+use Phalcon\Config;
 
-if (file_exists(BASE_PATH . '/.env')) {
-    (new Dotenv(BASE_PATH))->load();
+if (file_exists(ROOT_PATH . '/.env')) {
+    (new Dotenv(ROOT_PATH))->load();
 }
 
 /**
@@ -26,7 +26,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '1.6.10',
+        'version' => '1.6.12',
 
         /*
         |--------------------------------------------------------------------------
@@ -115,10 +115,10 @@ return new Config(
             'listenersDir' => APP_PATH . '/listeners/',
             'traitsDir' => APP_PATH . '/traits/',
             'servicesDir' => APP_PATH . '/services/',
-            'cacheDir' => BASE_PATH . '/storage/cache/',
-            'migrationsDir' => BASE_PATH . '/storage/migrations/',
-            'logDir' => BASE_PATH . '/storage/log/',
-            'metaDataDir' => BASE_PATH . '/storage/meta/',
+            'cacheDir' => ROOT_PATH . '/storage/cache/',
+            'migrationsDir' => ROOT_PATH . '/storage/migrations/',
+            'logDir' => ROOT_PATH . '/storage/log/',
+            'metaDataDir' => ROOT_PATH . '/storage/meta/',
             'baseUri' => '/',
         ],
 
@@ -129,7 +129,7 @@ return new Config(
         |
         | If configs is set to true, then we print a new line at the end of each execution
         |
-        */
+         */
         'printNewLine' => true,
 
         /*
@@ -153,7 +153,7 @@ return new Config(
         | The default setting is file.
         | If you want to use redis ,you must set type=redis,
         |
-        */
+         */
         'cache' => [
             'type' => env('CACHE_DRIVER', 'file'),
             'lifetime' => 172800,
@@ -169,7 +169,7 @@ return new Config(
         |
         */
         'session' => [
-            'type' => env('SESSION_DRIVER', 'file')
+            'type' => env('SESSION_DRIVER', 'file'),
         ],
 
         /*
@@ -181,7 +181,7 @@ return new Config(
         |
         */
         'cookies' => [
-            'isCrypt' => env('COOKIE_ISCRYPT', false)
+            'isCrypt' => env('COOKIE_ISCRYPT', false),
         ],
 
         /*
@@ -193,7 +193,7 @@ return new Config(
         |
         */
         'crypt' => [
-            'key' => env('CRYPT_KEY', 'phalcon-project-cookie->key')
+            'key' => env('CRYPT_KEY', 'phalcon-project-cookie->key'),
         ],
 
         /*

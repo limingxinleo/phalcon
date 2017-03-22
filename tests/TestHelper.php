@@ -14,9 +14,9 @@ use Phalcon\Loader;
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-define('BASE_PATH', realpath(__DIR__ . '/..'));
-define('TESTS_PATH', BASE_PATH . '/tests');
-defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
+define('ROOT_PATH', realpath(__DIR__ . '/..'));
+define('TESTS_PATH', ROOT_PATH . '/tests');
+defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/app');
 
 set_include_path(
     TESTS_PATH . PATH_SEPARATOR . get_include_path()
