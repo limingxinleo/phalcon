@@ -116,7 +116,7 @@ class ClearTask extends Task
         if (empty($src)) return false;
         $ls = scandir($src);
         for ($i = 0; $i < count($ls); $i++) {
-            if ($ls[$i] == '.' or $ls[$i] == '..') continue;
+            if ($ls[$i] == '.' || $ls[$i] == '..') continue;
             $_dst = $src . $ls[$i];
             if (!is_dir($_dst)) {
                 unlink($_dst);

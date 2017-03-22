@@ -95,7 +95,7 @@ class InitTask extends Task
             return false;
         }
         $key = strtoupper($params[0]);
-        $val = self::random($params[1]);
+        $val = static::random($params[1]);
         echo Color::head($key . '初始化') . PHP_EOL;
         $pattern = "/^{$key}=.*/m";
         file_put_contents(BASE_PATH . '/.env', preg_replace(
