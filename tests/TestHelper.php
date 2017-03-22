@@ -9,21 +9,21 @@
 // | Date: 2016/11/26 Time: 16:42
 // +----------------------------------------------------------------------
 use Phalcon\Di;
-use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 
-ini_set("display_errors", 1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-define("ROOT_PATH", __DIR__);
-defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/../app');
+define('BASE_PATH', realpath(__DIR__ . '/..'));
+define('TESTS_PATH', BASE_PATH . '/tests');
+defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 set_include_path(
-    ROOT_PATH . PATH_SEPARATOR . get_include_path()
+    TESTS_PATH . PATH_SEPARATOR . get_include_path()
 );
 
 // Required for phalcon/incubator
-include __DIR__ . "/../vendor/autoload.php";
+include __DIR__ . '/../vendor/autoload.php';
 
 // Use the application autoloader to autoload the classes
 // Autoload the dependencies found in composer
@@ -31,7 +31,7 @@ $loader = new Loader();
 
 $loader->registerDirs(
     [
-        ROOT_PATH,
+        TESTS_PATH,
     ]
 );
 
