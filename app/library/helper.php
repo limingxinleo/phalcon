@@ -84,7 +84,9 @@ if (!function_exists('dispatch_error')) {
     function dispatch_error($code = 500, $msg = '')
     {
         $error_msg = app(sprintf("error-code.%d", $code));
-        if (empty($msg) && !empty($error_msg)) $msg = $error_msg;
+        if (empty($msg) && !empty($error_msg)) {
+            $msg = $error_msg;
+        }
 
         $dispatcher = di('dispatcher');
         $dispatcher->forward([

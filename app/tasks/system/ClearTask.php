@@ -113,10 +113,14 @@ class ClearTask extends Task
      */
     private static function rm($src, $isDelDir = true)
     {
-        if (empty($src)) return false;
+        if (empty($src)) {
+            return false;
+        }
         $ls = scandir($src);
         for ($i = 0; $i < count($ls); $i++) {
-            if ($ls[$i] == '.' || $ls[$i] == '..') continue;
+            if ($ls[$i] == '.' || $ls[$i] == '..') {
+                continue;
+            }
             $_dst = $src . $ls[$i];
             if (!is_dir($_dst)) {
                 unlink($_dst);

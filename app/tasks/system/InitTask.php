@@ -110,16 +110,24 @@ class InitTask extends Task
     private static function random($val)
     {
         $len = rand(12, 50);
+        $res = $val;
         switch ($val) {
             case "--random-base64":
-                return base64_encode(Str::random($len));
+                $res = base64_encode(Str::random($len));
+                break;
+
             case "--random-md5":
-                return md5(Str::random($len));
+                $res = md5(Str::random($len));
+                break;
+
             case "--random":
-                return Str::random($len);
+                $res = Str::random($len);
+                break;
+
             default :
-                return $val;
+                break;
         }
+        return $res;
     }
 
 }

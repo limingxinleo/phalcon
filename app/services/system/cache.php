@@ -22,14 +22,6 @@ if ($config->cache->type !== false) {
     );
     $cache = null;
     switch (strtolower($config->cache->type)) {
-        case 'file':
-            $cache = new BackFile(
-                $frontCache,
-                [
-                    "cacheDir" => $config->application->cacheDir . 'data/',
-                ]
-            );
-            break;
         case 'memcached':
             $cache = new BackMemCached(
                 $frontCache,
@@ -55,8 +47,14 @@ if ($config->cache->type !== false) {
                 ]
             );
             break;
+        case 'file':
         default:
-            exit('Sorry! The cache engine is not support!');
+            $cache = new BackFile(
+                $frontCache,
+                [
+                    "cacheDir" => $config->application->cacheDir . 'data/',
+                ]
+            );
             break;
     }
     if ($cache !== null) {

@@ -29,7 +29,9 @@ class DbListener
     {
         $config = di('config');
         $dir = $config->application->logDir . date('Ymd');
-        if (!is_dir($dir)) mkdir($dir, 0777, true);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
         $this->_profiler = new Profiler();
         $this->_logger = new FileLogger($dir . "/db.log");
     }
@@ -60,7 +62,7 @@ class DbListener
     }
 
     /**
-     * @desc 记录sql执行日志
+     * @desc   记录sql执行日志
      * @author limx
      */
     public function logSql()

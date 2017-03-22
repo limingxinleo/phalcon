@@ -17,10 +17,6 @@ use Phalcon\Session\Adapter\Redis as SessionRedis;
 if ($config->session->type !== false) {
     $session = null;
     switch ($config->session->type) {
-        case 'file':
-            $session = new SessionAdapter();
-            $session->start();
-            break;
         case 'redis':
             $redis = $config->redis;
             $session = new SessionRedis([
@@ -35,6 +31,12 @@ if ($config->session->type !== false) {
             ]);
             $session->start();
             break;
+        case 'file':
+        default:
+            $session = new SessionAdapter();
+            $session->start();
+            break;
+
     }
     if ($session !== null) {
         $di->set('session', function () use ($session) {
