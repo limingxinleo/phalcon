@@ -18,27 +18,25 @@ if ($config->session->type !== false) {
     $session = null;
     switch ($config->session->type) {
         case 'redis':
-            $redis = $config->redis;
             $session = new SessionRedis([
                 'uniqueId' => $config->unique_id,
-                'host' => $redis->host,
-                'port' => $redis->port,
-                'auth' => $redis->auth,
-                'persistent' => $redis->persistent,
+                'host' => $config->redis->host,
+                'port' => $config->redis->port,
+                'auth' => $config->redis->auth,
+                'persistent' => $config->redis->persistent,
                 'lifetime' => 3600,
                 'prefix' => ':session:',
-                'index' => $redis->index,
+                'index' => $config->redis->index,
             ]);
-            $session->start();
             break;
         case 'file':
         default:
             $session = new SessionAdapter();
-            $session->start();
             break;
 
     }
     if ($session !== null) {
+        $session->start();
         $di->set('session', function () use ($session) {
             return $session;
         });
