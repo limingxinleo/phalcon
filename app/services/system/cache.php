@@ -43,7 +43,7 @@ if ($config->cache->type !== false) {
                     'auth' => $config->redis->auth,
                     'persistent' => $config->redis->persistent,
                     'index' => $config->redis->index,
-                    'prefix' => ':cache:',
+                    'prefix' => 'cache:',
                     'statsKey' => '_PHCM',
                 ]
             );
