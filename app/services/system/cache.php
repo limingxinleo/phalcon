@@ -38,11 +38,11 @@ if ($config->cache->type !== false) {
             $cache = new BackRedis(
                 $frontCache,
                 [
-                    'host' => $redis->host,
-                    'port' => $redis->port,
-                    'auth' => $redis->auth,
-                    'persistent' => $redis->persistent,
-                    'index' => $redis->index,
+                    'host' => $config->redis->host,
+                    'port' => $config->redis->port,
+                    'auth' => $config->redis->auth,
+                    'persistent' => $config->redis->persistent,
+                    'index' => $config->redis->index,
                     'prefix' => ':cache:',
                     'statsKey' => '_PHCM',
                 ]

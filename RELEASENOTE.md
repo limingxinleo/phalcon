@@ -8,6 +8,7 @@
 * 修改项目根目录BASE_PATH为ROOT_PATH
 * 修改单元测试目录为TESTS_PATH
 ### Fixed
+* 修改Redis缓存配置报错的BUG
 
 ## [1.6.10]
 ### Added
