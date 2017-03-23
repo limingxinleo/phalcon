@@ -29,8 +29,10 @@ class DispatchListener
                         'action' => 'show404',
                     ]
                 );
-
                 return false;
+
+            default:
+                break;
         }
     }
 }

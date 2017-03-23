@@ -97,7 +97,7 @@ class ClearTask extends Task
     private function delete($dir)
     {
         if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-            self::rm($dir, false);
+            static::rm($dir, false);
             return;
         }
         $str = "rm -rf " . $dir . "*";
@@ -125,7 +125,7 @@ class ClearTask extends Task
             if (!is_dir($_dst)) {
                 unlink($_dst);
             } else {
-                self::rm($_dst);
+                static::rm($_dst);
             }
         }
         //删除当前文件夹：

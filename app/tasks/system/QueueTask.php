@@ -125,6 +125,9 @@ abstract class QueueTask extends Task
                 while (swoole_process::wait(false)) {
                     $this->process--;
                 }
+                
+            default:
+                break;
         }
     }
 }

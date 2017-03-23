@@ -21,7 +21,7 @@ class MainTask extends Task
 
     public function mainAction()
     {
-        foreach (self::$tasks as $task) {
+        foreach (static::$tasks as $task) {
             $this->console->handle($task);
         }
     }

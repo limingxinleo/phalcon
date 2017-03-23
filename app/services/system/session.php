@@ -29,6 +29,7 @@ if ($config->session->type !== false) {
                 'index' => $config->redis->index,
             ]);
             break;
+            
         case 'file':
         default:
             $session = new SessionAdapter();

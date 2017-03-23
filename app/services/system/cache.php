@@ -33,6 +33,7 @@ if ($config->cache->type !== false) {
                 ]
             );
             break;
+
         case 'redis':
             $cache = new BackRedis(
                 $frontCache,
@@ -47,6 +48,7 @@ if ($config->cache->type !== false) {
                 ]
             );
             break;
+
         case 'file':
         default:
             $cache = new BackFile(
