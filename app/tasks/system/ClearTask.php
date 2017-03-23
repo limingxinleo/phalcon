@@ -26,28 +26,39 @@ class ClearTask extends Task
         echo Color::colorize('  清理缓存信息') . PHP_EOL . PHP_EOL;
 
         echo Color::head('Usage:') . PHP_EOL;
-        echo Color::colorize('  php run System\\\\Clear [action] [yes or no]', Color::FG_GREEN) . PHP_EOL . PHP_EOL;
+        echo Color::colorize('  php run System\\\\Clear [action] [yes or no]', Color::FG_LIGHT_GREEN) . PHP_EOL . PHP_EOL;
 
         echo Color::head('Actions:') . PHP_EOL;
-        echo Color::colorize('  data    清理数据缓存', Color::FG_GREEN) . PHP_EOL;
-        echo Color::colorize('  view    清理视图缓存', Color::FG_GREEN) . PHP_EOL;
-        echo Color::colorize('  meta    清理模型元数据缓存', Color::FG_GREEN) . PHP_EOL;
+        echo Color::colorize('  data    清理数据缓存', Color::FG_LIGHT_GREEN) . PHP_EOL;
+        echo Color::colorize('  view    清理视图缓存', Color::FG_LIGHT_GREEN) . PHP_EOL;
+        echo Color::colorize('  meta    清理模型元数据缓存', Color::FG_LIGHT_GREEN) . PHP_EOL;
     }
 
-    public function dataAction($params = [])
+    public function dataAction($params)
     {
-        $dir = di('config')->application->cacheDir . 'data/';
+        $cache = di('cache');
+        $list = $cache->queryKeys();
+
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
-            echo Color::head('确定要清楚数据缓存么？', Color::FG_GREEN) . PHP_EOL;
-            echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
+            echo Color::head('缓存列表', Color::FG_LIGHT_GREEN) . PHP_EOL;
+            for ($i = 0; $i < 10; $i++) {
+                if (empty($list[$i])) {
+                    break;
+                }
+                echo Color::colorize('  缓存文件：' . $list[$i], Color::FG_LIGHT_GREEN) . PHP_EOL;
+            }
+            echo Color::colorize('  缓存总个数：' . count($list), Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::colorize('确定要删除么？(yes or no)', Color::FG_LIGHT_RED) . PHP_EOL;
+
             $arg = trim(fgets(STDIN));
             if (strtolower($arg) !== 'yes') {
                 return;
             }
         }
-        // 删除缓存
-        $this->delete($dir, false);
-        echo Color::success("The Cache was successfully deleted.");
+        $result = $cache->flush();
+        if ($result) {
+            echo Color::success("The Cache was successfully deleted.");
+        }
     }
 
     /**
@@ -60,8 +71,8 @@ class ClearTask extends Task
     {
         $dir = di('config')->application->cacheDir . 'view/';
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
-            echo Color::head('确定要清楚视图缓存么？', Color::FG_GREEN) . PHP_EOL;
-            echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
+            echo Color::head('确定要清楚视图缓存么？', Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::colorize('  文件：' . $dir, Color::FG_LIGHT_GREEN) . PHP_EOL;
             $arg = trim(fgets(STDIN));
             if (strtolower($arg) !== 'yes') {
                 return;
@@ -82,8 +93,8 @@ class ClearTask extends Task
     {
         $dir = di('config')->application->metaDataDir;
         if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
-            echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_GREEN) . PHP_EOL;
-            echo Color::colorize('  文件：' . $dir, Color::FG_GREEN) . PHP_EOL;
+            echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::colorize('  文件：' . $dir, Color::FG_LIGHT_GREEN) . PHP_EOL;
             $arg = trim(fgets(STDIN));
             if (strtolower($arg) !== 'yes') {
                 return;

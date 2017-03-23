@@ -7,6 +7,7 @@
 * 修改部分语法规范
 * 修改项目根目录BASE_PATH为ROOT_PATH
 * 修改单元测试目录为TESTS_PATH
+* 优化清除缓存数据脚本
 ### Fixed
 * 修改Redis缓存配置报错的BUG
 
