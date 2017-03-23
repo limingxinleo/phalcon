@@ -43,7 +43,8 @@ abstract class QueueTask extends Task
         $redis = $this->redisClient();
         while (true) {
             if ($this->process < $this->maxProcesses) {
-                $data = $redis->brpop($this->queueKey, 3);//无任务时,阻塞等待
+                // 无任务时,阻塞等待
+                $data = $redis->brpop($this->queueKey, 3);
                 if (!$data) {
                     continue;
                 }
@@ -77,7 +78,8 @@ abstract class QueueTask extends Task
     public function task(swoole_process $worker)
     {
         swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
-            $recv = $worker->read();            //send data to master
+            // 从主进程中读取到的数据
+            $recv = $worker->read();
             $this->run($recv);
             $worker->exit(0);
             swoole_event_del($pipe);
@@ -120,7 +122,7 @@ abstract class QueueTask extends Task
     {
         switch ($signo) {
             case SIGCHLD:
-                while ($ret = swoole_process::wait(false)) {
+                while (swoole_process::wait(false)) {
                     $this->process--;
                 }
         }
