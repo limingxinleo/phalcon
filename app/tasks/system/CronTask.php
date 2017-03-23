@@ -1,12 +1,10 @@
 <?php
 // +----------------------------------------------------------------------
-// | CronTask 定时器脚本 [ WE CAN DO IT JUST THINK IT ]
+// | Cron定时服务脚本 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2016 http://www.lmx0536.cn All rights reserved.
+// | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
-// +----------------------------------------------------------------------
-// | Date: 2016/12/25 Time: 16:53
+// | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
 namespace MyApp\Tasks\System;
 

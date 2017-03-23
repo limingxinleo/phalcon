@@ -1,12 +1,10 @@
 <?php
 // +----------------------------------------------------------------------
-// | 捕获错误日志 [ WE CAN DO IT JUST THINK IT ]
+// | 错误捕获日志 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2016 http://www.lmx0536.cn All rights reserved.
+// | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
-// +----------------------------------------------------------------------
-// | Date: 2016/11/26 Time: 16:19
+// | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
 if ($config->log->error) {
     register_shutdown_function(function () {

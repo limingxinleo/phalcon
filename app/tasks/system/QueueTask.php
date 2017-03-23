@@ -1,12 +1,10 @@
 <?php
 // +----------------------------------------------------------------------
-// | 消息队列 REDIS 抽象类 [ WE CAN DO IT JUST THINK IT ]
+// | 消息队列 REDIS抽象类 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2016 http://www.lmx0536.cn All rights reserved.
+// | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
-// +----------------------------------------------------------------------
-// | Date: 2017/2/4 Time: 上午10:00
+// | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
 declare(ticks = 1);
 namespace MyApp\Tasks\System;
@@ -125,7 +123,7 @@ abstract class QueueTask extends Task
                 while (swoole_process::wait(false)) {
                     $this->process--;
                 }
-                
+
             default:
                 break;
         }
