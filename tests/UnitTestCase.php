@@ -19,11 +19,8 @@
 use Phalcon\Di\InjectionAwareInterface;
 use PHPUnit_Framework_TestCase as TestCase;
 use Phalcon\Config;
-use Phalcon\Di\FactoryDefault;
 use Phalcon\Di;
 use Phalcon\DiInterface;
-use Phalcon\Mvc\Url;
-use Phalcon\Escaper;
 
 /**
  * Class UnitTestCase
@@ -47,6 +44,7 @@ abstract class UnitTestCase extends TestCase implements InjectionAwareInterface
     protected $di;
 
     /**
+     * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
@@ -58,13 +56,14 @@ abstract class UnitTestCase extends TestCase implements InjectionAwareInterface
         $this->di = $di;
     }
 
+    /**
+     * Tears down the fixture, for example, close a network connection.
+     * This method is called after a test is executed.
+     */
     protected function tearDown()
     {
-//        $di = $this->getDI();
-//        $di::reset();
-
-        parent::tearDown();
     }
+
 
     /**
      * Checks if a particular extension is loaded and if not it marks

@@ -38,6 +38,6 @@ $loader->registerDirs(
 $loader->register();
 
 // Add any needed services to the DI here
-$di = require_once __DIR__ . '/../app/bootstrap.php';
+$di = require_once APP_PATH . '/bootstrap.php';
 
 Di::setDefault($di);
