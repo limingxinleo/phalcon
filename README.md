@@ -72,6 +72,13 @@ www  WEB部署目录（或者子目录）
 └─run                   命令行入口文件
 ~~~
 
+## Web开发规范
+调用方式
+~~~
+controller -> logic -> model -> db
+task -> logic -> model -> db
+~~~
+
 ## 消息队列
 编辑app/tasks/TestTask.php
 ~~~
