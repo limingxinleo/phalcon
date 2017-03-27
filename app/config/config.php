@@ -113,6 +113,7 @@ return new Config(
             'pluginsDir' => APP_PATH . '/plugins/',
             'libraryDir' => APP_PATH . '/library/',
             'listenersDir' => APP_PATH . '/listeners/',
+            'logicsDir' => APP_PATH . '/logics/',
             'traitsDir' => APP_PATH . '/traits/',
             'servicesDir' => APP_PATH . '/services/',
             'cacheDir' => ROOT_PATH . '/storage/cache/',

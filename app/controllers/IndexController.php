@@ -8,11 +8,13 @@
 // +----------------------------------------------------------------------
 namespace MyApp\Controllers;
 
+use MyApp\Logics\Common;
+
 class IndexController extends ControllerBase
 {
     public function indexAction()
     {
-        $this->view->version = di('config')->version;
+        $this->view->version = (new Common())->version();
         return $this->view->render('index', 'index');
     }
 

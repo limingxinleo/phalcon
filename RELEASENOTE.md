@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+* 增加Logics逻辑层
 
 ### Changed
 

@@ -22,6 +22,7 @@ $loader
             'MyApp\Traits\System' => $config->application->traitsDir . 'system/',
             'MyApp\Listeners' => $config->application->listenersDir,
             'MyApp\Listeners\System' => $config->application->listenersDir . 'system/',
+            'MyApp\Logics' => $config->application->logicsDir,
         ]
     )->registerFiles(
         [
