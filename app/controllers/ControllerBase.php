@@ -18,4 +18,14 @@ class ControllerBase extends Controller
     public function initialize()
     {
     }
+
+    public function beforeExecuteRoute()
+    {
+        // 在每一个找到的动作前执行
+    }
+
+    public function afterExecuteRoute()
+    {
+        // 在每一个找到的动作后执行
+    }
 }

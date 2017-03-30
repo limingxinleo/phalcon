@@ -17,5 +17,4 @@ class IndexController extends ControllerBase
         $this->view->version = (new Common())->version();
         return $this->view->render('index', 'index');
     }
-
 }

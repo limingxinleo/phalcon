@@ -14,6 +14,16 @@ use Phalcon\Mvc\Dispatcher;
 
 class DispatchListener
 {
+    public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
+    {
+        // 在每一个找到的动作前执行
+    }
+
+    public function afterExecuteRoute(Event $event, Dispatcher $dispatcher)
+    {
+        // 在每一个找到的动作后执行
+    }
+
     public function beforeException(Event $event, $dispatcher, Exception $exception)
     {
         // 代替控制器或者动作不存在时的路径

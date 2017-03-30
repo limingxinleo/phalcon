@@ -21,4 +21,9 @@ trait Response
     {
         return HttpResponse::send($status, $data, $msg, $type);
     }
+
+    protected static function response($status, $data, $msg, $type = 'json')
+    {
+        return HttpResponse::send($status, $data, $msg, $type);
+    }
 }
