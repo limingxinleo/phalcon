@@ -52,6 +52,6 @@ class ErrorController extends Controller
      */
     public function jsonAction($status = 0, $msg = "", $data = [])
     {
-        return self::response($status, $msg, $data);
+        return self::response($status, $data, $msg);
     }
 }
