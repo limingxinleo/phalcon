@@ -143,4 +143,5 @@ crontab -e
 * 使用Phalcon 开发工具的时候，需要维护config/config.ini配置文件
 * 使用dispatch forward调度的时候，必须使用return截断控制器。要不然他会走后面的dispatch forward调度。如果使用exit截断，调度则不会执行。
 * 使用任务php run test_test 会转化为 TestTestTask 但是使用php run Test\\test_test 会转化为Test\test_testTask
+* 由于Phalcon内部redis引擎的问题，当auth=null时也会掉哟过redis->auth()，故连不上redis服务器。所以暂时redis服务器不支持无密码，除非手动修改逻辑。[#12736](https://github.com/phalcon/cphalcon/issues/12736)
 
