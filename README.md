@@ -43,6 +43,9 @@ php run
 www  WEB部署目录（或者子目录）
 ├─app                   项目文件
 │ ├─config              配置文件
+│ │ ├─cli               cli服务配置目录
+│ │ ├─web               web路由与服务配置目录
+│ │ └─loader.php        自动加载文件
 │ ├─controllers         控制器目录
 │ ├─library             第三方库目录
 │ ├─listeners           监听事件目录
@@ -145,3 +148,5 @@ crontab -e
 * 使用任务php run test_test 会转化为 TestTestTask 但是使用php run Test\\test_test 会转化为Test\test_testTask
 * 由于Phalcon内部redis引擎的问题，当auth=null时也会调用redis->auth()，故连不上redis服务器。所以暂时redis服务器不支持无密码，除非手动修改逻辑。[#12736](https://github.com/phalcon/cphalcon/issues/12736)
 
+* 当增加新路由规则时需要修改app/config/web/routes.php文件
+* 当增加新的命名空间时需要修改app/config/loader.php自动加载文件
