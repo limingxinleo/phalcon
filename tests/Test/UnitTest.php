@@ -20,12 +20,24 @@ class UnitTest extends UnitTestCase
 {
     public function testSessionCase()
     {
-        $time = uniqid();
-        session('test:case:session', $time);
+        $value = uniqid();
+        $key = 'test:case:session';
+        $session = di('session');
+        // 保存session
+        $session->set($key, $value);
+        // 是否存在session
+        $this->assertTrue($session->has($key));
+        // 获取session
         $this->assertEquals(
-            $time,
-            session('test:case:session')
+            $value,
+            $session->get($key)
         );
+        // 删除某个session
+        $session->remove($key);
+        $this->assertTrue(false === $session->has($key));
+        // 销毁所有session
+        // $session->destroy();
+        // $this->assertTrue(false === $session->has($key), "会话销毁是相对于下次访问而言");
     }
 
     public function testCacheCase()
