@@ -18,6 +18,10 @@ use limx\phalcon\Utils\Str;
  */
 class UnitTest extends UnitTestCase
 {
+    /**
+     * @desc   Session测试
+     * @author limx
+     */
     public function testSessionCase()
     {
         $value = uniqid();
@@ -40,16 +44,35 @@ class UnitTest extends UnitTestCase
         // $this->assertTrue(false === $session->has($key), "会话销毁是相对于下次访问而言");
     }
 
+    /**
+     * @desc   cache 测试
+     * @author limx
+     */
     public function testCacheCase()
     {
+        $key = 'test-case-cache';
         $data = [
             'time' => time(),
             'str' => Str::random(12),
         ];
-        cache('test-case-cache', $data);
+        $lifetime = 3600;
+        $cache = di('cache');
+        // 保存缓存 文件存储lifetime无效
+        $cache->save($key, $data, $lifetime);
+        // 读取缓存
         $this->assertEquals(
             $data,
-            cache('test-case-cache')
+            $cache->get($key, $lifetime)
         );
+        // 读取所有缓存key
+        $this->assertTrue(in_array($key, $cache->queryKeys()));
+        // 删除缓存
+        $cache->delete($key);
+        // 是否存在缓存
+        $this->assertTrue(false === $cache->exists($key));
+        // 销毁所有缓存
+        $cache->save($key, $data, $lifetime);
+        $cache->flush();
+        $this->assertEmpty($cache->queryKeys());
     }
 }
