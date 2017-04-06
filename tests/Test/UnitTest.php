@@ -75,4 +75,27 @@ class UnitTest extends UnitTestCase
         $cache->flush();
         $this->assertEmpty($cache->queryKeys());
     }
+
+    /**
+     * @desc   cookies 测试
+     * @author limx
+     */
+    public function testCookiesCase()
+    {
+        $key = 'test-case-cookies';
+        $data = uniqid();
+        $lifetime = 3600;
+        $cookies = di('cookies');
+        // 验证是否加密
+        $this->assertTrue($cookies->isUsingEncryption(), "Cookies服务没有默认加密！");
+        // 保存cookies
+        $cookies->set($key, $data, $lifetime);
+        // 读取cookies
+        $this->assertEquals($data, $cookies->get($key));
+        // 是否存在cookies
+        $this->assertTrue($cookies->has($key));
+        // 删除cookies
+        // $cookies->delete($key);
+        // $this->assertTrue(false === $cookies->has($key));
+    }
 }
