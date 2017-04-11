@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 use Phalcon\Http\Response\Cookies;
 
-$di->set(
+$di->setShared(
     "cookies",
     function () use ($config) {
         $cookies = new Cookies();

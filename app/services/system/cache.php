@@ -59,10 +59,10 @@ if ($config->cache->type !== false) {
     }
     if ($cache !== null) {
         // 注入容器
-        $di->set('cache', function () use ($cache) {
+        $di->setShared('cache', function () use ($cache) {
             return $cache;
         });
-        $di->set('modelsCache', function () use ($cache) {
+        $di->setShared('modelsCache', function () use ($cache) {
             return $cache;
         });
     }

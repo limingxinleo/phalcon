@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 use Phalcon\Crypt;
 
-$di->set(
+$di->setShared(
     "crypt",
     function () use ($config) {
         $crypt = new Crypt();

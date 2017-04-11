@@ -36,7 +36,7 @@ if ($config->session->type !== false) {
     }
     if ($session !== null) {
         $session->start();
-        $di->set('session', function () use ($session) {
+        $di->setShared('session', function () use ($session) {
             return $session;
         });
     }

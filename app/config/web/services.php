@@ -60,7 +60,7 @@ $di->setShared('view', function () use ($config) {
     return $view;
 });
 
-$di->set('dispatcher', function () {
+$di->setShared('dispatcher', function () {
     // 监听调度 dispatcher
     $eventsManager = new EventsManager();
     $dispatchListener = new DispatchListener();

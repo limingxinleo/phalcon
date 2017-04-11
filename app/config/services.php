@@ -22,7 +22,7 @@ $di->setShared('config', function () use ($config) {
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
-$di->set('db', function () use ($config) {
+$di->setShared('db', function () use ($config) {
     $db = new DbAdapter(
         [
             'host' => $config->database->host,
@@ -56,7 +56,7 @@ $di->set('db', function () use ($config) {
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
-$di->set('modelsMetadata', function () use ($config) {
+$di->setShared('modelsMetadata', function () use ($config) {
     return new MetadataFiles(
         [
             'metaDataDir' => $config->application->metaDataDir,
@@ -64,7 +64,7 @@ $di->set('modelsMetadata', function () use ($config) {
     );
 });
 
-$di->set('app', function () {
+$di->setShared('app', function () {
     // 加载app.php 配置文件
     $app = APP_PATH . '/config/app.php';
     if (file_exists($app)) {
