@@ -1,6 +1,13 @@
-# Release Note For 1.6.*
+# Release Note
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.7.0]
 ### Added
 * 增加Logics逻辑层
 * 增加用于json返回的error控制器方法
@@ -9,8 +16,7 @@
 
 ### Changed
 * 扩展Response返回，自定义错误码
-
-### Fixed
+* 修改系统服务为共享服务
 
 ## [1.6.14]
 ### Changed
