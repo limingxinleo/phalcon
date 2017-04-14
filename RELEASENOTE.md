@@ -2,10 +2,15 @@
 
 ## [Unreleased]
 ### Added
+* 增加model层基类
 
 ### Changed
 
 ### Fixed
+
+### Todo
+* 解决phalcon新建model指定继承类时出现BUG的问题
+* 解决phalcon新建model会删除文件上方use的类库
 
 ## [1.7.0]
 ### Added
