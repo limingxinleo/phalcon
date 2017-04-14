@@ -134,6 +134,7 @@ crontab -e
 
 ## 注意事项 ##
 * 利用phalcon脚本新建model时，使用phalcon model name --namespace=MyApp\Models --extends=Model --force
+* 【BUG】如果你model里用use加载了其他类库，当你使用官方phalcon工具脚本建立model的时候，会被删除掉。这里可以使用我修改的[devtools](https://github.com/limingxinleo/phalcon-devtools.git)
 * 利用phalcon脚本新建controller时，使用phalcon controller name --namespace=MyApp\Controllers\SubNamespace
 
 * 使用模型进行信息存储时，因为模型元数据的问题，非空字段会匹配非空、非空字符串两个条件，致使一些空字符串字段不赋默认非空字符串值的情况下，保存失败！[cphalcon v3.0.4 已修改此BUG]
