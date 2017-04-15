@@ -8,10 +8,9 @@
 // +----------------------------------------------------------------------
 namespace MyApp\Controllers;
 
-use Phalcon\Mvc\Controller;
 use MyApp\Traits\System\Response;
 
-class ControllerBase extends Controller
+class Controller extends \Phalcon\Mvc\Controller
 {
     use Response;
 

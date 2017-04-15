@@ -10,7 +10,7 @@ namespace MyApp\Controllers;
 
 use MyApp\Logics\Common;
 
-class IndexController extends ControllerBase
+class IndexController extends Controller
 {
     public function indexAction()
     {
