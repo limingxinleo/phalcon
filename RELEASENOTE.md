@@ -6,7 +6,8 @@
 * 解决phalcon新建model指定继承类时出现BUG的问题
 
 ### Changed
-
+* 修改Controller基类为Controller.php
+ 
 ### Fixed
 * 解决phalcon新建model会删除文件上方use的类库 [devtools](https://github.com/limingxinleo/phalcon-devtools.git)
 
