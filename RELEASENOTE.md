@@ -8,9 +8,7 @@
 ### Changed
 
 ### Fixed
-
-### Todo
-* 解决phalcon新建model会删除文件上方use的类库
+* 解决phalcon新建model会删除文件上方use的类库 [devtools](https://github.com/limingxinleo/phalcon-devtools.git)
 
 ## [1.7.0]
 ### Added
