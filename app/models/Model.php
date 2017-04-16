@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-namespace MyApp\Models;
+namespace App\Models;
 
 class Model extends \Phalcon\Mvc\Model
 {

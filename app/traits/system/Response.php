@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace MyApp\Traits\System;
+namespace App\Traits\System;
 
 use limx\phalcon\Http\Response as HttpResponse;
 

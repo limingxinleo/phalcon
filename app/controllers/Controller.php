@@ -6,9 +6,9 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace MyApp\Controllers;
+namespace App\Controllers;
 
-use MyApp\Traits\System\Response;
+use App\Traits\System\Response;
 
 class Controller extends \Phalcon\Mvc\Controller
 {

@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace MyApp\Listeners\System;
+namespace App\Listeners\System;
 
 use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;

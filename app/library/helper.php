@@ -88,7 +88,7 @@ if (!function_exists('dispatch_error')) {
 
         $dispatcher = di('dispatcher');
         $dispatcher->forward([
-            'namespace' => 'MyApp\Controllers',
+            'namespace' => 'App\Controllers',
             "controller" => "error",
             "action" => "index",
             'params' => [$code, $msg],

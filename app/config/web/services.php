@@ -12,7 +12,7 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Events\Manager as EventsManager;
 
-use MyApp\Listeners\System\DispatchListener;
+use App\Listeners\System\DispatchListener;
 
 
 $di->setShared('router', function () {
@@ -70,7 +70,7 @@ $di->setShared('dispatcher', function () {
     );
 
     $dispatcher = new Dispatcher();
-    $dispatcher->setDefaultNamespace('MyApp\Controllers');
+    $dispatcher->setDefaultNamespace('App\Controllers');
     // 分配事件管理器到分发器
     $dispatcher->setEventsManager($eventsManager);
 

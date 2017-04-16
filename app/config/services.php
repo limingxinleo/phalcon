@@ -10,7 +10,7 @@
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\Model\Metadata\Files as MetadataFiles;
 use Phalcon\Events\Manager as EventsManager;
-use MyApp\Listeners\System\DbListener;
+use App\Listeners\System\DbListener;
 
 /**
  * Shared configuration service

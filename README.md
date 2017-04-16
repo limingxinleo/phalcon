@@ -85,9 +85,9 @@ task -> logic -> model -> db
 ## 消息队列
 编辑app/tasks/TestTask.php
 ~~~
-namespace MyApp\Tasks\Swoole;
+namespace App\Tasks\Swoole;
 
-use MyApp\Tasks\System\QueueTask;
+use App\Tasks\System\QueueTask;
 use limx\tools\LRedis;
 use limx\phalcon\Cli\Color;
 
@@ -133,13 +133,13 @@ crontab -e
 ~~~
 
 ## 注意事项 ##
-* 利用phalcon脚本新建model时，使用phalcon model name --namespace=MyApp\Models --extends=Model --force
+* 利用phalcon脚本新建model时，使用phalcon model name --namespace=App\Models --extends=Model --force
 * 【BUG】如果你model里用use加载了其他类库，当你使用官方phalcon工具脚本建立model的时候，会被删除掉。这里可以使用我修改的[devtools](https://github.com/limingxinleo/phalcon-devtools.git)
-* 利用phalcon脚本新建controller时，使用phalcon controller name --namespace=MyApp\Controllers\SubNamespace
+* 利用phalcon脚本新建controller时，使用phalcon controller name --namespace=App\Controllers\SubNamespace
 
 * 使用模型进行信息存储时，因为模型元数据的问题，非空字段会匹配非空、非空字符串两个条件，致使一些空字符串字段不赋默认非空字符串值的情况下，保存失败！[cphalcon v3.0.4 已修改此BUG]
 * 框架默认以文件的方式缓存元数据，一旦表结构被修改，请执行php run system\clear meta yes 清理元数据
-* 在使用Model的Relation时，因为命名空间的问题，需要使用别名，例如 $this->hasMany("id", "MyApp\\Models\\Book", "uid", ['alias' => 'book']);
+* 在使用Model的Relation时，因为命名空间的问题，需要使用别名，例如 $this->hasMany("id", "App\\Models\\Book", "uid", ['alias' => 'book']);
 * 控制器中 $this->request->url函数 (url助手函数) 生成的地址 会拼接config中的baseUri 故url('index') 会生成 /index。
 * 控制器中 $this->response->redirect() 会根据当前模块跳转 故redirect('/index') 才会生成 /index。
 * 默认的调度params是按照数组顺序进行对应的。

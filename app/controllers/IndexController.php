@@ -6,9 +6,9 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-namespace MyApp\Controllers;
+namespace App\Controllers;
 
-use MyApp\Logics\Common;
+use App\Logics\Common;
 
 class IndexController extends Controller
 {

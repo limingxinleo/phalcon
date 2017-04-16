@@ -14,22 +14,22 @@ $loader = new \Phalcon\Loader();
 $loader
     ->registerNamespaces(
         [
-            'MyApp\Controllers' => $config->application->controllersDir,
+            'App\Controllers' => $config->application->controllersDir,
 
-            'MyApp\Listeners' => $config->application->listenersDir,
-            'MyApp\Listeners\System' => $config->application->listenersDir . 'system/',
+            'App\Listeners' => $config->application->listenersDir,
+            'App\Listeners\System' => $config->application->listenersDir . 'system/',
 
-            'MyApp\Logics' => $config->application->logicsDir,
+            'App\Logics' => $config->application->logicsDir,
 
-            'MyApp\Models' => $config->application->modelsDir,
+            'App\Models' => $config->application->modelsDir,
 
-            'MyApp\Tasks' => $config->application->tasksDir,
-            'MyApp\Tasks\System' => $config->application->tasksDir . 'system/',
+            'App\Tasks' => $config->application->tasksDir,
+            'App\Tasks\System' => $config->application->tasksDir . 'system/',
 
-            'MyApp\Traits' => $config->application->traitsDir,
-            'MyApp\Traits\System' => $config->application->traitsDir . 'system/',
+            'App\Traits' => $config->application->traitsDir,
+            'App\Traits\System' => $config->application->traitsDir . 'system/',
 
-            'MyApp\Utils' => $config->application->utilsDir,
+            'App\Utils' => $config->application->utilsDir,
         ]
     )->registerFiles(
         [

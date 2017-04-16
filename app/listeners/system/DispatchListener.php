@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace MyApp\Listeners\System;
+namespace App\Listeners\System;
 
 use Phalcon\Events\Event;
 use Exception;
@@ -32,7 +32,7 @@ class DispatchListener
             case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
                 $dispatcher->forward(
                     [
-                        'namespace' => 'MyApp\Controllers',
+                        'namespace' => 'App\Controllers',
                         'controller' => 'error',
                         'action' => 'show404',
                     ]
