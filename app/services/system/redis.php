@@ -13,5 +13,5 @@ $di->setShared('redis', function () use ($config) {
     $port = $config->redis->port;
     $auth = $config->redis->auth;
     $db = $config->redis->index;
-    return Redis::getInstance($host, $port, $auth, $db);
+    return Redis::getInstance($host, $auth, $db, $port);
 });
