@@ -11,6 +11,7 @@ use Phalcon\Cache\Frontend\Data as FrontData;
 use Phalcon\Cache\Backend\File as BackFile;
 use Phalcon\Cache\Backend\Libmemcached as BackMemCached;
 use Phalcon\Cache\Backend\Redis as BackRedis;
+use Phalcon\Cache\Backend\Mongo as BackMongo;
 
 if ($config->cache->type !== false) {
     $frontCache = new FrontData(
@@ -43,6 +44,18 @@ if ($config->cache->type !== false) {
                     'index' => $config->redis->index,
                     'prefix' => 'cache:',
                     'statsKey' => '_PHCM',
+                ]
+            );
+            break;
+
+        case 'mongo':
+            $server = sprintf("mongodb://%s:%d", $config->mongo->host, $config->mongo->port);
+            $cache = new BackMongo(
+                $frontCache,
+                [
+                    'server' => $server,
+                    'db' => $config->mongo->db,
+                    'collection' => $config->mongo->collection,
                 ]
             );
             break;

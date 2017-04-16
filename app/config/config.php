@@ -96,6 +96,26 @@ return new Config(
 
         /*
         |--------------------------------------------------------------------------
+        | MongoDB Environment
+        |--------------------------------------------------------------------------
+        |
+        | This value determines the "environment" your redis.
+        |
+        */
+        'mongo' => [
+            'host' => env('MONGODB_HOST', '127.0.0.1'),
+            'port' => env('MONGODB_PORT', '27017'),
+            'connect' => env('MONGODB_CONNECT', true),
+            'timeout' => env('MONGODB_TIMEOUT', null),
+            'replicaSet' => env('MONGODB_REPLICA_SET', null),
+            'username' => env('MONGODB_USERNAME', null),
+            'password' => env('MONGODB_PASSWORD', null),
+            'db' => env('MONGODB_DB', null),
+            'collection' => env('MONGODB_COLLECTION', null),
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
         | Application Environment
         |--------------------------------------------------------------------------
         |
