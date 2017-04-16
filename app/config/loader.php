@@ -30,7 +30,6 @@ $loader
             'MyApp\Traits\System' => $config->application->traitsDir . 'system/',
 
             'MyApp\Utils' => $config->application->utilsDir,
-            'MyApp\Utils\System' => $config->application->utilsDir . 'system/',
         ]
     )->registerFiles(
         [
