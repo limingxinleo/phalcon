@@ -4,6 +4,8 @@
 ### Added
 * 增加model层基类
 * 解决phalcon新建model指定继承类时出现BUG的问题
+* 增加工具目录
+* 增加DB工具类
 
 ### Changed
 * 修改Controller基类为Controller.php
