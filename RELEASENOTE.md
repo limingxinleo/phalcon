@@ -10,6 +10,7 @@
 
 ### Changed
 * 修改Controller基类为Controller.php
+* 去除修改命名空间的脚本
  
 ### Fixed
 * 解决phalcon新建model会删除文件上方use的类库 [devtools](https://github.com/limingxinleo/phalcon-devtools.git)

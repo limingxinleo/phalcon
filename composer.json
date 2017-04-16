@@ -18,8 +18,7 @@
     "require-dev": {
         "phpunit/phpunit": "^5.6",
         "phalcon/incubator": "^3.0",
-        "limingxinleo/limx-package": "^1.0",
-        "limingxinleo/limx-func": "^2.2"
+        "limingxinleo/limx-package": "^1.0"
     },
     "scripts": {
         "post-create-project-cmd": [

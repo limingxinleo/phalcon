@@ -28,7 +28,6 @@ class InitTask extends Task
 
         echo Color::head('Actions:') . PHP_EOL;
         echo Color::colorize('  storage                         初始化仓库', Color::FG_GREEN) . PHP_EOL;
-        echo Color::colorize('  namespace                       初始化命名空间', Color::FG_GREEN) . PHP_EOL;
         echo Color::colorize('  key     [key] [--random|val]    初始化配置参数', Color::FG_GREEN) . PHP_EOL;
     }
 
@@ -54,32 +53,6 @@ class InitTask extends Task
             }
         }
         echo Color::success("The Storage was successfully created.");
-    }
-
-    /**
-     * @desc   初始化命名空间
-     * @author limx
-     */
-    public function namespaceAction()
-    {
-        echo Color::head('命名空间初始化') . PHP_EOL;
-        echo Color::colorize('  默认的命名空间是App', Color::BG_GREEN) . PHP_EOL;
-        echo Color::colorize('  确定要重写命名空间么？(yes or no)', Color::BG_GREEN) . PHP_EOL;
-        $arg = trim(fgets(STDIN));
-        if ($arg == 'yes') {
-            echo Color::colorize('请输入您的命名空间', Color::BG_GREEN) . PHP_EOL;
-            $arg = trim(fgets(STDIN));
-            if (!empty($arg)) {
-                $res = [];
-                traverse(APP_PATH, $res);
-                foreach ($res as $v) {
-                    $file = file_get_contents($v);
-                    $file = str_replace('App', $arg, $file);
-                    file_put_contents($v, $file);
-                }
-            }
-        }
-        echo Color::success("You're now flying with Phalcon.");
     }
 
     /**
