@@ -40,7 +40,8 @@ class DbListener
     public function beforeQuery(Event $event, $connection)
     {
         $this->_profiler->startProfile(
-            $connection->getSQLStatement()
+            $connection->getSQLStatement(),
+            $connection->getSqlVariables()
         );
     }
 
@@ -71,9 +72,11 @@ class DbListener
         $begintime = $profile->getInitialTime();
         $endtime = $profile->getFinalTime();
         $runtime = $profile->getTotalElapsedSeconds();
+        $params = $profile->getSqlVariables();
 
         $str = PHP_EOL;
         $str .= "SQL语句: " . $sql . PHP_EOL;
+        $str .= "绑定参数: " . json_encode($params) . PHP_EOL;
         $str .= "开始时间: " . $begintime . PHP_EOL;
         $str .= "结束时间: " . $endtime . PHP_EOL;
         $str .= "执行时间: " . $runtime . PHP_EOL;
