@@ -15,4 +15,18 @@ class Redis
         $redis = di('redis');
         return call_user_func_array([$redis, $name], $arguments);
     }
+
+    /**
+     * @desc   因为Redis工具类使用的是一个redis实例
+     *         所以当我们在某个区块修改了redis的db，其他也会受到影响。所以这里增加一个辅助函数。
+     *         可以让redis的db更改为配置里的db。
+     * @author limx
+     */
+    public static function end()
+    {
+        $redis = di('redis');
+        $db = di('config')->redis->index;
+        return $redis->select($db);
+    }
+
 }
