@@ -6,6 +6,7 @@
 * 增加mongodb缓存适配器【phalcon底层不支持php7 mongo扩展】
 * 数据库SQL语句监听日志，增加绑定参数记录
 * 增加缓存工具类
+* 增加控制器配置
 
 ### Changed
  
