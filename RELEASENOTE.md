@@ -1,6 +1,9 @@
 # Release Note
 
 ## [Unreleased]
+### Checked
+- [ ] php单元测试
+
 ### Added
 * 增加mongodb配置
 * 增加mongodb缓存适配器【phalcon底层不支持php7 mongo扩展】
