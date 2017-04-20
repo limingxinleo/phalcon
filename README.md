@@ -78,7 +78,7 @@ www  WEB部署目录（或者子目录）
 
 ## phalcon工具脚本
 [devtools](https://github.com/limingxinleo/phalcon-devtools.git)
-> 如果想使用更加定制化的功能，比如在app/config/config.ini维护控制器的默认信息，请使用修改后的[devtools](https://github.com/limingxinleo/phalcon-devtools.git)。
+> 如果想使用更加定制化的功能，比如在app/config/config.ini维护控制器的默认信息，请使用修改后的[devtools](https://github.com/limingxinleo/phalcon-devtools.git) dev分支。
 
 ## Web开发规范
 调用方式
