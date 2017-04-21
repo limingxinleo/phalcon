@@ -11,6 +11,7 @@
 * 增加缓存工具类
 * 增加devtools控制器配置
 * 增加devtools模型配置
+* 增加Info系统脚本
 
 ### Changed
  
