@@ -12,8 +12,14 @@ use Phalcon\Di\Injectable;
 
 class Common extends Injectable
 {
+    /**
+     * @desc   获取项目版本号
+     * @author limx
+     * @return mixed
+     */
     public function version()
     {
         return $this->config->version;
     }
+
 }

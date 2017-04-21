@@ -9,12 +9,18 @@
 namespace App\Controllers;
 
 use App\Logics\Common;
+use App\Logics\System;
 
 class IndexController extends Controller
 {
+    /**
+     * @desc
+     * @author limx
+     * @return bool|\Phalcon\Mvc\View
+     */
     public function indexAction()
     {
-        $this->view->version = (new Common())->version();
+        $this->view->version = (new System())->version();
         return $this->view->render('index', 'index');
     }
 }
