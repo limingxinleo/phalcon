@@ -46,6 +46,7 @@ class InfoTask extends Task
             }
             echo PHP_EOL;
         }
+        echo Color::colorize(sprintf("  共%d个方法。", count($res))), PHP_EOL;
     }
 
     public function versionAction()
