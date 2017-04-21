@@ -29,7 +29,7 @@ class System extends Injectable
      * @desc   获取所有控制器的方法注释
      * @author limx
      */
-    public static function getControllersAnnotations()
+    public static function getControllersAnnotations($limitCount = 0)
     {
         $reader = new MemoryAdapter();
         $result = [];
@@ -67,23 +67,30 @@ class System extends Injectable
                 // 没有匹配到方法则跳过
                 continue;
             }
-            foreach ($methods as $method) {
+            foreach ($methods as $name => $collection) {
+                $method = [];
+                $method['method'] = $full_classname . "@" . $name;
                 // 读取类中注释块中的注释
-                $annotations = $method->getAnnotations();
-
+                $annotations = $collection->getAnnotations();
                 // 遍历注释
                 foreach ($annotations as $annotation) {
-                    // 打印注释名称
-                    echo $annotation->getName(), PHP_EOL;
-
-                    // 打印注释参数个数
-                    echo $annotation->numberArguments(), PHP_EOL;
-
-                    // 打印注释参数
-                    print_r($annotation->getArguments());
+                    $item = [];
+                    $name = $annotation->getName();
+                    $number = $annotation->numberArguments();
+                    $arguments = $annotation->getArguments();
+                    if ($number < $limitCount) {
+                        continue;
+                    }
+                    // 注释名称
+                    $item['name'] = $name;
+                    $item['number'] = $number;
+                    $item['arguments'] = $arguments;
+                    $method['annotation'][] = $item;
                 }
             }
+            $result[] = $method;
         }
+        return $result;
     }
 
     public static function getVersions()
