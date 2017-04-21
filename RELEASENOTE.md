@@ -12,6 +12,7 @@
 * 增加devtools控制器配置
 * 增加devtools模型配置
 * 增加Info系统脚本
+* 增加控制器注释列表获取方法
 
 ### Changed
  
