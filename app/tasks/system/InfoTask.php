@@ -36,7 +36,7 @@ class InfoTask extends Task
     public function annotationsAction()
     {
         echo Color::head("控制器方法获取:"), PHP_EOL;
-        $res = System::getControllersAnnotations();
+        $res = System::getControllersAnnotations(0, true);
         foreach ($res as $method) {
             echo Color::colorize(sprintf("  方法名：%s", $method['method']), Color::FG_GREEN), PHP_EOL;
             if (isset($method['annotation'])) {

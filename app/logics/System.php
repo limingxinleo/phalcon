@@ -29,7 +29,7 @@ class System extends Injectable
      * @desc   获取所有控制器的方法注释
      * @author limx
      */
-    public static function getControllersAnnotations($limitCount = 0)
+    public static function getControllersAnnotations($limitCount = 0, $onlyAction = false)
     {
         $reader = new MemoryAdapter();
         $result = [];
@@ -68,6 +68,13 @@ class System extends Injectable
                 continue;
             }
             foreach ($methods as $name => $collection) {
+                if ($onlyAction) {
+                    preg_match('#Action$#', $name, $matches);
+                    // 匹配控制器方法，如果不是Action结尾，则跳过
+                    if (empty($matches)) {
+                        continue;
+                    }
+                }
                 $method = [];
                 $method['method'] = $full_classname . "@" . $name;
                 // 读取类中注释块中的注释
@@ -87,8 +94,9 @@ class System extends Injectable
                     $item['arguments'] = $arguments;
                     $method['annotation'][] = $item;
                 }
+                $result[] = $method;
             }
-            $result[] = $method;
+
         }
         return $result;
     }
