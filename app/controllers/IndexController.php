@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
-use App\Logics\Common;
 use App\Logics\System;
 
 class IndexController extends Controller
