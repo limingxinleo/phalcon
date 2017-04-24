@@ -12,7 +12,7 @@ namespace App\Utils;
 
 use limx\phalcon\DB as LDB;
 
-class DB implements DBInterface
+class DB
 {
     /**
      * @desc   查询结果集合
