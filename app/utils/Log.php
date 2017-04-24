@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | Log.php [ WE CAN DO IT JUST THINK IT ]
+// | 日志工具类 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class Log
      * @author limx
      * @return mixed
      */
-    public static function logger()
+    protected static function logger()
     {
         return Logger::getInstance(static::TYPE, static::FILE_NAME, static::DIR);
     }
