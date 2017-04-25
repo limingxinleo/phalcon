@@ -9,7 +9,7 @@
 
 ## 安装方法
 ### 编译phalcon扩展
-
+官方方法
 ~~~
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
@@ -17,6 +17,24 @@ sudo ./install
 
 vim etc/php.ini 
 extension=phalcon.so
+~~~
+
+MAC - brew 方法
+~~~
+brew install php70-phalcon
+~~~
+
+Linux - remi 方法
+~~~
+yum --enablerepo=remi install php70-php-phalcon
+~~~
+
+Windows 
+> 详情请见[https://phalconphp.com/en/download/windows](https://phalconphp.com/en/download/windows) 下载对应的dll。
+
+修改php.ini
+~~~
+extension=php_phalcon.dll
 ~~~
 
 ### 安装项目
