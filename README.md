@@ -9,7 +9,7 @@
 
 ## 安装方法
 ### 编译phalcon扩展
-官方方法
+
 ~~~
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
@@ -17,24 +17,6 @@ sudo ./install
 
 vim etc/php.ini 
 extension=phalcon.so
-~~~
-
-MAC - brew 方法
-~~~
-brew install php70-phalcon
-~~~
-
-Linux - remi 方法
-~~~
-yum --enablerepo=remi install php70-php-phalcon
-~~~
-
-Windows 
-> 详情请见[https://phalconphp.com/en/download/windows](https://phalconphp.com/en/download/windows) 下载对应的dll。
-
-修改php.ini
-~~~
-extension=php_phalcon.dll
 ~~~
 
 ### 安装项目
@@ -108,13 +90,12 @@ task -> logic -> model -> db
 ## 消息队列
 编辑app/tasks/TestTask.php
 ~~~
-namespace App\Tasks\Swoole;
+namespace App\Tasks;
 
-use App\Tasks\System\QueueTask;
-use limx\tools\LRedis;
+use limx\phalcon\Redis;
 use limx\phalcon\Cli\Color;
 
-class TestTask extends QueueTask
+class TestTask extends \App\Tasks\System\QueueTask
 {
     // 最大进程数
     protected $maxProcesses = 10;
@@ -127,15 +108,46 @@ class TestTask extends QueueTask
 
     protected function redisClient()
     {
-        $config = [
-            'host' => '127.0.0.1',
-            'auth' => '',
-            'port' => '6379',
-        ];
-        return LRedis::getInstance($config);
+        return Redis::getInstance('127.0.0.1', '910123');
     }
 
+    protected function redisChildClient()
+    {
+        return Redis::getInstance('127.0.0.1', '910123', 0, 6379, uniqid());
+    }
+
+    /**
+     * @desc   子进程也能监听消息队列
+     *         3秒内没有消息自动回收
+     * @author limx
+     * @param $data
+     */
     protected function run($data)
+    {
+        $this->handle($data);
+        $redis = $this->redisChildClient();
+        while (true) {
+            // 无任务时,阻塞等待
+            $data = $redis->brpop($this->queueKey, 3);
+            if (!$data) {
+                break;
+            }
+            if ($data[0] != $this->queueKey) {
+                // 消息队列KEY值不匹配
+                continue;
+            }
+            if (isset($data[1])) {
+                $this->handle($data[1]);
+            }
+        }
+    }
+
+    /**
+     * @desc   消息队列处理逻辑
+     * @author limx
+     * @param $data
+     */
+    protected function handle($data)
     {
         echo Color::success($data);
     }
