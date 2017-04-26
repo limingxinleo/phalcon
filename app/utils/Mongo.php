@@ -9,6 +9,8 @@
 namespace App\Utils;
 
 use MongoDB\Driver\Query;
+use MongoDB\Driver\WriteConcern;
+use MongoDB\Driver\BulkWrite;
 
 class Mongo
 {
@@ -56,6 +58,24 @@ class Mongo
     // db.fruit.find( { $where: function() { return obj.banana == obj.peach; } } )
     const _WHERE = '$where';
 
+    const _SET = '$set';
+
+    const SORT_ASC = 1;
+    const SORT_DESC = -1;
+
+    // Update:
+    // If filter does not match an existing document, insert a single document.
+    // The document will be created from newObj if it is a replacement document (i.e. no update operators);
+    // otherwise, the operators in newObj will be applied to filter to create the new document.
+    const OPTION_UPSERT = 'upsert';
+    // Update only the first matching document (multi=false), or all matching documents (multi=true).
+    const OPTION_MULTI = 'multi';
+
+    const OPTION_COLLATION = 'collation';
+
+    // Delete all matching documents (FALSE), or only the first matching document (TRUE)
+    const OPTION_LIMIT = 'limit';
+
     protected static function manager()
     {
         return di('mongoManager');
@@ -71,6 +91,7 @@ class Mongo
      * @author limx
      * @param $filter
      * @param $options
+     * @return array(obj,obj)
      *
      *  $filter = ['id' => ['$gt' => 1]];
      *  $options = [
@@ -81,9 +102,85 @@ class Mongo
     public static function query($table, $filter, $options)
     {
         $db = static::config()->db;
+        $manager = static::manager();
+
         $namespace = sprintf("%s.%s", $db, $table);
         $query = new Query($filter, $options);
-        $cursor = static::manager()->executeQuery($namespace, $query);
+        $cursor = $manager->executeQuery($namespace, $query);
         return $cursor->toArray();
     }
+
+    /**
+     * @desc   插入数据
+     * @author limx
+     * @param       $document
+     * @param  bool $single
+     * @return \MongoDB\Driver\WriteResult;
+     */
+    public static function insert($table, $document, $single = true)
+    {
+        $db = static::config()->db;
+        $manager = static::manager();
+
+        $writeConcern = new WriteConcern(WriteConcern::MAJORITY, 1000);
+        $bulk = new BulkWrite();
+
+        if ($single) {
+            $bulk->insert($document);
+        } else {
+            foreach ($document as $doc) {
+                $bulk->insert($doc);
+            }
+        }
+        $namespace = sprintf("%s.%s", $db, $table);
+
+        return $manager->executeBulkWrite($namespace, $bulk, $writeConcern);
+    }
+
+    /**
+     * @desc
+     * @author limx
+     * @param       $table
+     * @param       $filter
+     * @param       $newObj
+     * @param array $updateOptions
+     * @return \MongoDB\Driver\WriteResult;
+     */
+    public static function update($table, $filter, $newObj, array $updateOptions = [])
+    {
+        $db = static::config()->db;
+        $manager = static::manager();
+
+        $writeConcern = new WriteConcern(WriteConcern::MAJORITY, 1000);
+        $bulk = new BulkWrite();
+
+        $bulk->update($filter, [static::_SET => $newObj], $updateOptions);
+        $namespace = sprintf("%s.%s", $db, $table);
+
+        return $manager->executeBulkWrite($namespace, $bulk, $writeConcern);
+    }
+
+    /**
+     * @desc
+     * @author limx
+     * @param       $table
+     * @param       $filter
+     * @param array $deleteOptions
+     * @return \MongoDB\Driver\WriteResult;
+     */
+    public static function delete($table, $filter, array $deleteOptions = [])
+    {
+        $db = static::config()->db;
+        $manager = static::manager();
+
+        $writeConcern = new WriteConcern(WriteConcern::MAJORITY, 1000);
+        $bulk = new BulkWrite();
+
+        $bulk->delete($filter, $deleteOptions);
+        $namespace = sprintf("%s.%s", $db, $table);
+
+        return $manager->executeBulkWrite($namespace, $bulk, $writeConcern);
+    }
+
+
 }
