@@ -100,7 +100,7 @@ class Mongo
      *      'sort' => ['id' => -1],
      *  ];
      */
-    public static function query($table, $filter, $options)
+    public static function query($table, $filter = [], $options = [])
     {
         $db = static::config()->db;
         $manager = static::manager();
