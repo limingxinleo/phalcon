@@ -8,8 +8,7 @@
 [Phalcon 官网](https://docs.phalconphp.com/zh/latest/index.html)
 
 ## 安装方法
-### 编译phalcon扩展
-
+### 编译phalcon安装扩展
 ~~~
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
@@ -17,6 +16,16 @@ sudo ./install
 
 vim etc/php.ini 
 extension=phalcon.so
+~~~
+
+### Linux下Yum安装扩展
+~~~
+yum --enablerepo=remi install php70-php-phalcon3
+~~~
+
+### Mac下Homebrew安装扩展
+~~~
+brew install php70-phalcon
 ~~~
 
 ### 安装项目
