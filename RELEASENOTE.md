@@ -7,6 +7,7 @@
 ### Added
 * 增加日志工具类
 * 增加mongo工具类
+* 增加Debug工具类
 
 ### Changed
  
