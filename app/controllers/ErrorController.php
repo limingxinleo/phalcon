@@ -43,14 +43,14 @@ class ErrorController extends \Phalcon\Mvc\Controller
 
     /**
      * @desc   json方式返回错误
+     *         用于dispatcher->forward()截断http请求
      * @author limx
-     * @param $status
-     * @param $msg
-     * @param $data
+     * @param int    $status
+     * @param string $msg
      * @return mixed
      */
-    public function jsonAction($status = 0, $msg = "", $data = [])
+    public function jsonAction($status = 0, $msg = "")
     {
-        return self::response($status, $data, $msg);
+        return self::response($status, [], $msg);
     }
 }
