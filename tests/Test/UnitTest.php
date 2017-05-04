@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
+use App\Logics\System;
 use \UnitTestCase;
 use limx\phalcon\Utils\Str;
 
@@ -95,5 +96,16 @@ class UnitTest extends UnitTestCase
         // 删除cookies
         // $cookies->delete($key);
         // $this->assertTrue(false === $cookies->has($key));
+    }
+
+    /**
+     * @desc   测试逻辑层结果 版本号获取
+     * @author limx
+     */
+    public function testVersionCase()
+    {
+        $version = (new System())->version();
+        $config = di('config');
+        $this->assertEquals($config->version, $version);
     }
 }
