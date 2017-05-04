@@ -21,7 +21,8 @@ try {
     $application = new Application($di);
     $application->useImplicitView(false);
 
-    echo $application->handle()->getContent();
+    $application->handle()->send();
+    // echo $application->handle()->getContent();
 } catch (\Exception $e) {
     $error = $e->getMessage();
     echo $error;
