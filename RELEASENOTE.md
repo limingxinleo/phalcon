@@ -9,6 +9,7 @@
 * 增加mongo工具类
 * 增加Debug工具类
 * 增加http接口访问的单元测试
+* 增加Task任务脚本配置
 
 ### Changed
 * 修改用于dispatcher转发 返回json错误的方法
