@@ -5,6 +5,16 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.8.0]
+### Checked
+- [x] php单元测试
+
+### Added
 * 增加日志工具类
 * 增加mongo工具类
 * 增加Debug工具类
@@ -14,8 +24,6 @@
 ### Changed
 * 修改用于dispatcher转发 返回json错误的方法
 * 修改入口文件
-
-### Fixed
 
 ## [1.7.8]
 ### Checked
