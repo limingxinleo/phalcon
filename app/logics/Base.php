@@ -49,9 +49,8 @@ class Base extends Injectable
     }
 
     /**
-     * 清除方法缓存
+     * 清除方法缓存【暂时不可用】
      * @param string $method
-     * @param        true /false
      */
     protected function clearMethodCache($method)
     {
@@ -61,7 +60,7 @@ class Base extends Injectable
     }
 
     /**
-     * 清除类缓存
+     * 清除类缓存【暂时不可用】
      */
     protected function clearClassCache()
     {
@@ -89,6 +88,9 @@ class Base extends Injectable
      */
     private function getCacheKey($method, $parameters)
     {
+        if ($this->config->cache->type == 'file') {
+            return md5(get_class($this)) . '-' . $method . '-' . sha1(json_encode($parameters));
+        }
         return get_class($this) . ':' . $method . ':' . sha1(json_encode($parameters));
     }
 }
