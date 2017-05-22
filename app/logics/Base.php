@@ -20,7 +20,7 @@ class Base extends Injectable
     public static function __callStatic($method, $parameters)
     {
         $object = (new static);
-        if (Str::ends_with($method, 'FromCache')) {
+        if (Str::endsWith($method, 'FromCache')) {
             $method = substr($method, 0, strlen($method) - 9);
             $cacheKey = $object->getCacheKey($method, $parameters);
             $lifetime = self::$lifeTime;
