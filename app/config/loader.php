@@ -15,17 +15,11 @@ $loader
     ->registerNamespaces(
         [
             'App\Controllers' => $config->application->controllersDir,
-
             'App\Listeners' => $config->application->listenersDir,
-
             'App\Logics' => $config->application->logicsDir,
-
             'App\Models' => $config->application->modelsDir,
-
             'App\Tasks' => $config->application->tasksDir,
-
             'App\Traits' => $config->application->traitsDir,
-
             'App\Utils' => $config->application->utilsDir,
         ]
     )->registerFiles(
