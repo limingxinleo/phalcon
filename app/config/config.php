@@ -26,7 +26,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '1.8.2',
+        'version' => '1.8.3',
 
         /*
         |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ return new Config(
         | Model Meta Environment
         |--------------------------------------------------------------------------
         |
-        | 
+        |
         |
         */
         'modelMeta' => [
