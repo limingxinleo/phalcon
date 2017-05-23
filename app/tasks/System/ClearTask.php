@@ -93,7 +93,6 @@ class ClearTask extends Task
         $driver = $this->config->modelMeta->driver;
         switch (strtolower($driver)) {
             case 'redis':
-                print_r($this->config->modelMeta);
                 Redis::select($this->config->modelMeta->index);
                 $keys = Redis::smembers($this->config->modelMeta->statsKey);
                 foreach ($keys as $key) {
