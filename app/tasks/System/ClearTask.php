@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Tasks\System;
 
+use App\Utils\Redis;
 use Phalcon\Cli\Task;
 use limx\phalcon\Cli\Color;
 
@@ -89,17 +90,32 @@ class ClearTask extends Task
      */
     public function metaAction($params = [])
     {
-        $dir = di('config')->application->metaDataDir;
-        if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
-            echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_LIGHT_GREEN) . PHP_EOL;
-            echo Color::colorize('  文件：' . $dir, Color::FG_LIGHT_GREEN) . PHP_EOL;
-            $arg = trim(fgets(STDIN));
-            if (strtolower($arg) !== 'yes') {
-                return;
-            }
+        $driver = $this->config->modelMeta->driver;
+        switch (strtolower($driver)) {
+            case 'redis':
+                print_r($this->config->modelMeta);
+                Redis::select($this->config->modelMeta->index);
+                $keys = Redis::smembers($this->config->modelMeta->statsKey);
+                foreach ($keys as $key) {
+                    Redis::del("_PHCR" . $key);
+                }
+                break;
+            case 'file':
+            default:
+                $dir = di('config')->application->metaDataDir;
+                if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
+                    echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_LIGHT_GREEN) . PHP_EOL;
+                    echo Color::colorize('  文件：' . $dir, Color::FG_LIGHT_GREEN) . PHP_EOL;
+                    $arg = trim(fgets(STDIN));
+                    if (strtolower($arg) !== 'yes') {
+                        return;
+                    }
+                }
+                // 删除缓存
+                $this->delete($dir);
+                break;
         }
-        // 删除缓存
-        $this->delete($dir);
+
         echo Color::success("The Cache was successfully deleted.");
     }
 
