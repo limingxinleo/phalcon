@@ -20,8 +20,10 @@ abstract class QueueTask extends Task
     protected $maxProcesses = 500;
     // 当前进程数
     protected $process = 0;
-    // 消息队列Redis键值
+    // 消息队列Redis键值 list lpush添加队列
     protected $queueKey = '';
+    // 延时消息队列的Redis键值 zset
+    protected $delayKey = '';
     // 子进程数到达最大值时的等待时间
     protected $waittime = 1;
 
@@ -41,6 +43,16 @@ abstract class QueueTask extends Task
         // 实例化Redis实例
         $redis = $this->redisClient();
         while (true) {
+            // 监听延时队列
+            if (!empty($this->delayKey)) {
+                $delay_data = $redis->zrangebyscore($this->delayKey, 0, time());
+                foreach ($delay_data as $data) {
+                    // 把可以执行的消息压入队列中
+                    $redis->lpush($this->queueKey, $data);
+                    $redis->zrem($this->delayKey, $data);
+                }
+            }
+            // 监听消息队列
             if ($this->process < $this->maxProcesses) {
                 // 无任务时,阻塞等待
                 $data = $redis->brpop($this->queueKey, 3);
