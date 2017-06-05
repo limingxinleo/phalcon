@@ -29,4 +29,34 @@ class Redis
         return $redis->select($db);
     }
 
+    public static function incrWithExpiretime($key, $expiretime = -1)
+    {
+        $script = <<<LUA
+    local result = 0;
+    result = redis.pcall('incr',KEYS[1]);
+    if(result)
+    then
+        redis.pcall('expire',KEYS[1],KEYS[2])
+    end
+    return result;
+LUA;
+        $redis = di('redis');
+        return $redis->evaluate($script, [$key, $expiretime], 2);
+    }
+
+    public static function incrByWithExpiretime($key, $number, $expiretime = -1)
+    {
+        $script = <<<LUA
+    local result = false;
+    result = redis.pcall('incrby',KEYS[1],KEYS[2]);
+    if(result)
+    then
+        redis.pcall('expire',KEYS[1],KEYS[3])
+    end
+    return result;
+LUA;
+        $redis = di('redis');
+        return $redis->evaluate($script, [$key, $number, $expiretime], 3);
+    }
+
 }
