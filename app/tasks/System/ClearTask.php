@@ -83,7 +83,6 @@ class ClearTask extends Task
     }
 
     /**
-     * [metaAction desc]
      * @desc   清理元数据缓存
      * @author limx
      * @param array $params
