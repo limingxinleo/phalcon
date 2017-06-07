@@ -63,8 +63,10 @@ class UnitTest extends UnitTestCase
             $data,
             $cache->get($key, $lifetime)
         );
+
         // 读取所有缓存key
-        $this->assertTrue(in_array($key, $cache->queryKeys()));
+        $this->assertTrue($cache->exists($key));
+
         // 删除缓存
         $cache->delete($key);
         // 是否存在缓存
