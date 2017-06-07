@@ -29,7 +29,7 @@ class Redis
         return $redis->select($db);
     }
 
-    public static function incr($key, $expiretime)
+    public static function incr($key, $expiretime = null)
     {
         $redis = di('redis');
         if (isset($expiretime)) {
@@ -39,7 +39,7 @@ class Redis
         return $redis->incr($key);
     }
 
-    public static function incrBy($key, $number, $expiretime)
+    public static function incrBy($key, $number, $expiretime = null)
     {
         $redis = di('redis');
         if (isset($expiretime)) {
