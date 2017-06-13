@@ -111,4 +111,14 @@ class UnitTest extends UnitTestCase
         $this->assertEquals($config->version, $version);
     }
 
+    public function testConfigCase()
+    {
+        $project = app('project-name');
+        $this->assertEquals('limx-phalcon-project', $project);
+
+        $project = di('app')->get('project-name');
+        $this->assertEquals('limx-phalcon-project', $project);
+
+    }
+
 }
