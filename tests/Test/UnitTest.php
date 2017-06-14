@@ -111,6 +111,10 @@ class UnitTest extends UnitTestCase
         $this->assertEquals($config->version, $version);
     }
 
+    /**
+     * @desc   测试配置读取
+     * @author limx
+     */
     public function testConfigCase()
     {
         $project = app('project-name');
