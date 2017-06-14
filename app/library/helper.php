@@ -8,8 +8,6 @@
 // +----------------------------------------------------------------------
 use limx\phalcon\Utils\Debug;
 use limx\phalcon\Http\Response;
-use limx\phalcon\Utils\Arr;
-
 
 if (!function_exists('dump')) {
     /**
@@ -66,8 +64,7 @@ if (!function_exists('app')) {
      */
     function app($id)
     {
-        $app = di('app');
-        return Arr::get($id, $app);
+        return di('app')->get($id);
     }
 }
 
