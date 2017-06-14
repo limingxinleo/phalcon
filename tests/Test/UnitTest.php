@@ -119,6 +119,9 @@ class UnitTest extends UnitTestCase
         $project = di('app')->get('project-name');
         $this->assertEquals('limx-phalcon-project', $project);
 
+        $err = app('error-code.500');
+        $this->assertEquals('服务器错误！', $err);
+
     }
 
 }
