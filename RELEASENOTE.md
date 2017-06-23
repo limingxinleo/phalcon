@@ -5,6 +5,16 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.8.7]
+### Checked
+- [x] php单元测试
+
+### Added
 * 新增逻辑基础类
 * 增加模型元数据redis适配器
 * 增加延时消息队列功能
