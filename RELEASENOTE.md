@@ -27,8 +27,6 @@
 * 修改app()方法
 * 修改Controller、Model、Task基类为抽象类
 
-### Fixed
-
 ## [1.8.0]
 ### Checked
 - [x] php单元测试
