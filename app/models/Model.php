@@ -24,4 +24,19 @@ abstract class Model extends \Phalcon\Mvc\Model
         // TODO: Implement __callStatic() method.
     }
 
+    public function beforeCreate()
+    {
+        // 数据创建之前
+    }
+
+    public function beforeUpdate()
+    {
+        // 数据更新之前
+    }
+
+    public function afterSave()
+    {
+        // 数据修改之后
+    }
+
 }
