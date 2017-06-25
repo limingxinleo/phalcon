@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-if ($config->mongo->utils) {
+if ($config->mongo->isUtils) {
     $di->setShared('mongoManager', function () use ($config) {
         $host = $config->mongo->host;
         $port = $config->mongo->port;
