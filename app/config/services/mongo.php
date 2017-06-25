@@ -22,3 +22,7 @@ if ($config->mongo->isUtils) {
         return new MongoDB\Driver\Manager($uri, $options);
     });
 }
+
+if ($config->mongo->isCollection) {
+
+}

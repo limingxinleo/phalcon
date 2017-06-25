@@ -114,6 +114,8 @@ return new Config(
             'collection' => env('MONGODB_COLLECTION', null),
             // 是否开启Mongo辅助类
             'isUtils' => env('MONGODB_IS_UTILS', false),
+            // 是否开启Mongo Collection集合类
+            'isCollection' => env('MONGODB_IS_COLLECTION', false),
         ],
 
         /*
