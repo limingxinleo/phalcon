@@ -6,6 +6,9 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
+use Phalcon\Mvc\Collection\Manager;
+use Phalcon\Db\Adapter\MongoDB\Client;
+
 if ($config->mongo->isUtils) {
     $di->setShared('mongoManager', function () use ($config) {
         $host = $config->mongo->host;
@@ -24,5 +27,27 @@ if ($config->mongo->isUtils) {
 }
 
 if ($config->mongo->isCollection) {
+    // Initialise the mongo DB connection.
+    $di->setShared('mongo', function () use ($config) {
 
+        if (!$config->mongo->username || !$config->mongo->password) {
+            $dsn = 'mongodb://' . $config->mongo->host;
+        } else {
+            $dsn = sprintf(
+                'mongodb://%s:%s@%s',
+                $config->mongo->username,
+                $config->mongo->password,
+                $config->mongo->host
+            );
+        }
+
+        $mongo = new Client($dsn);
+
+        return $mongo->selectDatabase($config->mongo->db);
+    });
+
+    // Collection Manager is required for MongoDB
+    $di->setShared('collectionManager', function () {
+        return new Manager();
+    });
 }

@@ -254,7 +254,7 @@ return new Config(
                 'cookies.php',
                 'crypt.php',
                 // 'redis.php',
-                // 'mongo.php',
+                'mongo.php',
             ],
             'cli' => [
                 'cache.php',
