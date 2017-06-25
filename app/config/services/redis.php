@@ -8,10 +8,12 @@
 // +----------------------------------------------------------------------
 use limx\phalcon\Redis;
 
-$di->setShared('redis', function () use ($config) {
-    $host = $config->redis->host;
-    $port = $config->redis->port;
-    $auth = $config->redis->auth;
-    $db = $config->redis->index;
-    return Redis::getInstance($host, $auth, $db, $port);
-});
+if ($config->redis->isUtils) {
+    $di->setShared('redis', function () use ($config) {
+        $host = $config->redis->host;
+        $port = $config->redis->port;
+        $auth = $config->redis->auth;
+        $db = $config->redis->index;
+        return Redis::getInstance($host, $auth, $db, $port);
+    });
+}
