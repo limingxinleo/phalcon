@@ -196,3 +196,4 @@ crontab -e
 * 当增加新路由规则时需要修改app/config/web/routes.php文件
 * 当增加新的命名空间时需要修改app/config/loader.php自动加载文件
 * app下的一级目录为小写，需要注册命名空间。二级目录为首字母大写，不需要注册命名空间。但命名空间必须与其对应。
+* 因为phalcon扩展框架暂不支持mongoDB扩展，所以如果想使用mongoCollection，需要require phalcon/incubator。

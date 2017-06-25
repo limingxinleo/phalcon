@@ -5,6 +5,9 @@
 - [ ] php单元测试
 
 ### Added
+* 增加是否使用Mongo集合KEY键
+* 增加是否使用Redis辅助类KEY键
+* 增加Mongo集合支持 需要 phalcon/incubator
 
 ### Changed
 
