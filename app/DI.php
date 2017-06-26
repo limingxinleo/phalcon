@@ -26,9 +26,6 @@ class DI
         $this->config = $config;
 
         $this->register();
-
-        print_r($this->di->getShared('dispatcher'));
-        exit;
     }
 
     protected function register()
