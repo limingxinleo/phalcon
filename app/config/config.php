@@ -137,7 +137,7 @@ return new Config(
             'listenersDir' => APP_PATH . '/listeners/',
             'logicsDir' => APP_PATH . '/logics/',
             'modelsDir' => APP_PATH . '/models/',
-            'servicesDir' => APP_PATH . '/config/services/',
+            'servicesDir' => APP_PATH . '/services/',
             'tasksDir' => APP_PATH . '/tasks/',
             'traitsDir' => APP_PATH . '/traits/',
             'utilsDir' => APP_PATH . '/utils/',

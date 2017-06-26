@@ -19,12 +19,7 @@ include APP_PATH . "/config/loader.php";
 /** 设置时区 */
 ini_set('date.timezone', $config->timezone);
 
-/** @var phalcon 容器  $di */
-// $di = new FactoryDefault();
-
-/** Read services */
-// include APP_PATH . "/config/services.php";
 
 $di = (new DI($config))->getDI();
-// include APP_PATH . "/config/web/services.php";
+
 return $di;

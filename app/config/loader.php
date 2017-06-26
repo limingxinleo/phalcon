@@ -15,7 +15,7 @@ $loader
     ->registerNamespaces(
         [
             'App' => APP_PATH,
-            'App\Services' => APP_PATH . '/services/',
+            'App\Services' => $config->application->servicesDir,
             'App\Controllers' => $config->application->controllersDir,
             'App\Library' => $config->application->libraryDir,
             'App\Listeners' => $config->application->listenersDir,
