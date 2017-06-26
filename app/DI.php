@@ -26,11 +26,36 @@ class DI
         $this->config = $config;
 
         $this->register();
+
+        print_r($this->di->getShared('dispatcher'));
+        exit;
     }
 
     protected function register()
     {
-        foreach ($this->config->services as $service) {
+        foreach ($this->config->services->common as $service) {
+            $service = new $service;
+            $service->register($this->di, $this->config);
+        }
+
+        if (IS_CLI) {
+            $this->registerCliServices();
+        } else {
+            $this->registerHttpServices();
+        }
+    }
+
+    protected function registerCliServices()
+    {
+        foreach ($this->config->services->cli as $service) {
+            $service = new $service;
+            $service->register($this->di, $this->config);
+        }
+    }
+
+    protected function registerHttpServices()
+    {
+        foreach ($this->config->services->http as $service) {
             $service = new $service;
             $service->register($this->di, $this->config);
         }

@@ -15,6 +15,7 @@ error_reporting(E_ALL);
 define('ROOT_PATH', realpath(__DIR__ . '/..'));
 define('TESTS_PATH', ROOT_PATH . '/tests');
 defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/app');
+define('IS_CLI', false);
 
 set_include_path(
     TESTS_PATH . PATH_SEPARATOR . get_include_path()

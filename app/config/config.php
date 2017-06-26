@@ -249,18 +249,30 @@ return new Config(
         |
         */
         'services' => [
-            'config' => App\Services\Config::class, // 系统配置
-            'app' => App\Services\App::class, // 自定义配置
-            'db' => App\Services\Db::class,
-            'modelsMetadata' => App\Services\ModelsMetadata::class,
-            'filter' => App\Services\Filter::class,
-            'cache' => App\Services\Cache::class,
-            'error' => App\Services\Error::class,
-            'crypt' => App\Services\Crypt::class,
-            'redis' => App\Services\Redis::class,
-            'mongo' => App\Services\Mongo::class,
-            'cookies' => App\Services\Cookies::class,
-            'session' => App\Services\Session::class,
+            'common' => [
+                'config' => App\Services\Config::class, // 系统配置
+                'app' => App\Services\App::class, // 自定义配置
+                'db' => App\Services\Db::class,
+                'modelsMetadata' => App\Services\ModelsMetadata::class,
+                'filter' => App\Services\Filter::class,
+                'cache' => App\Services\Cache::class,
+                'error' => App\Services\Error::class,
+                'crypt' => App\Services\Crypt::class,
+                'redis' => App\Services\Redis::class,
+                'mongo' => App\Services\Mongo::class,
+                'cookies' => App\Services\Cookies::class,
+                'session' => App\Services\Session::class,
+            ],
+            'cli' => [
+                'dispatcher' => App\Services\Cli\Dispatcher::class,
+                'console' => App\Services\Cli\Console::class,
+            ],
+            'http' => [
+                'router' => App\Services\Http\Router::class,
+                'url' => App\Services\Http\Url::class,
+                'view' => App\Services\Http\View::class,
+                'dispatcher' => App\Services\Http\Dispatcher::class,
+            ],
         ],
 
     ]

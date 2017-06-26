@@ -26,5 +26,5 @@ ini_set('date.timezone', $config->timezone);
 // include APP_PATH . "/config/services.php";
 
 $di = (new DI($config))->getDI();
-include APP_PATH . "/config/web/services.php";
+// include APP_PATH . "/config/web/services.php";
 return $di;
