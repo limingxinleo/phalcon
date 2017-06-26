@@ -77,6 +77,8 @@ class Mongo
     // Delete all matching documents (FALSE), or only the first matching document (TRUE)
     const OPTION_LIMIT = 'limit';
 
+    const OPTION_SORT = 'sort';
+
     protected static function manager()
     {
         return di('mongoManager');
@@ -98,6 +100,7 @@ class Mongo
      *  $options = [
      *      'projection' => ['_id' => 0],
      *      'sort' => ['id' => -1],
+     *      'limit' => 1,
      *  ];
      */
     public static function query($table, $filter = [], $options = [])
@@ -146,6 +149,13 @@ class Mongo
      * @param       $newObj
      * @param array $updateOptions
      * @return \MongoDB\Driver\WriteResult;
+     *
+     *  $document = ['name' => uniqid()];
+     *  $filter = ['id' => 999];
+     *  $options = [
+     *      'upsert' => true,
+     *      'multi' => true,
+     *  ];
      */
     public static function update($table, $filter, $newObj, array $updateOptions = [])
     {
