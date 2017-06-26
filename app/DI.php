@@ -9,6 +9,7 @@
 namespace App;
 
 use Phalcon\DI\FactoryDefault;
+use Phalcon\DI\FactoryDefault\Cli;
 use Phalcon\Config;
 
 /**
@@ -22,7 +23,7 @@ class DI
 
     public function __construct(Config $config)
     {
-        $this->di = new FactoryDefault();
+        $this->di = IS_CLI ? new Cli() : new FactoryDefault();
         $this->config = $config;
 
         $this->register();

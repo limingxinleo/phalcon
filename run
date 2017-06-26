@@ -3,6 +3,7 @@
 
 use Phalcon\Cli\Console as ConsoleApp;
 use Phalcon\Di\FactoryDefault\Cli as CliDi;
+use App\DI;
 
 define('ROOT_PATH', __DIR__);
 define('APP_PATH', ROOT_PATH . '/app');
@@ -12,7 +13,7 @@ define('IS_CLI', true);
  * The FactoryDefault Dependency Injector automatically registers the services that
  * provide a full stack framework. These default services can be overidden with custom ones.
  */
-$di = new CliDi();
+// $di = new CliDi();
 
 /**
  * Read vendor autoload
@@ -26,24 +27,28 @@ if (file_exists(ROOT_PATH . "/vendor/autoload.php")) {
  */
 $config = include APP_PATH . "/config/config.php";
 
-/** 设置时区 */
-ini_set('date.timezone', $config->timezone);
-
 /**
  * Include Autoloader
  */
 include APP_PATH . '/config/loader.php';
 
+/** 设置时区 */
+ini_set('date.timezone', $config->timezone);
+
 /**
  * Create a console application
  */
+$di = (new DI($config))->getDI();
+
 $console = new ConsoleApp($di);
+
+$di->setShared("console", $console);
 
 /**
  * Include Services
  */
-include APP_PATH . '/config/services.php';
-include APP_PATH . '/config/cli/services.php';
+// include APP_PATH . '/config/services.php';
+// include APP_PATH . '/config/cli/services.php';
 
 /**
  * Process the console arguments
