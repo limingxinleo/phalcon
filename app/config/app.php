@@ -6,9 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-use Phalcon\Config;
-
-return new Config([
+return [
     'project-name' => 'limx-phalcon-project',
     // 定时执行的脚本
     'cron-tasks' => [
@@ -17,4 +15,4 @@ return new Config([
     'error-code' => [
         500 => '服务器错误！',
     ],
-]);
+];

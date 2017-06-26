@@ -14,6 +14,8 @@ $loader = new \Phalcon\Loader();
 $loader
     ->registerNamespaces(
         [
+            'App' => APP_PATH,
+            'App\Services' => APP_PATH . '/services/',
             'App\Controllers' => $config->application->controllersDir,
             'App\Library' => $config->application->libraryDir,
             'App\Listeners' => $config->application->listenersDir,

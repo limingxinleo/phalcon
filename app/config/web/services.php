@@ -77,13 +77,4 @@ $di->setShared('dispatcher', function () {
     return $dispatcher;
 });
 
-/**
- * Read other services
- */
-foreach ($config->services->mvc as $service) {
-    if (file_exists($config->application->servicesDir . $service)) {
-        include $config->application->servicesDir . $service;
-    }
-}
-
 

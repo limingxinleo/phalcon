@@ -1,0 +1,43 @@
+<?php
+// +----------------------------------------------------------------------
+// | Application.php [ WE CAN DO IT JUST THINK IT ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2016-2017 limingxinleo All rights reserved.
+// +----------------------------------------------------------------------
+// | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
+// +----------------------------------------------------------------------
+namespace App;
+
+use Phalcon\DI\FactoryDefault;
+use Phalcon\Config;
+
+/**
+ * Class DI
+ * @package App
+ */
+class DI
+{
+    protected $di;
+    protected $config;
+
+    public function __construct(Config $config)
+    {
+        $this->di = new FactoryDefault();
+        $this->config = $config;
+
+        $this->register();
+    }
+
+    protected function register()
+    {
+        foreach ($this->config->services as $service) {
+            $service = new $service;
+            $service->register($this->di, $this->config);
+        }
+    }
+
+    public function getDI()
+    {
+        return $this->di;
+    }
+}
