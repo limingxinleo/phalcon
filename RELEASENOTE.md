@@ -9,6 +9,7 @@
 ### Changed
 
 ### Fixed
+* 修改调度器不生效的BUG
 
 ## [1.9.0]
 ### Checked
