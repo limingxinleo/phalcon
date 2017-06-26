@@ -19,20 +19,22 @@ class Dispatcher implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
-        // 监听调度 dispatcher
-        $eventsManager = new EventsManager();
-        $dispatchListener = new DispatchListener();
-        $eventsManager->attach(
-            'dispatch',
-            $dispatchListener
-        );
+        $di->setShared('dispatcher', function () use ($config) {
+            // 监听调度 dispatcher
+            $eventsManager = new EventsManager();
+            $dispatchListener = new DispatchListener();
+            $eventsManager->attach(
+                'dispatch',
+                $dispatchListener
+            );
 
-        $dispatcher = new \Phalcon\Mvc\Dispatcher();
-        $dispatcher->setDefaultNamespace('App\Controllers');
-        // 分配事件管理器到分发器
-        $dispatcher->setEventsManager($eventsManager);
+            $dispatcher = new \Phalcon\Mvc\Dispatcher();
+            $dispatcher->setDefaultNamespace('App\Controllers');
+            // 分配事件管理器到分发器
+            $dispatcher->setEventsManager($eventsManager);
 
-        return $dispatcher;
+            return $dispatcher;
+        });
     }
 
 }
