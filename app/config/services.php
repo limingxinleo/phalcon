@@ -11,6 +11,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\Model\Metadata\Files as MetadataFiles;
 use Phalcon\Mvc\Model\MetaData\Redis as MetadataRedis;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Filter;
 use App\Listeners\System\DbListener;
 
 /**
@@ -89,4 +90,11 @@ $di->setShared('app', function () {
         return require $app;
     }
     return [];
+});
+
+/**
+ * Phalcon\Filter
+ */
+$di->setShared('filter', function () {
+    return new Filter();
 });
