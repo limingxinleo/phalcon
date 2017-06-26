@@ -5,13 +5,22 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.9.0]
+### Checked
+- [x] php单元测试
+
+### Added
 * 增加是否使用Mongo集合KEY键
 * 增加是否使用Redis辅助类KEY键
 * 增加Mongo集合支持 需要 phalcon/incubator
 
 ### Changed
-
-### Fixed
+* 修改依赖注入方式
 
 ## [1.8.7]
 ### Checked
