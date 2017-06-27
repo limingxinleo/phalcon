@@ -128,6 +128,7 @@ class TestTask extends \App\Tasks\System\QueueTask
     /**
      * @desc   子进程也能监听消息队列
      *         3秒内没有消息自动回收
+     *         抽象类中已实现此方法
      * @author limx
      * @param $data
      */
