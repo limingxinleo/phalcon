@@ -52,13 +52,14 @@ php run
 www  WEB部署目录（或者子目录）
 ├─app                   项目文件
 │ ├─config              配置文件
-│ │ ├─cli               cli服务配置目录
-│ │ ├─web               web路由与服务配置目录
-│ │ ├─services          自定义服务目录
-│ │ └─loader.php        自动加载文件
+│ │ ├─config.ini        phalcon-devtools用的配置文件
+│ │ ├─config.php        系统配置文件
+│ │ ├─loader.php        自动加载文件
+│ │ └─routes.php        路由文件
 │ ├─controllers         控制器目录
 │ ├─library             第三方库目录
 │ ├─listeners           监听事件目录
+│ ├─logics              逻辑层目录
 │ ├─models              模型目录
 │ ├─tasks               任务目录
 │ ├─traits              Trait目录
