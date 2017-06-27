@@ -101,7 +101,7 @@ return new Config(
         | MongoDB Environment
         |--------------------------------------------------------------------------
         |
-        | This value determines the "environment" your redis.
+        | This value determines the "environment" your mongo.
         |
         */
         'mongo' => [
@@ -194,7 +194,6 @@ return new Config(
         |--------------------------------------------------------------------------
         |
         | The default setting is file.
-        | If you want to use redis ,you must set type=redis,
         |
          */
         'cache' => [
@@ -208,7 +207,6 @@ return new Config(
         |--------------------------------------------------------------------------
         |
         | The default setting is file.
-        | If you want to use redis ,you must set type=redis,
         |
         */
         'session' => [
@@ -244,8 +242,7 @@ return new Config(
         | Services
         |--------------------------------------------------------------------------
         |
-        | The default setting is file.
-        | If you want to use redis ,you must set type=redis,
+        | 依赖注入服务
         |
         */
         'services' => [
