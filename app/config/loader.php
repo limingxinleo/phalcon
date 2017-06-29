@@ -15,12 +15,12 @@ $loader
     ->registerNamespaces(
         [
             'App' => APP_PATH,
-            'App\Services' => $config->application->servicesDir,
             'App\Controllers' => $config->application->controllersDir,
             'App\Library' => $config->application->libraryDir,
             'App\Listeners' => $config->application->listenersDir,
             'App\Logics' => $config->application->logicsDir,
             'App\Models' => $config->application->modelsDir,
+            'App\Services' => $config->application->servicesDir,
             'App\Tasks' => $config->application->tasksDir,
             'App\Traits' => $config->application->traitsDir,
             'App\Utils' => $config->application->utilsDir,
