@@ -5,6 +5,7 @@
 - [ ] php单元测试
 
 ### Added
+* 扩展DB工具类
 
 ### Changed
 
