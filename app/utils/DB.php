@@ -92,4 +92,10 @@ class DB
     {
         return LDB::commit();
     }
+
+    public static function __callStatic($name, $arguments)
+    {
+        $db = di('db');
+        return $db->$name(...$arguments);
+    }
 }
