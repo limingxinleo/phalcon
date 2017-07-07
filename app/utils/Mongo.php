@@ -8,12 +8,13 @@
 // +----------------------------------------------------------------------
 namespace App\Utils;
 
+use App\Utils\Contract\MongoInteface;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Driver\Query;
 use MongoDB\Driver\WriteConcern;
 use MongoDB\Driver\BulkWrite;
 
-class Mongo
+class Mongo implements MongoInteface
 {
     // 大于
     const _GT = '$gt';

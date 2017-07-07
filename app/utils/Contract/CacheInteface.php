@@ -6,11 +6,9 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Utils;
+namespace App\Utils\Contract;
 
-use App\Utils\Contract\CacheInteface;
-
-class Cache implements CacheInteface
+interface CacheInteface
 {
     /**
      * @desc   Returns a cached content
@@ -19,11 +17,7 @@ class Cache implements CacheInteface
      * @param int    $lifetime
      * @return mixed|null
      */
-    public static function get($keyName, $lifetime = null)
-    {
-        $cache = di('cache');
-        return $cache->get($keyName, $lifetime);
-    }
+    public static function get($keyName, $lifetime = null);
 
     /**
      * @desc   Stores cached content into the file backend and stops the frontend
@@ -34,11 +28,7 @@ class Cache implements CacheInteface
      * @param boolean    $stopBuffer
      * @return bool
      */
-    public static function save($keyName = null, $content = null, $lifetime = null, $stopBuffer = true)
-    {
-        $cache = di('cache');
-        return $cache->save($keyName, $content, $lifetime, $stopBuffer);
-    }
+    public static function save($keyName = null, $content = null, $lifetime = null, $stopBuffer = true);
 
     /**
      * @desc   Deletes a value from the cache by its key
@@ -46,11 +36,7 @@ class Cache implements CacheInteface
      * @param int|string $keyName
      * @return bool
      */
-    public static function delete($keyName)
-    {
-        $cache = di('cache');
-        return $cache->delete($keyName);
-    }
+    public static function delete($keyName);
 
     /**
      * @desc   Query the existing cached keys.
@@ -58,11 +44,7 @@ class Cache implements CacheInteface
      * @param string $prefix
      * @return array
      */
-    public static function queryKeys($prefix = null)
-    {
-        $cache = di('cache');
-        return $cache->queryKeys($prefix);
-    }
+    public static function queryKeys($prefix = null);
 
     /**
      * @desc   Checks if cache exists and it isn't expired
@@ -71,11 +53,7 @@ class Cache implements CacheInteface
      * @param int        $lifetime
      * @return bool
      */
-    public static function exists($keyName = null, $lifetime = null)
-    {
-        $cache = di('cache');
-        return $cache->exists($keyName, $lifetime);
-    }
+    public static function exists($keyName = null, $lifetime = null);
 
     /**
      * Increment of given $keyName by $value
@@ -84,11 +62,7 @@ class Cache implements CacheInteface
      * @param int    $value
      * @return int
      */
-    public static function increment($keyName = null, $value = 1)
-    {
-        $cache = di('cache');
-        return $cache->increment($keyName, $value);
-    }
+    public static function increment($keyName = null, $value = 1);
 
     /**
      * Decrement of $keyName by given $value
@@ -97,27 +71,14 @@ class Cache implements CacheInteface
      * @param int    $value
      * @return int
      */
-    public function decrement($keyName = null, $value = 1)
-    {
-        $cache = di('cache');
-        return $cache->decrement($keyName, $value);
-    }
+    public function decrement($keyName = null, $value = 1);
 
     /**
      * Immediately invalidates all existing items.
      *
      * @return bool
      */
-    public function flush()
-    {
-        $cache = di('cache');
-        return $cache->flush();
-    }
+    public function flush();
 
 
-    public static function __callStatic($name, $arguments)
-    {
-        $cache = di('cache');
-        return call_user_func_array([$cache, $name], $arguments);
-    }
 }
