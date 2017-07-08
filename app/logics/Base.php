@@ -9,8 +9,8 @@
 namespace App\Logics;
 
 use App\Utils\Cache;
-use limx\phalcon\Utils\Str;
 use Phalcon\Di\Injectable;
+use Phalcon\Text;
 
 class Base extends Injectable
 {
@@ -20,11 +20,11 @@ class Base extends Injectable
     public static function __callStatic($method, $parameters)
     {
         $object = (new static);
-        if (Str::endsWith($method, 'FromCache')) {
+        if (Text::endsWith($method, 'FromCache')) {
             $method = substr($method, 0, strlen($method) - 9);
             $cacheKey = $object->getCacheKey($method, $parameters);
-            $lifetime = self::$lifeTime;
-            if (Cache::exists($cacheKey)) {
+            $lifetime = static::$lifeTime;
+            if (Cache::exists($cacheKey, $lifetime)) {
                 return Cache::get($cacheKey, $lifetime);
             }
             $result = $object->$method(...$parameters);
