@@ -17,7 +17,12 @@ class Router implements ServiceProviderInterface
     public function register(FactoryDefault $di, Config $config)
     {
         $di->setShared('router', function () use ($config) {
-            return require $config->application->configDir . '/routes.php';
+            $router = new \Phalcon\Mvc\Router(false);
+            $dir = $config->application->configDir . 'routes';
+            foreach (glob($dir . '/*.php') as $item) {
+                include_once $item;
+            }
+            return $router;
         });
     }
 
