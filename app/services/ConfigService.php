@@ -9,10 +9,11 @@
 namespace App\Services;
 
 use Phalcon\DI\FactoryDefault;
+use Phalcon\Config;
 
-class Config implements ServiceProviderInterface
+class ConfigService implements ServiceProviderInterface
 {
-    public function register(FactoryDefault $di, \Phalcon\Config $config)
+    public function register(FactoryDefault $di, Config $config)
     {
         /**
          * Shared configuration service

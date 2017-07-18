@@ -14,6 +14,7 @@
 
 ### Fixed
 * 修改调度器不生效的BUG
+* Fix 服务容器不兼容php56的BUG
 
 ## [1.9.0]
 ### Checked

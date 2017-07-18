@@ -247,7 +247,7 @@ return new Config(
         */
         'services' => [
             'common' => [
-                'config' => App\Services\Config::class, // 系统配置
+                'config' => App\Services\ConfigService::class, // 系统配置
                 'app' => App\Services\App::class, // 自定义配置
                 'db' => App\Services\Db::class,
                 'modelsMetadata' => App\Services\ModelsMetadata::class,
