@@ -38,4 +38,36 @@ class ModelTest extends UnitTestCase
         $this->assertTrue(isset($last_user->created_at));
 
     }
+
+    public function testModelsManagerCase()
+    {
+        $di = di();
+        $this->assertTrue(
+            $di->has('modelsManager'),
+            'No ModelsManager Service'
+        );
+    }
+
+    public function testBuilderCase()
+    {
+        $manager = di('modelsManager');
+        $user = User::class;
+
+        $query = $manager->createQuery("SELECT * FROM {$user} ORDER BY id DESC LIMIT 1");
+        $users = $query->execute();
+        $this->assertTrue($users[0]->id > 0);
+
+        $users = $manager->createBuilder()
+            ->from($user)
+            ->where('id=1')
+            ->getQuery()
+            ->execute();
+
+        $this->assertTrue($users[0]->id > 0);
+        $this->assertTrue(count($users) === 1);
+
+        // $res = $manager->createBuilder()
+        //     ->from($user)
+        //     ->where('id', 1)
+    }
 }

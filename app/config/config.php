@@ -259,6 +259,7 @@ return new Config(
                 'mongo' => App\Services\Mongo::class,
                 'cookies' => App\Services\Cookies::class,
                 'session' => App\Services\Session::class,
+                'modelsManager' => App\Services\ModelsManager::class,
             ],
             'cli' => [
                 'dispatcher' => App\Services\Cli\Dispatcher::class,

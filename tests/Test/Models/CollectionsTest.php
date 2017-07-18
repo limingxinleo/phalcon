@@ -29,9 +29,6 @@ class CollectionsTest extends UnitTestCase
             ]);
 
             $this->assertTrue(count($users) > 0);
-            // foreach ($users as $user) {
-            //     print_r($user->toArray());
-            // }
         }
 
     }
