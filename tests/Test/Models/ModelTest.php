@@ -70,4 +70,25 @@ class ModelTest extends UnitTestCase
         //     ->from($user)
         //     ->where('id', 1)
     }
+
+    public function testUpdateOnlyCase()
+    {
+        $last_user = User::findFirst([
+            'order' => 'id DESC',
+        ]);
+        $name = $last_user->name;
+
+        $username = uniqid();
+        $last_user->name = uniqid(); // 不生效
+
+        $res = $last_user->updateOnly(['username' => $username]);
+        $this->assertTrue($res);
+
+        $user = User::findFirst([
+            'order' => 'id DESC',
+        ]);
+        $this->assertEquals($user->username, $username);
+        $this->assertEquals($user->name, $name);
+
+    }
 }
