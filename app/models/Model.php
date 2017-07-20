@@ -19,6 +19,21 @@ abstract class Model extends \Phalcon\Mvc\Model
 
     }
 
+    /**
+     * @desc   只修改某些字段的更新方法
+     * @author limx
+     * @param      $data
+     * @param null $whiteList
+     * @return bool
+     */
+    public function updateOnly($data, $whiteList = null)
+    {
+        $attributes = $this->getModelsMetaData()->getAttributes($this);
+        $this->skipAttributesOnUpdate(array_diff($attributes, array_keys($data)));
+
+        return parent::update($data, $whiteList);
+    }
+
     public static function __callStatic($name, $arguments)
     {
         // TODO: Implement __callStatic() method.
