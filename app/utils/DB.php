@@ -13,8 +13,13 @@ namespace App\Utils;
 use App\Utils\Contract\DBInteface;
 use limx\phalcon\DB as LDB;
 
-class DB implements DBInteface
+class DB extends LDB implements DBInteface
 {
+    /**
+     * @var string 定义DB服务名
+     */
+    protected static $dbServiceName = 'db';
+
     /**
      * @desc   查询结果集合
      * @author limx
@@ -24,7 +29,7 @@ class DB implements DBInteface
      */
     public static function query($sql, $params = [])
     {
-        return LDB::query($sql, $params);
+        return parent::query($sql, $params);
     }
 
     /**
@@ -36,7 +41,7 @@ class DB implements DBInteface
      */
     public static function fetch($sql, $params = [])
     {
-        return LDB::fetch($sql, $params);
+        return parent::fetch($sql, $params);
     }
 
     /**
@@ -49,7 +54,7 @@ class DB implements DBInteface
      */
     public static function execute($sql, $params = [], $withRowCount = false)
     {
-        return LDB::execute($sql, $params, $withRowCount);
+        return parent::execute($sql, $params, $withRowCount);
     }
 
     /**
@@ -61,7 +66,7 @@ class DB implements DBInteface
      */
     public static function execWithRowCount($sql, $params = [])
     {
-        return LDB::execWithRowCount($sql, $params);
+        return parent::execWithRowCount($sql, $params);
     }
 
     /**
@@ -71,7 +76,7 @@ class DB implements DBInteface
      */
     public static function begin()
     {
-        return LDB::begin();
+        return parent::begin();
     }
 
     /**
@@ -81,7 +86,7 @@ class DB implements DBInteface
      */
     public static function rollback()
     {
-        return LDB::rollback();
+        return parent::rollback();
     }
 
     /**
@@ -91,7 +96,7 @@ class DB implements DBInteface
      */
     public static function commit()
     {
-        return LDB::commit();
+        return parent::commit();
     }
 
     public static function __callStatic($name, $arguments)

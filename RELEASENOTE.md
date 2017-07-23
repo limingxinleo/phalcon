@@ -12,6 +12,7 @@
 
 ### Changed
 * 重写逻辑层FromCache模块 并增加相应单元测试
+* 修改DB工具类继承LDB
 
 ### Fixed
 * 修改调度器不生效的BUG
