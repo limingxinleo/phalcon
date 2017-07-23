@@ -101,7 +101,7 @@ class DB extends LDB implements DBInteface
 
     public static function __callStatic($name, $arguments)
     {
-        $db = di('db');
+        $db = di(static::$dbServiceName);
         return $db->$name(...$arguments);
     }
 }
