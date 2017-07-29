@@ -26,6 +26,8 @@ abstract class QueueTask extends Task
     protected $delayKey = '';
     // 子进程数到达最大值时的等待时间
     protected $waittime = 1;
+    // 子进程最大循环处理次数
+    protected $processHandleMaxNumber = null;
 
     public function mainAction()
     {
@@ -141,7 +143,12 @@ abstract class QueueTask extends Task
     {
         $this->handle($recv);
         $redis = $this->redisChildClient();
+        $number = 0;
         while (true) {
+            if ($this->processHandleMaxNumber < (++$number)) {
+                // 当子进程处理次数高于一个临界值后，释放进程
+                break;
+            }
             // 无任务时,阻塞等待
             $data = $redis->brpop($this->queueKey, 3);
             if (!$data) {
