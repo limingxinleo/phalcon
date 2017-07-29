@@ -34,9 +34,9 @@ abstract class Model extends \Phalcon\Mvc\Model
         return parent::update($data, $whiteList);
     }
 
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($method, $arguments)
     {
-        // TODO: Implement __callStatic() method.
+        parent::__callStatic($method, $arguments);
     }
 
     public function beforeCreate()

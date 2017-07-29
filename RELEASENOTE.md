@@ -10,6 +10,7 @@
 ### Changed
 
 ### Fixed
+* Fix 模型基类 找不到静态方法时不报错的BUG
 
 ## [1.9.8]
 ### Checked
