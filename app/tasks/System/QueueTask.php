@@ -145,7 +145,7 @@ abstract class QueueTask extends Task
         $redis = $this->redisChildClient();
         $number = 0;
         while (true) {
-            if ($this->processHandleMaxNumber < (++$number)) {
+            if (isset($this->processHandleMaxNumber) && $this->processHandleMaxNumber < (++$number)) {
                 // 当子进程处理次数高于一个临界值后，释放进程
                 break;
             }
