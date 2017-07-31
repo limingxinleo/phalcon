@@ -16,7 +16,7 @@ class Console implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
-        // TODO: Implement register() method.
+
     }
 
 }
