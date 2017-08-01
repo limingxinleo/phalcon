@@ -31,6 +31,7 @@ class CronTask extends Task
         $schedule = new Schedule();
         foreach ($tasks as $task) {
             list($func, $params) = $task['schedule'];
+            unset($task['schedule']);
             if ($schedule->$func(...$params)) {
                 $this->logInfo(json_encode($task));
                 $this->console->handle($task);
