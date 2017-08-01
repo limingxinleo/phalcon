@@ -12,16 +12,26 @@ use Phalcon\Cli\Task;
 use limx\phalcon\Utils\Str;
 use limx\phalcon\Cli\Color;
 use limx\phalcon\Logger;
+use limx\Support\Schedule;
 
 class CronTask extends Task
 {
     public function mainAction()
     {
-        $time = date('H:i');
-        $tasks = app('cron-tasks');
+        if (!class_exists(Schedule::class)) {
+            echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::colorize("           Schedule 支持库不存在！           ", Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
+            echo Color::head("请使用以下命令安装：") . PHP_EOL;
+            echo Color::colorize("    composer require limingxinleo/support-schedule") . PHP_EOL;
+            return;
+        }
 
+        $tasks = app('cron-tasks')->toArray();
+        $schedule = new Schedule();
         foreach ($tasks as $task) {
-            if (Str::contains($task['time'], $time) || $task['time'] === '') {
+            list($func, $params) = $task['schedule'];
+            if ($schedule->$func(...$params)) {
                 $this->logInfo(json_encode($task));
                 $this->console->handle($task);
             }

@@ -10,7 +10,7 @@ return [
     'project-name' => 'limx-phalcon-project',
     // 定时执行的脚本
     'cron-tasks' => [
-        // ['task' => 'taskName', 'action' => 'actionName', 'params' => [], 'time' => '05:21'],
+        // ['task' => 'System\\Clear', 'action' => 'view', 'params' => ['yes'], 'schedule' => ['dailyAt', [2, 0]]],
     ],
     'error-code' => [
         500 => '服务器错误！',
