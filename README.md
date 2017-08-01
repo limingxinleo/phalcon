@@ -188,8 +188,7 @@ crontab -e
     ['task' => 'System\\Clear', 'action' => 'view', 'params' => ['yes'], 'schedule' => ['dailyAt', [2, 0]]],
 ],
 ~~~
-schedule写法为[方法名,参数数组]
-[https://github.com/limingxinleo/support-schedule](https://github.com/limingxinleo/support-schedule)
+schedule写法为[方法名,参数数组]，详见 [Schedule](https://github.com/limingxinleo/support-schedule)
 
 ## 注意事项 ##
 * 利用phalcon脚本新建model时，使用phalcon model name --namespace=App\Models --extends=Model --force
