@@ -181,7 +181,7 @@ php run test
 ## 定时脚本 ##
 ~~~
 crontab -e 
-编辑增加 * * * * * /path/to/php /path/to/run System\\\\Cron >> /dev/null 2>&1
+编辑增加 * * * * * /path/to/php /path/to/run System\\Cron >> /dev/null 2>&1
 启动crond 服务
 在config/app.php 中维护cron-tasks数组 样例如下
 'cron-tasks' => [
