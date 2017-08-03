@@ -9,6 +9,7 @@
 
 ### Changed
 * 重构Schedule定时服务
+* 删除dump调试方法
 
 ### Fixed
 * Fix 模型基类 找不到静态方法时不报错的BUG

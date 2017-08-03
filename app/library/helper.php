@@ -6,21 +6,8 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-use limx\phalcon\Utils\Debug;
 use limx\phalcon\Http\Response;
 use limx\Support\Arr;
-
-if (!function_exists('dump')) {
-    /**
-     * @desc   标准化的数组输出格式
-     * @author limx
-     * @param $data
-     */
-    function dump($data)
-    {
-        Debug::dump($data);
-    }
-}
 
 if (!function_exists('success')) {
 
