@@ -9,7 +9,7 @@
 namespace App\Utils;
 
 use App\Utils\Contract\LogInteface;
-use limx\phalcon\Logger;
+use limx\phalcon\Logger\Sys;
 
 class Log implements LogInteface
 {
@@ -17,10 +17,10 @@ class Log implements LogInteface
     const DIR = null;
 
     /** 文件名 */
-    const FILE_NAME = "logger.log";
+    const FILE_NAME = "info";
 
     /** 日志类型 */
-    const TYPE = "file";
+    const TYPE = Sys::LOG_ADAPTER_FILE;
 
     /**
      * @desc   获取日志类实例
@@ -29,7 +29,10 @@ class Log implements LogInteface
      */
     protected static function logger()
     {
-        return Logger::getInstance(static::TYPE, static::FILE_NAME, static::DIR);
+        $context = [
+            'dir' => static::DIR
+        ];
+        return di('logger')->getLogger(static::FILE_NAME, static::TYPE, $context);
     }
 
     /**
