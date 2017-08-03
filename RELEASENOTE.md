@@ -6,10 +6,12 @@
 
 ### Added
 * 消息队列：增加子进程最大处理次数
+* 增加Logger服务
 
 ### Changed
 * 重构Schedule定时服务
 * 删除dump调试方法
+* 重写Log工具类
 
 ### Fixed
 * Fix 模型基类 找不到静态方法时不报错的BUG
