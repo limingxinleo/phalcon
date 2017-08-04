@@ -76,7 +76,7 @@ class DbListener
 
         $str = PHP_EOL;
         $str .= "SQL语句: " . $sql . PHP_EOL;
-        $str .= "绑定参数: " . json_encode($params) . PHP_EOL;
+        $str .= "绑定参数: " . json_encode($params, JSON_UNESCAPED_UNICODE) . PHP_EOL;
         $str .= "开始时间: " . $begintime . PHP_EOL;
         $str .= "结束时间: " . $endtime . PHP_EOL;
         $str .= "执行时间: " . $runtime . PHP_EOL;
