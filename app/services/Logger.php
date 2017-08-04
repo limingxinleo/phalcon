@@ -18,7 +18,7 @@ class Logger implements ServiceProviderInterface
     public function register(FactoryDefault $di, Config $config)
     {
         /**
-         *  $factory = new di('logger');
+         *  $factory = di('logger');
          *  $logger = $factory->getLogger('info', Sys::LOG_ADAPTER_FILE, ['dir' => 'system']);
          *  $logger->info('日志测试');
          */

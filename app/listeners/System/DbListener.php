@@ -31,7 +31,7 @@ class DbListener
             mkdir($dir, 0777, true);
         }
         $this->_profiler = new Profiler();
-        $this->_logger = new FileLogger($dir . "/db.log");
+        $this->_logger = di('logger')->getLogger('sql', static::TYPE);
     }
 
     /**
