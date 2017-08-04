@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Listeners\System;
 
+use limx\phalcon\Logger\Sys;
 use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;
 use Phalcon\Logger;
@@ -30,9 +31,10 @@ class DbListener
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
-        $this->_profiler = new Profiler();
-        $this->_logger = di('logger')->getLogger('sql', Sys::LOG_ADAPTER_FILE);
 
+        $this->_profiler = new Profiler();
+
+        $this->_logger = di('logger')->getLogger('sql', Sys::LOG_ADAPTER_FILE);
     }
 
     /**
