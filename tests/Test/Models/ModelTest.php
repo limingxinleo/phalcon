@@ -39,6 +39,16 @@ class ModelTest extends UnitTestCase
 
     }
 
+    public function testSaveFailCase()
+    {
+        $username = 'fail' . uniqid();
+
+        $user = new User();
+        $user->username = $username;
+        $user->password = md5('123456');
+        $this->assertFalse($user->save());
+    }
+
     public function testModelsManagerCase()
     {
         $di = di();

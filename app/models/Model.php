@@ -8,6 +8,8 @@
 // +----------------------------------------------------------------------
 namespace App\Models;
 
+use limx\phalcon\Logger\Sys as LogSys;
+
 abstract class Model extends \Phalcon\Mvc\Model
 {
 
@@ -52,6 +54,16 @@ abstract class Model extends \Phalcon\Mvc\Model
     public function afterSave()
     {
         // 数据修改之后
+    }
+
+    public function onValidationFails()
+    {
+        // 验证失败之后
+        $logger = di('logger')->getLogger('sql', LogSys::LOG_ADAPTER_FILE);
+        $class = get_class($this);
+        foreach ($this->getMessages() as $message) {
+            $logger->error(sprintf("\n模型:%s\n错误信息:%s\n\n", $class, $message->getMessage()));
+        }
     }
 
 }
