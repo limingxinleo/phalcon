@@ -7,6 +7,7 @@
 ### Added
 * 消息队列：增加子进程最大处理次数
 * 增加Logger服务
+* 模型保存验证错误事件
 
 ### Changed
 * 重构Schedule定时服务

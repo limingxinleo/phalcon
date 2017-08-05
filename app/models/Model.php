@@ -56,9 +56,12 @@ abstract class Model extends \Phalcon\Mvc\Model
         // 数据修改之后
     }
 
+    /**
+     * @desc   验证失败之后的事件
+     * @author limx
+     */
     public function onValidationFails()
     {
-        // 验证失败之后
         $logger = di('logger')->getLogger('sql', LogSys::LOG_ADAPTER_FILE);
         $class = get_class($this);
         foreach ($this->getMessages() as $message) {
