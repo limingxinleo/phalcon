@@ -46,8 +46,7 @@ abstract class QueueTask extends Task
         $redis = $this->redisClient();
         while (true) {
             // 监听延时队列
-            if (!empty($this->delayKey)) {
-                $delay_data = $redis->zrangebyscore($this->delayKey, 0, time());
+            if (!empty($this->delayKey) && $delay_data = $redis->zrangebyscore($this->delayKey, 0, time())) {
                 foreach ($delay_data as $data) {
                     // 把可以执行的消息压入队列中
                     $redis->lpush($this->queueKey, $data);
