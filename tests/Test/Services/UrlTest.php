@@ -15,7 +15,7 @@ use \UnitTestCase;
  */
 class UrlTest extends UnitTestCase
 {
-    public function testBaseCase()
+    public function testGetCase()
     {
         $service = di('url');
 
@@ -26,6 +26,12 @@ class UrlTest extends UnitTestCase
         $service->setBaseUri('/test/');
         $url = $service->get('index', ['key' => 'val']);
         $this->assertEquals('/test/index?key=val', $url);
+
+    }
+
+    public function testGetStaticCase()
+    {
+        $service = di('url');
 
         $service->setStaticBaseUri('/');
         $url = $service->getStatic('static/images/avatar.png');

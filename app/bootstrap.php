@@ -7,7 +7,7 @@
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
 defined('APP_PATH') || define('APP_PATH', __DIR__);
-// use Phalcon\DI\FactoryDefault;
+
 use App\DI;
 
 /** Read the configuration */

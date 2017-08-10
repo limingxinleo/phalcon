@@ -111,21 +111,4 @@ class UnitTest extends UnitTestCase
         $this->assertEquals($config->version, $version);
     }
 
-    /**
-     * @desc   测试配置读取
-     * @author limx
-     */
-    public function testConfigCase()
-    {
-        $project = app('project-name');
-        $this->assertEquals('limx-phalcon-project', $project);
-
-        $project = di('app')->get('project-name');
-        $this->assertEquals('limx-phalcon-project', $project);
-
-        $err = app('error-code.500');
-        $this->assertEquals('服务器错误！', $err);
-
-    }
-
 }
