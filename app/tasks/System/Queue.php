@@ -14,7 +14,7 @@ use Phalcon\Cli\Task;
 use limx\phalcon\Cli\Color;
 use swoole_process;
 
-abstract class QueueTask extends Task
+abstract class Queue extends Task
 {
     // 最大进程数
     protected $maxProcesses = 500;

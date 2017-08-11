@@ -13,7 +13,7 @@ use limx\phalcon\Cli\Color;
 use swoole_websocket_server;
 use swoole_websocket_frame;
 
-abstract class WebSocketTask extends Task
+abstract class WebSocket extends Task
 {
     // 端口号
     protected $port = 11521;
