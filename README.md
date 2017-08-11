@@ -113,7 +113,7 @@ namespace App\Tasks;
 use limx\phalcon\Redis;
 use limx\phalcon\Cli\Color;
 
-class TestTask extends \App\Tasks\System\QueueTask
+class TestTask extends \App\Tasks\System\Queue
 {
     // 最大进程数
     protected $maxProcesses = 10;
