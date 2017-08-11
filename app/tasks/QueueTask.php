@@ -7,6 +7,11 @@ use limx\phalcon\Redis;
 
 class QueueTask extends Queue
 {
+    // 最大进程数
+    protected $maxProcesses = 2;
+
+    // 子进程最大循环处理次数
+    protected $processHandleMaxNumber = 100;
 
     public function onConstruct()
     {
