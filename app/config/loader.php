@@ -16,6 +16,7 @@ $loader
         [
             'App' => APP_PATH,
             'App\Controllers' => $config->application->controllersDir,
+            'App\Jobs' => $config->application->jobsDir,
             'App\Library' => $config->application->libraryDir,
             'App\Listeners' => $config->application->listenersDir,
             'App\Logics' => $config->application->logicsDir,

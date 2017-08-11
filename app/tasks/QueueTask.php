@@ -29,7 +29,8 @@ class QueueTask extends Queue
 
     protected function handle($recv)
     {
-        echo $recv . PHP_EOL;
+        $obj = unserialize($recv);
+        $obj->handle();
     }
 }
 

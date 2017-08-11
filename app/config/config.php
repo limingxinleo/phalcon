@@ -133,6 +133,7 @@ return new Config(
         'application' => [
             'configDir' => APP_PATH . '/config/',
             'controllersDir' => APP_PATH . '/controllers/',
+            'jobsDir' => APP_PATH . '/jobs/',
             'libraryDir' => APP_PATH . '/library/',
             'listenersDir' => APP_PATH . '/listeners/',
             'logicsDir' => APP_PATH . '/logics/',
