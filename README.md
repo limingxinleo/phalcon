@@ -105,7 +105,7 @@ controller -> logic -> model -> db
 task -> logic -> model -> db
 ~~~
 
-## 消息队列
+## 自定义消息队列
 编辑app/tasks/TestTask.php
 ~~~
 namespace App\Tasks;
@@ -177,6 +177,45 @@ class TestTask extends \App\Tasks\System\Queue
 ~~~
 php run test
 ~~~
+
+## 通用消息队列
+1. 完善Job类
+~~~
+namespace App\Jobs;
+
+use App\Jobs\Contract\JobInterface;
+
+class Test implements JobInterface
+{
+    public $id;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
+    public function handle()
+    {
+        echo $this->id . PHP_EOL;
+    }
+
+}
+~~~
+
+2. 执行通用消息队列
+~~~
+php run Queue
+~~~
+
+3. PUSH消息到Redis
+~~~
+use App\Utils\Queue;
+
+Queue::push(new Test(1));
+~~~
+
+4. 即可看到消息队列执行结果
+
 
 ## 定时脚本 ##
 ~~~
