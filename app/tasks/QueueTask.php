@@ -7,10 +7,13 @@ use limx\phalcon\Redis;
 
 class QueueTask extends Queue
 {
-    // 消息队列Redis键值 list lpush添加队列
-    protected $queueKey = 'queue-default';
-    // 延时消息队列的Redis键值 zset
-    protected $delayKey = '';
+
+    public function onConstruct()
+    {
+        $config = di('config')->queue;
+        $this->queueKey = $config->key;
+        $this->delayKey = $config->delay_key;
+    }
 
     protected function redisClient()
     {
@@ -26,7 +29,7 @@ class QueueTask extends Queue
 
     protected function handle($recv)
     {
-        $config = di('config')->redis;
+        echo $recv . PHP_EOL;
     }
 }
 
