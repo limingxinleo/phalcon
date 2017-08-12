@@ -216,6 +216,16 @@ Queue::push(new Test(1));
 
 4. 即可看到消息队列执行结果
 
+5. 重载所有失败的Job到队列
+~~~
+php run Queue reloadErrorJobs
+~~~
+
+6. 清除所有失败的Job
+~~~
+php run Queue flushErrorJobs
+~~~
+
 
 ## 定时脚本 ##
 ~~~

@@ -49,6 +49,10 @@ class QueueTask extends Queue
 
     }
 
+    /**
+     * @desc 重载失败的Job
+     * @author limx
+     */
     public function reloadErrorJobsAction()
     {
         $redis = static::redisChildClient();
@@ -58,10 +62,14 @@ class QueueTask extends Queue
         echo Color::success("失败的脚本已重新载入消息队列！");
     }
 
+    /**
+     * @desc 删除所有失败的Job
+     * @author limx
+     */
     public function flushErrorJobsAction()
     {
         $redis = static::redisChildClient();
-        $redis->del($this->queueKey);
+        $redis->del($this->errorKey);
         echo Color::success("失败的脚本已被清除！");
     }
 }
