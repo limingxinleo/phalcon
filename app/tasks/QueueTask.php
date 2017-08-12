@@ -5,7 +5,7 @@ namespace App\Tasks;
 use App\Tasks\System\Queue;
 use limx\phalcon\Cli\Color;
 use limx\phalcon\Redis;
-use Phalcon\Exception;
+use Exception;
 
 class QueueTask extends Queue
 {
@@ -56,6 +56,13 @@ class QueueTask extends Queue
             $redis->lpush($this->queueKey, $data);
         }
         echo Color::success("失败的脚本已重新载入消息队列！");
+    }
+
+    public function flushErrorJobsAction()
+    {
+        $redis = static::redisChildClient();
+        $redis->del($this->queueKey);
+        echo Color::success("失败的脚本已被清除！");
     }
 }
 
