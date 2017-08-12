@@ -3,7 +3,9 @@
 namespace App\Tasks;
 
 use App\Tasks\System\Queue;
+use limx\phalcon\Cli\Color;
 use limx\phalcon\Redis;
+use Phalcon\Exception;
 
 class QueueTask extends Queue
 {
@@ -13,11 +15,14 @@ class QueueTask extends Queue
     // 子进程最大循环处理次数
     protected $processHandleMaxNumber = 100;
 
+    protected $errorKey = '';
+
     public function onConstruct()
     {
         $config = di('config')->queue;
         $this->queueKey = $config->key;
         $this->delayKey = $config->delay_key;
+        $this->errorKey = $config->error_key;
     }
 
     protected function redisClient()
@@ -34,8 +39,23 @@ class QueueTask extends Queue
 
     protected function handle($recv)
     {
-        $obj = unserialize($recv);
-        $obj->handle();
+        try {
+            $obj = unserialize($recv);
+            $obj->handle();
+        } catch (Exception $ex) {
+            $redis = static::redisChildClient();
+            $redis->lpush($this->errorKey, $recv);
+        }
+
+    }
+
+    public function reloadErrorJobsAction()
+    {
+        $redis = static::redisChildClient();
+        while ($data = $redis->rpop($this->errorKey)) {
+            $redis->lpush($this->queueKey, $data);
+        }
+        echo Color::success("失败的脚本已重新载入消息队列！");
     }
 }
 
