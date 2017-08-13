@@ -249,8 +249,8 @@ return new Config(
         */
         'queue' => [
             'key' => env('QUEUE_KEY', 'phalcon:queue:default'),
-            'delay_key' => env('QUEUE_DELAY_KEY', 'phalcon:queue:delay'),
-            'error_key' => env('QUEUE_ERROR_KEY', 'phalcon:queue:error'),
+            'delayKey' => env('QUEUE_DELAY_KEY', 'phalcon:queue:delay'),
+            'errorKey' => env('QUEUE_ERROR_KEY', 'phalcon:queue:error'),
         ],
 
         /*

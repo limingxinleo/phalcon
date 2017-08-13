@@ -21,8 +21,8 @@ class QueueTask extends Queue
     {
         $config = di('config')->queue;
         $this->queueKey = $config->key;
-        $this->delayKey = $config->delay_key;
-        $this->errorKey = $config->error_key;
+        $this->delayKey = $config->delayKey;
+        $this->errorKey = $config->errorKey;
     }
 
     protected function redisClient()
