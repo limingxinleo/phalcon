@@ -18,7 +18,7 @@ class Queue
 
     public static function delay($job, $second)
     {
-        $redis_key = di('config')->queue->delay_key;
+        $redis_key = di('config')->queue->delayKey;
         Redis::zadd($redis_key, time() + $second, serialize($job));
     }
 }
