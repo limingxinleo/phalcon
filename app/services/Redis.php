@@ -16,15 +16,13 @@ class Redis implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
-        if ($config->redis->isUtils) {
-            $di->setShared('redis', function () use ($config) {
-                $host = $config->redis->host;
-                $port = $config->redis->port;
-                $auth = $config->redis->auth;
-                $db = $config->redis->index;
-                return Client::getInstance($host, $auth, $db, $port);
-            });
-        }
+        $di->setShared('redis', function () use ($config) {
+            $host = $config->redis->host;
+            $port = $config->redis->port;
+            $auth = $config->redis->auth;
+            $db = $config->redis->index;
+            return Client::getInstance($host, $auth, $db, $port);
+        });
     }
 
 }

@@ -92,8 +92,6 @@ return new Config(
             'persistent' => env('REDIS_PERSISTENT', false),
             'index' => env('REDIS_INDEX', 0),
             'prefix' => env('REDIS_PREFIX', ''),
-            // 是否开启Redis辅助类
-            'isUtils' => env('REDIS_IS_UTILS', false),
         ],
 
         /*
