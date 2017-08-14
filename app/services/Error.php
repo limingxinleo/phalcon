@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace App\Services;
 
-use App\Utils\Log;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 
