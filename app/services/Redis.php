@@ -21,7 +21,7 @@ class Redis implements ServiceProviderInterface
             $port = $config->redis->port;
             $auth = $config->redis->auth;
             $db = $config->redis->index;
-            return Client::getInstance($host, $auth, $db, $port);
+            return Client::getInstance($host, $auth, $db, $port, 'service');
         });
     }
 

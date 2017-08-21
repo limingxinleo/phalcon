@@ -11,6 +11,8 @@
 ### Changed
 * 默认启动Redis服务
 * 修改通用消息队列的KEY键
+* 修改Redis服务，设置uniqid
+* 修改默认消息队列，增加结果输出
 
 ### Fixed
 
