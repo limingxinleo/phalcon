@@ -280,6 +280,7 @@ return new Config(
             'cli' => [
                 'dispatcher' => App\Services\Cli\Dispatcher::class,
                 'console' => App\Services\Cli\Console::class,
+                'xconsole' => App\Services\Cli\XConsole::class,
             ],
             'http' => [
                 'router' => App\Services\Http\Router::class,
