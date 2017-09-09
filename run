@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-use Phalcon\Cli\Console as ConsoleApp;
-use Phalcon\Di\FactoryDefault\Cli as CliDi;
 use App\DI;
 
 define('ROOT_PATH', __DIR__);
@@ -40,15 +38,7 @@ ini_set('date.timezone', $config->timezone);
  */
 $di = (new DI($config))->getDI();
 
-$console = new ConsoleApp($di);
-
-$di->setShared("console", $console);
-
-/**
- * Include Services
- */
-// include APP_PATH . '/config/services.php';
-// include APP_PATH . '/config/cli/services.php';
+$console = $di->getShared('console');
 
 /**
  * Process the console arguments
