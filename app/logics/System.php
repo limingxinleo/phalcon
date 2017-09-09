@@ -51,12 +51,13 @@ class System extends Injectable
             }
             // 获取控制器类名
             foreach ($linesCode as $line) {
-                preg_match('#^class (.+) extends#', $line, $matches);
+                preg_match('#class (.+) extends#', $line, $matches);
                 if (isset($matches[1])) {
                     $classname = $matches[1];
                     break;
                 }
             }
+
             $full_classname = $namespace . "\\" . $classname;
             if (in_array($full_classname, static::getIgnoreController())) {
                 // 如果是忽略的控制器则跳过
