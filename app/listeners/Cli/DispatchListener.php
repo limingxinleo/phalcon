@@ -30,13 +30,8 @@ class DispatchListener
         switch ($exception->getCode()) {
             case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
             case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                $dispatcher->forward(
-                    [
-                        'namespace' => 'App\Controllers',
-                        'controller' => 'error',
-                        'action' => 'show404',
-                    ]
-                );
+                echo $exception->getMessage() . PHP_EOL;
+                echo $exception->getTraceAsString();
                 return false;
 
             default:
