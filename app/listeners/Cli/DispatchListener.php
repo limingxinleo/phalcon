@@ -11,7 +11,7 @@ namespace App\Listeners\Cli;
 use Phalcon\Events\Event;
 use Exception;
 use Phalcon\Cli\Dispatcher;
-use Xin\Phalcon\Cli\Tasks\ListTask;
+use Xin\Phalcon\Cli\Tasks\NotFindTask;
 
 class DispatchListener
 {
@@ -46,17 +46,18 @@ class DispatchListener
     protected function handleTaskNotFind(Event $event, Dispatcher $dispatcher, Exception $exception)
     {
 
-        if (method_exists(ListTask::class, 'mainAction')) {
+        if (method_exists(NotFindTask::class, 'mainAction')) {
             $task = $dispatcher->getTaskName();
             $action = $dispatcher->getActionName();
             $tasksDir = di('config')->application->tasksDir;
+            $namespace = $dispatcher->getDefaultNamespace();
             $dispatcher->forward([
                 'namespace' => 'Xin\\Phalcon\\Cli\\Tasks',
-                'task' => 'List',
+                'task' => 'NotFind',
                 'action' => 'main',
                 'params' => [
                     'tasksDir' => $tasksDir,
-                    'namespace' => $dispatcher->getDefaultNamespace(),
+                    'namespace' => $namespace,
                     'taskName' => $task,
                     'actionName' => $action,
                 ]
