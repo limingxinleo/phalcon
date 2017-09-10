@@ -6,14 +6,14 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Services\Http;
+namespace App\Services\Mvc;
 
 use App\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Events\Manager as EventsManager;
 
-use App\Listeners\System\DispatchListener;
+use App\Listeners\Mvc\DispatchListener;
 
 class Dispatcher implements ServiceProviderInterface
 {

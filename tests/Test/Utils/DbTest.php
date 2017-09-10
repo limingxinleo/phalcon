@@ -14,7 +14,7 @@ use \UnitTestCase;
 use PDO;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Events\Manager as EventsManager;
-use App\Listeners\System\DbListener;
+use App\Listeners\DbListener;
 
 class DbTest extends UnitTestCase
 {

@@ -282,11 +282,11 @@ return new Config(
                 'console' => App\Services\Cli\Console::class,
                 'xconsole' => App\Services\Cli\XConsole::class,
             ],
-            'http' => [
-                'router' => App\Services\Http\Router::class,
-                'url' => App\Services\Http\Url::class,
-                'view' => App\Services\Http\View::class,
-                'dispatcher' => App\Services\Http\Dispatcher::class,
+            'mvc' => [
+                'router' => App\Services\Mvc\Router::class,
+                'url' => App\Services\Mvc\Url::class,
+                'view' => App\Services\Mvc\View::class,
+                'dispatcher' => App\Services\Mvc\Dispatcher::class,
             ],
         ],
 

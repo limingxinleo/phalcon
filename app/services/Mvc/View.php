@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Services\Http;
+namespace App\Services\Mvc;
 
 use App\Services\ServiceProviderInterface;
 use Phalcon\Config;

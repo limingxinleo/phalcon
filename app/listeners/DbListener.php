@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Listeners\System;
+namespace App\Listeners;
 
 use limx\phalcon\Logger\Sys;
 use Phalcon\Db\Profiler;

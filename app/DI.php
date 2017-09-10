@@ -39,7 +39,7 @@ class DI
         if (IS_CLI) {
             $this->registerCliServices();
         } else {
-            $this->registerHttpServices();
+            $this->registerMvcServices();
         }
     }
 
@@ -51,9 +51,9 @@ class DI
         }
     }
 
-    protected function registerHttpServices()
+    protected function registerMvcServices()
     {
-        foreach ($this->config->services->http as $service) {
+        foreach ($this->config->services->mvc as $service) {
             $service = new $service;
             $service->register($this->di, $this->config);
         }
