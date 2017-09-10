@@ -5,9 +5,11 @@
 - [ ] php单元测试
 
 ### Added
+* 增加脚本描述字段
 
 ### Changed
 * 修改部分命名
+* 修改XConsole依赖版本
 
 ### Fixed
 
