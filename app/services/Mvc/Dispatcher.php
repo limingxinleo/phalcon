@@ -11,8 +11,7 @@ namespace App\Services\Mvc;
 use App\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
-use Phalcon\Events\Manager as EventsManager;
-
+use Phalcon\Events\Manager;
 use App\Listeners\Mvc\DispatchListener;
 
 class Dispatcher implements ServiceProviderInterface
@@ -21,7 +20,7 @@ class Dispatcher implements ServiceProviderInterface
     {
         $di->setShared('dispatcher', function () use ($config) {
             // 监听调度 dispatcher
-            $eventsManager = new EventsManager();
+            $eventsManager = new Manager();
             $dispatchListener = new DispatchListener();
             $eventsManager->attach(
                 'dispatch',
