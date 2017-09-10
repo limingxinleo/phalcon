@@ -16,6 +16,8 @@ use limx\Support\Schedule;
 
 class CronTask extends Task
 {
+    public $description = '定时器执行脚本';
+
     public function mainAction()
     {
         if (!class_exists(Schedule::class)) {

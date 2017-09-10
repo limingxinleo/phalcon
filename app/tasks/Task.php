@@ -4,6 +4,8 @@ namespace App\Tasks;
 
 abstract class Task extends \Phalcon\Cli\Task
 {
+    public $description;
+
     public function onConstruct()
     {
         /**

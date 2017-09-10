@@ -14,6 +14,8 @@ use limx\phalcon\Cli\Color;
 
 class ClearTask extends Task
 {
+    public $description = '系统清理脚本';
+
     public function mainAction()
     {
         echo Color::error("Please input the clear action");

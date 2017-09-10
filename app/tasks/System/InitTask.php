@@ -14,6 +14,8 @@ use Phalcon\Cli\Task;
 
 class InitTask extends Task
 {
+    public $description = '系统初始化脚本';
+
     /**
      * @desc   初始化命名空间
      * @author limx

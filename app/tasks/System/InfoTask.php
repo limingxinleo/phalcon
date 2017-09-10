@@ -16,6 +16,8 @@ use Phalcon\Annotations\Adapter\Memory as MemoryAdapter;
 
 class InfoTask extends Task
 {
+    public $description = '项目信息脚本';
+
     /**
      * @desc   菜单
      * @author limx
