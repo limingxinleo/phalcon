@@ -16,6 +16,9 @@ $config = include APP_PATH . "/config/config.php";
 /** Read auto-loader */
 include APP_PATH . "/config/loader.php";
 
+/** 设置报告级别 */
+error_reporting(E_ALL);
+
 /** 设置时区 */
 ini_set('date.timezone', $config->timezone);
 
