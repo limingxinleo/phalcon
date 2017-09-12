@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Services;
 
+use App\Core\Exception\HandleExceptions;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 
@@ -16,12 +17,14 @@ class Error implements ServiceProviderInterface
     public function register(FactoryDefault $di, Config $config)
     {
         if ($config->log->error) {
-            register_shutdown_function(function () {
-                if ($e = error_get_last()) {
-                    $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
-                    logger($log, 'error', 'error');
-                }
-            });
+            $handler = new HandleExceptions();
+            $handler->bootstrap($di);
+            // register_shutdown_function(function () {
+            //     if ($e = error_get_last()) {
+            //         $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
+            //         logger($log, 'error', 'error');
+            //     }
+            // });
         }
     }
 
