@@ -12,7 +12,7 @@ use App\Core\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Events\Manager;
-use App\Listeners\Mvc\DispatchListener;
+use App\Core\Event\Mvc\DispatchListener;
 
 class Dispatcher implements ServiceProviderInterface
 {

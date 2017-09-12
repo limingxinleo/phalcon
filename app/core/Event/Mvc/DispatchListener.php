@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Listeners\Mvc;
+namespace App\Core\Event\Mvc;
 
 use Phalcon\Events\Event;
 use Exception;

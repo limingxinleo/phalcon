@@ -12,7 +12,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Config;
 use Phalcon\Events\Manager as EventsManager;
-use App\Listeners\DbListener;
+use App\Core\Event\DbListener;
 use PDO;
 
 class Db implements ServiceProviderInterface
