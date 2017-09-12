@@ -138,7 +138,6 @@ return new Config(
             'modelsDir' => APP_PATH . '/models/',
             'servicesDir' => APP_PATH . '/services/',
             'tasksDir' => APP_PATH . '/tasks/',
-            'traitsDir' => APP_PATH . '/traits/',
             'utilsDir' => APP_PATH . '/utils/',
             'viewsDir' => APP_PATH . '/views/',
 
