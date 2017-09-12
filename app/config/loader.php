@@ -21,12 +21,12 @@ $loader
             'App\Listeners' => $config->application->listenersDir,
             'App\Logics' => $config->application->logicsDir,
             'App\Models' => $config->application->modelsDir,
-            'App\Services' => $config->application->servicesDir,
             'App\Tasks' => $config->application->tasksDir,
             'App\Utils' => $config->application->utilsDir,
+            'App\Core' => $config->application->coreDir,
         ]
     )->registerFiles(
         [
-            'function' => $config->application->libraryDir . 'helper.php',
+            'function' => $config->application->coreDir . 'helper.php',
         ]
     )->register();

@@ -131,12 +131,12 @@ return new Config(
         'application' => [
             'configDir' => APP_PATH . '/config/',
             'controllersDir' => APP_PATH . '/controllers/',
+            'coreDir' => APP_PATH . '/core/',
             'jobsDir' => APP_PATH . '/jobs/',
             'libraryDir' => APP_PATH . '/library/',
             'listenersDir' => APP_PATH . '/listeners/',
             'logicsDir' => APP_PATH . '/logics/',
             'modelsDir' => APP_PATH . '/models/',
-            'servicesDir' => APP_PATH . '/services/',
             'tasksDir' => APP_PATH . '/tasks/',
             'utilsDir' => APP_PATH . '/utils/',
             'viewsDir' => APP_PATH . '/views/',
@@ -261,31 +261,31 @@ return new Config(
         */
         'services' => [
             'common' => [
-                'config' => App\Services\ConfigService::class, // 系统配置
-                'app' => App\Services\App::class, // 自定义配置
-                'db' => App\Services\Db::class,
-                'modelsMetadata' => App\Services\ModelsMetadata::class,
-                'filter' => App\Services\Filter::class,
-                'cache' => App\Services\Cache::class,
-                'error' => App\Services\Error::class,
-                'crypt' => App\Services\Crypt::class,
-                'redis' => App\Services\Redis::class,
-                'mongo' => App\Services\Mongo::class,
-                'cookies' => App\Services\Cookies::class,
-                'session' => App\Services\Session::class,
-                'modelsManager' => App\Services\ModelsManager::class,
-                'logger' => App\Services\Logger::class,
+                'config' => App\Core\Services\ConfigService::class, // 系统配置
+                'app' => App\Core\Services\App::class, // 自定义配置
+                'db' => App\Core\Services\Db::class,
+                'modelsMetadata' => App\Core\Services\ModelsMetadata::class,
+                'filter' => App\Core\Services\Filter::class,
+                'cache' => App\Core\Services\Cache::class,
+                'error' => App\Core\Services\Error::class,
+                'crypt' => App\Core\Services\Crypt::class,
+                'redis' => App\Core\Services\Redis::class,
+                'mongo' => App\Core\Services\Mongo::class,
+                'cookies' => App\Core\Services\Cookies::class,
+                'session' => App\Core\Services\Session::class,
+                'modelsManager' => App\Core\Services\ModelsManager::class,
+                'logger' => App\Core\Services\Logger::class,
             ],
             'cli' => [
-                'dispatcher' => App\Services\Cli\Dispatcher::class,
-                'console' => App\Services\Cli\Console::class,
-                'xconsole' => App\Services\Cli\XConsole::class,
+                'dispatcher' => App\Core\Services\Cli\Dispatcher::class,
+                'console' => App\Core\Services\Cli\Console::class,
+                'xconsole' => App\Core\Services\Cli\XConsole::class,
             ],
             'mvc' => [
-                'router' => App\Services\Mvc\Router::class,
-                'url' => App\Services\Mvc\Url::class,
-                'view' => App\Services\Mvc\View::class,
-                'dispatcher' => App\Services\Mvc\Dispatcher::class,
+                'router' => App\Core\Services\Mvc\Router::class,
+                'url' => App\Core\Services\Mvc\Url::class,
+                'view' => App\Core\Services\Mvc\View::class,
+                'dispatcher' => App\Core\Services\Mvc\Dispatcher::class,
             ],
         ],
 

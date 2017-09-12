@@ -1,29 +1,28 @@
 <?php
 // +----------------------------------------------------------------------
-// | Router 服务 [ WE CAN DO IT JUST THINK IT ]
+// | Error 捕获服务 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Services\Mvc;
+namespace App\Core\Services;
 
-use App\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 
-class Router implements ServiceProviderInterface
+class Error implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
-        $di->setShared('router', function () use ($config) {
-            $router = new \Phalcon\Mvc\Router(false);
-            $dir = $config->application->configDir . 'routes';
-            foreach (glob($dir . '/*.php') as $item) {
-                include_once $item;
-            }
-            return $router;
-        });
+        if ($config->log->error) {
+            register_shutdown_function(function () {
+                if ($e = error_get_last()) {
+                    $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
+                    logger($log, 'error', 'error');
+                }
+            });
+        }
     }
 
 }

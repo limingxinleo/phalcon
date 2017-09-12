@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Services;
+namespace App\Core\Services;
 
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;

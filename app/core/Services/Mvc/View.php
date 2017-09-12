@@ -6,9 +6,9 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Services\Mvc;
+namespace App\Core\Services\Mvc;
 
-use App\Services\ServiceProviderInterface;
+use App\Core\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
