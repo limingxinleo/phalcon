@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
-use App\Traits\System\Response;
+use App\Controllers\Traits\Response;
 
 class ErrorController extends \Phalcon\Mvc\Controller
 {
