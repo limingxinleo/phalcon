@@ -19,12 +19,6 @@ class Error implements ServiceProviderInterface
         if ($config->log->error) {
             $handler = new HandleExceptions();
             $handler->bootstrap($di);
-            // register_shutdown_function(function () {
-            //     if ($e = error_get_last()) {
-            //         $log = $e['message'] . " in " . $e['file'] . ' line ' . $e['line'];
-            //         logger($log, 'error', 'error');
-            //     }
-            // });
         }
     }
 
