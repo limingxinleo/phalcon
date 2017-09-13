@@ -19,6 +19,8 @@ class Handler
 
     public $di;
 
+    public $logger;
+
     private function __construct()
     {
         $this->di = FactoryDefault::getDefault();
@@ -33,6 +35,11 @@ class Handler
         return static::$_instance = new static();
     }
 
+    /**
+     * @desc   捕获Http模式 异常
+     * @author limx
+     * @param Exception $ex
+     */
     public function render(Exception $ex)
     {
         $msg = $ex->getMessage() . " in " . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
@@ -44,6 +51,11 @@ class Handler
         }
     }
 
+    /**
+     * @desc   捕获Cli模式 异常
+     * @author limx
+     * @param Exception $ex
+     */
     public function renderForConsole(Exception $ex)
     {
         $msg = $ex->getMessage() . " in " . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();

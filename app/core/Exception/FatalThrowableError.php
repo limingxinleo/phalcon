@@ -13,7 +13,6 @@ use ErrorException;
 /**
  * Fatal Throwable Error.
  *
- * @author Nicolas Grekas <p@tchwork.com>
  */
 class FatalThrowableError extends ErrorException
 {
