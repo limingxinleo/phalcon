@@ -51,9 +51,4 @@ class Handler
         echo $msg;
     }
 
-    public function report()
-    {
-        echo '1';
-    }
-
 }
