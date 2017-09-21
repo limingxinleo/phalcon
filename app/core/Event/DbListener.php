@@ -8,11 +8,10 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Event;
 
-use limx\phalcon\Logger\Sys;
+use Xin\Phalcon\Logger\Sys;
 use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;
 use Phalcon\Logger;
-use Phalcon\Logger\Adapter\File as FileLogger;
 
 class DbListener
 {

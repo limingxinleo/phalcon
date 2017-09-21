@@ -11,7 +11,7 @@ namespace App\Core\Exception;
 use Exception;
 use ErrorException;
 use Phalcon\DI\FactoryDefault;
-use limx\phalcon\Logger\Sys;
+use Xin\Phalcon\Logger\Sys;
 
 class Handler
 {

@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Models;
 
-use limx\phalcon\Logger\Sys as LogSys;
+use Xin\Phalcon\Logger\Sys as LogSys;
 
 abstract class Model extends \Phalcon\Mvc\Model
 {

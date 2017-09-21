@@ -11,7 +11,7 @@ namespace App\Tasks\System;
 use Phalcon\Cli\Task;
 use limx\phalcon\Utils\Str;
 use limx\phalcon\Cli\Color;
-use limx\phalcon\Logger;
+use Xin\Phalcon\Logger;
 use limx\Support\Schedule;
 
 class CronTask extends Task

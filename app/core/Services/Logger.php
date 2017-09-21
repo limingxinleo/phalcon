@@ -8,8 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Services;
 
-use limx\phalcon\Logger\Factory;
-use limx\phalcon\Logger\Sys;
+use Xin\Phalcon\Logger\Factory;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 

@@ -9,7 +9,7 @@
 namespace App\Utils;
 
 use App\Utils\Contract\LogInteface;
-use limx\phalcon\Logger\Sys;
+use Xin\Phalcon\Logger\Sys;
 
 class Log implements LogInteface
 {
