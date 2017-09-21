@@ -12,18 +12,54 @@ use limx\phalcon\Http\Response as HttpResponse;
 
 trait Response
 {
-    protected static function success($data = [], $type = 'json')
+    /**
+     * @desc   返回JSON结构体
+     * @author limx
+     */
+    protected static function getJsonBody($status, $data, $message)
     {
-        return HttpResponse::send(1, $data, '', $type);
+        return [
+            'status' => $status,
+            'data' => $data,
+            'message' => $message,
+            'timestamp' => time(),
+        ];
     }
 
-    protected static function error($msg = '', $data = [], $status = 0, $type = 'json')
+    /**
+     * @desc   成功返回数据
+     * @author limx
+     * @param array $data
+     * @return mixed
+     */
+    protected static function success($data = [])
     {
-        return HttpResponse::send($status, $data, $msg, $type);
+        return di('response')->setJsonContent(static::getJsonBody(1, $data, ''));
     }
 
-    protected static function response($status, $data, $msg, $type = 'json')
+    /**
+     * @desc   返回失败数据
+     * @author limx
+     * @param string $msg
+     * @param array  $data
+     * @param int    $status
+     * @return mixed
+     */
+    protected static function error($msg = '', $data = [], $status = 0)
     {
-        return HttpResponse::send($status, $data, $msg, $type);
+        return di('response')->setJsonContent(static::getJsonBody($status, $data, $msg));
+    }
+
+    /**
+     * @desc   返回自定义数据
+     * @author limx
+     * @param $status
+     * @param $data
+     * @param $msg
+     * @return mixed
+     */
+    protected static function response($status, $data, $msg)
+    {
+        return di('response')->setJsonContent(static::getJsonBody($status, $data, $msg));
     }
 }
