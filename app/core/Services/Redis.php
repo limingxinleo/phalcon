@@ -10,7 +10,7 @@ namespace App\Core\Services;
 
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
-use limx\phalcon\Redis as Client;
+use Xin\Redis as Client;
 
 class Redis implements ServiceProviderInterface
 {

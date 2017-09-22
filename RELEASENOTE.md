@@ -14,6 +14,7 @@
 * 修改部分命名
 * 修改XConsole依赖版本
 * 调整目录结构
+* 更换limx\phalcon\Redis为Xin\Redis
 
 ### Fixed
 
