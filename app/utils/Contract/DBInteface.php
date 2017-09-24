@@ -17,7 +17,7 @@ interface DBInteface
      * @param array $params
      * @return mixed
      */
-    public static function query($sql, $params = []);
+    public static function query($sql, $params = [], $fetchMode = PDO::FETCH_ASSOC);
 
     /**
      * @desc   查询一条数据
@@ -26,7 +26,7 @@ interface DBInteface
      * @param array $params
      * @return mixed
      */
-    public static function fetch($sql, $params = []);
+    public static function fetch($sql, $params = [], $fetchMode = PDO::FETCH_ASSOC);
 
     /**
      * @desc   更新数据

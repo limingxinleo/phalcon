@@ -18,6 +18,22 @@ use App\Core\Event\DbListener;
 
 class DbTest extends UnitTestCase
 {
+    public $table = 'test';
+
+    public function setUp()
+    {
+        parent::setUp();
+        if (!DB::tableExists('test')) {
+            $sql = "CREATE TABLE `{$this->table}` (
+              `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+              `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '姓名',
+              `age` tinyint(4) NOT NULL DEFAULT '0' COMMENT '年龄',
+              PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+            DB::execute($sql);
+        }
+    }
+
     public function testBaseCase()
     {
         $sql = "SELECT * FROM `user`;";
@@ -66,5 +82,50 @@ class DbTest extends UnitTestCase
         $sql = "SELECT * FROM `user`;";
         $res = DB1::query($sql);
         $this->assertTrue(count($res) > 0);
+    }
+
+    public function testInsert()
+    {
+        $sql = "INSERT INTO {$this->table} (`name`,`age`) VALUES (?,?)";
+        $res = DB::execute($sql, ['limx', 26]);
+        $this->assertTrue($res);
+    }
+
+    public function testQuery()
+    {
+        $sql = "SELECT * FROM `{$this->table}` WHERE `name` = ? LIMIT 1;";
+        $res = DB::query($sql, ['limx']);
+        $this->assertTrue(count($res) > 0);
+        $this->assertTrue(is_array($res));
+    }
+
+    public function testFetch()
+    {
+        $sql = "SELECT * FROM `{$this->table}` WHERE `name` = ? LIMIT 1;";
+        $res = DB::fetch($sql, ['limx']);
+        $this->assertTrue(is_array($res));
+
+        $res = DB::fetch($sql, ['limx'], PDO::FETCH_OBJ);
+        $this->assertTrue(is_object($res));
+    }
+
+    public function testExecute()
+    {
+        $sql = "INSERT INTO {$this->table} (`name`,`age`) VALUES (?,?)";
+        $res = DB::execute($sql, ['Agnes', 25]);
+        $this->assertTrue($res);
+
+        $res = DB::execute($sql, ['Agnes', 25], true);
+        $this->assertEquals(1, $res);
+
+        $sql = "UPDATE {$this->table} SET age=? WHERE name =?";
+        $res = DB::execute($sql, [26, 'Agnes'], true);
+        $this->assertTrue(is_numeric($res));
+    }
+
+    public function testTableExist()
+    {
+        $this->assertTrue(DB::tableExists($this->table));
+        $this->assertFalse(DB::tableExists('sss'));
     }
 }

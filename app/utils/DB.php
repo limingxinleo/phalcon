@@ -11,7 +11,8 @@
 namespace App\Utils;
 
 use App\Utils\Contract\DBInteface;
-use limx\phalcon\DB as LDB;
+use Xin\DB as LDB;
+use PDO;
 
 class DB extends LDB implements DBInteface
 {
@@ -27,9 +28,9 @@ class DB extends LDB implements DBInteface
      * @param array $params
      * @return array
      */
-    public static function query($sql, $params = [])
+    public static function query($sql, $params = [], $fetchMode = PDO::FETCH_ASSOC)
     {
-        return parent::query($sql, $params);
+        return parent::query($sql, $params, $fetchMode);
     }
 
     /**
@@ -39,9 +40,9 @@ class DB extends LDB implements DBInteface
      * @param array $params
      * @return array
      */
-    public static function fetch($sql, $params = [])
+    public static function fetch($sql, $params = [], $fetchMode = PDO::FETCH_ASSOC)
     {
-        return parent::fetch($sql, $params);
+        return parent::fetch($sql, $params, $fetchMode);
     }
 
     /**
