@@ -9,6 +9,7 @@
 * 错误捕获
 * 增加Swoole Socket
 * 增加x-phalcon-logger依赖
+* 增加x-phalcon-db依赖
 
 ### Changed
 * 修改部分命名
