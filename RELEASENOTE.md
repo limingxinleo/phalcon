@@ -5,19 +5,28 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.11.4]
+### Checked
+- [x] php单元测试
+
+### Added
 * 增加脚本描述字段
 * 错误捕获
 * 增加Swoole Socket
 * 增加x-phalcon-logger依赖
 * 增加x-phalcon-db依赖
+* 增加Validator基类
 
 ### Changed
 * 修改部分命名
 * 修改XConsole依赖版本
 * 调整目录结构
 * 更换limx\phalcon\Redis为Xin\Redis
-
-### Fixed
 
 ## [1.10.9]
 ### Checked
