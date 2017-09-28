@@ -3,7 +3,7 @@
 namespace App\Tasks;
 
 use App\Jobs\Contract\JobInterface;
-use App\Tasks\System\Queue;
+use App\Core\Cli\Task\Queue;
 use limx\phalcon\Cli\Color;
 use Xin\Redis;
 use Exception;

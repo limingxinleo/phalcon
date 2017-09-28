@@ -9,10 +9,9 @@
 namespace App\Tasks\System;
 
 use Phalcon\Cli\Task;
-use limx\phalcon\Utils\Str;
 use limx\phalcon\Cli\Color;
-use Xin\Phalcon\Logger;
 use limx\Support\Schedule;
+use Xin\Phalcon\Logger\Sys;
 
 class CronTask extends Task
 {
@@ -48,7 +47,8 @@ class CronTask extends Task
      */
     protected function logInfo($msg)
     {
-        $logger = Logger::getInstance('file', 'cron.log', 'system');
+        $factory = di('logger');
+        $logger = $factory->getLogger('cron', Sys::LOG_ADAPTER_FILE);
         $logger->info($msg);
         echo Color::success($msg);
     }

@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Tasks\System;
+namespace App\Core\Cli\Task;
 
 use Phalcon\Cli\Task;
 use limx\phalcon\Cli\Color;

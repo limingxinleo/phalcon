@@ -9,10 +9,8 @@
 namespace App\Tasks\System;
 
 use App\Logics\System;
-use limx\phalcon\Utils\File;
 use Phalcon\Cli\Task;
 use limx\phalcon\Cli\Color;
-use Phalcon\Annotations\Adapter\Memory as MemoryAdapter;
 
 class InfoTask extends Task
 {
