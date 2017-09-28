@@ -7,8 +7,10 @@
 ### Added
 
 ### Changed
+* 移动Queue Socket WebSocket 基类
 
 ### Fixed
+* 修改定时脚本日志BUG
 
 ## [1.11.4]
 ### Checked
