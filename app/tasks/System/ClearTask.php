@@ -10,7 +10,7 @@ namespace App\Tasks\System;
 
 use App\Utils\Redis;
 use Phalcon\Cli\Task;
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 
 class ClearTask extends Task
 {
@@ -18,7 +18,7 @@ class ClearTask extends Task
 
     public function mainAction()
     {
-        echo Color::error("Please input the clear action");
+        $this->helpAction();
     }
 
     public function helpAction()

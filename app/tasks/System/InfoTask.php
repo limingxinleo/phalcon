@@ -10,7 +10,7 @@ namespace App\Tasks\System;
 
 use App\Logics\System;
 use Phalcon\Cli\Task;
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 
 class InfoTask extends Task
 {

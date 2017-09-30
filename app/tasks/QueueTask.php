@@ -4,7 +4,7 @@ namespace App\Tasks;
 
 use App\Jobs\Contract\JobInterface;
 use App\Core\Cli\Task\Queue;
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 use Xin\Redis;
 use Exception;
 

@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Tasks\System;
 
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 use limx\phalcon\Utils\Str;
 use Phalcon\Cli\Task;
 

@@ -5,6 +5,7 @@
 - [ ] php单元测试
 
 ### Added
+* 增加x-console-color依赖
 
 ### Changed
 * 移动Queue Socket WebSocket 基类

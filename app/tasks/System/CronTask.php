@@ -9,7 +9,7 @@
 namespace App\Tasks\System;
 
 use Phalcon\Cli\Task;
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 use limx\Support\Schedule;
 use Xin\Phalcon\Logger\Sys;
 

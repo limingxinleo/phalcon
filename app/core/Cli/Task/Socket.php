@@ -9,7 +9,7 @@
 namespace App\Core\Cli\Task;
 
 use Phalcon\Cli\Task;
-use limx\phalcon\Cli\Color;
+use Xin\Cli\Color;
 use swoole_server;
 
 /**
