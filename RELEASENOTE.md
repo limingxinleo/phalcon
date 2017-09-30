@@ -10,7 +10,8 @@
 
 ### Changed
 * 移动Queue Socket WebSocket 基类
-* 删除success & error 助手方法！！
+* 删除success & error 助手方法 ！！
+* 移除limingxinleo/phalcon-utils 依赖 ！！
 
 ### Fixed
 * 修改定时脚本日志BUG
