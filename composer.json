@@ -18,6 +18,7 @@
         "limingxinleo/x-redis": "^0.0.1",
         "limingxinleo/x-phalcon-db": "^0.0.1",
         "limingxinleo/x-console-color": "^0.0.1",
+        "limingxinleo/support-str": "^1.0.1",
         "vlucas/phpdotenv": "^2.4"
     },
     "require-dev": {

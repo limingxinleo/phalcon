@@ -10,7 +10,7 @@ namespace Test;
 
 use App\Logics\System;
 use \UnitTestCase;
-use limx\phalcon\Utils\Str;
+use limx\Support\Str;
 
 /**
  * Class UnitTest

@@ -6,6 +6,7 @@
 
 ### Added
 * 增加x-console-color依赖
+* 增加limingxinleo\support-str 依赖
 
 ### Changed
 * 移动Queue Socket WebSocket 基类

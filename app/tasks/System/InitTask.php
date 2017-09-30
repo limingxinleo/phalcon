@@ -9,7 +9,7 @@
 namespace App\Tasks\System;
 
 use Xin\Cli\Color;
-use limx\phalcon\Utils\Str;
+use limx\Support\Str;
 use Phalcon\Cli\Task;
 
 class InitTask extends Task
