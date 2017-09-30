@@ -8,8 +8,6 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers\Traits;
 
-use limx\phalcon\Http\Response as HttpResponse;
-
 trait Response
 {
     /**

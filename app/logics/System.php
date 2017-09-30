@@ -9,9 +9,10 @@
 namespace App\Logics;
 
 use Phalcon\Di\Injectable;
+use Phalcon\Exception;
 use Phalcon\Version;
 use Phalcon\Annotations\Adapter\Memory as MemoryAdapter;
-use limx\phalcon\Utils\File;
+use Symfony\Component\Finder\Finder;
 
 class System extends Injectable
 {
@@ -31,16 +32,27 @@ class System extends Injectable
      */
     public static function getControllersAnnotations($limitCount = 0, $onlyAction = false)
     {
+        if (!class_exists(Finder::class)) {
+            $msg = "Not Find " . Finder::class . "! Please composer require symfony/finder" . PHP_EOL;
+            throw new Exception($msg);
+        }
+
         $reader = new MemoryAdapter();
         $result = [];
-        $files = [];
         // 取出所有的控制器
-        File::glob(APP_PATH . "/controllers/", $files);
-        foreach ($files as $controller) {
-            $linesCode = file($controller);
+        $controllerDir = di('config')->application->controllersDir;
+        $finder = new Finder();
+        $res = $finder->files()->in($controllerDir)->name("*.php");
+
+        if ($res->count() === 0) {
+            $msg = "Controller is not defined" . PHP_EOL;
+            throw new Exception($msg);
+        }
+
+        foreach ($res as $file) {
+            $linesCode = file($file->getRealPath());
             $namespace = "";
             $classname = "";
-            $full_classname = "";
             // 获取控制器命名空间
             foreach ($linesCode as $line) {
                 preg_match('#^namespace (.+);$#', $line, $matches);
@@ -49,6 +61,9 @@ class System extends Injectable
                     break;
                 }
             }
+            if (empty($namespace)) {
+                continue;
+            }
             // 获取控制器类名
             foreach ($linesCode as $line) {
                 preg_match('#class (.+) extends#', $line, $matches);
@@ -56,6 +71,9 @@ class System extends Injectable
                     $classname = $matches[1];
                     break;
                 }
+            }
+            if (empty($classname)) {
+                continue;
             }
 
             $full_classname = $namespace . "\\" . $classname;
