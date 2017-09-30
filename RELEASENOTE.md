@@ -10,6 +10,7 @@
 
 ### Changed
 * 移动Queue Socket WebSocket 基类
+* 删除success & error 助手方法！！
 
 ### Fixed
 * 修改定时脚本日志BUG

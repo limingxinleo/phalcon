@@ -6,38 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-use limx\phalcon\Http\Response;
 use limx\Support\Arr;
-
-if (!function_exists('success')) {
-
-    /**
-     * @desc
-     * @author limx
-     * @param array $data
-     * @return mixed
-     */
-    function success($data = [])
-    {
-        return Response::send(1, $data);
-    }
-}
-
-if (!function_exists('error')) {
-
-    /**
-     * @desc
-     * @author limx
-     * @param string $msg
-     * @param array  $data
-     * @return mixed
-     */
-    function error($msg = '', $data = [])
-    {
-        return Response::send(0, $data, $msg);
-    }
-}
-
 
 if (!function_exists('app')) {
     /**
