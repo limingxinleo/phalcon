@@ -2,7 +2,17 @@
 
 ## [Unreleased]
 ### Checked
-- [ ] php单元测试
+- [x] php单元测试
+
+### Added
+
+### Changed
+
+### Fixed
+
+## [2.0.0]
+### Checked
+- [x] php单元测试
 
 ### Added
 * 增加x-console-color依赖
