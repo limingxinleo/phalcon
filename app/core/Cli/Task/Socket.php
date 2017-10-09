@@ -34,12 +34,18 @@ abstract class Socket extends Task
         'max_request' => 500, // 每个worker进程最大处理请求次数
     ];
 
-    public function mainAction()
+    protected $params;
+
+    public function mainAction($params = [])
     {
         if (!extension_loaded('swoole')) {
             echo Color::error('The swoole extension is not installed');
             return;
         }
+
+        // 设置输入参数
+        $this->params = $params;
+
         set_time_limit(0);
         $server = new swoole_server("0.0.0.0", $this->port);
 
@@ -48,9 +54,20 @@ abstract class Socket extends Task
         foreach ($this->events() as $name => $callback) {
             $server->on($name, $callback);
         }
-        $this->ready($server);
+
+        $this->beforeServerStart($server);
 
         $server->start();
+    }
+
+    /**
+     * @desc
+     * @author limx
+     * @param swoole_server $server
+     */
+    protected function beforeServerStart(swoole_server $server)
+    {
+        $this->ready($server);
     }
 
     /**
