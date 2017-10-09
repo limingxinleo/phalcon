@@ -5,6 +5,8 @@
 - [x] php单元测试
 
 ### Added
+* Swoole Socket增加用户组
+* Socket基类增加beforeServerStart方法
 
 ### Changed
 
