@@ -68,6 +68,16 @@ abstract class Socket extends Task
     protected function beforeServerStart(swoole_server $server)
     {
         $this->ready($server);
+
+        // 增加 用户自定义的工作进程
+        // $worker = new swoole_process(function ($process) use ($server) {
+        //     $server->tick(1000, function () {
+        //         echo 'tick:' . time() . PHP_EOL;
+        //     });
+        // });
+        //
+        // $server->addProcess($worker);
+
     }
 
     /**
