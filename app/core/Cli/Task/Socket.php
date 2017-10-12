@@ -13,7 +13,7 @@ use Xin\Cli\Color;
 use swoole_server;
 
 /**
- * Class Socket
+ * Class Socket SwooleServer 服务
  * @package App\Tasks\System
  * @reload  kill -USR1 `cat socket.pid`
  * @stop    kill `cat socket.pid`
@@ -61,7 +61,7 @@ abstract class Socket extends Task
     }
 
     /**
-     * @desc
+     * @desc   服务启动前的注册事件
      * @author limx
      * @param swoole_server $server
      */
@@ -70,7 +70,11 @@ abstract class Socket extends Task
         $this->ready($server);
 
         // 增加 用户自定义的工作进程
-        // $worker = new swoole_process(function ($process) use ($server) {
+        //
+        // $worker = new swoole_process(function (swoole_process $worker) {
+        //     swoole_timer_tick(1000, function () use ($worker) {
+        //         echo 'tick:' . time() . ':' . $worker->pid . PHP_EOL;
+        //     });
         //     $server->tick(1000, function () {
         //         echo 'tick:' . time() . PHP_EOL;
         //     });
