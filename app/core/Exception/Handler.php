@@ -49,6 +49,7 @@ class Handler
         } else {
             echo 'Sorry, 服务器内部错误';
         }
+        exit(255);
     }
 
     /**
@@ -61,6 +62,7 @@ class Handler
         $msg = $ex->getMessage() . " in " . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         $this->logger->error($msg);
         echo $msg;
+        exit(255);
     }
 
 }
