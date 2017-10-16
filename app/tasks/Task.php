@@ -2,6 +2,13 @@
 
 namespace App\Tasks;
 
+use Phalcon\Cli\Dispatcher;
+
+/**
+ * Class Task
+ * @package App\Tasks
+ * @property Dispatcher $dispatcher
+ */
 abstract class Task extends \Phalcon\Cli\Task
 {
     public $description;
