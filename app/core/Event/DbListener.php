@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Event;
 
+use Xin\Phalcon\Logger\Factory;
 use Xin\Phalcon\Logger\Sys;
 use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;
@@ -33,7 +34,9 @@ class DbListener
 
         $this->_profiler = new Profiler();
 
-        $this->_logger = di('logger')->getLogger('sql', Sys::LOG_ADAPTER_FILE);
+        /** @var Factory $factory */
+        $factory = di('logger');
+        $this->_logger = $factory->getLogger('sql', Sys::LOG_ADAPTER_FILE);
     }
 
     /**

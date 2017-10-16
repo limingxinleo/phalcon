@@ -38,6 +38,7 @@ ini_set('date.timezone', $config->timezone);
  */
 $di = (new DI($config))->getDI();
 
+/** @var \Xin\Phalcon\Cli\XConsole $console */
 $console = $di->getShared('xconsole');
 
 /**
