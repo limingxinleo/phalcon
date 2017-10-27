@@ -108,7 +108,7 @@ class Mongo implements MongoInteface
         $bulk = new BulkWrite();
         $namespace = static::getNamespace($table);
 
-        $bulk->update($filter, [static::_SET => $newObj], $updateOptions);
+        $bulk->update($filter, ['$set' => $newObj], $updateOptions);
 
         return $manager->executeBulkWrite($namespace, $bulk, $writeConcern);
     }
