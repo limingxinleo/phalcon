@@ -9,6 +9,7 @@
 * Socket基类增加beforeServerStart方法
 
 ### Changed
+* 重写Debug工具类
 
 ### Fixed
 
