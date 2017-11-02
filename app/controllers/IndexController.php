@@ -16,6 +16,7 @@ class IndexController extends Controller
      * @desc
      * @author limx
      * @return bool|\Phalcon\Mvc\View
+     * @Middleware('auth')
      */
     public function indexAction()
     {

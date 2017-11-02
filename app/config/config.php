@@ -125,6 +125,7 @@ return new Config(
             'jobsDir' => APP_PATH . '/jobs/',
             'libraryDir' => APP_PATH . '/library/',
             'logicsDir' => APP_PATH . '/logics/',
+            'middlewareDir' => APP_PATH . '/middleware/',
             'modelsDir' => APP_PATH . '/models/',
             'tasksDir' => APP_PATH . '/tasks/',
             'utilsDir' => APP_PATH . '/utils/',
@@ -275,6 +276,7 @@ return new Config(
                 'url' => App\Core\Services\Mvc\Url::class,
                 'view' => App\Core\Services\Mvc\View::class,
                 'dispatcher' => App\Core\Services\Mvc\Dispatcher::class,
+                'middlewareManager' => App\Core\Services\Mvc\MiddlewareManager::class,
             ],
         ],
 

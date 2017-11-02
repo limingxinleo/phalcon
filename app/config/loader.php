@@ -23,6 +23,7 @@ $loader
             'App\Tasks' => $config->application->tasksDir,
             'App\Utils' => $config->application->utilsDir,
             'App\Core' => $config->application->coreDir,
+            'App\Middleware' => $config->application->middlewareDir,
         ]
     )->registerFiles(
         [
