@@ -26,7 +26,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '2.0.2',
+        'version' => '2.0.3',
 
         /*
         |--------------------------------------------------------------------------
@@ -276,7 +276,7 @@ return new Config(
                 'url' => App\Core\Services\Mvc\Url::class,
                 'view' => App\Core\Services\Mvc\View::class,
                 'dispatcher' => App\Core\Services\Mvc\Dispatcher::class,
-                'middlewareManager' => App\Core\Services\Mvc\MiddlewareManager::class,
+                'middleware' => App\Core\Services\Mvc\Middleware::class,
             ],
         ],
 

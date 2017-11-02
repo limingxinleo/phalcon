@@ -14,11 +14,11 @@ use Phalcon\DI\FactoryDefault;
 use App\Middleware\AuthMiddleware;
 use Xin\Phalcon\Middleware\Manager;
 
-class MiddlewareManager implements ServiceProviderInterface
+class Middleware implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
-        $di->setShared('middlewareManager', function () {
+        $di->setShared('middleware', function () {
             $middlewareManager = new Manager();
             //注册中间件
             $middlewareManager->add('auth', AuthMiddleware::class);
