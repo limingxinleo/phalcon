@@ -14,6 +14,7 @@ use Phalcon\DI\FactoryDefault;
 use Phalcon\Events\Manager;
 use App\Core\Event\Mvc\DispatchListener;
 use Xin\Phalcon\Middleware\Mvc\Dispatcher as MvcDispatcher;
+use Xin\Phalcon\Middleware\Mvc\Dispatcher71 as MvcDispatcher71;
 
 class Dispatcher implements ServiceProviderInterface
 {
@@ -30,7 +31,11 @@ class Dispatcher implements ServiceProviderInterface
 
             // $dispatcher = new \Phalcon\Mvc\Dispatcher();
             // 使用x-phalcon-middleware重写的Dispatcher
-            $dispatcher = new MvcDispatcher();
+            if (version_compare(PHP_VERSION, '7.1', '>')) {
+                $dispatcher = new MvcDispatcher71();
+            } else {
+                $dispatcher = new MvcDispatcher();
+            }
             $dispatcher->setDefaultNamespace('App\Controllers');
             // 分配事件管理器到分发器
             $dispatcher->setEventsManager($eventsManager);
