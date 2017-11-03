@@ -15,6 +15,7 @@
 * 重构Mongo服务注入
 
 ### Fixed
+* 修改中间件在php7.1下报错的BUG
 
 ## [2.0.0]
 ### Checked
