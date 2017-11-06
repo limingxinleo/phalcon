@@ -8,8 +8,8 @@
 // +----------------------------------------------------------------------
 namespace App\Tasks\System;
 
+use Phalcon\Text;
 use Xin\Cli\Color;
-use limx\Support\Str;
 use Phalcon\Cli\Task;
 
 class InitTask extends Task
@@ -86,15 +86,15 @@ class InitTask extends Task
         $res = $val;
         switch ($val) {
             case "--random-base64":
-                $res = base64_encode(Str::random($len));
+                $res = base64_encode(Text::random(Text::RANDOM_ALPHA, $len));
                 break;
 
             case "--random-md5":
-                $res = md5(Str::random($len));
+                $res = md5(Text::random(Text::RANDOM_ALPHA, $len));
                 break;
 
             case "--random":
-                $res = Str::random($len);
+                $res = Text::random(Text::RANDOM_ALPHA, $len);
                 break;
 
             default:

@@ -13,6 +13,7 @@
 * 重写Debug工具类
 * 重构Mongo工具类
 * 重构Mongo服务注入
+* 修改limx\Support\Str工具类为Phalcon\Text工具类
 
 ### Fixed
 * 修改中间件在php7.1下报错的BUG
