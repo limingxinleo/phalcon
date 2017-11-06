@@ -80,7 +80,7 @@ class ClearTask extends Task
             }
         }
         // 删除缓存
-        $this->delete($dir);
+        static::rm($dir, false);
         echo Color::success("The Cache was successfully deleted.");
     }
 
@@ -112,21 +112,11 @@ class ClearTask extends Task
                     }
                 }
                 // 删除缓存
-                $this->delete($dir);
+                static::rm($dir, false);
                 break;
         }
 
         echo Color::success("The Cache was successfully deleted.");
-    }
-
-    private function delete($dir)
-    {
-        if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-            static::rm($dir, false);
-            return;
-        }
-        $str = "rm -rf " . $dir . "*";
-        system($str);
     }
 
     /**

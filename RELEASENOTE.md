@@ -7,6 +7,7 @@
 ### Added
 
 ### Changed
+不使用系统方法 system删除缓存
 
 ### Fixed
 
