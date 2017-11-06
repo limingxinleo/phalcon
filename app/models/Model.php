@@ -10,6 +10,10 @@ namespace App\Models;
 
 use Xin\Phalcon\Logger\Sys as LogSys;
 
+/**
+ * Class Model
+ * @package App\Models
+ */
 abstract class Model extends \Phalcon\Mvc\Model
 {
 
@@ -25,6 +29,8 @@ abstract class Model extends \Phalcon\Mvc\Model
         // $this->hasMany(...$params, $options = null)
         // $this->hasManyToMany(...$params, $options = null)
 
+        // Sets if a model must use dynamic update instead of the all-field update
+        // $this->useDynamicUpdate(true);
     }
 
     /**
@@ -40,11 +46,6 @@ abstract class Model extends \Phalcon\Mvc\Model
         $this->skipAttributesOnUpdate(array_diff($attributes, array_keys($data)));
 
         return parent::update($data, $whiteList);
-    }
-
-    public static function __callStatic($method, $arguments)
-    {
-        parent::__callStatic($method, $arguments);
     }
 
     public function beforeCreate()
