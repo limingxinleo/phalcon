@@ -5,9 +5,10 @@
 - [ ] php单元测试
 
 ### Added
+* 增加路由group方法
 
 ### Changed
-不使用系统方法 system删除缓存
+* 不使用系统方法 system删除缓存
 
 ### Fixed
 
