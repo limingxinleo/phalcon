@@ -11,13 +11,16 @@ namespace App\Core\Services\Mvc;
 use App\Core\Services\ServiceProviderInterface;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
+use Phalcon\Mvc\Router as MvcRouter;
+use Xin\Phalcon\Router\Mvc\Router as XMvcRouter;
 
 class Router implements ServiceProviderInterface
 {
     public function register(FactoryDefault $di, Config $config)
     {
         $di->setShared('router', function () use ($config) {
-            $router = new \Phalcon\Mvc\Router(false);
+            $router = new MvcRouter(false);
+            // $router = new XMvcRouter(false);
             $dir = $config->application->configDir . 'routes';
             foreach (glob($dir . '/*.php') as $item) {
                 include_once $item;
