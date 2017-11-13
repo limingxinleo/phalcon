@@ -13,12 +13,12 @@ class Queue
     public static function push($job)
     {
         $redis_key = di('config')->queue->key;
-        Redis::lpush($redis_key, serialize($job));
+        return Redis::lpush($redis_key, serialize($job));
     }
 
     public static function delay($job, $second)
     {
         $redis_key = di('config')->queue->delayKey;
-        Redis::zadd($redis_key, time() + $second, serialize($job));
+        return Redis::zadd($redis_key, time() + $second, serialize($job));
     }
 }
