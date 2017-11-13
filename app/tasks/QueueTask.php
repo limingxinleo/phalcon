@@ -74,7 +74,7 @@ class QueueTask extends Queue
         $factory = di('logger');
         $logger = $factory->getLogger('queue-failed');
 
-        $msg = $ex->getMessage() . " in " . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
+        $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         return $logger->error($msg);
     }
 
