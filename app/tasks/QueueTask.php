@@ -5,6 +5,7 @@ namespace App\Tasks;
 use App\Jobs\Contract\JobInterface;
 use App\Core\Cli\Task\Queue;
 use Xin\Cli\Color;
+use Xin\Phalcon\Logger\Factory;
 use Xin\Redis;
 use Exception;
 
@@ -51,10 +52,30 @@ class QueueTask extends Queue
                 echo Color::colorize('Processed: ' . $name, Color::FG_GREEN) . PHP_EOL;
             }
         } catch (Exception $ex) {
+            echo Color::colorize('Failed: ' . $name, Color::FG_RED) . PHP_EOL;
+            $this->logError($ex);
+
+            // 推送失败的消息对失败队列
             $redis = static::redisChildClient();
             $redis->lpush($this->errorKey, $recv);
         }
 
+    }
+
+    /**
+     * @desc   记录错误日志
+     * @author limx
+     * @param $message
+     * @return \Phalcon\Logger\AdapterInterface
+     */
+    protected function logError(Exception $ex)
+    {
+        /** @var Factory $factory */
+        $factory = di('logger');
+        $logger = $factory->getLogger('queue-failed');
+
+        $msg = $ex->getMessage() . " in " . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
+        return $logger->error($msg);
     }
 
     /**
