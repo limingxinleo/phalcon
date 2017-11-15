@@ -22,7 +22,7 @@ class ErrorController extends \Phalcon\Mvc\Controller
     public function show404Action()
     {
         if ($this->request->isPost()) {
-            return self::error('页面找不到了~');
+            return static::error('页面找不到了~');
         }
         return $this->view->render('public', '404');
     }
@@ -51,6 +51,6 @@ class ErrorController extends \Phalcon\Mvc\Controller
      */
     public function jsonAction($status = 0, $msg = "")
     {
-        return self::response($status, [], $msg);
+        return static::response($status, [], $msg);
     }
 }
