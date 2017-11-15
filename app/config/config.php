@@ -134,7 +134,6 @@ return new Config(
             'coreDir' => APP_PATH . '/core/',
             'jobsDir' => APP_PATH . '/jobs/',
             'libraryDir' => APP_PATH . '/library/',
-            'logicsDir' => APP_PATH . '/logics/',
             'middlewareDir' => APP_PATH . '/middleware/',
             'modelsDir' => APP_PATH . '/models/',
             'tasksDir' => APP_PATH . '/tasks/',

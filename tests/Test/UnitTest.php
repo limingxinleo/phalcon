@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
-use App\Logics\System;
+use App\Core\System;
 use Phalcon\Text;
 use \UnitTestCase;
 
@@ -106,7 +106,7 @@ class UnitTest extends UnitTestCase
      */
     public function testVersionCase()
     {
-        $version = (new System())->version();
+        $version = System::getInstance()->version();
         $config = di('config');
         $this->assertEquals($config->version, $version);
     }

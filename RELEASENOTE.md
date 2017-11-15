@@ -10,6 +10,9 @@
 
 ### Fixed
 
+### Deleted
+* 删除Logic目录
+
 ## [2.0.7]
 ### Checked
 - [x] php单元测试

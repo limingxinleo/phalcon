@@ -18,7 +18,6 @@ $loader
             'App\Controllers' => $config->application->controllersDir,
             'App\Jobs' => $config->application->jobsDir,
             'App\Library' => $config->application->libraryDir,
-            'App\Logics' => $config->application->logicsDir,
             'App\Models' => $config->application->modelsDir,
             'App\Tasks' => $config->application->tasksDir,
             'App\Utils' => $config->application->utilsDir,

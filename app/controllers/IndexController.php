@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
-use App\Logics\System;
+use App\Core\System;
 
 class IndexController extends Controller
 {
@@ -20,7 +20,7 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        $this->view->version = (new System())->version();
+        $this->view->version = System::getInstance()->version();
         return $this->view->render('index', 'index');
     }
 }

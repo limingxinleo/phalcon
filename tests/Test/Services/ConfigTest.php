@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Test\Services;
 
-use App\Logics\System;
+use App\Core\System;
 use \UnitTestCase;
 
 /**
@@ -37,6 +37,6 @@ class ConfigTest extends UnitTestCase
     public function testConfigCase()
     {
         $version = di('config')->get('version');
-        $this->assertEquals((new System())->version(), $version);
+        $this->assertEquals(System::getInstance()->version(), $version);
     }
 }
