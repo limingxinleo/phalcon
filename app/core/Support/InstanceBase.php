@@ -1,25 +1,24 @@
 <?php
 // +----------------------------------------------------------------------
-// | Test.php [ WE CAN DO IT JUST THINK IT ]
+// | InstanceBase.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\App\Logics;
+namespace App\Core\Support;
 
-use Phalcon\Text;
-use App\Core\Support\CacheBase;
+use Phalcon\Di\Injectable;
 
-class Test extends CacheBase
+abstract class InstanceBase extends Injectable
 {
-    /**
-     * @desc   获取项目版本号
-     * @author limx
-     * @return mixed
-     */
-    public static function str()
+    protected static $_instance;
+
+    public static function getInstance()
     {
-        return Text::random(Text::RANDOM_DISTINCT, 5);
+        if (isset(static::$_instance) && static::$_instance instanceof Base) {
+            return static::$_instance;
+        }
+        return static::$_instance = new static();
     }
 }

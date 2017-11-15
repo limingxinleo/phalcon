@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | Test.php [ WE CAN DO IT JUST THINK IT ]
+// | Ins1.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
@@ -8,18 +8,18 @@
 // +----------------------------------------------------------------------
 namespace Test\App\Logics;
 
-use Phalcon\Text;
-use App\Core\Support\CacheBase;
+use App\Core\Support\InstanceBase;
 
-class Test extends CacheBase
+class Ins1 extends InstanceBase
 {
-    /**
-     * @desc   获取项目版本号
-     * @author limx
-     * @return mixed
-     */
-    public static function str()
+
+    public function str()
     {
-        return Text::random(Text::RANDOM_DISTINCT, 5);
+        return 'Ins1';
+    }
+
+    public function instance()
+    {
+        return static::$_instance;
     }
 }
