@@ -1,18 +1,18 @@
 <?php
 // +----------------------------------------------------------------------
-// | 基础 逻辑类 [ WE CAN DO IT JUST THINK IT ]
+// | CacheBase.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Logics;
+namespace App\Core\Support;
 
 use App\Utils\Cache;
 use Phalcon\Di\Injectable;
 use Phalcon\Text;
 
-class Base extends Injectable
+abstract class CacheBase extends Injectable
 {
     // 超时时间
     protected static $lifeTime = 60;

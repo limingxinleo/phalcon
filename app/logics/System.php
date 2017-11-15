@@ -8,13 +8,13 @@
 // +----------------------------------------------------------------------
 namespace App\Logics;
 
-use Phalcon\Di\Injectable;
+use App\Core\Support\CacheBase;
 use Phalcon\Exception;
 use Phalcon\Version;
 use Phalcon\Annotations\Adapter\Memory as MemoryAdapter;
 use Symfony\Component\Finder\Finder;
 
-class System extends Injectable
+class System extends CacheBase
 {
     /**
      * @desc   获取项目版本号

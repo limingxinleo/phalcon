@@ -10,8 +10,9 @@ namespace Test\App\Logics;
 
 use App\Logics\Base;
 use Phalcon\Text;
+use App\Core\Support\CacheBase;
 
-class Test extends Base
+class Test extends CacheBase
 {
     /**
      * @desc   获取项目版本号

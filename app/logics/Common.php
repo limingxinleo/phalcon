@@ -8,7 +8,9 @@
 // +----------------------------------------------------------------------
 namespace App\Logics;
 
-class Common extends Base
+use App\Core\Support\CacheBase;
+
+class Common extends CacheBase
 {
     /**
      * @desc   获取项目版本号
