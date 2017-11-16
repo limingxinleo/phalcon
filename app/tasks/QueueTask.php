@@ -47,9 +47,12 @@ class QueueTask extends Queue
             $obj = unserialize($recv);
             if ($obj instanceof JobInterface) {
                 $name = get_class($obj);
-                echo Color::colorize('Processing: ' . $name, Color::FG_GREEN) . PHP_EOL;
+                $date = date('Y-m-d H:i:s');
+                echo Color::colorize("[{$date}] Processing: {$name}", Color::FG_GREEN) . PHP_EOL;
+                // 处理消息
                 $obj->handle();
-                echo Color::colorize('Processed: ' . $name, Color::FG_GREEN) . PHP_EOL;
+                $date = date('Y-m-d H:i:s');
+                echo Color::colorize("[{$date}] Processed: {$name}", Color::FG_GREEN) . PHP_EOL;
             }
         } catch (Exception $ex) {
             echo Color::colorize('Failed: ' . $name, Color::FG_RED) . PHP_EOL;
@@ -59,7 +62,6 @@ class QueueTask extends Queue
             $redis = static::redisChildClient();
             $redis->lpush($this->errorKey, $recv);
         }
-
     }
 
     /**
