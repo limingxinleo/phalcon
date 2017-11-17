@@ -55,7 +55,8 @@ class QueueTask extends Queue
                 echo Color::colorize("[{$date}] Processed: {$name}", Color::FG_GREEN) . PHP_EOL;
             }
         } catch (Exception $ex) {
-            echo Color::colorize('Failed: ' . $name, Color::FG_RED) . PHP_EOL;
+            $date = date('Y-m-d H:i:s');
+            echo Color::colorize("[{$date}] Failed: {$name}", Color::FG_RED) . PHP_EOL;
             $this->logError($ex);
 
             // 推送失败的消息对失败队列
