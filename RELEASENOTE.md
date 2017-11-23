@@ -9,6 +9,7 @@
 ### Changed
 
 ### Fixed
+* 修改InstanceBase getInstance不能返回一个实例的BUG
 
 ### Deleted
 * 删除Logic目录

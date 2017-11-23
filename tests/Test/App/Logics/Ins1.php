@@ -20,6 +20,7 @@ class Ins1 extends InstanceBase
 
     public function instance()
     {
-        return static::$_instance;
+        $key = get_called_class();
+        return static::$_instances[$key];
     }
 }

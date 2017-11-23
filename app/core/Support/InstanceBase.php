@@ -12,13 +12,14 @@ use Phalcon\Di\Injectable;
 
 abstract class InstanceBase extends Injectable
 {
-    protected static $_instance;
+    protected static $_instances = [];
 
     public static function getInstance()
     {
-        if (isset(static::$_instance) && static::$_instance instanceof Base) {
-            return static::$_instance;
+        $key = get_called_class();
+        if (isset(static::$_instances[$key]) && static::$_instances[$key] instanceof InstanceBase) {
+            return static::$_instances[$key];
         }
-        return static::$_instance = new static();
+        return static::$_instances[$key] = new static();
     }
 }
