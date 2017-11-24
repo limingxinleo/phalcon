@@ -12,11 +12,22 @@ use Phalcon\Cli\Task;
 use Xin\Cli\Color;
 use swoole_websocket_server;
 use swoole_websocket_frame;
+use swoole_http_request;
 
 abstract class WebSocket extends Task
 {
     // 端口号
     protected $port = 11521;
+
+    // @see https://wiki.swoole.com/wiki/page/274.html Swoole文档Socket配置选项
+    protected $config = [
+        'pid_file' => ROOT_PATH . '/socket.pid',
+        'user' => 'nginx',
+        'group' => 'nginx',
+        'daemonize' => false,
+        // 'worker_num' => 8, // cpu核数1-4倍比较合理 不写则为cpu核数
+        'max_request' => 500, // 每个worker进程最大处理请求次数
+    ];
 
     public function mainAction()
     {
@@ -27,34 +38,15 @@ abstract class WebSocket extends Task
         set_time_limit(0);
         $server = new swoole_websocket_server("0.0.0.0", $this->port);
 
-        $server->on('open', function (swoole_websocket_server $server, $request) {
-            /**
-             * $request->fd     客户端的socket id
-             * $request->header 请求的头文件
-             * $request->server WebSocket 服务器信息
-             * $request->data   客户端发送的数据
-             */
-            $this->connect($server, $request);
-        });
+        $server->set($this->config);
 
-        $server->on('message', function (swoole_websocket_server $server, swoole_websocket_frame $frame) {
-            /**
-             * $frame->fd       客户端的socket id，使用$server->push推送数据时需要用到
-             * $frame->data     数据内容，可以是文本内容也可以是二进制数据，可以通过opcode的值来判断
-             * $frame->opcode   WebSocket的OpCode类型，可以参考WebSocket协议标准文档
-             * $frame->finish   表示数据帧是否完整，一个WebSocket请求可能会分成多个数据帧进行发送
-             */
-            $this->message($server, $frame);
-        });
+        $server->on('open', [$this, 'connect']);
 
-        $server->on('close', function ($ser, $fd) {
-            /**
-             * $fd 客户端的socket id，使用$server->push推送数据时需要用到
-             */
-            $this->close($ser, $fd);
-        });
+        $server->on('message', [$this, 'message']);
 
-        $this->ready($server);
+        $server->on('close', [$this, 'close']);
+
+        $this->beforeServerStart($server);
 
         $server->start();
     }
@@ -65,7 +57,7 @@ abstract class WebSocket extends Task
      * @param swoole_websocket_server $server
      * @param                         $request
      */
-    abstract protected function connect(swoole_websocket_server $server, $request);
+    abstract public function connect(swoole_websocket_server $server, swoole_http_request $request);
 
     /**
      * @desc   WebSocket 收到客户端消息
@@ -73,7 +65,7 @@ abstract class WebSocket extends Task
      * @param swoole_websocket_server $server
      * @param swoole_websocket_frame  $frame
      */
-    abstract protected function message(swoole_websocket_server $server, swoole_websocket_frame $frame);
+    abstract public function message(swoole_websocket_server $server, swoole_websocket_frame $frame);
 
     /**
      * @desc   WebSocket 断开连接
@@ -82,7 +74,7 @@ abstract class WebSocket extends Task
      * @param $fd
      * @return mixed
      */
-    abstract protected function close($ser, $fd);
+    abstract public function close(swoole_websocket_server $ser, $fd);
 
     /**
      * @desc   准备开启服务器
@@ -94,5 +86,10 @@ abstract class WebSocket extends Task
         echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
         echo Color::colorize("     WebSocket服务器开启 端口：{$this->port} ", Color::FG_LIGHT_GREEN) . PHP_EOL;
         echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
+    }
+
+    protected function beforeServerStart(swoole_websocket_server $server)
+    {
+        $this->ready($server);
     }
 }
