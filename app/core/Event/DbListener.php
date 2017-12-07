@@ -14,6 +14,7 @@ use Phalcon\Db\Profiler;
 use Phalcon\Events\Event;
 use Phalcon\Logger;
 use Exception;
+use Xin\Support\File;
 
 class DbListener
 {
@@ -30,14 +31,7 @@ class DbListener
         $config = di('config');
         $dir = $config->application->logDir . date('Ymd');
         if (!is_dir($dir)) {
-            try {
-                mkdir($dir, 0777, true);
-            } catch (\Exception $ex) {
-                // 当并发新建日志目录时，如果已存在目录，则不抛出错误
-                if (!is_dir($dir)) {
-                    throw new Exception($ex->getMessage(), $ex->getCode());
-                }
-            }
+            File::getInstance()->makeDirectory($dir, 0777, true, true);
         }
 
         $this->_profiler = new Profiler();

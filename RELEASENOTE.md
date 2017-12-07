@@ -7,6 +7,7 @@
 ### Added
 
 ### Changed
+* 修改mkdir为File::makeDirectory方法
 
 ### Fixed
 * 修改InstanceBase getInstance不能返回一个实例的BUG
