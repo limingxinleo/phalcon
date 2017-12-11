@@ -71,6 +71,7 @@ return new Config(
         'database' => [
             'adapter' => env('DB_ADAPTER', 'Mysql'),
             'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', 3306),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', null),
             'dbname' => env('DB_DBNAME', 'phalcon'),
