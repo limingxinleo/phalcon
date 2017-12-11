@@ -5,6 +5,7 @@
 - [ ] php单元测试
 
 ### Added
+* 增加数据库端口配置
 
 ### Changed
 * 修改mkdir为File::makeDirectory方法
