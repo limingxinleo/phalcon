@@ -10,6 +10,7 @@ namespace App\Core\Event\Mvc;
 
 use Phalcon\Events\Event;
 use Exception;
+use Phalcon\Http\Response;
 use Phalcon\Mvc\Dispatcher;
 
 class DispatchListener
@@ -30,13 +31,10 @@ class DispatchListener
         switch ($exception->getCode()) {
             case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
             case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                $dispatcher->forward(
-                    [
-                        'namespace' => 'App\Controllers',
-                        'controller' => 'error',
-                        'action' => 'show404',
-                    ]
-                );
+                /** @var Response $response */
+                $response = di('response');
+                $response->setStatusCode(404);
+                echo $response->getContent();
                 return false;
 
             default:

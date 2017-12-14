@@ -10,6 +10,7 @@ namespace Test;
 
 use \UnitTestCase;
 use Phalcon\Mvc\Application;
+use App\Core\System;
 
 /**
  * Class UnitTest
@@ -27,12 +28,11 @@ class HttpTest extends UnitTestCase
 
     public function testJsonResponseCase()
     {
-        $status = 0;
-        $message = "test";
-        $response = $this->application->handle(sprintf("/error/json/%d/%s", $status, $message));
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $response = $this->application->handle("/index/index");
         $data = $response->getContent();
         $data = json_decode($data);
-        $this->assertEquals($status, $data->status);
-        $this->assertEquals($message, $data->message);
+        $this->assertEquals(System::getInstance()->version(), $data->version);
+        $this->assertEquals("You're now flying with Phalcon. Great things are about to happen!", $data->message);
     }
 }
