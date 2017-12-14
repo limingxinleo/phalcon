@@ -26,7 +26,7 @@ class InfoTask extends Task
         echo Color::colorize('  项目信息脚本') . PHP_EOL . PHP_EOL;
 
         echo Color::head('Usage:') . PHP_EOL;
-        echo Color::colorize('  php run System\\\\Info [action]', Color::FG_GREEN) . PHP_EOL . PHP_EOL;
+        echo Color::colorize('  php run system:info@[action]', Color::FG_GREEN) . PHP_EOL . PHP_EOL;
 
         echo Color::head('Actions:') . PHP_EOL;
         echo Color::colorize('  version                         项目版本', Color::FG_GREEN) . PHP_EOL;

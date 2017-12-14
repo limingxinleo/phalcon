@@ -27,7 +27,7 @@ class ClearTask extends Task
         echo Color::colorize('  清理缓存信息') . PHP_EOL . PHP_EOL;
 
         echo Color::head('Usage:') . PHP_EOL;
-        echo Color::colorize('  php run System\\\\Clear [action] [yes or no]', Color::FG_LIGHT_GREEN) . PHP_EOL . PHP_EOL;
+        echo Color::colorize('  php run system:clear@[action] [yes or no]', Color::FG_LIGHT_GREEN) . PHP_EOL . PHP_EOL;
 
         echo Color::head('Actions:') . PHP_EOL;
         echo Color::colorize('  data    清理数据缓存', Color::FG_LIGHT_GREEN) . PHP_EOL;
