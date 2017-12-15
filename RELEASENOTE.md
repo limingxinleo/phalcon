@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Checked
-- [ ] php单元测试
+- [x] php单元测试
 
 ### Added
 * 增加数据库端口配置
@@ -16,6 +16,7 @@
 
 ### Deleted
 * 删除Logic目录
+* 删除不符合设计的代码
 
 ## [2.0.7]
 ### Checked
