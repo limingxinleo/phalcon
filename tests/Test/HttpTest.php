@@ -6,30 +6,19 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test;
+namespace Tests\Test;
 
-use \UnitTestCase;
-use Phalcon\Mvc\Application;
 use App\Core\System;
+use Tests\HttpTestCase;
 
 /**
  * Class UnitTest
  */
-class HttpTest extends UnitTestCase
+class HttpTest extends HttpTestCase
 {
-    protected $application;
-
-    public function __construct()
-    {
-        $di = di();
-        $this->application = new Application($di);
-        // $this->application->useImplicitView(false);
-    }
-
     public function testJsonResponseCase()
     {
-        $_SERVER['REQUEST_METHOD'] = "POST";
-        $response = $this->application->handle("/index/index");
+        $response = $this->post('/index/index');
         $data = $response->getContent();
         $data = json_decode($data);
         $this->assertEquals(System::getInstance()->version(), $data->version);

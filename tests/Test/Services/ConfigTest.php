@@ -9,7 +9,7 @@
 namespace Test\Services;
 
 use App\Core\System;
-use \UnitTestCase;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest

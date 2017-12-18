@@ -6,10 +6,10 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\Logics;
+namespace Tests\Test\Logics;
 
-use Test\App\Logics\Test;
-use \UnitTestCase;
+use Tests\Test\App\Logics\Test;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest

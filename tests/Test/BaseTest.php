@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Test;
 
-use \UnitTestCase;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest

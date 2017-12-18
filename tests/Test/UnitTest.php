@@ -10,7 +10,7 @@ namespace Test;
 
 use App\Core\System;
 use Phalcon\Text;
-use \UnitTestCase;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest

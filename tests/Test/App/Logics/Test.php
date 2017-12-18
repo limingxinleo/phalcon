@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\App\Logics;
+namespace Tests\Test\App\Logics;
 
 use Phalcon\Text;
 use App\Core\Support\CacheBase;

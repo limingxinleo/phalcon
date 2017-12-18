@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Test\Services;
 
-use \UnitTestCase;
+use Tests\UnitTestCase;
 use Phalcon\Mvc\Application;
 
 /**

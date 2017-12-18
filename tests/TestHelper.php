@@ -28,9 +28,9 @@ include __DIR__ . '/../vendor/autoload.php';
 // Autoload the dependencies found in composer
 $loader = new Loader();
 
-$loader->registerDirs(
+$loader->registerNamespaces(
     [
-        TESTS_PATH,
+        'Tests' => TESTS_PATH,
     ]
 );
 

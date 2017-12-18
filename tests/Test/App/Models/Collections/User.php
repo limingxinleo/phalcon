@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\App\Models\Collections;
+namespace Tests\Test\App\Models\Collections;
 
 use App\Models\Collections\Mongo;
 

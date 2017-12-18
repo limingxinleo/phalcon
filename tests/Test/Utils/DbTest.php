@@ -9,8 +9,8 @@
 namespace Test\Utils;
 
 use App\Utils\DB;
-use Test\App\Utils\DB1;
-use \UnitTestCase;
+use Tests\Test\App\Utils\DB1;
+use Tests\UnitTestCase;
 use PDO;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Events\Manager as EventsManager;

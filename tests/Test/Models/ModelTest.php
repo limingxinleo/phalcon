@@ -6,10 +6,10 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\Models;
+namespace Tests\Test\Models;
 
-use Test\App\Models\User;
-use \UnitTestCase;
+use Tests\Test\App\Models\User;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest

@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\App\Utils;
+namespace Tests\Test\App\Utils;
 
 use App\Utils\DB;
 

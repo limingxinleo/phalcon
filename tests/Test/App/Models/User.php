@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\App\Models;
+namespace Tests\Test\App\Models;
 
 use App\Models\Model;
 

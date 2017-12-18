@@ -16,6 +16,8 @@
   +------------------------------------------------------------------------+
 */
 
+namespace Tests;
+
 use Phalcon\Di\InjectionAwareInterface;
 use PHPUnit_Framework_TestCase as TestCase;
 use Phalcon\Config;
