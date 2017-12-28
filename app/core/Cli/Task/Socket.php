@@ -24,16 +24,6 @@ abstract class Socket extends Task
     // 端口号
     protected $port = 11520;
 
-    // @see https://wiki.swoole.com/wiki/page/274.html Swoole文档Socket配置选项
-    protected $config = [
-        'pid_file' => ROOT_PATH . '/socket.pid',
-        'user' => 'nginx',
-        'group' => 'nginx',
-        'daemonize' => false,
-        // 'worker_num' => 8, // cpu核数1-4倍比较合理 不写则为cpu核数
-        'max_request' => 500, // 每个worker进程最大处理请求次数
-    ];
-
     protected $params;
 
     public function mainAction($params = [])
@@ -49,7 +39,8 @@ abstract class Socket extends Task
         set_time_limit(0);
         $server = new swoole_server("0.0.0.0", $this->port);
 
-        $server->set($this->config);
+        $config = $this->getConfig();
+        $server->set($config);
 
         foreach ($this->events() as $name => $callback) {
             $server->on($name, $callback);
@@ -102,5 +93,23 @@ abstract class Socket extends Task
         echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
         echo Color::colorize("     Socket服务器开启 端口：{$this->port}     ", Color::FG_LIGHT_GREEN) . PHP_EOL;
         echo Color::colorize("-------------------------------------------", Color::FG_LIGHT_GREEN) . PHP_EOL;
+    }
+
+    /**
+     * @desc   获取配置
+     * @author limx
+     * @return array
+     */
+    protected function getConfig()
+    {
+        // @see https://wiki.swoole.com/wiki/page/274.html Swoole文档Socket配置选项
+        return [
+            'pid_file' => ROOT_PATH . '/socket.pid',
+            'user' => 'nginx',
+            'group' => 'nginx',
+            'daemonize' => false,
+            // 'worker_num' => 8, // cpu核数1-4倍比较合理 不写则为cpu核数
+            'max_request' => 500, // 每个worker进程最大处理请求次数
+        ];
     }
 }
