@@ -122,7 +122,12 @@ class HandleExceptions
     protected function fatalExceptionFromError(array $error, $traceOffset = null)
     {
         return new \ErrorException(
-            $error['message'], $error['type'], 0, $error['file'], $error['line'], $traceOffset
+            $error['message'],
+            $error['type'],
+            0,
+            $error['file'],
+            $error['line'],
+            $traceOffset
         );
     }
 

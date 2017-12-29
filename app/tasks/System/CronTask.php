@@ -52,5 +52,4 @@ class CronTask extends Task
         $logger->info($msg);
         echo Color::success($msg);
     }
-
 }

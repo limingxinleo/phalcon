@@ -54,5 +54,4 @@ class Db implements ServiceProviderInterface
             return $db;
         });
     }
-
 }

@@ -176,6 +176,7 @@ abstract class Queue extends Task
                     $this->process--;
                 }
 
+                // no break
             default:
                 break;
         }

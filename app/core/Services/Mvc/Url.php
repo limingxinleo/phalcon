@@ -27,5 +27,4 @@ class Url implements ServiceProviderInterface
             return $url;
         });
     }
-
 }

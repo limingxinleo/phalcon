@@ -25,5 +25,4 @@ class Logger implements ServiceProviderInterface
             return new Factory($config);
         });
     }
-
 }

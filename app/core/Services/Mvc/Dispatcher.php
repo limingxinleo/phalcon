@@ -43,5 +43,4 @@ class Dispatcher implements ServiceProviderInterface
             return $dispatcher;
         });
     }
-
 }

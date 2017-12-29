@@ -39,7 +39,6 @@ class Mongo implements ServiceProviderInterface
         if ($config->mongo->isCollection) {
             // Initialise the mongo DB connection.
             $di->setShared('mongo', function () use ($config) {
-
                 if (!$config->mongo->username || !$config->mongo->password) {
                     $dsn = 'mongodb://' . $config->mongo->host;
                 } else {
@@ -62,5 +61,4 @@ class Mongo implements ServiceProviderInterface
             });
         }
     }
-
 }

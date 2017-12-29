@@ -25,5 +25,4 @@ class MainTask extends Task
             $this->console->handle($task);
         }
     }
-
 }

@@ -78,7 +78,6 @@ class InitTask extends Task
             file_get_contents(ROOT_PATH . '/.env')
         ));
         echo Color::success($key . " was successfully changed.");
-
     }
 
     private static function random($val)
@@ -103,5 +102,4 @@ class InitTask extends Task
         }
         return $res;
     }
-
 }

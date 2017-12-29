@@ -148,5 +148,4 @@ class ClearTask extends Task
             rmdir($src);
         }
     }
-
 }

@@ -26,5 +26,4 @@ class Crypt implements ServiceProviderInterface
             }
         );
     }
-
 }

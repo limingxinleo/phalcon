@@ -43,5 +43,4 @@ class System extends InstanceBase
             'Loaded PHP config' => php_ini_loaded_file(),
         ];
     }
-
 }

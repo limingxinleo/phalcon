@@ -22,5 +22,4 @@ class Filter implements ServiceProviderInterface
             return new \Phalcon\Filter();
         });
     }
-
 }

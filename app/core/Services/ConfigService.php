@@ -22,5 +22,4 @@ class ConfigService implements ServiceProviderInterface
             return $config;
         });
     }
-
 }

@@ -20,5 +20,4 @@ class ModelsManager implements ServiceProviderInterface
             return new Manager();
         });
     }
-
 }

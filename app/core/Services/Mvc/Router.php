@@ -28,5 +28,4 @@ class Router implements ServiceProviderInterface
             return $router;
         });
     }
-
 }

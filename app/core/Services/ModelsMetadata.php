@@ -45,5 +45,4 @@ class ModelsMetadata implements ServiceProviderInterface
             return $modelsMetadata;
         });
     }
-
 }

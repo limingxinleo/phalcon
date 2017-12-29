@@ -21,5 +21,4 @@ class Error implements ServiceProviderInterface
             $handler->bootstrap($di);
         }
     }
-
 }

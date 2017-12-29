@@ -48,5 +48,4 @@ class Redis
         }
         return $redis->incrBy($key, $number);
     }
-
 }

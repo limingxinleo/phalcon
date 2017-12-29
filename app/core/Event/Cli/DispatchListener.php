@@ -45,7 +45,6 @@ class DispatchListener
      */
     protected function handleTaskNotFind(Event $event, Dispatcher $dispatcher, Exception $exception)
     {
-
         if (method_exists(NotFindTask::class, 'mainAction')) {
             $task = $dispatcher->getTaskName();
             $action = $dispatcher->getActionName();

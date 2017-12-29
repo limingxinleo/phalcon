@@ -105,4 +105,3 @@ class QueueTask extends Queue
         echo Color::success("失败的脚本已被清除！");
     }
 }
-

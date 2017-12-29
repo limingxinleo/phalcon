@@ -75,5 +75,4 @@ abstract class Model extends \Phalcon\Mvc\Model
             $logger->error(sprintf("\n模型:%s\n错误信息:%s\n\n", $class, $message->getMessage()));
         }
     }
-
 }

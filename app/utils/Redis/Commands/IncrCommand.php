@@ -23,5 +23,4 @@ class IncrCommand implements CommandInterface
 LUA;
         return $script;
     }
-
 }

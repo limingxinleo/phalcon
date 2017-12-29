@@ -93,5 +93,4 @@ class DbListener
             $this->_logger->log($str, Logger::INFO);
         }
     }
-
 }

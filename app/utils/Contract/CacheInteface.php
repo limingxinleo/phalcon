@@ -79,6 +79,4 @@ interface CacheInteface
      * @return bool
      */
     public function flush();
-
-
 }

@@ -37,4 +37,3 @@ abstract class Task extends \Phalcon\Cli\Task
         // 在每一个找到的动作后执行
     }
 }
-

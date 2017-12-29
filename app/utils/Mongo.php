@@ -145,6 +145,4 @@ class Mongo implements MongoInteface
         }
         return new UTCDateTime($microtime);
     }
-
-
 }

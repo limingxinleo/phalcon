@@ -37,5 +37,4 @@ abstract class Validator extends Validation
         }
         return implode(',', $msg);
     }
-
 }

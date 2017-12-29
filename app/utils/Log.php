@@ -172,6 +172,4 @@ class Log implements LogInteface
         $logger = static::logger();
         return $logger->emergency($message, $context);
     }
-
-
 }

@@ -21,5 +21,4 @@ class Console implements ServiceProviderInterface
             return new ConsoleApp($di);
         });
     }
-
 }

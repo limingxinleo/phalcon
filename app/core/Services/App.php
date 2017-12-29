@@ -25,5 +25,4 @@ class App implements ServiceProviderInterface
             return new Config([]);
         });
     }
-
 }

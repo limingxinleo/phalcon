@@ -24,5 +24,4 @@ class Redis implements ServiceProviderInterface
             return Client::getInstance($host, $auth, $db, $port, 'service');
         });
     }
-
 }

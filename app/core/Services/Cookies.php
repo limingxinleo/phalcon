@@ -26,5 +26,4 @@ class Cookies implements ServiceProviderInterface
             }
         );
     }
-
 }

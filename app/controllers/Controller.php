@@ -10,7 +10,6 @@ namespace App\Controllers;
 
 abstract class Controller extends \Phalcon\Mvc\Controller
 {
-
     public function initialize()
     {
     }

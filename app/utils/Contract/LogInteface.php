@@ -104,6 +104,4 @@ interface LogInteface
      * @return mixed
      */
     public static function emergency($message, array $context = null);
-
-
 }

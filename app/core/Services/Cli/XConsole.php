@@ -21,5 +21,4 @@ class XConsole implements ServiceProviderInterface
             return new XConsoleApp($di);
         });
     }
-
 }

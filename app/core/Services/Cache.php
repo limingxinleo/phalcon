@@ -88,5 +88,4 @@ class Cache implements ServiceProviderInterface
             }
         }
     }
-
 }
