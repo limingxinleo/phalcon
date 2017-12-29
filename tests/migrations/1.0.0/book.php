@@ -17,7 +17,9 @@ class BookMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('book', [
+        $this->morphTable(
+            'book',
+            [
                 'columns' => [
                     new Column(
                         'id',
@@ -87,7 +89,6 @@ class BookMigration_100 extends Migration
      */
     public function up()
     {
-
     }
 
     /**
@@ -97,7 +98,5 @@ class BookMigration_100 extends Migration
      */
     public function down()
     {
-
     }
-
 }

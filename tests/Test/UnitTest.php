@@ -110,5 +110,4 @@ class UnitTest extends UnitTestCase
         $config = di('config');
         $this->assertEquals($config->version, $version);
     }
-
 }

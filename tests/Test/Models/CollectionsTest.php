@@ -30,6 +30,5 @@ class CollectionsTest extends UnitTestCase
 
             $this->assertTrue(count($users) > 0);
         }
-
     }
 }

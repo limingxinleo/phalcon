@@ -12,7 +12,6 @@ use App\Core\Support\InstanceBase;
 
 class Ins1 extends InstanceBase
 {
-
     public function str()
     {
         return 'Ins1';

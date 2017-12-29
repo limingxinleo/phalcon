@@ -17,7 +17,9 @@ class RoleMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('role', [
+        $this->morphTable(
+            'role',
+            [
                 'columns' => [
                     new Column(
                         'id',
@@ -77,7 +79,6 @@ class RoleMigration_100 extends Migration
      */
     public function up()
     {
-
     }
 
     /**
@@ -87,7 +88,5 @@ class RoleMigration_100 extends Migration
      */
     public function down()
     {
-
     }
-
 }

@@ -198,5 +198,4 @@ class MongoTest extends UnitTestCase
             $this->assertEquals('limx', $res[0]->name);
         }
     }
-
 }

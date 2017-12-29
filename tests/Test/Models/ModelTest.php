@@ -36,7 +36,6 @@ class ModelTest extends UnitTestCase
         $this->assertEquals($username, $last_user->username);
         $this->assertTrue(isset($last_user->updated_at));
         $this->assertTrue(isset($last_user->created_at));
-
     }
 
     public function testSaveFailCase()
@@ -99,6 +98,5 @@ class ModelTest extends UnitTestCase
         ]);
         $this->assertEquals($user->username, $username);
         $this->assertEquals($user->name, $name);
-
     }
 }

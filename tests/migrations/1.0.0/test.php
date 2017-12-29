@@ -17,7 +17,9 @@ class TestMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('test', [
+        $this->morphTable(
+            'test',
+            [
                 'columns' => [
                     new Column(
                         'id',
@@ -71,7 +73,6 @@ class TestMigration_100 extends Migration
      */
     public function up()
     {
-
     }
 
     /**
@@ -81,7 +82,5 @@ class TestMigration_100 extends Migration
      */
     public function down()
     {
-
     }
-
 }

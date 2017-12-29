@@ -26,7 +26,6 @@ class UrlTest extends UnitTestCase
         $service->setBaseUri('/test/');
         $url = $service->get('index', ['key' => 'val']);
         $this->assertEquals('/test/index?key=val', $url);
-
     }
 
     public function testGetStaticCase()

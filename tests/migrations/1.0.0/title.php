@@ -17,7 +17,9 @@ class TitleMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('title', [
+        $this->morphTable(
+            'title',
+            [
                 'columns' => [
                     new Column(
                         'id',
@@ -77,7 +79,6 @@ class TitleMigration_100 extends Migration
      */
     public function up()
     {
-
     }
 
     /**
@@ -87,7 +88,5 @@ class TitleMigration_100 extends Migration
      */
     public function down()
     {
-
     }
-
 }

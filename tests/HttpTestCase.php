@@ -57,7 +57,6 @@ abstract class HttpTestCase extends UnitTestCase
 
     public function get($uri, $data = [])
     {
-
     }
 
     public function post($uri, $data = [])

@@ -58,4 +58,3 @@ $console->handle($argv);
 if (isset($config["printNewLine"]) && $config["printNewLine"]) {
     echo PHP_EOL;
 }
-

@@ -18,4 +18,3 @@ $application = new Application($di);
 $application->useImplicitView(false);
 
 $application->handle()->send();
-
