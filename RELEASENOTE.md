@@ -14,6 +14,8 @@
 * 修改Socket基类的配置，避免覆盖Injectable的config服务
 
 ### Deleted
+* 删除多余注释
+* 删除updateOnly，使用useDynamicUpdate代替
 
 ## [2.1.5]
 ### Checked
