@@ -25,13 +25,6 @@ abstract class Model extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        // 模型关系
-        // $options=['alias' => 'user', 'reusable' => true] alias:别名 reusable:模型是否复用
-        // $this->hasOne(...$params, $options = null)
-        // $this->belongsTo(...$params, $options = null)
-        // $this->hasMany(...$params, $options = null)
-        // $this->hasManyToMany(...$params, $options = null)
-
         // Sets if a model must use dynamic update instead of the all-field update
         // $this->useDynamicUpdate(true);
     }
