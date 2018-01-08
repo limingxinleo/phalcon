@@ -71,6 +71,7 @@ class User extends Model
     public function initialize()
     {
         $this->setSchema("phalcon");
+        $this->useDynamicUpdate(true);
     }
 
     /**
