@@ -9,17 +9,10 @@
 namespace App\Models;
 
 use Xin\Phalcon\Logger\Sys as LogSys;
+use App\Core\Mvc\Model as BaseModel;
 
-/**
- * Class Model
- * @package App\Models
- * @method beforeCreate
- * @method beforeUpdate
- * @method afterSave
- */
-abstract class Model extends \Phalcon\Mvc\Model
+abstract class Model extends BaseModel
 {
-
     /**
      * Initialize method for model.
      */
