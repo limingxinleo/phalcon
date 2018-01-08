@@ -8,6 +8,10 @@
 // +----------------------------------------------------------------------
 namespace Tests\Test\Models;
 
+use Phalcon\Mvc\Model\Resultset;
+use Tests\Test\App\Common\SqlCount;
+use Tests\Test\App\Services\SqlCountService;
+use Tests\Test\App\Models\Book;
 use Tests\Test\App\Models\User;
 use Tests\UnitTestCase;
 
@@ -95,5 +99,51 @@ class ModelTest extends UnitTestCase
         $this->assertTrue($res);
 
         $this->assertEquals(['username'], $last_user->getUpdatedFields());
+    }
+
+    public function testResultSetType()
+    {
+        $user = User::findFirst([
+            'order' => 'id DESC',
+        ]);
+
+        $this->assertEquals(User::class, get_class($user));
+
+        $res = User::find([
+            'limit' => 5,
+        ]);
+
+        $this->assertEquals(Resultset\Simple::class, get_class($res));
+    }
+
+    public function testEagerLoadTraitCase()
+    {
+        // 添加测试数据
+        $users = User::find([
+            'order' => 'id DESC',
+            'limit' => 2
+        ]);
+
+        foreach ($users as $user) {
+            $book = new Book();
+            $book->uid = $user->id;
+            $book->name = '书籍测试' . uniqid();
+            $book->save();
+        }
+
+        SqlCountService::getInstance()->resetDbService();
+
+        $users = User::with('book', [
+            'order' => 'id DESC',
+            'limit' => 2,
+        ]);
+
+        foreach ($users as $user) {
+            $arr = $user->book[0]->toArray();
+        }
+
+        $this->assertEquals(2, SqlCount::getInstance()->count);
+
+        SqlCountService::getInstance()->rollbackDbService();
     }
 }
