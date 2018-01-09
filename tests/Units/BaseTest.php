@@ -1,24 +1,24 @@
 <?php
 // +----------------------------------------------------------------------
-// | Ins1.php [ WE CAN DO IT JUST THINK IT ]
+// | 基础测试类 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Tests\Test\App\Logics;
+namespace Tests\Units;
 
-use App\Core\Support\InstanceBase;
+use Tests\UnitTestCase;
 
-class Ins2 extends InstanceBase
+/**
+ * Class UnitTest
+ */
+class BaseTest extends UnitTestCase
 {
-    public function str()
+    public function testBaseCase()
     {
-        return 'Ins2';
-    }
-
-    public function instance()
-    {
-        return static::$_instance;
+        $this->assertTrue(
+            extension_loaded('phalcon')
+        );
     }
 }
