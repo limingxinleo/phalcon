@@ -262,7 +262,6 @@ return new Config(
         'services' => [
             'common' => [
                 'config' => App\Core\Services\ConfigService::class, // 系统配置
-                'app' => App\Core\Services\App::class, // 自定义配置
                 'db' => App\Core\Services\Db::class,
                 'modelsMetadata' => App\Core\Services\ModelsMetadata::class,
                 'filter' => App\Core\Services\Filter::class,

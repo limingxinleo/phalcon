@@ -17,6 +17,9 @@ class CronTask extends Task
 {
     public $description = '定时器执行脚本';
 
+    public $tasks = [
+    ];
+
     public function mainAction()
     {
         if (!class_exists(Schedule::class)) {
@@ -28,7 +31,7 @@ class CronTask extends Task
             return;
         }
 
-        $tasks = app('cron-tasks')->toArray();
+        $tasks = $this->tasks;
         $schedule = new Schedule();
         foreach ($tasks as $task) {
             list($func, $params) = $task['schedule'];

@@ -20,6 +20,7 @@
 * 删除多余注释
 * 删除updateOnly，使用useDynamicUpdate代替
 * 移除单元测试
+* 删除App自定义配置服务
 
 ## [2.1.5]
 ### Checked
