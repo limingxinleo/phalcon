@@ -2,9 +2,19 @@
 
 ## [Unreleased]
 ### Checked
-- [x] php单元测试
+- [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+### Deleted
+
+## [2.2.5]
+### Checked
+- [x] php单元测试
 
 ### Changed
 * 修改单元测试，增加命名空间Tests
