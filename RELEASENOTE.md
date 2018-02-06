@@ -5,6 +5,7 @@
 - [ ] php单元测试
 
 ### Added
+* 增加Request服务
 
 ### Changed
 
