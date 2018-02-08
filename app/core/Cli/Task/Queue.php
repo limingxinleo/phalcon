@@ -74,10 +74,6 @@ abstract class Queue extends Task
                         $this->process++;
                     }
                 }
-            } else {
-                if (is_int($this->waittime) && $this->waittime > 0) {
-                    sleep($this->waittime);
-                }
             }
         }
     }
@@ -176,7 +172,7 @@ abstract class Queue extends Task
                     $this->process--;
                 }
 
-                // no break
+            // no break
             default:
                 break;
         }
