@@ -12,7 +12,7 @@ data
 public/dist/
 node_modules/
 package-lock.json
-socket.pid
+*.pid
 *.cache
 .scannerwork
 *.lock

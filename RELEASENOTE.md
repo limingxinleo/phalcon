@@ -6,8 +6,11 @@
 
 ### Added
 * 增加Request服务
+* 增加锁目录
+* 增加PID目录
 
 ### Changed
+* 修改消息队列逻辑
 
 ### Fixed
 

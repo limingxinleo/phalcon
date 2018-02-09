@@ -27,10 +27,10 @@ abstract class Queue extends Task
     protected $delayKey = '';
     // 子进程数到达最大值时的等待时间
     protected $waitTime = 1;
-    // 子进程最大超时时间
-    protected $expireTime = 10;
-    // 锁文件地址
-    protected $lockPath;
+    // pid地址
+    protected $pidPath;
+    // 主进程PID
+    protected $pid;
     // 子进程最大循环处理次数
     protected $processHandleMaxNumber = null;
 
@@ -45,16 +45,21 @@ abstract class Queue extends Task
             return;
         }
 
-        // 初始化锁文件
-        $this->lockPath = di('config')->application->lockDir . 'queue_' . time() . '.lock';
+        // 初始PID文件
+        $this->pidPath = di('config')->application->pidsDir . 'queue' . '.pid';
+        $this->pid = posix_getpid();
+        // 写入PID
+        File::getInstance()->put($this->pidPath, $this->pid);
+
         // install signal handler for dead kids
         pcntl_signal(SIGCHLD, [$this, "signalHandler"]);
         set_time_limit(0);
         // 实例化Redis实例
         $redis = $this->redisClient();
         while (true) {
-            // 写入锁
-            File::getInstance()->put($this->lockPath, time());
+            // 等待
+            sleep($this->waitTime);
+
             // 监听延时队列
             if (!empty($this->delayKey) && $delay_data = $redis->zrangebyscore($this->delayKey, 0, time())) {
                 foreach ($delay_data as $data) {
@@ -65,29 +70,19 @@ abstract class Queue extends Task
             }
             // 监听消息队列
             if ($this->process < $this->maxProcesses) {
-                // 无任务时,阻塞等待
-                $data = $redis->brpop($this->queueKey, 3);
-                if (!$data) {
+                // 获取消息列表数量
+                $len = $redis->llen($this->queueKey);
+                if ($len === 0) {
                     continue;
                 }
-                if ($data[0] != $this->queueKey) {
-                    // 消息队列KEY值不匹配
-                    continue;
-                }
-                if (isset($data[1])) {
-                    $process = new swoole_process([$this, 'task']);
-                    $process->write($this->rewrite($data[1]));
-                    $pid = $process->start();
-                    if ($pid === false) {
-                        $redis->lpush($this->queueKey, $data[1]);
-                    } else {
-                        $this->process++;
-                    }
+
+                // fork子进程处理消息
+                $process = new swoole_process([$this, 'task']);
+                $pid = $process->start();
+                if ($pid !== false) {
+                    $this->process++;
                 }
             }
-
-            // 等待
-            sleep($this->waitTime);
         }
     }
 
@@ -98,13 +93,13 @@ abstract class Queue extends Task
      */
     public function task(swoole_process $worker)
     {
-        swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
-            // 从主进程中读取到的数据
-            $recv = $worker->read();
-            $this->run($recv);
-            $worker->exit(0);
-            swoole_event_del($pipe);
-        });
+        $this->run($worker);
+
+        // swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
+        //     $this->run($worker);
+        //     $worker->exit(0);
+        //     swoole_event_del($pipe);
+        // });
     }
 
     /**
@@ -147,23 +142,19 @@ abstract class Queue extends Task
      * @author limx
      * @return mixed
      */
-    protected function run($recv)
+    protected function run(&$worker)
     {
-        $this->handle($recv);
-
         $redis = $this->redisChildClient();
         $number = 0;
         while (true) {
+            // 判断主进程是否退出
+            if (!swoole_process::kill($this->pid, 0)) {
+                $worker->exit();
+            }
+
             // 当子进程处理次数高于一个临界值后，释放进程
             if (isset($this->processHandleMaxNumber) && $this->processHandleMaxNumber < (++$number)) {
                 break;
-            }
-
-            // 验证锁是否超时，超时后释放进程
-            if ($time = File::getInstance()->get($this->lockPath)) {
-                if (time() - $time > $this->expireTime) {
-                    break;
-                }
             }
 
             // 无任务时,阻塞等待

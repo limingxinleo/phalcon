@@ -102,8 +102,9 @@ abstract class Socket extends Task
     protected function getConfig()
     {
         // @see https://wiki.swoole.com/wiki/page/274.html Swoole文档Socket配置选项
+        $pidsDir = di('config')->application->pidsDir;
         return [
-            'pid_file' => ROOT_PATH . '/socket.pid',
+            'pid_file' => $pidsDir . 'socket.pid',
             'user' => 'nginx',
             'group' => 'nginx',
             'daemonize' => false,

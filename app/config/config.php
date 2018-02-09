@@ -146,6 +146,7 @@ return new Config(
             'logDir' => ROOT_PATH . '/storage/log/',
             'metaDataDir' => ROOT_PATH . '/storage/meta/',
             'migrationsDir' => ROOT_PATH . '/storage/migrations/',
+            'pidsDir' => ROOT_PATH . '/storage/pids/',
             'baseUri' => '/',
         ],
 
