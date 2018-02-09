@@ -13,6 +13,7 @@ namespace App\Core\Cli\Task;
 use Phalcon\Cli\Task;
 use Xin\Cli\Color;
 use swoole_process;
+use Xin\Support\File;
 
 abstract class Queue extends Task
 {
@@ -25,7 +26,11 @@ abstract class Queue extends Task
     // 延时消息队列的Redis键值 zset
     protected $delayKey = '';
     // 子进程数到达最大值时的等待时间
-    protected $waittime = 1;
+    protected $waitTime = 1;
+    // 子进程最大超时时间
+    protected $expireTime = 10;
+    // 锁文件地址
+    protected $lockPath;
     // 子进程最大循环处理次数
     protected $processHandleMaxNumber = null;
 
@@ -39,12 +44,17 @@ abstract class Queue extends Task
             echo Color::error('Please rewrite the queueKey');
             return;
         }
+
+        // 初始化锁文件
+        $this->lockPath = di('config')->application->lockDir . 'queue_' . time() . '.lock';
         // install signal handler for dead kids
         pcntl_signal(SIGCHLD, [$this, "signalHandler"]);
         set_time_limit(0);
         // 实例化Redis实例
         $redis = $this->redisClient();
         while (true) {
+            // 写入锁
+            File::getInstance()->put($this->lockPath, time());
             // 监听延时队列
             if (!empty($this->delayKey) && $delay_data = $redis->zrangebyscore($this->delayKey, 0, time())) {
                 foreach ($delay_data as $data) {
@@ -75,6 +85,9 @@ abstract class Queue extends Task
                     }
                 }
             }
+
+            // 等待
+            sleep($this->waitTime);
         }
     }
 
@@ -137,13 +150,22 @@ abstract class Queue extends Task
     protected function run($recv)
     {
         $this->handle($recv);
+
         $redis = $this->redisChildClient();
         $number = 0;
         while (true) {
+            // 当子进程处理次数高于一个临界值后，释放进程
             if (isset($this->processHandleMaxNumber) && $this->processHandleMaxNumber < (++$number)) {
-                // 当子进程处理次数高于一个临界值后，释放进程
                 break;
             }
+
+            // 验证锁是否超时，超时后释放进程
+            if ($time = File::getInstance()->get($this->lockPath)) {
+                if (time() - $time > $this->expireTime) {
+                    break;
+                }
+            }
+
             // 无任务时,阻塞等待
             $data = $redis->brpop($this->queueKey, 3);
             if (!$data) {

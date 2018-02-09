@@ -142,6 +142,7 @@ return new Config(
             'viewsDir' => APP_PATH . '/views/',
 
             'cacheDir' => ROOT_PATH . '/storage/cache/',
+            'lockDir' => ROOT_PATH . '/storage/lock/',
             'logDir' => ROOT_PATH . '/storage/log/',
             'metaDataDir' => ROOT_PATH . '/storage/meta/',
             'migrationsDir' => ROOT_PATH . '/storage/migrations/',

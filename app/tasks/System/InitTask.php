@@ -47,6 +47,7 @@ class InitTask extends Task
             'log' => $config->logDir,
             'meta' => $config->metaDataDir,
             'migrations' => $config->migrationsDir,
+            'lock' => $config->lockDir,
         ];
         echo Color::head('仓库初始化') . PHP_EOL;
         foreach ($creatRoot as $i => $v) {
