@@ -15,6 +15,7 @@
 * 修改用于Http接口的单元测试基类
 
 ### Fixed
+* 修改Mongodb用户名密码为空时无法使用的BUG
 
 ### Deleted
 

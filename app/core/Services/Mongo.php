@@ -25,13 +25,21 @@ class Mongo implements ServiceProviderInterface
                 $options = [
                     'connect' => $config->mongo->connect, // true表示Mongo构造函数中建立连接。
                     'timeout' => $config->mongo->timeout, // 配置建立连接超时时间，单位是ms
-                    'username' => $config->mongo->username, // 覆盖$server字符串中的username段，如果username包含冒号:时，选用此种方式。
-                    'password' => $config->mongo->password, // 覆盖$server字符串中的password段，如果password包含符号@时，选用此种方式。
                     'db' => $config->mongo->db // 覆盖$server字符串中的database段
                 ];
-                if (isset($config->mongo->replicaSet)) {
-                    $options['replicaSet'] = $config->mongo->replicaSet; // 配置replicaSet名称
+                if (isset($config->mongo->username)) {
+                    // 覆盖$server字符串中的username段，如果username包含冒号:时，选用此种方式。
+                    $options['username'] = $config->mongo->username;
                 }
+                if (isset($config->mongo->password)) {
+                    // 覆盖$server字符串中的password段，如果password包含符号@时，选用此种方式。
+                    $options['password'] = $config->mongo->password;
+                }
+                if (isset($config->mongo->replicaSet)) {
+                    // 配置replicaSet名称
+                    $options['replicaSet'] = $config->mongo->replicaSet;
+                }
+
                 return new \MongoDB\Driver\Manager($uri, $options);
             });
         }
