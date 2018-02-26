@@ -24,17 +24,12 @@ abstract class Socket extends Task
     // 端口号
     protected $port = 11520;
 
-    protected $params;
-
     public function mainAction($params = [])
     {
         if (!extension_loaded('swoole')) {
             echo Color::error('The swoole extension is not installed');
             return;
         }
-
-        // 设置输入参数
-        $this->params = $params;
 
         set_time_limit(0);
         $server = new swoole_server("0.0.0.0", $this->port);
@@ -59,19 +54,6 @@ abstract class Socket extends Task
     protected function beforeServerStart(swoole_server $server)
     {
         $this->ready($server);
-
-        // 增加 用户自定义的工作进程
-        //
-        // $worker = new swoole_process(function (swoole_process $worker) {
-        //     swoole_timer_tick(1000, function () use ($worker) {
-        //         echo 'tick:' . time() . ':' . $worker->pid . PHP_EOL;
-        //     });
-        //     $server->tick(1000, function () {
-        //         echo 'tick:' . time() . PHP_EOL;
-        //     });
-        // });
-        //
-        // $server->addProcess($worker);
     }
 
     /**
@@ -97,19 +79,18 @@ abstract class Socket extends Task
     /**
      * @desc   获取配置
      * @author limx
+     * @see    https://wiki.swoole.com/wiki/page/274.html Server配置
      * @return array
      */
     protected function getConfig()
     {
-        // @see https://wiki.swoole.com/wiki/page/274.html Swoole文档Socket配置选项
         $pidsDir = di('config')->application->pidsDir;
         return [
             'pid_file' => $pidsDir . 'socket.pid',
             'user' => 'nginx',
             'group' => 'nginx',
             'daemonize' => false,
-            // 'worker_num' => 8, // cpu核数1-4倍比较合理 不写则为cpu核数
-            'max_request' => 500, // 每个worker进程最大处理请求次数
+            'max_request' => 500,
         ];
     }
 }
