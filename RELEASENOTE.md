@@ -13,6 +13,7 @@
 ### Changed
 * 修改消息队列逻辑
 * 修改用于Http接口的单元测试基类
+* 优化WebSocket和Socket基类
 
 ### Fixed
 * 修改Mongodb用户名密码为空时无法使用的BUG
