@@ -27,5 +27,4 @@ use Phalcon\Mvc\Dispatcher;
  */
 abstract class DispatchListener
 {
-
 }
