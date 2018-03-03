@@ -31,7 +31,7 @@ class Dispatcher implements ServiceProviderInterface
 
             // $dispatcher = new \Phalcon\Mvc\Dispatcher();
             // 使用x-phalcon-middleware重写的Dispatcher
-            if (version_compare(PHP_VERSION, '7.1', '>')) {
+            if (version_compare(PHP_VERSION, '7.1', '>=')) {
                 $dispatcher = new MvcDispatcher71();
             } else {
                 $dispatcher = new MvcDispatcher();
