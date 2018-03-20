@@ -17,4 +17,5 @@
 - [Thrift GO服务版本](https://github.com/limingxinleo/thrift-go-phalcon-project)
 - [Phalcon快速开发框架](https://github.com/limingxinleo/biz-phalcon)
 - [Phalcon基础开发框架](https://github.com/limingxinleo/basic-phalcon)
+- [Zipkin开发版本](https://github.com/limingxinleo/zipkin-phalcon)
 
