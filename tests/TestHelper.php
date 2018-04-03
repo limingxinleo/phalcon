@@ -34,6 +34,6 @@ $loader->registerNamespaces(
 $loader->register();
 
 // Add any needed services to the DI here
-$di = require_once APP_PATH . '/bootstrap.php';
+$di = require_once ROOT_PATH . '/bootstrap/bootstrap.php';
 
 Di::setDefault($di);

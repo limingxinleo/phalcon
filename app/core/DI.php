@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App;
+namespace App\Core;
 
 use Phalcon\DI\FactoryDefault;
 use Phalcon\DI\FactoryDefault\Cli;

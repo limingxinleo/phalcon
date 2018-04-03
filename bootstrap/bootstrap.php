@@ -6,11 +6,11 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-defined('APP_PATH') || define('APP_PATH', __DIR__);
-defined('ROOT_PATH') || define('ROOT_PATH', dirname(APP_PATH));
+defined('ROOT_PATH') || define('ROOT_PATH', dirname(__DIR__));
+defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/app');
 defined('IS_CLI') || define('IS_CLI', false);
 
-use App\DI;
+use App\Core\DI;
 
 if (file_exists(ROOT_PATH . "/vendor/autoload.php")) {
     include ROOT_PATH . "/vendor/autoload.php";

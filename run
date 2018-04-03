@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use App\DI;
+use App\Core\DI;
 
 define('ROOT_PATH', __DIR__);
 define('APP_PATH', ROOT_PATH . '/app');
