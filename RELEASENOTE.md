@@ -5,6 +5,18 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+### Deleted
+
+## [2.2.10]
+### Checked
+- [x] php单元测试
+
+### Added
 * 增加Request服务
 * 增加锁目录
 * 增加PID目录
@@ -19,8 +31,6 @@
 
 ### Fixed
 * 修改Mongodb用户名密码为空时无法使用的BUG
-
-### Deleted
 
 ## [2.2.5]
 ### Checked
