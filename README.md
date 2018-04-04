@@ -19,6 +19,7 @@
 - [Phalcon基础开发框架](https://github.com/limingxinleo/basic-phalcon)
 - [Zipkin开发版本](https://github.com/limingxinleo/zipkin-phalcon)
 - [Eureka开发版本](https://github.com/limingxinleo/eureka-phalcon)
+- [RabbitMQ](https://github.com/limingxinleo/rabbitmq-phalcon)
 
 ### 测试以及其他DEMO
 - [框架测试](https://github.com/limingxinleo/phalcon-unit-test)
