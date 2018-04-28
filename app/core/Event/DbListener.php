@@ -88,9 +88,9 @@ class DbListener
         $str .= "结束时间: " . $endtime . PHP_EOL;
         $str .= "执行时间: " . $runtime . PHP_EOL;
         if ($runtime > static::TIMEOUT) {
-            $this->_logger->log($str, Logger::WARNING);
+            $this->_logger->log(Logger::WARNING, $str);
         } else {
-            $this->_logger->log($str, Logger::INFO);
+            $this->_logger->log(Logger::INFO, $str);
         }
     }
 }

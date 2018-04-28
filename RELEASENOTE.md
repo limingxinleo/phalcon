@@ -10,6 +10,7 @@
 * 修改目录结构
 
 ### Fixed
+* 修改SQL日志记录有误的BUG
 
 ### Deleted
 
