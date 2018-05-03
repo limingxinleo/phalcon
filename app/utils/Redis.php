@@ -8,6 +8,9 @@
 // +----------------------------------------------------------------------
 namespace App\Utils;
 
+use Xin\Redis\Commands\IncrByWithExpireTimeCommand;
+use Xin\Redis\Commands\IncrWithExpireTimeCommand;
+
 class Redis
 {
     public static function __callStatic($name, $arguments)
@@ -33,8 +36,8 @@ class Redis
     {
         $redis = di('redis');
         if (isset($expiretime)) {
-            $script = \App\Utils\Redis\Commands\IncrCommand::getScript();
-            return $redis->evaluate($script, [$key, $expiretime], 2);
+            $command = new IncrWithExpireTimeCommand($key, $expiretime);
+            return $redis->evaluate($command->getScript(), $command->getArguments(), $command->getNumKeys());
         }
         return $redis->incr($key);
     }
@@ -43,8 +46,8 @@ class Redis
     {
         $redis = di('redis');
         if (isset($expiretime)) {
-            $script = \App\Utils\Redis\Commands\IncrByCommand::getScript();
-            return $redis->evaluate($script, [$key, $number, $expiretime], 3);
+            $command = new IncrByWithExpireTimeCommand($key, $number, $expiretime);
+            return $redis->evaluate($command->getScript(), $command->getArguments(), $command->getNumKeys());
         }
         return $redis->incrBy($key, $number);
     }

@@ -8,11 +8,13 @@
 
 ### Changed
 * 修改目录结构
+* 修改RedisUtil@incr & incrBy 增加超时时间的方法
 
 ### Fixed
 * 修改SQL日志记录有误的BUG
 
 ### Deleted
+* 删除App\Utils\Redis\Commands
 
 ## [2.2.10]
 ### Checked
