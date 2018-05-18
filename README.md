@@ -21,6 +21,7 @@
 - [Eureka开发版本](https://github.com/limingxinleo/eureka-phalcon)
 - [RabbitMQ](https://github.com/limingxinleo/rabbitmq-phalcon)
 - [ELK开发版本](https://github.com/limingxinleo/elk-phalcon)
+- [配置中心](https://github.com/limingxinleo/config-center-phalcon)
 
 ### 测试以及其他DEMO
 - [框架测试](https://github.com/limingxinleo/phalcon-unit-test)
