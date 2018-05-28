@@ -2,24 +2,19 @@
 
 namespace App\Tasks;
 
-use App\Jobs\Contract\JobInterface;
-use App\Core\Cli\Task\Queue;
-use Xin\Cli\Color;
 use Xin\Phalcon\Logger\Factory;
-use Xin\Redis;
-use Exception;
+use Xin\Swoole\Queue\Job;
 
-class QueueTask extends Queue
+class QueueTask extends Task
 {
-    public $description = '默认消息执行脚本';
+    public $queueKey;
 
-    // 最大进程数
-    protected $maxProcesses = 2;
+    public $delayKey;
 
-    // 子进程最大循环处理次数
-    protected $processHandleMaxNumber = 10000;
+    public $errorKey;
 
-    protected $errorKey = '';
+    /** @var Job */
+    protected $queue;
 
     public function onConstruct()
     {
@@ -27,58 +22,29 @@ class QueueTask extends Queue
         $this->queueKey = $config->key;
         $this->delayKey = $config->delayKey;
         $this->errorKey = $config->errorKey;
-    }
 
-    protected function redisClient()
-    {
-        $config = di('config')->redis;
-        return Redis::getInstance($config->host, $config->auth, $config->index, $config->port, 'queue');
-    }
-
-    protected function redisChildClient()
-    {
-        $config = di('config')->redis;
-        return Redis::getInstance($config->host, $config->auth, $config->index, $config->port, uniqid());
-    }
-
-    protected function handle($recv)
-    {
-        try {
-            $obj = unserialize($recv);
-            if ($obj instanceof JobInterface) {
-                $name = get_class($obj);
-                $date = date('Y-m-d H:i:s');
-                echo Color::colorize("[{$date}] Processing: {$name}", Color::FG_GREEN) . PHP_EOL;
-                // 处理消息
-                $obj->handle();
-                $date = date('Y-m-d H:i:s');
-                echo Color::colorize("[{$date}] Processed: {$name}", Color::FG_GREEN) . PHP_EOL;
-            }
-        } catch (Exception $ex) {
-            $date = date('Y-m-d H:i:s');
-            echo Color::colorize("[{$date}] Failed: {$name}", Color::FG_RED) . PHP_EOL;
-            $this->logError($ex);
-
-            // 推送失败的消息对失败队列
-            $redis = static::redisChildClient();
-            $redis->lpush($this->errorKey, $recv);
-        }
-    }
-
-    /**
-     * @desc   记录错误日志
-     * @author limx
-     * @param $message
-     * @return \Phalcon\Logger\AdapterInterface
-     */
-    protected function logError(Exception $ex)
-    {
+        $queue = new Job();
+        $redis = di('config')->redis;
+        $pid = di('config')->application->pidsDir . 'queue' . '.pid';
         /** @var Factory $factory */
         $factory = di('logger');
         $logger = $factory->getLogger('queue-failed');
 
-        $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
-        return $logger->error($msg);
+        $queue->setRedisConfig($redis->host, $redis->auth, $redis->index, $redis->port)
+            ->setQueueKey($this->queueKey)
+            ->setDelaykey($this->delayKey)
+            ->setErrorKey($this->errorKey)
+            ->setLoggerHandler($logger)
+            ->setPidPath($pid);
+
+        $this->queue = $queue;
+
+        parent::onConstruct();
+    }
+
+    public function mainAction()
+    {
+        $this->queue->run();
     }
 
     /**
@@ -87,11 +53,7 @@ class QueueTask extends Queue
      */
     public function reloadErrorJobsAction()
     {
-        $redis = static::redisChildClient();
-        while ($data = $redis->rpop($this->errorKey)) {
-            $redis->lpush($this->queueKey, $data);
-        }
-        echo Color::success("失败的脚本已重新载入消息队列！");
+        $this->queue->reloadErrorJobs();
     }
 
     /**
@@ -100,8 +62,7 @@ class QueueTask extends Queue
      */
     public function flushErrorJobsAction()
     {
-        $redis = static::redisChildClient();
-        $redis->del($this->errorKey);
-        echo Color::success("失败的脚本已被清除！");
+        $this->queue->flushErrorJobs();
     }
 }
+
