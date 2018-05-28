@@ -11,6 +11,7 @@
 ### Fixed
 
 ### Deleted
+* 删除JobInterface
 
 ## [2.3.0]
 ### Checked
