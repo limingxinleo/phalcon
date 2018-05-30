@@ -1,6 +1,6 @@
 {
     "name": "limingxinleo/phalcon-project",
-    "description": "a phalcon porject for simple-subcontrollers",
+    "description": "a phalcon porject for ext-phalcon",
     "type": "project",
     "license": "MIT",
     "authors": [
