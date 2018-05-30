@@ -11,7 +11,6 @@
 ### Fixed
 
 ### Deleted
-* 删除JobInterface
 
 ## [2.3.0]
 ### Checked
@@ -29,6 +28,7 @@
 
 ### Deleted
 * 删除App\Utils\Redis\Commands
+* 删除JobInterface
 
 ## [2.2.10]
 ### Checked
