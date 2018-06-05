@@ -7,10 +7,12 @@
 ### Added
 
 ### Changed
+* 修改phpdotenv为Phalcon\\Config 模块
 
 ### Fixed
 
 ### Deleted
+* 删除phpdotenv模块
 
 ## [2.3.0]
 ### Checked
