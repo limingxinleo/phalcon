@@ -16,3 +16,4 @@ package-lock.json
 *.cache
 .scannerwork
 *.lock
+config.ini

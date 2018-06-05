@@ -23,7 +23,7 @@
     "scripts": {
         "post-create-project-cmd": [
             "mkdir .phalcon",
-            "php -r \"copy('.env.example', '.env');\"",
+            "php -r \"copy('config.example.ini', 'config.ini');\"",
             "php run"
         ]
     }
