@@ -31,7 +31,7 @@ class InitTask extends Task
 
         echo Color::head('Actions:') . PHP_EOL;
         echo Color::colorize('  storage                         初始化仓库', Color::FG_GREEN) . PHP_EOL;
-        echo Color::colorize('  key     [key] [--random|val]    初始化配置参数', Color::FG_GREEN) . PHP_EOL;
+        // echo Color::colorize('  key     [key] [--random|val]    初始化配置参数', Color::FG_GREEN) . PHP_EOL;
     }
 
     /**
