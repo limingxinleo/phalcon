@@ -65,4 +65,3 @@ class QueueTask extends Task
         $this->queue->flushErrorJobs();
     }
 }
-

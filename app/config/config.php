@@ -6,17 +6,15 @@
 defined('ROOT_PATH') || define('ROOT_PATH', realpath(__DIR__ . '/../..'));
 defined('APP_PATH') || define('APP_PATH', ROOT_PATH . '/app');
 
-use Dotenv\Dotenv;
 use Phalcon\Config;
+use Phalcon\Config\Adapter\Ini;
 
-if (file_exists(ROOT_PATH . '/.env')) {
-    (new Dotenv(ROOT_PATH))->load();
-}
+$ini = new Ini(ROOT_PATH . '/config.ini');
 
 /**
- * The System EVN.
+ * The System Config.
  */
-return new Config(
+$config = new Config(
     [
         /*
         |--------------------------------------------------------------------------
@@ -26,98 +24,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => '2.3.0',
-
-        /*
-        |--------------------------------------------------------------------------
-        | Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value is environment for this project.
-        |
-        */
-        'env' => env('APP_ENV', 'local'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Domain Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value is the base url for app. When you need a wx redirecturl, but
-        | you have many applications, you can set this value is "http://wx.xxx.com/phal/"
-        | then set nginx proxy to this application.
-        |
-        */
-        'domain' => env('APP_URL', 'localhost'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Timezone Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value is the timezone for app.
-        |
-        */
-        'timezone' => env('APP_TIMEZONE', 'Asia/Shanghai'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Database Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value determines the "environment" your database.
-        |
-        */
-        'database' => [
-            'adapter' => env('DB_ADAPTER', 'Mysql'),
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', 3306),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', null),
-            'dbname' => env('DB_DBNAME', 'phalcon'),
-            'charset' => env('DB_CHARSET', 'utf8'),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Redis Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value determines the "environment" your redis.
-        |
-        */
-        'redis' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'port' => env('REDIS_PORT', '6379'),
-            'auth' => env('REDIS_AUTH', null),
-            'persistent' => env('REDIS_PERSISTENT', false),
-            'index' => env('REDIS_INDEX', 0),
-            'prefix' => env('REDIS_PREFIX', ''),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | MongoDB Environment
-        |--------------------------------------------------------------------------
-        |
-        | This value determines the "environment" your mongo.
-        |
-        */
-        'mongo' => [
-            'host' => env('MONGODB_HOST', '127.0.0.1'),
-            'port' => env('MONGODB_PORT', '27017'),
-            'connect' => env('MONGODB_CONNECT', true),
-            'timeout' => env('MONGODB_TIMEOUT', null),
-            'replicaSet' => env('MONGODB_REPLICA_SET', null),
-            'username' => env('MONGODB_USERNAME', null),
-            'password' => env('MONGODB_PASSWORD', null),
-            'db' => env('MONGODB_DB', null),
-            'collection' => env('MONGODB_COLLECTION', null),
-            // 是否开启Mongo辅助类
-            'isUtils' => env('MONGODB_IS_UTILS', false),
-            // 是否开启Mongo Collection集合类
-            'isCollection' => env('MONGODB_IS_COLLECTION', false),
-        ],
+        'version' => '2.4.0',
 
         /*
         |--------------------------------------------------------------------------
@@ -162,99 +69,6 @@ return new Config(
 
         /*
         |--------------------------------------------------------------------------
-        | Log Environment
-        |--------------------------------------------------------------------------
-        |
-        | If db is set to true, then we write a log at the end of each sql.
-        |
-        */
-        'log' => [
-            'db' => env('LOG_DB', true),
-            'error' => env('LOG_ERROR', true),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Model Meta Environment
-        |--------------------------------------------------------------------------
-        |
-        | The modelMetaData support file and redis.
-        |
-        */
-        'modelMeta' => [
-            'driver' => env('MODELMETA_DRIVER', 'file'),
-            'statsKey' => '_PHCM_MM',
-            'lifetime' => 172800,
-            'index' => env('REDIS_INDEX', 0),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Cache Environment
-        |--------------------------------------------------------------------------
-        |
-        | The default setting is file.
-        |
-         */
-        'cache' => [
-            'type' => env('CACHE_DRIVER', 'file'),
-            'lifetime' => 172800,
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | SESSION Environment
-        |--------------------------------------------------------------------------
-        |
-        | The default setting is file.
-        |
-        */
-        'session' => [
-            'type' => env('SESSION_DRIVER', 'file'),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | COOKIES Environment
-        |--------------------------------------------------------------------------
-        |
-        | isCrypt::是否加密 默认值false.
-        |
-        */
-        'cookies' => [
-            'isCrypt' => env('COOKIE_ISCRYPT', false),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | CRYPT Environment
-        |--------------------------------------------------------------------------
-        |
-        | key::The secret key.
-        |
-        */
-        'crypt' => [
-            'key' => env('CRYPT_KEY', 'phalcon-project-cookie->key'),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | QUEUE Environment
-        |--------------------------------------------------------------------------
-        |
-        | key: 消息队列的KEY键
-        | delayKey: 延时消息队列的KEY键
-        | errorKey: 失败的消息队列的KEY键
-        |
-        */
-        'queue' => [
-            'key' => env('QUEUE_KEY', 'phalcon:queue:default'),
-            'delayKey' => env('QUEUE_DELAY_KEY', 'phalcon:queue:delay'),
-            'errorKey' => env('QUEUE_ERROR_KEY', 'phalcon:queue:error'),
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
         | Services
         |--------------------------------------------------------------------------
         |
@@ -268,6 +82,7 @@ return new Config(
                 'modelsMetadata' => App\Core\Services\ModelsMetadata::class,
                 'filter' => App\Core\Services\Filter::class,
                 'cache' => App\Core\Services\Cache::class,
+                'logger' => App\Core\Services\Logger::class,
                 'error' => App\Core\Services\Error::class,
                 'crypt' => App\Core\Services\Crypt::class,
                 'redis' => App\Core\Services\Redis::class,
@@ -275,7 +90,6 @@ return new Config(
                 'cookies' => App\Core\Services\Cookies::class,
                 'session' => App\Core\Services\Session::class,
                 'modelsManager' => App\Core\Services\ModelsManager::class,
-                'logger' => App\Core\Services\Logger::class,
             ],
             'cli' => [
                 'dispatcher' => App\Core\Services\Cli\Dispatcher::class,
@@ -291,6 +105,7 @@ return new Config(
                 'request' => App\Core\Services\Mvc\Request::class,
             ],
         ],
-
     ]
 );
+
+return $config->merge($ini);

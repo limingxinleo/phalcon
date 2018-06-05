@@ -32,9 +32,9 @@ class Cache implements ServiceProviderInterface
                     $cache = new BackMemCached(
                         $frontCache,
                         [
-                            "host" => env('MEMCACHED_HOST', '127.0.0.1'),
-                            "port" => env('MEMCACHED_PORT', '11211'),
-                            "weight" => env('MEMCACHED_WEIGHT', 1),
+                            "host" => $config->memcached->host,
+                            "port" => $config->memcached->port,
+                            "weight" => $config->memcached->weight,
                             'statsKey' => '_PHCM',
                         ]
                     );

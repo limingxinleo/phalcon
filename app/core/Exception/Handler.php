@@ -44,7 +44,7 @@ class Handler
     {
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         $this->logger->error($msg);
-        if (env('APP_DEBUG', false)) {
+        if (di('config')->get('debug', false)) {
             echo $msg;
         } else {
             echo 'Sorry, 服务器内部错误';
