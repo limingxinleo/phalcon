@@ -7,12 +7,21 @@
 ### Added
 
 ### Changed
-* 修改phpdotenv为Phalcon\\Config 模块
 
 ### Fixed
 
 ### Deleted
-* 删除phpdotenv模块
+
+## [2.4.0]
+### Checked
+- [x] php单元测试
+
+### Changed
+* 修改phpdotenv为Phalcon\\Config 模块
+* 修改依赖库版本号
+
+### Deleted
+* 删除.env文件！！
 
 ## [2.3.0]
 ### Checked
