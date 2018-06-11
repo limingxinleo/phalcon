@@ -35,6 +35,11 @@ class ClearTask extends Task
         echo Color::colorize('  meta    清理模型元数据缓存', Color::FG_LIGHT_GREEN) . PHP_EOL;
     }
 
+    /**
+     * @desc   删除数据缓存
+     * @author limx
+     * @param $params
+     */
     public function dataAction($params)
     {
         $cache = di('cache');
@@ -63,7 +68,6 @@ class ClearTask extends Task
     }
 
     /**
-     * [viewAction desc]
      * @desc   清理视图缓存
      * @author limx
      * @param array $params
@@ -87,9 +91,8 @@ class ClearTask extends Task
     /**
      * @desc   清理元数据缓存
      * @author limx
-     * @param array $params
      */
-    public function metaAction($params = [])
+    public function metaAction()
     {
         $driver = $this->config->modelMeta->driver;
         switch (strtolower($driver)) {
@@ -103,14 +106,6 @@ class ClearTask extends Task
             case 'file':
             default:
                 $dir = di('config')->application->metaDataDir;
-                if (empty($params[0]) || strtolower($params[0]) !== 'yes') {
-                    echo Color::head('确定要清楚模型元数据缓存么？', Color::FG_LIGHT_GREEN) . PHP_EOL;
-                    echo Color::colorize('  文件：' . $dir, Color::FG_LIGHT_GREEN) . PHP_EOL;
-                    $arg = trim(fgets(STDIN));
-                    if (strtolower($arg) !== 'yes') {
-                        return;
-                    }
-                }
                 // 删除缓存
                 static::rm($dir, false);
                 break;
