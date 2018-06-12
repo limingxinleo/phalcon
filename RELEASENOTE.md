@@ -5,6 +5,7 @@
 - [ ] php单元测试
 
 ### Added
+* 增加swoole http引擎配置
 
 ### Changed
 
