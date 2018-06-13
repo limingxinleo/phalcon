@@ -57,8 +57,6 @@ switch ($action) {
             $SRequest->init($request);
 
             $application = new Application($di);
-            $application->useImplicitView(false);
-
             $uri = $SRequest->get('_url', null, '/');
 
             /** @var SwooleResponse $SResponse */
