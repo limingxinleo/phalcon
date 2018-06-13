@@ -51,6 +51,7 @@ switch ($action) {
             'log_level' => $config->path('swoole.http.logLevel', 5),
             'pid_file' => $pidFile,
             'open_tcp_nodelay' => $config->path('swoole.http.openTcpNodelay', 1),
+            'daemonize' => $config->path('swoole.http.daemonize', 0),
         ]);
         $http->on('workerStart', function () {
             /** @var FactoryDefault $di */
