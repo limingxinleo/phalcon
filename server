@@ -15,6 +15,8 @@ define('IS_CLI', false);
 use Phalcon\Config;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
+use App\Core\Http\Request\SwooleRequest;
+use App\Core\Http\Response\SwooleResponse;
 
 $script = $argv[0];
 if (empty($argv[1])) {
@@ -39,15 +41,31 @@ switch ($action) {
     case 'start':
         $http = new swoole_http_server($host, $port);
         $http->on('workerStart', function () {
-            require_once ROOT_PATH . '/bootstrap/bootstrap.php';
+            /** @var FactoryDefault $di */
+            $di = require ROOT_PATH . '/bootstrap/bootstrap.php';
+            $di->setShared('request', function () {
+                return new SwooleRequest();
+            });
+            $di->setShared('response', function () {
+                return new SwooleResponse();
+            });
         });
         $http->on('request', function ($request, $response) {
             $di = FactoryDefault::getDefault();
+            /** @var SwooleRequest $SRequest */
+            $SRequest = di('request');
+            $SRequest->init($request);
+
             $application = new Application($di);
             $application->useImplicitView(false);
 
-            $res = $application->handle('/');
-            $response->end($res->getContent());
+            $uri = $SRequest->get('_url', null, '/');
+
+            /** @var SwooleResponse $SResponse */
+            $SResponse = di('response');
+            $SResponse->init($response);
+
+            $application->handle($uri)->send();
         });
         $http->start();
         break;
