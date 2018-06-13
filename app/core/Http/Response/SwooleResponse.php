@@ -31,8 +31,18 @@ class SwooleResponse extends Response
         }
 
         $this->_sent = true;
+        // 处理Headers
+        $headers = $this->getHeaders();
+        foreach ($headers->toArray() as $key => $val) {
+            $this->response->header($key, $val);
+        }
+
+        $cookies = $this->getCookies();
+
+        // 处理
         $this->response->status($this->getStatusCode());
         $this->response->end($this->_content);
+
         return $this;
         // this->sendHeaders();
         // this->sendCookies();
