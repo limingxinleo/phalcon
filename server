@@ -33,13 +33,25 @@ $action = $argv[1];
 $config = include APP_PATH . "/config/config.php";
 
 $pidDir = $config->path('application.pidsDir', ROOT_PATH);
-$pidFile = $pidDir . 'swoole_http_server.pid';
+$logDir = $config->path('application.logsDir', ROOT_PATH);
 $host = $config->path('swoole.http.host', '0.0.0.0');
 $port = $config->path('swoole.http.port', 8080);
+
+$pidFile = $pidDir . 'swoole_http_server.pid';
+$logFile = $logDir . 'swoole_http_server.log';
 
 switch ($action) {
     case 'start':
         $http = new swoole_http_server($host, $port);
+        $http->set([
+            'dispatch_mode' => $config->path('swoole.http.dispatchMode', 3),
+            'worker_num' => $config->path('swoole.http.workerNum', 4),
+            'max_request' => $config->path('swoole.http.maxRequest', 10000),
+            'log_file' => $logFile,
+            'log_level' => $config->path('swoole.http.logLevel', 5),
+            'pid_file' => $pidFile,
+            'open_tcp_nodelay' => $config->path('swoole.http.openTcpNodelay', 1),
+        ]);
         $http->on('workerStart', function () {
             /** @var FactoryDefault $di */
             $di = require ROOT_PATH . '/bootstrap/bootstrap.php';
