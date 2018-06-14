@@ -41,7 +41,22 @@ $port = $config->path('swoole.http.port', 8080);
 $pidFile = $pidDir . 'swoole_http_server.pid';
 $logFile = $logDir . 'swoole_http_server.log';
 
+$pid = false;
+if (file_exists($pidFile)) {
+    $pid = intval(file_get_contents($pidFile));
+    if (!swoole_process::kill($pid, 0)) {
+        $pid = false;
+    }
+}
+
 switch ($action) {
+    case 'restart':
+        if ($pid > 0) {
+            swoole_process::kill($pid);
+            while (swoole_process::kill($pid, 0)) {
+
+            }
+        }
     case 'start':
         $http = new swoole_http_server($host, $port);
         $http->set([
@@ -73,20 +88,28 @@ switch ($action) {
 
             $application->handle($uri)->send();
         });
+        echo 'swoole http server start.' . PHP_EOL;
         $http->start();
         break;
-    case 'restart':
-        break;
     case 'reload':
+        if (!$pid) {
+            echo 'swoole http server is not running' . PHP_EOL;
+        } else {
+            swoole_process::kill($pid, SIGUSR1);
+        }
         break;
     case 'stop':
+        if (!$pid) {
+            echo 'swoole http server is not running' . PHP_EOL;
+        } else {
+            swoole_process::kill($pid);
+        }
+        break;
+    case 'status':
+        if ($pid > 0) {
+            echo 'swoole http server is running. master pid is ' . $pid . PHP_EOL;
+        } else {
+            echo 'swoole http server is not running' . PHP_EOL;
+        }
         break;
 }
-
-print_r($host);
-print_r($port);
-exit;
-print_r($config);
-
-
-print_r($argv);
