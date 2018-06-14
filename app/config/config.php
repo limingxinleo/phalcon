@@ -103,6 +103,7 @@ $config = new Config(
                 'dispatcher' => App\Core\Services\Mvc\Dispatcher::class,
                 'middleware' => App\Core\Services\Mvc\Middleware::class,
                 'request' => App\Core\Services\Mvc\Request::class,
+                'response' => App\Core\Services\Mvc\Response::class,
             ],
         ],
     ]

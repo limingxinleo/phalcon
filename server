@@ -11,6 +11,7 @@
 define('ROOT_PATH', __DIR__);
 define('APP_PATH', ROOT_PATH . '/app');
 define('IS_CLI', false);
+define('ENGINE', 'SWOOLE');
 
 use Phalcon\Config;
 use Phalcon\Mvc\Application;
@@ -55,13 +56,7 @@ switch ($action) {
         ]);
         $http->on('workerStart', function () {
             /** @var FactoryDefault $di */
-            $di = require ROOT_PATH . '/bootstrap/bootstrap.php';
-            $di->setShared('request', function () {
-                return new SwooleRequest();
-            });
-            $di->setShared('response', function () {
-                return new SwooleResponse();
-            });
+            require ROOT_PATH . '/bootstrap/bootstrap.php';
         });
         $http->on('request', function ($request, $response) {
             $di = FactoryDefault::getDefault();
