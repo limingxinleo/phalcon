@@ -44,24 +44,5 @@ class SwooleResponse extends Response
         $this->response->end($this->_content);
 
         return $this;
-        // this->sendHeaders();
-        // this->sendCookies();
-        //
-        // /**
-        //      * Output the response body
-        //      */
-        // let content = this->_content;
-        // if content != null {
-        //         echo content;
-        //     } else {
-        //         let file = this->_file;
-        //
-        // 	if typeof file == "string" && strlen(file) {
-        //         readfile(file);
-        // 	}
-        // }
-        //
-        // let this->_sent = true;
-        // return this;
     }
 }
