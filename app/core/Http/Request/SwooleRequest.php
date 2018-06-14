@@ -648,47 +648,100 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
 
     public function getHTTPReferer()
     {
-        // TODO: Implement getHTTPReferer() method.
+        $httpReferer = $this->getServer('HTTP_REFERER');
+        if ($httpReferer) {
+            return $httpReferer;
+        }
+
+        return '';
+    }
+
+    /**
+     * Process a request header and return the one with best quality
+     */
+    protected function _getBestQuality($qualityParts, $name)
+    {
+        $i = 0;
+        $quality = 0.0;
+        $selectedName = '';
+
+        foreach ($qualityParts as $accept) {
+            if ($i == 0) {
+                $quality = (double)$accept['quality'];
+                $selectedName = $accept[$name];
+            } else {
+                $acceptQuality = (double)$accept['quality'];
+                if ($acceptQuality > $quality) {
+                    $quality = $acceptQuality;
+                    $selectedName = $accept[$name];
+                }
+            }
+            $i++;
+        }
+
+        return $selectedName;
     }
 
     public function getAcceptableContent()
     {
-        // TODO: Implement getAcceptableContent() method.
+        return $this->_getQualityHeader("HTTP_ACCEPT", "accept");
     }
 
     public function getBestAccept()
     {
-        // TODO: Implement getBestAccept() method.
+        return $this->_getBestQuality($this->getAcceptableContent(), "accept");
     }
 
     public function getClientCharsets()
     {
-        // TODO: Implement getClientCharsets() method.
+        return $this->_getQualityHeader("HTTP_ACCEPT_CHARSET", "charset");
     }
 
     public function getBestCharset()
     {
-        // TODO: Implement getBestCharset() method.
+        return $this->_getBestQuality($this->getClientCharsets(), "charset");
     }
 
     public function getLanguages()
     {
-        // TODO: Implement getLanguages() method.
+        return $this->_getQualityHeader("HTTP_ACCEPT_LANGUAGE", "language");
     }
 
     public function getBestLanguage()
     {
-        // TODO: Implement getBestLanguage() method.
+        return $this->_getBestQuality($this->getLanguages(), "language");
+
     }
 
     public function getBasicAuth()
     {
-        // TODO: Implement getBasicAuth() method.
+        if ($this->hasServer('PHP_AUTH_USER') && $this->hasServer('PHP_AUTH_PW')) {
+            return [
+                'username' => $this->getServer('PHP_AUTH_USER'),
+                'password' => $this->getServer('PHP_AUTH_PW')
+            ];
+        }
+
+        return null;
     }
 
     public function getDigestAuth()
     {
-        // TODO: Implement getDigestAuth() method.
+        $auth = [];
+        if ($this->hasServer('PHP_AUTH_DIGEST')) {
+            $digest = $this->getServer('PHP_AUTH_DIGEST');
+            $matches = [];
+            if (!preg_match_all("#(\\w+)=(['\"]?)([^'\" ,]+)\\2#", $digest, $matches, 2)) {
+                return $auth;
+            }
+            if (is_array($matches)) {
+                foreach ($matches as $match) {
+                    $auth[$match[1]] = $match[3];
+                }
+            }
+        }
+
+        return $auth;
     }
 
     /**
@@ -762,5 +815,35 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         }
 
         return null;
+    }
+
+    /**
+     * Process a request header and return an array of values with their qualities
+     */
+    protected function _getQualityHeader($serverIndex, $name)
+    {
+        $returnedParts = [];
+        $parts = preg_split("/,\\s*/", $this->getServer($serverIndex), -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($parts as $part) {
+            $headerParts = [];
+            $hParts = preg_split("/\s*;\s*/", trim($part), -1, PREG_SPLIT_NO_EMPTY);
+            foreach ($hParts as $headerPart) {
+                if (strpos($headerPart, '=') !== false) {
+                    $split = explode('=', $headerPart, 2);
+                    if ($split[0] === 'q') {
+                        $headerParts['quality'] = (double)$split[1];
+                    } else {
+                        $headerParts[$split[0]] = $split[1];
+                    }
+                } else {
+                    $headerParts[$name] = $headerPart;
+                    $headerParts["quality"] = 1.0;
+                }
+            }
+
+            $returnedParts[] = $headerParts;
+        }
+
+        return $returnedParts;
     }
 }
