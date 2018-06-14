@@ -217,6 +217,16 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         return $this->_rawBody;
     }
 
+    public function getJsonRawBody($associative = false)
+    {
+        $rawBody = $this->getRawBody();
+        if (!is_string($rawBody)) {
+            return false;
+        }
+
+        return json_decode($rawBody, $associative);
+    }
+
     public function getServerAddress()
     {
         $serverAddr = $this->getServer('SERVER_ADDR');

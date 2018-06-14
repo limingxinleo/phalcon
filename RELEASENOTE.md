@@ -6,6 +6,7 @@
 
 ### Added
 * 增加swoole http引擎配置
+* 增加getJsonRawBody
 
 ### Changed
 * 修改MVC注入依赖时，兼容Swoole引擎
