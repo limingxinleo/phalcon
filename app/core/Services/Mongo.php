@@ -33,7 +33,7 @@ class Mongo implements ServiceProviderInterface
                 }
                 if (isset($config->mongo->password)) {
                     // 覆盖$server字符串中的password段，如果password包含符号@时，选用此种方式。
-                    $options['password'] = $config->mongo->password;
+                    $options['password'] = (string)$config->mongo->password;
                 }
                 if (isset($config->mongo->replicaSet)) {
                     // 配置replicaSet名称

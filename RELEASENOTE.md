@@ -8,8 +8,10 @@
 * 增加swoole http引擎配置
 
 ### Changed
+* 修改MVC注入依赖时，兼容Swoole引擎
 
 ### Fixed
+* 修改mongo密码为纯数字时报错的BUG
 
 ### Deleted
 
