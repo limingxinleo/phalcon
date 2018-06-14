@@ -21,7 +21,7 @@ use App\Core\Http\Response\SwooleResponse;
 
 $script = $argv[0];
 if (empty($argv[1])) {
-    echo './server [start|restart|reload|stop]' . PHP_EOL;
+    echo './server [start|restart|reload|stop|status]' . PHP_EOL;
     exit;
 }
 
