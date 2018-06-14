@@ -9,6 +9,7 @@
 
 ### Changed
 * 修改MVC注入依赖时，兼容Swoole引擎
+* 修改master server pid默认值为0
 
 ### Fixed
 * 修改mongo密码为纯数字时报错的BUG
