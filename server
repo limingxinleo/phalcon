@@ -1,0 +1,92 @@
+#!/usr/bin/env php
+<?php
+// +----------------------------------------------------------------------
+// | server.php [ WE CAN DO IT JUST THINK IT ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2016-2017 limingxinleo All rights reserved.
+// +----------------------------------------------------------------------
+// | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
+// +----------------------------------------------------------------------
+
+define('ROOT_PATH', __DIR__);
+define('APP_PATH', ROOT_PATH . '/app');
+define('IS_CLI', false);
+define('ENGINE', 'SWOOLE');
+
+use Phalcon\Config;
+use Phalcon\Mvc\Application;
+use Phalcon\Di\FactoryDefault;
+use App\Core\Http\Request\SwooleRequest;
+use App\Core\Http\Response\SwooleResponse;
+
+$script = $argv[0];
+if (empty($argv[1])) {
+    echo './server [start|restart|reload|stop]' . PHP_EOL;
+    exit;
+}
+
+$action = $argv[1];
+
+/**
+ * Get config service for use in inline setup below
+ */
+/** @var Config $config */
+$config = include APP_PATH . "/config/config.php";
+
+$pidDir = $config->path('application.pidsDir', ROOT_PATH);
+$logDir = $config->path('application.logsDir', ROOT_PATH);
+$host = $config->path('swoole.http.host', '0.0.0.0');
+$port = $config->path('swoole.http.port', 8080);
+
+$pidFile = $pidDir . 'swoole_http_server.pid';
+$logFile = $logDir . 'swoole_http_server.log';
+
+switch ($action) {
+    case 'start':
+        $http = new swoole_http_server($host, $port);
+        $http->set([
+            'dispatch_mode' => $config->path('swoole.http.dispatchMode', 3),
+            'worker_num' => $config->path('swoole.http.workerNum', 4),
+            'max_request' => $config->path('swoole.http.maxRequest', 10000),
+            'log_file' => $logFile,
+            'log_level' => $config->path('swoole.http.logLevel', 5),
+            'pid_file' => $pidFile,
+            'open_tcp_nodelay' => $config->path('swoole.http.openTcpNodelay', 1),
+            'daemonize' => $config->path('swoole.http.daemonize', 0),
+        ]);
+        $http->on('workerStart', function () {
+            /** @var FactoryDefault $di */
+            require ROOT_PATH . '/bootstrap/bootstrap.php';
+        });
+        $http->on('request', function ($request, $response) {
+            $di = FactoryDefault::getDefault();
+            /** @var SwooleRequest $SRequest */
+            $SRequest = di('request');
+            $SRequest->init($request);
+
+            $application = new Application($di);
+            $uri = $SRequest->get('_url', null, '/');
+
+            /** @var SwooleResponse $SResponse */
+            $SResponse = di('response');
+            $SResponse->init($response);
+
+            $application->handle($uri)->send();
+        });
+        $http->start();
+        break;
+    case 'restart':
+        break;
+    case 'reload':
+        break;
+    case 'stop':
+        break;
+}
+
+print_r($host);
+print_r($port);
+exit;
+print_r($config);
+
+
+print_r($argv);

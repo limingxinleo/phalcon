@@ -6,12 +6,7 @@ use App\Core\DI;
 define('ROOT_PATH', __DIR__);
 define('APP_PATH', ROOT_PATH . '/app');
 define('IS_CLI', true);
-
-/**
- * The FactoryDefault Dependency Injector automatically registers the services that
- * provide a full stack framework. These default services can be overidden with custom ones.
- */
-// $di = new CliDi();
+define('ENGINE', 'CLI');
 
 /**
  * Read vendor autoload
