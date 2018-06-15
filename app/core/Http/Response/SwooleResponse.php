@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Http\Response;
 
+use Phalcon\Http\Cookie;
 use Phalcon\Http\Response;
 use swoole_http_response;
 use Exception;
@@ -37,7 +38,22 @@ class SwooleResponse extends Response
             $this->response->header($key, $val);
         }
 
+        /** @var Cookies $cookies */
         $cookies = $this->getCookies();
+        if ($cookies) {
+            /** @var Cookie $cookie */
+            foreach ($cookies->getCookies() as $cookie) {
+                $this->response->cookie(
+                    $cookie->getName(),
+                    $cookie->getValue(),
+                    $cookie->getExpiration(),
+                    $cookie->getPath(),
+                    $cookie->getDomain(),
+                    $cookie->getSecure(),
+                    $cookie->getHttpOnly()
+                );
+            }
+        }
 
         // 处理
         $this->response->status($this->getStatusCode());
