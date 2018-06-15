@@ -18,10 +18,11 @@ use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use App\Core\Http\Request\SwooleRequest;
 use App\Core\Http\Response\SwooleResponse;
+use App\Core\Exception\Handler;
 
 $script = $argv[0];
 if (empty($argv[1])) {
-    echo './server [start|restart|reload|stop]' . PHP_EOL;
+    echo './server [start|restart|reload|stop|status]' . PHP_EOL;
     exit;
 }
 
@@ -86,7 +87,11 @@ switch ($action) {
             $SResponse = di('response');
             $SResponse->init($response);
 
-            $application->handle($uri)->send();
+            try {
+                $application->handle($uri)->send();
+            } catch (Exception $ex) {
+                Handler::getInstance()->render($ex);
+            }
         });
         echo 'swoole http server start.' . PHP_EOL;
         $http->start();

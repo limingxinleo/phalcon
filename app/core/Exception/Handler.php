@@ -11,6 +11,7 @@ namespace App\Core\Exception;
 use Exception;
 use ErrorException;
 use Phalcon\DI\FactoryDefault;
+use Phalcon\Http\ResponseInterface;
 use Xin\Phalcon\Logger\Sys;
 
 class Handler
@@ -44,12 +45,15 @@ class Handler
     {
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         $this->logger->error($msg);
+
+        $message = 'Sorry, 服务器内部错误';
         if (di('config')->get('debug', false)) {
-            echo $msg;
-        } else {
-            echo 'Sorry, 服务器内部错误';
+            $message = $msg;
         }
-        exit(255);
+
+        /** @var ResponseInterface $response */
+        $response = di('response');
+        $response->setContent($message)->send();
     }
 
     /**
@@ -62,6 +66,5 @@ class Handler
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         $this->logger->error($msg);
         echo $msg;
-        exit(255);
     }
 }

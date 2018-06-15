@@ -6,10 +6,12 @@
 
 ### Added
 * 增加swoole http引擎配置
+* 增加getJsonRawBody
 
 ### Changed
 * 修改MVC注入依赖时，兼容Swoole引擎
 * 修改master server pid默认值为0
+* 重写异常捕获Handler
 
 ### Fixed
 * 修改mongo密码为纯数字时报错的BUG

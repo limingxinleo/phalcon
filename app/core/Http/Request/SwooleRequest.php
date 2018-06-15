@@ -9,10 +9,12 @@
 namespace App\Core\Http\Request;
 
 use Phalcon\DiInterface;
+use Phalcon\Events\Manager;
 use Phalcon\FilterInterface;
 use Phalcon\Http\RequestInterface;
 use Phalcon\Di\InjectionAwareInterface;
 use Phalcon\Http\Request\File;
+use Phalcon\Text;
 use swoole_http_request;
 use Exception;
 
@@ -27,6 +29,8 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
     protected $_putCache;
 
     protected $_strictHostCheck = false;
+
+    protected $_files;
 
     protected $headers;
 
@@ -215,6 +219,16 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
     public function getRawBody()
     {
         return $this->_rawBody;
+    }
+
+    public function getJsonRawBody($associative = false)
+    {
+        $rawBody = $this->getRawBody();
+        if (!is_string($rawBody)) {
+            return false;
+        }
+
+        return json_decode($rawBody, $associative);
     }
 
     public function getServerAddress()
@@ -534,7 +548,7 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         if (count($superFiles) > 0) {
 
             foreach ($superFiles as $prefix => $input) {
-                if (is_array(!input["name"])) {
+                if (is_array(!$input["name"])) {
                     $smoothInput = $this->smoothFiles(
                         $input["name"],
                         $input["type"],
@@ -566,6 +580,23 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         }
 
         return $files;
+    }
+
+    public function getFile($key)
+    {
+        if (!isset($this->_files)) {
+            $this->_files = [];
+            $files = $this->getUploadedFiles();
+            foreach ($files as $file) {
+                $this->_files[$file->getKey()] = $file;
+            }
+        }
+
+        if (!isset($this->_files[$key])) {
+            return null;
+        }
+
+        return $this->_files[$key];
     }
 
     /**
@@ -622,7 +653,7 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
 
         $servers = $this->getServers();
         foreach ($servers as $name => $value) {
-            if (starts_with($name, 'HTTP_')) {
+            if (Text::startsWith($name, 'HTTP_')) {
                 $name = ucwords(strtolower(str_replace("_", " ", substr($name, 5))));
                 $name = str_replace(" ", "-", $name);
                 $headers[$name] = $value;
@@ -845,5 +876,82 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         }
 
         return $returnedParts;
+    }
+
+    /**
+     * Resolve authorization headers.
+     */
+    protected function resolveAuthorizationHeaders()
+    {
+        $headers = [];
+        $authHeader = null;
+
+        $dependencyInjector = $this->getDI();
+        if ($dependencyInjector instanceof DiInterface) {
+            $hasEventsManager = (bool)$dependencyInjector->has("eventsManager");
+            if ($hasEventsManager) {
+                $eventsManager = $dependencyInjector->getShared("eventsManager");
+            }
+        }
+
+        if ($hasEventsManager && $eventsManager instanceof Manager) {
+            $resolved = $eventsManager->fire(
+                "request:beforeAuthorizationResolve",
+                $this,
+                ["server" => $this->getServers()]
+            );
+
+            if (is_array($resolved)) {
+                $headers = array_merge($headers, $resolved);
+            }
+        }
+
+        if ($this->hasServer('PHP_AUTH_USER') && $this->hasServer('PHP_AUTH_PW')) {
+            $headers["Php-Auth-User"] = $this->getServer("PHP_AUTH_USER");
+            $headers["Php-Auth-Pw"] = $this->getServer("PHP_AUTH_PW");
+        } else {
+            if ($this->hasServer('HTTP_AUTHORIZATION')) {
+                $authHeader = $this->getServer("HTTP_AUTHORIZATION");
+            } elseif ($this->hasServer('REDIRECT_HTTP_AUTHORIZATION')) {
+                $authHeader = $this->getServer("REDIRECT_HTTP_AUTHORIZATION");
+            }
+
+            if ($authHeader) {
+                if (stripos($authHeader, "basic ") === 0) {
+                    $exploded = explode(":", base64_decode(substr($authHeader, 6)), 2);
+                    if (count($exploded) == 2) {
+                        $headers["Php-Auth-User"] = $exploded[0];
+                        $headers["Php-Auth-Pw"] = $exploded[1];
+                    }
+                } elseif (stripos($authHeader, "digest ") === 0 && !$this->hasServer("PHP_AUTH_DIGEST")) {
+                    $headers["Php-Auth-Digest"] = $authHeader;
+                } elseif (stripos($authHeader, "bearer ") === 0) {
+                    $headers["Authorization"] = $authHeader;
+                }
+            }
+        }
+
+        if (!isset ($headers["Authorization"])) {
+            if (isset ($headers["Php-Auth-User"])) {
+                $headers["Authorization"] = "Basic " . base64_encode($headers["Php-Auth-User"] . ":" . $headers["Php-Auth-Pw"]);
+            } elseif (isset($headers["Php-Auth-Digest"])) {
+                $headers["Authorization"] = $headers["Php-Auth-Digest"];
+            }
+        }
+
+        if ($hasEventsManager && $eventsManager instanceof Manager) {
+            $resolved = $eventsManager->fire(
+                "request:afterAuthorizationResolve",
+                $this,
+                ["headers" => $headers, "server" => $this->getServers()]
+            );
+
+            if (is_array($resolved)) {
+                $headers = array_merge($headers, $resolved);
+            }
+
+        }
+
+        return $headers;
     }
 }
