@@ -62,6 +62,7 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         foreach ($request->header as $key => $val) {
             $key = strtoupper(str_replace(['-'], '_', $key));
             $this->headers[$key] = $val;
+            $this->server[$key] = $val;
         }
         foreach ($request->server as $key => $val) {
             $key = strtoupper(str_replace(['-'], '_', $key));
