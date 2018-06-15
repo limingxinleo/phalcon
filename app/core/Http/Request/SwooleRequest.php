@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Http\Request;
 
+use App\Core\Http\Response\Cookies;
 use Phalcon\DiInterface;
 use Phalcon\Events\Manager;
 use Phalcon\FilterInterface;
@@ -51,6 +52,7 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
         $this->swooleRequest = $request;
         $this->headers = [];
         $this->server = [];
+
         $this->get = isset($request->get) ? $request->get : [];
         $this->post = isset($request->post) ? $request->post : [];
         $this->cookies = isset($request->cookie) ? $request->cookie : [];
@@ -65,6 +67,10 @@ class SwooleRequest implements RequestInterface, InjectionAwareInterface
             $key = strtoupper(str_replace(['-'], '_', $key));
             $this->server[$key] = $val;
         }
+
+        /** @var Cookies $cookies */
+        $cookies = di('cookies');
+        $cookies->setSwooleCookies($this->cookies);
     }
 
     public function setDI(DiInterface $dependencyInjector)
