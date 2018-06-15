@@ -7,6 +7,7 @@
 ### Added
 * 增加swoole http引擎配置
 * 增加getJsonRawBody
+* 完善Cookies初始化
 
 ### Changed
 * 修改MVC注入依赖时，兼容Swoole引擎

@@ -10,6 +10,7 @@ namespace App\Core\Services;
 
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
+use App\Core\Http\Response\Cookies as CookiesService;
 
 class Cookies implements ServiceProviderInterface
 {
@@ -19,6 +20,9 @@ class Cookies implements ServiceProviderInterface
             "cookies",
             function () use ($config) {
                 $cookies = new \Phalcon\Http\Response\Cookies();
+                if (defined('ENGINE') && ENGINE === 'SWOOLE'){
+                    $cookies = new CookiesService();
+                }
 
                 $cookies->useEncryption($config->cookies->isCrypt);
 
