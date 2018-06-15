@@ -10,6 +10,7 @@
 
 ### Changed
 * 修改MVC注入依赖时，兼容Swoole引擎
+* 重写异常捕获Handler
 
 ### Fixed
 * 修改mongo密码为纯数字时报错的BUG
