@@ -24,7 +24,7 @@ $config = new Config(
         | This value is version for this project.
         |
         */
-        'version' => '2.4.2',
+        'version' => '2.4.3',
 
         /*
         |--------------------------------------------------------------------------
