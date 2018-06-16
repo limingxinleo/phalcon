@@ -54,6 +54,7 @@ class Handler
         /** @var ResponseInterface $response */
         $response = di('response');
         $response->setContent($message)->send();
+        exit;
     }
 
     /**
@@ -66,5 +67,6 @@ class Handler
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
         $this->logger->error($msg);
         echo $msg;
+        exit;
     }
 }

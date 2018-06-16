@@ -55,9 +55,9 @@ switch ($action) {
         if ($pid > 0) {
             swoole_process::kill($pid);
             while (swoole_process::kill($pid, 0)) {
-
             }
         }
+        // no break
     case 'start':
         $http = new swoole_http_server($host, $port);
         $http->set([
@@ -97,17 +97,17 @@ switch ($action) {
         $http->start();
         break;
     case 'reload':
-        if ($pid > 0) {
-            echo 'swoole http server is not running' . PHP_EOL;
+        if ($pid > 0 && swoole_process::kill($pid, SIGUSR1)) {
+            echo 'swoole http server reload successed.' . PHP_EOL;
         } else {
-            swoole_process::kill($pid, SIGUSR1);
+            echo 'swoole http server is not running' . PHP_EOL;
         }
         break;
     case 'stop':
-        if ($pid > 0) {
-            echo 'swoole http server is not running' . PHP_EOL;
+        if ($pid > 0 && swoole_process::kill($pid)) {
+            echo 'swoole http server stop successed.' . PHP_EOL;
         } else {
-            swoole_process::kill($pid);
+            echo 'swoole http server is not running' . PHP_EOL;
         }
         break;
     case 'status':
