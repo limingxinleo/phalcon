@@ -73,6 +73,8 @@ switch ($action) {
         $http->on('workerStart', function () {
             /** @var FactoryDefault $di */
             require ROOT_PATH . '/bootstrap/bootstrap.php';
+            // TODO: 为解决Mysql长期闲置，连接被释放的问题，可以在这里进行Mysql定时续约
+            
         });
         $http->on('request', function ($request, $response) {
             $di = FactoryDefault::getDefault();
