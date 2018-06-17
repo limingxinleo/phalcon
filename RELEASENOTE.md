@@ -7,8 +7,11 @@
 ### Added
 
 ### Changed
+* 通过Handler捕获到的异常，主动退出
 
 ### Fixed
+* 修改reload、stop脚本无法使用的BUG
+* 修改logDir有误的BUG
 
 ### Deleted
 

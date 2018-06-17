@@ -34,8 +34,8 @@ $action = $argv[1];
 /** @var Config $config */
 $config = include APP_PATH . "/config/config.php";
 
-$pidDir = $config->path('application.pidsDir', ROOT_PATH);
-$logDir = $config->path('application.logsDir', ROOT_PATH);
+$pidDir = $config->path('application.pidsDir', ROOT_PATH . '/');
+$logDir = $config->path('application.logDir', ROOT_PATH . '/');
 $host = $config->path('swoole.http.host', '0.0.0.0');
 $port = $config->path('swoole.http.port', 8080);
 
@@ -55,9 +55,9 @@ switch ($action) {
         if ($pid > 0) {
             swoole_process::kill($pid);
             while (swoole_process::kill($pid, 0)) {
-
             }
         }
+    // no break
     case 'start':
         $http = new swoole_http_server($host, $port);
         $http->set([
@@ -73,6 +73,8 @@ switch ($action) {
         $http->on('workerStart', function () {
             /** @var FactoryDefault $di */
             require ROOT_PATH . '/bootstrap/bootstrap.php';
+            // TODO: 为解决Mysql长期闲置，连接被释放的问题，可以在这里进行Mysql定时续约
+
         });
         $http->on('request', function ($request, $response) {
             $di = FactoryDefault::getDefault();
@@ -97,17 +99,17 @@ switch ($action) {
         $http->start();
         break;
     case 'reload':
-        if ($pid > 0) {
-            echo 'swoole http server is not running' . PHP_EOL;
+        if ($pid > 0 && swoole_process::kill($pid, SIGUSR1)) {
+            echo 'swoole http server reload successed.' . PHP_EOL;
         } else {
-            swoole_process::kill($pid, SIGUSR1);
+            echo 'swoole http server is not running' . PHP_EOL;
         }
         break;
     case 'stop':
-        if ($pid > 0) {
-            echo 'swoole http server is not running' . PHP_EOL;
+        if ($pid > 0 && swoole_process::kill($pid)) {
+            echo 'swoole http server stop successed.' . PHP_EOL;
         } else {
-            swoole_process::kill($pid);
+            echo 'swoole http server is not running' . PHP_EOL;
         }
         break;
     case 'status':
