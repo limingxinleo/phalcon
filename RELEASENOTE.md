@@ -11,6 +11,7 @@
 
 ### Fixed
 * 修改reload、stop脚本无法使用的BUG
+* 修改logDir有误的BUG
 
 ### Deleted
 
