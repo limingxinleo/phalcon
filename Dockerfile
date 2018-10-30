@@ -85,6 +85,7 @@ WORKDIR /opt/www/phalcon
 
 RUN composer install --no-dev \
     && composer dump-autoload -o \
+    && cp /opt/www/phalcon/config.example.ini /opt/www/phalcon/config.ini \
     && php /opt/www/phalcon/run
 
 EXPOSE 8080
